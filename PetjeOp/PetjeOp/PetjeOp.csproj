@@ -46,15 +46,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controller.cs" />
+    <Compile Include="ExampleTwo\ExampleTwoController.cs" />
+    <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
+    <Compile Include="ExampleTwo\ExampleTwoView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExampleTwo\ExampleTwoView.Designer.cs">
+      <DependentUpon>ExampleTwoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterController.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MasterController.Designer.cs">
+      <DependentUpon>MasterController.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questionnaire.cs" />
+    <Compile Include="Example\ExampleController.cs" />
+    <Compile Include="Example\ExampleModel.cs" />
+    <Compile Include="Example\ExampleView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Example\ExampleView.Designer.cs">
+      <DependentUpon>ExampleView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ExampleTwo\ExampleTwoView.resx">
+      <DependentUpon>ExampleTwoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterController.resx">
+      <DependentUpon>MasterController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -64,6 +87,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Example\ExampleView.resx">
+      <DependentUpon>ExampleView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -77,6 +103,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

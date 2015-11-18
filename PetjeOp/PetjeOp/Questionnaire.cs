@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace PetjeOp
 {
+    // Stelletje luilakken, de volgende keer wel Question commiten verdomme - Kevin
+    // Niet committen als er build errors zijn!!!!!!!!!!!!!!!!!!!!!!
     class Questionnaire
     {
-        public string Name { get; set; }
+        /*public string Name { get; set; }
         private List<Question> questions;
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
@@ -37,6 +39,6 @@ namespace PetjeOp
             {
                 Console.WriteLine(q);
             }
-        }
+        }*/
     }
 }
