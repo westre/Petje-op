@@ -11,20 +11,20 @@ namespace PetjeOp
         public string Name { get; set; }
         private List<Question> questions;
 
-        // Constructor voor de klasse maakt alvast een lege lijst aan
+        // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
         public Questionnaire(string n)
         {
             Name = n;
             questions = new List<Question>();
         }
 
-        // Voeg een vraag aan de lijst toe
+        // Voeg een vraag aan de vragenlijst toe
         public void addQuestion(Question q)
         {
             questions.Add(q);
         }
 
-        // Verwijder een vraag uit de lijst
+        // Verwijder een vraag uit de vragenlijst
         public void deleteQuestion(int i)
         {
             questions.RemoveAt(i);
