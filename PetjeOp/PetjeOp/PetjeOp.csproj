@@ -55,6 +55,7 @@
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
     <Compile Include="ExampleTwo\ExampleTwoView.cs">
