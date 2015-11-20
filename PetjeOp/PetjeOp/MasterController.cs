@@ -12,52 +12,36 @@ using PetjeOp.AddQuestionnaire;
 
 namespace PetjeOp {
     public partial class MasterController : Form {
-        // Declareer hieronder alle controllers
-        private ExampleController ExampleController { get; set; }
-        private ExampleTwoController ExampleTwoController { get; set; }
-        private AddQuestionnaireController AddQuestionnaireController { get; set; }
-
-        // Declareer hier ook wanneer je een nieuwe controller toevoegt
-        public enum Controllers {
-            ExampleController,
-            ExampleControllerTwo,
-            AddQuestionnaireController
-        }
+        private List<Controller> Controllers { get; set; }
 
         public MasterController() {
             InitializeComponent();
+            Controllers = new List<Controller>();
 
             // Initialiseer de controllers
-            ExampleController = new ExampleController(this);
-            ExampleTwoController = new ExampleTwoController(this);
-            AddQuestionnaireController = new AddQuestionnaireController(this);
+            Controllers.Add(new ExampleController(this));
+            Controllers.Add(new ExampleTwoController(this));
+            Controllers.Add(new AddQuestionnaireController(this));
 
             // We beginnen met deze view
-            mainPanel.Controls.Add(AddQuestionnaireController.View);
-            if (AddQuestionnaireController != null)
-            {
-                AddQuestionnaireController.View.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                mainPanel.AutoScroll = true;
-                AddQuestionnaireController.View.Width -= 180;
-                AddQuestionnaireController.View.Height += 10;
+            mainPanel.Controls.Add(GetController(typeof(AddQuestionnaireController)).GetView());          
+        }
+
+        public Controller GetController(Type type) {
+            foreach(Controller controller in Controllers) {
+                if (controller.GetType() == type)
+                    return controller;
             }
+            return null;
         }
 
         // Dit wordt bijvoorbeeld aangeroepen wanneer we op een knop klikken (zie ExampleView.button1_Click)
-        public void SetController(Controllers controller) {
+        public void SetController(Controller controller) {
             // Eerst verwijderen we de view
             mainPanel.Controls.Clear();
 
-            // We voegen dan de view toe aan het paneel
-            if(controller == Controllers.ExampleController) {
-                mainPanel.Controls.Add(ExampleController.View);
-            }
-            else if (controller == Controllers.ExampleControllerTwo) {
-                mainPanel.Controls.Add(ExampleTwoController.View);
-            } else if (controller == Controllers.AddQuestionnaireController)
-            {
-                mainPanel.Controls.Add(AddQuestionnaireController.View);
-            }
+            // Dan voegen we de nieuwe view toe
+            mainPanel.Controls.Add(controller.GetView());
         }
 
         private void mainPanel_Paint(object sender, PaintEventArgs e)
