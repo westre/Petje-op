@@ -25,5 +25,17 @@ namespace PetjeOpTests
 
             Assert.IsNotNull(qs.Questions[0]);
         }
+
+        [TestMethod]
+        public void TestIfQuestionsGetRemoved()
+        {
+            MultipleChoiceQuestion q1 = new MultipleChoiceQuestion("Werkt dit?");
+            Questionnaire qs = new Questionnaire("Testlijst");
+
+            qs.addQuestion(q1);
+            qs.deleteQuestion(0);
+
+            Assert.IsTrue(qs.Questions.Count == 0);
+        }
     }
 }
