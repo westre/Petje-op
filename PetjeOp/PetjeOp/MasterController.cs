@@ -26,6 +26,8 @@ namespace PetjeOp {
             // We beginnen met deze view
             mainPanel.Controls.Add(GetController(typeof(AddQuestionnaireController)).GetView());
 
+
+            // Kevin: Doe dit anders in de constructor van AddQuestionnaireController
             AddQuestionnaireController addQuestionnaireController = (AddQuestionnaireController)GetController(typeof(AddQuestionnaireController));
             if (addQuestionnaireController != null) {
                 addQuestionnaireController.View.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
