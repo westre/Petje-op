@@ -24,7 +24,17 @@ namespace PetjeOp {
             Controllers.Add(new AddQuestionnaireController(this));
 
             // We beginnen met deze view
-            mainPanel.Controls.Add(GetController(typeof(AddQuestionnaireController)).GetView());          
+            mainPanel.Controls.Add(GetController(typeof(AddQuestionnaireController)).GetView());
+
+            AddQuestionnaireController addQuestionnaireController = (AddQuestionnaireController)GetController(typeof(AddQuestionnaireController));
+            if (addQuestionnaireController != null) {
+                addQuestionnaireController.View.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+                mainPanel.AutoScroll = true;
+                addQuestionnaireController.View.Width -= 180;
+                addQuestionnaireController.View.Height += 10;
+
+                Console.WriteLine("Not null");
+            }
         }
 
         public Controller GetController(Type type) {
