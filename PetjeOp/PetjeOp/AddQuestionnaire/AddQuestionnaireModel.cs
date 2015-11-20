@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetjeOp.AddQuestionnaire
 {
-    class AddQuestionnaireModel
+    public class AddQuestionnaireModel
     {
         public string Name { get; set; }
     }

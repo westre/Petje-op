@@ -1,4 +1,6 @@
-﻿We gaan ervan uit dat we MainMenu willen implementeren
+﻿(outdated)
+
+We gaan ervan uit dat we MainMenu willen implementeren
 
 1. Maak de map MainMenu
 2. Kopieer de klassen JOUWKLASSEController.cs, JOUWKLASSEModel.cs en JOUWKLASSEView.cs naar de map MainMenu

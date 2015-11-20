@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PetjeOp.AddQuestionnaire
 {
-    class AddQuestionnaireController : Controller
+    public class AddQuestionnaireController : Controller
     {
         public AddQuestionnaireView View { get; set; }
         public AddQuestionnaireModel Model { get; set; }
 
         public AddQuestionnaireController(MasterController masterController) : base(masterController) {
             Model = new AddQuestionnaireModel();
-            View = new AddQuestionnaireView();
+            View = new AddQuestionnaireView(this);
         }
 
         // In de controller wordt zowel de Model als View aangestuurd
@@ -27,6 +28,10 @@ namespace PetjeOp.AddQuestionnaire
         public void UpdateView()
         {
             
+        }
+
+        public override UserControl GetView() {
+            return View;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PetjeOp {
     public class ExampleController : Controller {
@@ -23,6 +24,10 @@ namespace PetjeOp {
         // Hier veranderen we de View met de data van ExampleModel
         public void UpdateView() {
             View.button1.Text = Model.Name;
+        }
+
+        public override UserControl GetView() {
+            return View;
         }
     }
 }
