@@ -54,6 +54,18 @@
     <Compile Include="AddQuestionnaire\AddQuestionnaireView.Designer.cs">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddQuestionnaire\AddQuestion\AddQuestionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddQuestionnaire\AddQuestion\AddQuestionDialog.Designer.cs">
+      <DependentUpon>AddQuestionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddQuestionnaire\AddQuestion\AddQuestionView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddQuestionnaire\AddQuestion\AddQuestionView.Designer.cs">
+      <DependentUpon>AddQuestionView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
@@ -83,6 +95,12 @@
     </Compile>
     <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddQuestionnaire\AddQuestion\AddQuestionDialog.resx">
+      <DependentUpon>AddQuestionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddQuestionnaire\AddQuestion\AddQuestionView.resx">
+      <DependentUpon>AddQuestionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExampleTwo\ExampleTwoView.resx">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>

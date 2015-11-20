@@ -12,14 +12,23 @@ namespace PetjeOp.AddQuestionnaire
 {
     public partial class AddQuestionnaireView : UserControl
     {
-        public AddQuestionnaireView()
+        public AddQuestionnaireController Controller { get; set; }
+
+        public AddQuestionnaireView(AddQuestionnaireController controller)
         {
             InitializeComponent();
+
+            Controller = controller;
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAddQuestion_Click(object sender, EventArgs e)
+        {
+            Controller.ShowQuestionDialog();
         }
     }
 }
