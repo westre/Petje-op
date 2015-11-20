@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,13 @@ namespace PetjeOp {
 
             // We beginnen met deze view
             mainPanel.Controls.Add(AddQuestionnaireController.View);
+            if (AddQuestionnaireController != null)
+            {
+                AddQuestionnaireController.View.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+                mainPanel.AutoScroll = true;
+                AddQuestionnaireController.View.Width -= 180;
+                AddQuestionnaireController.View.Height += 10;
+            }
         }
 
         // Dit wordt bijvoorbeeld aangeroepen wanneer we op een knop klikken (zie ExampleView.button1_Click)
