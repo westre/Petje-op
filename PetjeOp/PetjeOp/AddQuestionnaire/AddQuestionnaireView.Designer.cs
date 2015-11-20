@@ -56,7 +56,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(21, 567);
+            this.button2.Location = new System.Drawing.Point(13, 574);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(480, 50);
             this.button2.TabIndex = 11;
@@ -72,14 +72,14 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(21, 249);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(921, 288);
+            this.groupBox1.Size = new System.Drawing.Size(921, 319);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vraag 1";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 226);
+            this.button1.Location = new System.Drawing.Point(13, 255);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(236, 47);
             this.button1.TabIndex = 11;
@@ -94,7 +94,7 @@
             "Antwoord 2"});
             this.Antwoordmogelijkheden.Location = new System.Drawing.Point(13, 146);
             this.Antwoordmogelijkheden.Name = "Antwoordmogelijkheden";
-            this.Antwoordmogelijkheden.Size = new System.Drawing.Size(467, 56);
+            this.Antwoordmogelijkheden.Size = new System.Drawing.Size(467, 82);
             this.Antwoordmogelijkheden.TabIndex = 10;
             // 
             // label5

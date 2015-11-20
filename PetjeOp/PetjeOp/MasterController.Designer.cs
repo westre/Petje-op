@@ -34,10 +34,12 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.AutoScroll = true;
+            this.mainPanel.AutoSize = true;
             this.mainPanel.Location = new System.Drawing.Point(354, 100);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(6);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1200, 794);
+            this.mainPanel.Size = new System.Drawing.Size(1200, 1031);
             this.mainPanel.TabIndex = 0;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
@@ -59,7 +61,7 @@
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 100);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(353, 794);
+            this.pnlMenu.Size = new System.Drawing.Size(353, 1031);
             this.pnlMenu.TabIndex = 2;
             // 
             // label1
@@ -88,7 +90,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1554, 894);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1554, 1131);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.mainPanel);
@@ -100,6 +103,7 @@
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
