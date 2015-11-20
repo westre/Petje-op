@@ -63,6 +63,14 @@
     <Compile Include="ExampleTwo\ExampleTwoView.Designer.cs">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEController.cs" />
+    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEModel.cs" />
+    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.Designer.cs">
+      <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExampleTwo\ExampleTwoView.resx">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.resx">
+      <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterController.resx">
       <DependentUpon>MasterController.cs</DependentUpon>
@@ -115,7 +126,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
