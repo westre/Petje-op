@@ -20,7 +20,7 @@ namespace PetjeOp {
 
         private void button1_Click(object sender, EventArgs e) {
             // Hier roepen we de MasterController aan en zeggen we dat we een andere controller willen gebruiken
-            Controller.MasterController.SetController(MasterController.Controllers.ExampleControllerTwo);
+            Controller.MasterController.SetController(MasterController.Controllers.AddQuestionnaireController);
         }
     }
 }

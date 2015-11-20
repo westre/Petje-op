@@ -46,6 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddQuestionnaire\AddQuestionnaireController.cs" />
+    <Compile Include="AddQuestionnaire\AddQuestionnaireModel.cs" />
+    <Compile Include="AddQuestionnaire\AddQuestionnaireView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddQuestionnaire\AddQuestionnaireView.Designer.cs">
+      <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
@@ -73,6 +81,9 @@
     <Compile Include="Example\ExampleView.Designer.cs">
       <DependentUpon>ExampleView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
+      <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExampleTwo\ExampleTwoView.resx">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
     </EmbeddedResource>

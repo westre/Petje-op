@@ -7,29 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetjeOp.AddQuestionnaire;
 
 namespace PetjeOp {
     public partial class MasterController : Form {
         // Declareer hieronder alle controllers
         private ExampleController ExampleController { get; set; }
         private ExampleTwoController ExampleTwoController { get; set; }
+        private AddQuestionnaireController AddQuestionnaireController { get; set; }
 
         // Declareer hier ook wanneer je een nieuwe controller toevoegt
         public enum Controllers {
             ExampleController,
-            ExampleControllerTwo
+            ExampleControllerTwo,
+            AddQuestionnaireController
         }
 
         public MasterController() {
             InitializeComponent();
-            mainPanel.Dock = DockStyle.Fill;
 
             // Initialiseer de controllers
             ExampleController = new ExampleController(this);
             ExampleTwoController = new ExampleTwoController(this);
+            AddQuestionnaireController = new AddQuestionnaireController(this);
 
             // We beginnen met deze view
-            mainPanel.Controls.Add(ExampleController.View);
+            mainPanel.Controls.Add(AddQuestionnaireController.View);
         }
 
         // Dit wordt bijvoorbeeld aangeroepen wanneer we op een knop klikken (zie ExampleView.button1_Click)
@@ -43,7 +46,20 @@ namespace PetjeOp {
             }
             else if (controller == Controllers.ExampleControllerTwo) {
                 mainPanel.Controls.Add(ExampleTwoController.View);
+            } else if (controller == Controllers.AddQuestionnaireController)
+            {
+                mainPanel.Controls.Add(AddQuestionnaireController.View);
             }
+        }
+
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
