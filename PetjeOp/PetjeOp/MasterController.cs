@@ -46,7 +46,8 @@ namespace PetjeOp {
             }
             else if (controller == Controllers.ExampleControllerTwo) {
                 mainPanel.Controls.Add(ExampleTwoController.View);
-            } else if (controller == Controllers.AddQuestionnaireController)
+            }
+            else if (controller == Controllers.AddQuestionnaireController)
             {
                 mainPanel.Controls.Add(AddQuestionnaireController.View);
             }
