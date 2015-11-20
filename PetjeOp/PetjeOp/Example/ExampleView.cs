@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetjeOp.AddQuestionnaire;
 
 namespace PetjeOp {
     public partial class ExampleView : UserControl {
@@ -20,7 +21,8 @@ namespace PetjeOp {
 
         private void button1_Click(object sender, EventArgs e) {
             // Hier roepen we de MasterController aan en zeggen we dat we een andere controller willen gebruiken
-            Controller.MasterController.SetController(MasterController.Controllers.AddQuestionnaireController);
+            Controller targetController = Controller.MasterController.GetController(typeof(ExampleController));
+            Controller.MasterController.SetController(targetController);
         }
     }
 }

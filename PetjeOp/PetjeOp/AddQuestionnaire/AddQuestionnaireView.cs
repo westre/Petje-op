@@ -16,6 +16,7 @@ namespace PetjeOp.AddQuestionnaire
 
         public AddQuestionnaireView(AddQuestionnaireController controller)
         {
+            Controller = controller;
             InitializeComponent();
 
             Controller = controller;
@@ -29,6 +30,12 @@ namespace PetjeOp.AddQuestionnaire
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
             Controller.ShowQuestionDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            // Test
+            Controller targetController = Controller.MasterController.GetController(typeof(ExampleController));
+            Controller.MasterController.SetController(targetController);
         }
     }
 }
