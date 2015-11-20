@@ -35,5 +35,10 @@ namespace PetjeOp.AddQuestionnaire
         {
             Model.dialog.ShowDialog();
         }
+
+        public override UserControl GetView()
+        {
+            return View;
+        }
     }
 }
