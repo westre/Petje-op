@@ -8,7 +8,13 @@ namespace PetjeOp
 {
     public abstract class Question
     {
+        public String ID { get; set; }
         public String Description { get; set; }
+
+        // "Answer" is het goede antwoord op de vraag.           
+        public Answer Answer { get; set; }
+
+        // De lijst bevat de media, die bij de vraag hoord.
         private List<Media> Media;
 
         // ******************************************************************** //
@@ -20,36 +26,36 @@ namespace PetjeOp
         private DateTime TimeRestriction;
         private DateTime RemainingTimeRestriction;
 
-        //* Constructor van "Question". Als parameter alleen de beschrijving.  *//
+        // Constructor van "Question". Als parameter alleen de beschrijving.
         public Question(String description)
         {
             this.Description = description;
         }
 
-        //* Voegt een "Media" object toe aan de "Question."                    *//
-        public void AddMedia(String Name, String Url, Media.MediaType Type)
-        {
-            Media.Add(new Media(Name, Url, Type));
-        }
-
-        //* Verwijdert een "Media" item van de "Question" lijst.               *//
-        public void RemoveMedia(int Media)
-        {
-            this.Media.RemoveAt(Media);
-        }
-
-        //* Zet een "TimeRestriction" voor de "Question."                      *//
-        public void SetTimeRestriction(DateTime TimeRestricton)
+        // Zet een "TimeRestriction" voor de "Question."              
+        public void TimeRestrictionSet(DateTime TimeRestricton)
         {
             this.TimeRestriction = TimeRestricton;
             this.RemainingTimeRestriction = TimeRestricton;
         }
 
-        //* Verwijdert de "TimeRestriction" van de "Question."                 *//
-        public void ClearTimeRestriction()
+        // Verwijdert de "TimeRestriction" van de "Question."          
+        public void TimeRestrictionClear()
         {
             this.TimeRestriction = new DateTime();
             this.RemainingTimeRestriction = new DateTime();
+        }
+
+        // Voegt een "Media" object toe aan de "Question."            
+        public void MediaAdd(String Name, String Url, Media.MediaType Type)
+        {
+            Media.Add(new Media(Name, Url, Type));
+        }
+
+        // Verwijdert een "Media" item van de "Question" lijst.   
+        public void MediaRemove(int Media)
+        {
+            this.Media.RemoveAt(Media);
         }
 
         public void MediaPrintList()
@@ -67,62 +73,42 @@ namespace PetjeOp
         // Een lijst, die alle antwoord-opties bevat. Deze antwoord-opties
         // bevatten een "Description en een "RightAnswer" veld.
         // ******************************************************************** // 
-        public List<AnswerOption> AnswerOptions { get; set; }
+        public List<Answer> AnswerOptions { get; }
 
-        //* MultipleChoiceQuestion Constructor                                 *//
+        // MultipleChoiceQuestion Constructor
         public MultipleChoiceQuestion(String description) : base(description)
         {
         }
 
-        //* Voegt een antwoord-optie toe aan de "MultipleChoiceQuestion" lijst.*//
-        public void AddAnswerOption(String Description, Boolean RightAnswer)
+        // Voegt een antwoord-optie toe aan de "MultipleChoiceQuestion" lijst.
+        public void AddAnswerOption(String Description, int ID)
         {
-            AnswerOptions.Add(new AnswerOption(Description, RightAnswer));
+            AnswerOptions.Add(new Answer(Description));
         }
-        //* Verwijdert een "AnswerOption" van de "MultipleChoiceQuestion" lijst.*//
+        // Verwijdert een "AnswerOption" van de "MultipleChoiceQuestion" lijst.
         public void DeleteAnswerOption(int Option)
         {
             AnswerOptions.RemoveAt(Option);
         }
 
-        public struct AnswerOption
+        // Print de vraag in de console met de antwoorden.             
+        public void PrintQuestion()
         {
-            public Boolean RightAnswer { get; set; }
-            public String Description { get; set; }
-            public AnswerOption(String Description, Boolean RightAnswer)
+            System.Console.WriteLine(this.ID + ", " + this.Description + ":");
+            foreach (Answer Option in this.AnswerOptions)
             {
-                this.Description = Description;
-                this.RightAnswer = RightAnswer;
-            }
-        }
-        public void AnswerOptionsPrintList()
-        {
-            foreach (AnswerOption Option in this.AnswerOptions)
-            {
-                System.Console.WriteLine(Option.Description + ", " + Option.RightAnswer);
+                System.Console.WriteLine(Option.ID + ", " + Option.Description);
             }
         }
     }
 
-    // TODO uitschrijven >> Yoran
-    public class Media
+    public class Answer
     {
-        public String Name { get; }
-        public String Url { get; }
-        public MediaType Type { get; }
-
-        public Media(String Name, String Url, MediaType Type)
+        public int ID { get; set; }
+        public String Description { get; set; }
+        public Answer(String Description)
         {
-            this.Name = Name;
-            this.Url = Url;
-            this.Type = Type;
-        }
-
-        public enum MediaType
-        {
-            image,
-            video,
-            youtube
+            this.Description = Description;
         }
     }
 }
