@@ -36,7 +36,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
             string questionName = addQuestionView1.tbQuestion.Text;
 
-            question = new MultipleChoiceQuestion();
+            //question = new MultipleChoiceQuestion();
         }
     }
 }
