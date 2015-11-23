@@ -36,6 +36,19 @@ namespace PetjeOp.AddQuestionnaire
             Model.dialog.ShowDialog();
         }
 
+        public void ControlEditDeleteButtons()
+        {
+            if (View.tvQuestions.SelectedNode != null)
+            {
+                View.btnEditQuestion.Enabled = true;
+                View.btnDeleteQuestion.Enabled = true;
+            } else
+            {
+                View.btnEditQuestion.Enabled = false;
+                View.btnDeleteQuestion.Enabled = false;
+            }
+        }
+
         public override UserControl GetView()
         {
             return View;
