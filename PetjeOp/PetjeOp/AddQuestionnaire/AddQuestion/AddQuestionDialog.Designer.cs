@@ -42,6 +42,7 @@
             this.btnAddQuestion.TabIndex = 1;
             this.btnAddQuestion.Text = "Vraag Toevoegen";
             this.btnAddQuestion.UseVisualStyleBackColor = true;
+            this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click);
             // 
             // btnCancel
             // 

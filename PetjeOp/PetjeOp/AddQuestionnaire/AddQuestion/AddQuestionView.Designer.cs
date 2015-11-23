@@ -137,13 +137,13 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbQuestion;
-        private System.Windows.Forms.Button btnAddAnswer;
-        private System.Windows.Forms.CheckedListBox clbAnswers;
-        private System.Windows.Forms.Label lblAnswers;
-        private System.Windows.Forms.TextBox tbQuestion;
-        private System.Windows.Forms.Label lblQuestion;
-        private System.Windows.Forms.TextBox tbAnswer;
-        private System.Windows.Forms.Button btnDeleteAnswer;
+        public System.Windows.Forms.GroupBox gbQuestion;
+        public System.Windows.Forms.Button btnAddAnswer;
+        public System.Windows.Forms.CheckedListBox clbAnswers;
+        public System.Windows.Forms.Label lblAnswers;
+        public System.Windows.Forms.TextBox tbQuestion;
+        public System.Windows.Forms.Label lblQuestion;
+        public System.Windows.Forms.TextBox tbAnswer;
+        public System.Windows.Forms.Button btnDeleteAnswer;
     }
 }
