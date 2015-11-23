@@ -14,6 +14,10 @@ namespace PetjeOp {
     public partial class MasterController : Form {
         private List<Controller> Controllers { get; set; }
 
+        //De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
+        //Question q = masterController.DB.GetQuestion(id);
+        public Database DB { get; private set; }
+
         public MasterController() {
             InitializeComponent();
             Controllers = new List<Controller>();
@@ -37,6 +41,9 @@ namespace PetjeOp {
 
                 Console.WriteLine("Not null");
             }
+
+            //Creëer database instantie
+            DB = new Database();
         }
 
         public Controller GetController(Type type) {
