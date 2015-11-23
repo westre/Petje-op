@@ -41,10 +41,12 @@ namespace PetjeOp {
         public void SetController(Controller controller) {
             if (ActiveParentContainer is TeacherController) {
                 TeacherController teacherController = (TeacherController)ActiveParentContainer;
+                teacherController.GetViewPanel().Controls.Clear();
                 teacherController.GetViewPanel().Controls.Add(controller.GetView());
             }
             else if (ActiveParentContainer is StudentController) {
                 StudentController studentController = (StudentController)ActiveParentContainer;
+                studentController.GetViewPanel().Controls.Clear();
                 studentController.GetViewPanel().Controls.Add(controller.GetView());
             }
 
