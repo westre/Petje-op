@@ -18,10 +18,11 @@ namespace PetjeOp
         {
             tblQuestion query = db.tblQuestions.SingleOrDefault(q => q.questionnr == id);
 
-            if (query==null){ return null; }else{
+            if (query!=null){                
                 MultipleChoiceQuestion question = new MultipleChoiceQuestion(query.question);
                 return question;
-            }           
+            }
+            return null;          
         }
 
         public Questionnaire GetQuestionnaire(int id)

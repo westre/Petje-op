@@ -13,6 +13,7 @@ using PetjeOp.AddQuestionnaire;
 namespace PetjeOp {
     public partial class MasterController : Form {
         private List<Controller> Controllers { get; set; }
+        private Controller ActiveParentContainer { get; set; }
 
         //De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
         //Question q = masterController.DB.GetQuestion(id);
@@ -23,24 +24,13 @@ namespace PetjeOp {
             Controllers = new List<Controller>();
 
             // Initialiseer de controllers
-            Controllers.Add(new ExampleController(this));
-            Controllers.Add(new ExampleTwoController(this));
+            Controllers.Add(new LoginController(this));
+            Controllers.Add(new TeacherController(this));
+            Controllers.Add(new StudentController(this));
             Controllers.Add(new AddQuestionnaireController(this));
 
-            // We beginnen met deze view
-            mainPanel.Controls.Add(GetController(typeof(AddQuestionnaireController)).GetView());
-
-
-            // Kevin: Doe dit anders in de constructor van AddQuestionnaireController
-            AddQuestionnaireController addQuestionnaireController = (AddQuestionnaireController)GetController(typeof(AddQuestionnaireController));
-            if (addQuestionnaireController != null) {
-                addQuestionnaireController.View.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                mainPanel.AutoScroll = true;
-                addQuestionnaireController.View.Width -= 180;
-                addQuestionnaireController.View.Height += 10;
-
-                Console.WriteLine("Not null");
-            }
+            // We beginnen met deze view, verander dit niet!
+            mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
 
             //Creëer database instantie
             DB = new Database();
@@ -56,11 +46,36 @@ namespace PetjeOp {
 
         // Dit wordt bijvoorbeeld aangeroepen wanneer we op een knop klikken (zie ExampleView.button1_Click)
         public void SetController(Controller controller) {
-            // Eerst verwijderen we de view
+            if (ActiveParentContainer is TeacherController) {
+                TeacherController teacherController = (TeacherController)ActiveParentContainer;
+                teacherController.GetViewPanel().Controls.Clear();
+                teacherController.GetViewPanel().Controls.Add(controller.GetView());
+            }
+            else if (ActiveParentContainer is StudentController) {
+                StudentController studentController = (StudentController)ActiveParentContainer;
+                studentController.GetViewPanel().Controls.Clear();
+                studentController.GetViewPanel().Controls.Add(controller.GetView());
+            }
+
+            if (controller is TeacherController) {
+                mainPanel.Controls.Clear();
+
+                ActiveParentContainer = (TeacherController)controller;           
+                mainPanel.Controls.Add(ActiveParentContainer.GetView());
+
+                // Initialisatie van AddQuestionnaireController wanneer we in TeacherController zitten
+                AddQuestionnaireController addQuestionnaireController = (AddQuestionnaireController)GetController(typeof(AddQuestionnaireController));
+                addQuestionnaireController.View.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+                addQuestionnaireController.View.Width = ((TeacherController)ActiveParentContainer).GetViewPanel().Width;
+                addQuestionnaireController.View.Height = ((TeacherController)ActiveParentContainer).GetViewPanel().Height;
+                SetController(GetController(typeof(AddQuestionnaireController)));
+            }
+            else if(controller is StudentController) {
             mainPanel.Controls.Clear();
 
-            // Dan voegen we de nieuwe view toe
-            mainPanel.Controls.Add(controller.GetView());
+                ActiveParentContainer = (StudentController)controller;               
+                mainPanel.Controls.Add(ActiveParentContainer.GetView());
+            }
         }
 
         private void mainPanel_Paint(object sender, PaintEventArgs e)

@@ -32,6 +32,12 @@ namespace PetjeOp
             this.Description = description;
         }
 
+        //Voegt correct antwoord toe
+        public void AddCorrectAnswer(Answer ans)
+        {
+            Answer = ans;
+        }
+
         // Zet een "TimeRestriction" voor de "Question."              
         public void TimeRestrictionSet(DateTime TimeRestricton)
         {
@@ -64,51 +70,6 @@ namespace PetjeOp
             {
                 System.Console.WriteLine(Media.Name + ", " + Media.Url + ", " + Media.Type);
             }
-        }
-    }
-
-    public class MultipleChoiceQuestion : Question
-    {
-        // ******************************************************************** // 
-        // Een lijst, die alle antwoord-opties bevat. Deze antwoord-opties
-        // bevatten een "Description en een "RightAnswer" veld.
-        // ******************************************************************** // 
-        public List<Answer> AnswerOptions { get; }
-
-        // MultipleChoiceQuestion Constructor
-        public MultipleChoiceQuestion(String description) : base(description)
-        {
-        }
-
-        // Voegt een antwoord-optie toe aan de "MultipleChoiceQuestion" lijst.
-        public void AddAnswerOption(String Description, int ID)
-        {
-            AnswerOptions.Add(new Answer(Description));
-        }
-        // Verwijdert een "AnswerOption" van de "MultipleChoiceQuestion" lijst.
-        public void DeleteAnswerOption(int Option)
-        {
-            AnswerOptions.RemoveAt(Option);
-        }
-
-        // Print de vraag in de console met de antwoorden.             
-        public void PrintQuestion()
-        {
-            System.Console.WriteLine(this.ID + ", " + this.Description + ":");
-            foreach (Answer Option in this.AnswerOptions)
-            {
-                System.Console.WriteLine(Option.ID + ", " + Option.Description);
-            }
-        }
-    }
-
-    public class Answer
-    {
-        public int ID { get; set; }
-        public String Description { get; set; }
-        public Answer(String Description)
-        {
-            this.Description = Description;
         }
     }
 }

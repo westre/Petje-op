@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PetjeOp</RootNamespace>
     <AssemblyName>PetjeOp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CI|AnyCPU'">
+    <OutputPath>bin\CI\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,6 +71,7 @@
     <Compile Include="AddQuestionnaire\AddQuestion\AddQuestionView.Designer.cs">
       <DependentUpon>AddQuestionView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Answer.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Database.designer.cs">
@@ -90,6 +95,14 @@
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.Designer.cs">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\LoginController.cs" />
+    <Compile Include="Login\LoginModel.cs" />
+    <Compile Include="Login\LoginView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Login\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +110,7 @@
       <DependentUpon>MasterController.cs</DependentUpon>
     </Compile>
     <Compile Include="Media.cs" />
+    <Compile Include="MultipleChoiceQuestion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
@@ -108,6 +122,22 @@
     </Compile>
     <Compile Include="Example\ExampleView.Designer.cs">
       <DependentUpon>ExampleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student\StudentController.cs" />
+    <Compile Include="Student\StudentModel.cs" />
+    <Compile Include="Student\StudentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student\StudentView.Designer.cs">
+      <DependentUpon>StudentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\TeacherController.cs" />
+    <Compile Include="Teacher\TeacherModel.cs" />
+    <Compile Include="Teacher\TeacherView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Teacher\TeacherView.Designer.cs">
+      <DependentUpon>TeacherView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
@@ -127,6 +157,9 @@
     <EmbeddedResource Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.resx">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterController.resx">
       <DependentUpon>MasterController.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,9 +171,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Example\ExampleView.resx">
       <DependentUpon>ExampleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student\StudentView.resx">
+      <DependentUpon>StudentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teacher\TeacherView.resx">
+      <DependentUpon>TeacherView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Database.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
