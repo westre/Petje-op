@@ -101,7 +101,7 @@
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.mainPanel);
-            this.MinimumSize = new System.Drawing.Size(680, 420);
+            this.MinimumSize = new System.Drawing.Size(690, 420);
             this.Name = "MasterController";
             this.Text = "Form1";
             this.pnlTop.ResumeLayout(false);
