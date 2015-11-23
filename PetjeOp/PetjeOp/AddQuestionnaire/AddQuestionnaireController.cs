@@ -33,7 +33,14 @@ namespace PetjeOp.AddQuestionnaire
         // Laat de dialoog zien om een vraag toe te voegen
         public void ShowQuestionDialog()
         {
-            Model.dialog.ShowDialog();
+            Model.dialog.Show();
+
+            if (Model.dialog.DialogResult == DialogResult.OK)
+            {
+                Model.Questions.Add(Model.dialog.Question);
+
+                Model.dialog.Question.PrintQuestion();
+            }
         }
 
         public void ControlEditDeleteButtons()

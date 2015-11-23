@@ -13,9 +13,12 @@ namespace PetjeOp.AddQuestionnaire
         public AddQuestionDialog dialog;
         public Questionnaire Questionnaire { get; set; }
 
+        public List<Question> Questions { get; set; } 
+
         public AddQuestionnaireModel()
         {
             dialog = new AddQuestionDialog();
+            Questions = new List<Question>();
         }
     }
 }

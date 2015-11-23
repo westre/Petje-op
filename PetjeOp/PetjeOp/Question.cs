@@ -32,6 +32,12 @@ namespace PetjeOp
             this.Description = description;
         }
 
+        //Voegt correct antwoord toe
+        public void AddCorrectAnswer(Answer ans)
+        {
+            Answer = ans;
+        }
+
         // Zet een "TimeRestriction" voor de "Question."              
         public void TimeRestrictionSet(DateTime TimeRestricton)
         {
