@@ -206,7 +206,7 @@
     <ManifestKeyFile>PetjeOpPowerPoint_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F76CE35CEE1DC6441B12C749E4DD9E7E36883539</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2EAA40767272D5657B193F811ED7DB21EF3F606F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
