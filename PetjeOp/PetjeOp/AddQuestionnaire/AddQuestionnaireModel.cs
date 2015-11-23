@@ -11,6 +11,7 @@ namespace PetjeOp.AddQuestionnaire
     {
         public string Name { get; set; }
         public AddQuestionDialog dialog;
+        public Questionnaire Questionnaire { get; set; }
 
         public AddQuestionnaireModel()
         {

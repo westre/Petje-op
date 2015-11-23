@@ -24,12 +24,20 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("A: Antwoord A");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("B: Antwoord B");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Vraag 1: VRAAG", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
             this.lblAddQuestionnaire = new System.Windows.Forms.Label();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.lblQuestions = new System.Windows.Forms.Label();
             this.tbQuestionnaireName = new System.Windows.Forms.TextBox();
             this.lblQuestionnaireName = new System.Windows.Forms.Label();
             this.btnSaveQuestionnaire = new System.Windows.Forms.Button();
+            this.tvQuestions = new System.Windows.Forms.TreeView();
+            this.btnEditQuestion = new System.Windows.Forms.Button();
+            this.btnDeleteQuestion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -37,9 +45,9 @@
             this.lblAddQuestionnaire.AutoSize = true;
             this.lblAddQuestionnaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddQuestionnaire.Location = new System.Drawing.Point(2, 8);
-            this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2);
             this.lblAddQuestionnaire.Name = "lblAddQuestionnaire";
-            this.lblAddQuestionnaire.Size = new System.Drawing.Size(256, 29);
+            this.lblAddQuestionnaire.Size = new System.Drawing.Size(502, 55);
             this.lblAddQuestionnaire.TabIndex = 0;
             this.lblAddQuestionnaire.Text = "Vragenlijst Toevoegen";
             this.lblAddQuestionnaire.Click += new System.EventHandler(this.label1_Click);
@@ -82,17 +90,57 @@
             // 
             // btnSaveQuestionnaire
             // 
-            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(21, 698);
+            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(21, 677);
             this.btnSaveQuestionnaire.Name = "btnSaveQuestionnaire";
             this.btnSaveQuestionnaire.Size = new System.Drawing.Size(267, 49);
             this.btnSaveQuestionnaire.TabIndex = 13;
             this.btnSaveQuestionnaire.Text = "Vragenlijst Opslaan";
             this.btnSaveQuestionnaire.UseVisualStyleBackColor = true;
             // 
+            // tvQuestions
+            // 
+            this.tvQuestions.Location = new System.Drawing.Point(21, 233);
+            this.tvQuestions.Name = "tvQuestions";
+            treeNode4.Name = "answer1a";
+            treeNode4.Text = "A: Antwoord A";
+            treeNode5.Name = "answer1b";
+            treeNode5.Text = "B: Antwoord B";
+            treeNode6.Name = "question1";
+            treeNode6.Text = "Vraag 1: VRAAG";
+            this.tvQuestions.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+            this.tvQuestions.Size = new System.Drawing.Size(907, 361);
+            this.tvQuestions.TabIndex = 14;
+            this.tvQuestions.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvQuestions_AfterSelect);
+            // 
+            // btnEditQuestion
+            // 
+            this.btnEditQuestion.Enabled = false;
+            this.btnEditQuestion.Location = new System.Drawing.Point(945, 233);
+            this.btnEditQuestion.Name = "btnEditQuestion";
+            this.btnEditQuestion.Size = new System.Drawing.Size(153, 49);
+            this.btnEditQuestion.TabIndex = 15;
+            this.btnEditQuestion.Text = "Wijzig";
+            this.btnEditQuestion.UseVisualStyleBackColor = true;
+            this.btnEditQuestion.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnDeleteQuestion
+            // 
+            this.btnDeleteQuestion.Enabled = false;
+            this.btnDeleteQuestion.Location = new System.Drawing.Point(945, 303);
+            this.btnDeleteQuestion.Name = "btnDeleteQuestion";
+            this.btnDeleteQuestion.Size = new System.Drawing.Size(153, 49);
+            this.btnDeleteQuestion.TabIndex = 16;
+            this.btnDeleteQuestion.Text = "Verwijder";
+            this.btnDeleteQuestion.UseVisualStyleBackColor = true;
+            // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
+            this.Controls.Add(this.btnDeleteQuestion);
+            this.Controls.Add(this.btnEditQuestion);
+            this.Controls.Add(this.tvQuestions);
             this.Controls.Add(this.btnSaveQuestionnaire);
             this.Controls.Add(this.btnAddQuestion);
             this.Controls.Add(this.lblQuestions);
@@ -101,7 +149,7 @@
             this.Controls.Add(this.lblAddQuestionnaire);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AddQuestionnaireView";
-            this.Size = new System.Drawing.Size(780, 485);
+            this.Size = new System.Drawing.Size(1255, 764);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +163,8 @@
         private System.Windows.Forms.TextBox tbQuestionnaireName;
         private System.Windows.Forms.Label lblQuestionnaireName;
         private System.Windows.Forms.Button btnSaveQuestionnaire;
+        public System.Windows.Forms.TreeView tvQuestions;
+        public System.Windows.Forms.Button btnEditQuestion;
+        public System.Windows.Forms.Button btnDeleteQuestion;
     }
 }

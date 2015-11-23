@@ -32,10 +32,14 @@ namespace PetjeOp.AddQuestionnaire
             Controller.ShowQuestionDialog();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
-            // Test
-            Controller targetController = Controller.MasterController.GetController(typeof(ExampleController));
-            Controller.MasterController.SetController(targetController);
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tvQuestions_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            Controller.ControlEditDeleteButtons();
         }
     }
 }
