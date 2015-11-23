@@ -22,13 +22,15 @@ namespace PetjeOpPowerPoint
                Office.MsoTextOrientation.msoTextOrientationHorizontal, 250, 250, 500, 50);
             textBox.TextFrame.TextRange.InsertAfter("Deze dia is toegevoegd met de knop");
 
+
+            Office.MsoAutoShapeType henk = Office.MsoAutoShapeType.msoShapePie;
+
+
+
+            PowerPoint.Shape grafiek = currentSld.Shapes.AddShape(henk, 50, 50, 30, 30);
             
 
 
-
-
-            PowerPoint.Chart grafiek = currentSld.Shapes.AddChart2(-1, XlChartType.xl3DPieExploded, 50, 50, 100, 100);
-               );
 
         }
     }
