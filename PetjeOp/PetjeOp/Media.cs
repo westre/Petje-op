@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetjeOp {
 
-    // TODO uitschrijven >> Yoran
+    // TODO uitschrijven >> Yoran, oke!
     public class Media {
         public String Name { get; }
         public String Url { get; }
