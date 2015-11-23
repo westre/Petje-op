@@ -24,11 +24,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("A: Antwoord A");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("B: Antwoord B");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Vraag 1: VRAAG", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
             this.lblAddQuestionnaire = new System.Windows.Forms.Label();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.lblQuestions = new System.Windows.Forms.Label();
@@ -38,6 +33,7 @@
             this.tvQuestions = new System.Windows.Forms.TreeView();
             this.btnEditQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -101,14 +97,6 @@
             // 
             this.tvQuestions.Location = new System.Drawing.Point(21, 233);
             this.tvQuestions.Name = "tvQuestions";
-            treeNode4.Name = "answer1a";
-            treeNode4.Text = "A: Antwoord A";
-            treeNode5.Name = "answer1b";
-            treeNode5.Text = "B: Antwoord B";
-            treeNode6.Name = "question1";
-            treeNode6.Text = "Vraag 1: VRAAG";
-            this.tvQuestions.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
             this.tvQuestions.Size = new System.Drawing.Size(907, 361);
             this.tvQuestions.TabIndex = 14;
             this.tvQuestions.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvQuestions_AfterSelect);
@@ -134,10 +122,20 @@
             this.btnDeleteQuestion.Text = "Verwijder";
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(153, 193);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "label1";
+            // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDeleteQuestion);
             this.Controls.Add(this.btnEditQuestion);
             this.Controls.Add(this.tvQuestions);
@@ -166,5 +164,6 @@
         public System.Windows.Forms.TreeView tvQuestions;
         public System.Windows.Forms.Button btnEditQuestion;
         public System.Windows.Forms.Button btnDeleteQuestion;
+        public System.Windows.Forms.Label label1;
     }
 }
