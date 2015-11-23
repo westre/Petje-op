@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetjeOp {
-    public abstract class Question {
+namespace PetjeOp
+{
+    public abstract class Question
+    {
         public String ID { get; set; }
         public String Description { get; set; }
 
@@ -25,34 +27,41 @@ namespace PetjeOp {
         private DateTime RemainingTimeRestriction;
 
         // Constructor van "Question". Als parameter alleen de beschrijving.
-        public Question(String description) {
+        public Question(String description)
+        {
             this.Description = description;
         }
 
         // Zet een "TimeRestriction" voor de "Question."              
-        public void TimeRestrictionSet(DateTime TimeRestricton) {
+        public void TimeRestrictionSet(DateTime TimeRestricton)
+        {
             this.TimeRestriction = TimeRestricton;
             this.RemainingTimeRestriction = TimeRestricton;
         }
 
         // Verwijdert de "TimeRestriction" van de "Question."          
-        public void TimeRestrictionClear() {
+        public void TimeRestrictionClear()
+        {
             this.TimeRestriction = new DateTime();
             this.RemainingTimeRestriction = new DateTime();
         }
 
         // Voegt een "Media" object toe aan de "Question."            
-        public void MediaAdd(String Name, String Url, Media.MediaType Type) {
+        public void MediaAdd(String Name, String Url, Media.MediaType Type)
+        {
             Media.Add(new Media(Name, Url, Type));
         }
 
         // Verwijdert een "Media" item van de "Question" lijst.   
-        public void MediaRemove(int Media) {
+        public void MediaRemove(int Media)
+        {
             this.Media.RemoveAt(Media);
         }
 
-        public void MediaPrintList() {
-            foreach (Media Media in this.Media) {
+        public void MediaPrintList()
+        {
+            foreach (Media Media in this.Media)
+            {
                 System.Console.WriteLine(Media.Name + ", " + Media.Url + ", " + Media.Type);
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace PetjeOp
 {
+
     public class MultipleChoiceQuestion : Question
     {
         // ******************************************************************** // 
@@ -21,6 +22,7 @@ namespace PetjeOp
         {
             AnswerOptions.Add(new AnswerOption(Description, RightAnswer));
         }
+
         //* Verwijdert een "AnswerOption" van de "MultipleChoiceQuestion" lijst.*//
         public void DeleteAnswerOption(int Option)
         {
@@ -31,16 +33,22 @@ namespace PetjeOp
         {
             public Boolean RightAnswer { get; set; }
             public String Description { get; set; }
+
             public AnswerOption(String Description, Boolean RightAnswer)
             {
                 this.Description = Description;
                 this.RightAnswer = RightAnswer;
             }
         }
-        public void AnswerOptionsPrintList() {
-            foreach (AnswerOption Option in this.AnswerOptions) {
+
+        public void AnswerOptionsPrintList()
+        {
+            foreach (AnswerOption Option in this.AnswerOptions)
+            {
                 System.Console.WriteLine(Option.Description + ", " + Option.RightAnswer);
             }
         }
+
+       
     }
 }
