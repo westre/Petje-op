@@ -19,6 +19,8 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         public AddQuestionDialog()
         {
             InitializeComponent();
+            addQuestionView1.lblNonSufficientAnswers.ForeColor = Color.Red;
+            addQuestionView1.SetQuestionDialog(this);
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -46,14 +48,10 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
                     this.Close();
                 }
-                else
-                {
-                    MessageBox.Show("Er moeten minimaal twee antwoorden opgegeven worden!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }   
             }
             else
             {
-                MessageBox.Show("Niet alle vereiste velden zijn ingevuld!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                addQuestionView1.lblNonSufficientAnswers.Text = "Er moeten minimaal twee antwoorden opgegeven worden!";
             }     
         }
 
