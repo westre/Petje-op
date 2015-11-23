@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
-using Office = Microsoft.Office.Core
+using Office = Microsoft.Office.Core;
 
 namespace PetjeOpPowerPoint
 {
