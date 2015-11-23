@@ -12,7 +12,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 {
     public partial class AddQuestionDialog : Form
     {
-        public Question question;
+        public MultipleChoiceQuestion Question { get; set; }
         public List<Answer> answers = new List<Answer>();
         public Answer correct;
 
@@ -23,20 +23,73 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
-            foreach (var item in addQuestionView1.clbAnswers.Items)
+            if (ValidateInput())
             {
-                Answer ans = new Answer(item.ToString());
-                answers.Add(ans);
-            }
+                if (ValidateAnswers())
+                {
+                    Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
 
-            foreach (var item in addQuestionView1.clbAnswers.CheckedItems)
+                    foreach (var item in addQuestionView1.clbAnswers.Items)
+                    {
+                        Answer ans = new Answer(item.ToString());
+                        answers.Add(ans);
+
+                        if (addQuestionView1.clbAnswers.CheckedItems.Contains(item))
+                        {
+                            correct = ans;
+                        }
+                    }
+
+                    Question.AddAnswerOptions(answers);
+
+                    Question.AddCorrectAnswer(correct);
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Er moeten minimaal twee antwoorden opgegeven worden!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }   
+            }
+            else
             {
-                correct = new Answer(item.ToString());
+                MessageBox.Show("Niet alle vereiste velden zijn ingevuld!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }     
+        }
+
+        private bool ValidateInput()
+        {
+            if (addQuestionView1.clbAnswers.CheckedItems.Count == 0)
+            {
+                return false;
+            } else if (addQuestionView1.tbQuestion.Text == null)
+            {
+                return false;
+            } else if (addQuestionView1.clbAnswers.Items.Count == 0)
+            {
+                return false;
             }
+            else
+            {
+                return true;
+            }
+        }
 
-            string questionName = addQuestionView1.tbQuestion.Text;
+        public bool ValidateAnswers()
+        {
+            if (addQuestionView1.clbAnswers.Items.Count >= 2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-            //question = new MultipleChoiceQuestion();
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

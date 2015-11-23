@@ -20,13 +20,21 @@ namespace PetjeOp.AddQuestionnaire
 
         private void btnAddAnswer_Click(object sender, EventArgs e)
         {
-            clbAnswers.Items.Add(tbAnswer.Text);
-            tbAnswer.Clear();
+            if (tbAnswer.Text != null)
+            {
+                clbAnswers.Items.Add(tbAnswer.Text);
+                tbAnswer.Clear();
+            }
         }
 
         private void btnDeleteQuestion_Click(object sender, EventArgs e)
         {
-            clbAnswers.Items.Remove(clbAnswers.SelectedItem);
+            DialogResult dr = MessageBox.Show("Weet u zeker dat u dit antwoord wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (dr == DialogResult.Yes)
+            {
+                clbAnswers.Items.Remove(clbAnswers.SelectedItem);
+            }
         }
 
         private void clbAnswers_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,6 +60,18 @@ namespace PetjeOp.AddQuestionnaire
                         clbAnswers.SetItemChecked(ix, false);
                     }
                 }
+            }
+        }
+
+        private void tbAnswer_TextChanged(object sender, EventArgs e)
+        {
+            if (tbAnswer.Text.Count() > 0)
+            {
+                btnAddAnswer.Enabled = true;
+            }
+            else
+            {
+                btnAddAnswer.Enabled = false;
             }
         }
     }

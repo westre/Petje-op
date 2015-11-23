@@ -14,6 +14,7 @@ namespace PetjeOp
         // MultipleChoiceQuestion Constructor
         public MultipleChoiceQuestion(String description) : base(description)
         {
+            AnswerOptions = new List<Answer>();
         }
 
         // Voegt een antwoord-optie toe aan de "MultipleChoiceQuestion" lijst.
@@ -21,6 +22,16 @@ namespace PetjeOp
         {
             AnswerOptions.Add(new Answer(Description));
         }
+
+        //Voegt een lijst antwoordopties toe aan de lijst
+        public void AddAnswerOptions(List<Answer> answers)
+        {
+            foreach (Answer ans in answers)
+            {
+                AnswerOptions.Add(ans);
+            }
+        }
+
         // Verwijdert een "AnswerOption" van de "MultipleChoiceQuestion" lijst.
         public void DeleteAnswerOption(int Option)
         {
