@@ -6,7 +6,6 @@ namespace PetjeOp
     {
         public int ID { get; set; }
         public String Description { get; set; }
-
         public Answer(String Description)
         {
             this.Description = Description;
