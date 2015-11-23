@@ -1,4 +1,3 @@
 language: csharp
-solution: PetjeOp/PetjeOp.sln
 script:
   - xbuild /p:Configuration=CI PetjeOp/PetjeOp.sln
