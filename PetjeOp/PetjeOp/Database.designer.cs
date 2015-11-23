@@ -241,7 +241,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="answer_linkanswer", Storage="_tblLinkAnswers", ThisKey="answernr", OtherKey="answernr")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblLinkAnswer", Storage="_tblLinkAnswers", ThisKey="answernr", OtherKey="answernr")]
 		public EntitySet<tblLinkAnswer> tblLinkAnswers
 		{
 			get
@@ -254,7 +254,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="answer_question", Storage="_tblQuestions", ThisKey="answernr", OtherKey="correctanswernr")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblQuestion", Storage="_tblQuestions", ThisKey="answernr", OtherKey="correctanswernr")]
 		public EntitySet<tblQuestion> tblQuestions
 		{
 			get
@@ -404,7 +404,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="teacher_questionnaire", Storage="_tblQuestionnaires", ThisKey="teachernr", OtherKey="teachernr")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_tblQuestionnaire", Storage="_tblQuestionnaires", ThisKey="teachernr", OtherKey="teachernr")]
 		public EntitySet<tblQuestionnaire> tblQuestionnaires
 		{
 			get
@@ -577,7 +577,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="answer_linkanswer", Storage="_tblAnswer", ThisKey="answernr", OtherKey="answernr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblLinkAnswer", Storage="_tblAnswer", ThisKey="answernr", OtherKey="answernr", IsForeignKey=true)]
 		public tblAnswer tblAnswer
 		{
 			get
@@ -611,7 +611,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="question_linkanswer", Storage="_tblQuestion", ThisKey="questionnr", OtherKey="questionnr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_tblLinkAnswer", Storage="_tblQuestion", ThisKey="questionnr", OtherKey="questionnr", IsForeignKey=true)]
 		public tblQuestion tblQuestion
 		{
 			get
@@ -831,7 +831,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="question_linkanswer", Storage="_tblLinkAnswers", ThisKey="questionnr", OtherKey="questionnr")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_tblLinkAnswer", Storage="_tblLinkAnswers", ThisKey="questionnr", OtherKey="questionnr")]
 		public EntitySet<tblLinkAnswer> tblLinkAnswers
 		{
 			get
@@ -857,7 +857,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="answer_question", Storage="_tblAnswer", ThisKey="correctanswernr", OtherKey="answernr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblQuestion", Storage="_tblAnswer", ThisKey="correctanswernr", OtherKey="answernr", IsForeignKey=true)]
 		public tblAnswer tblAnswer
 		{
 			get
@@ -1038,7 +1038,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="questionnaire_exam", Storage="_tblExams", ThisKey="questionnairenr", OtherKey="questionnairenr")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblExam", Storage="_tblExams", ThisKey="questionnairenr", OtherKey="questionnairenr")]
 		public EntitySet<tblExam> tblExams
 		{
 			get
@@ -1064,7 +1064,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="teacher_questionnaire", Storage="_tblTeacher", ThisKey="teachernr", OtherKey="teachernr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_tblQuestionnaire", Storage="_tblTeacher", ThisKey="teachernr", OtherKey="teachernr", IsForeignKey=true)]
 		public tblTeacher tblTeacher
 		{
 			get
@@ -1215,7 +1215,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="exam_result", Storage="_tblExam", ThisKey="examnr", OtherKey="examnr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblExam_tblResult", Storage="_tblExam", ThisKey="examnr", OtherKey="examnr", IsForeignKey=true)]
 		public tblExam tblExam
 		{
 			get
@@ -1551,7 +1551,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="exam_result", Storage="_tblResults", ThisKey="examnr", OtherKey="examnr")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblExam_tblResult", Storage="_tblResults", ThisKey="examnr", OtherKey="examnr")]
 		public EntitySet<tblResult> tblResults
 		{
 			get
@@ -1564,7 +1564,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="questionnaire_exam", Storage="_tblQuestionnaire", ThisKey="questionnairenr", OtherKey="questionnairenr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblExam", Storage="_tblQuestionnaire", ThisKey="questionnairenr", OtherKey="questionnairenr", IsForeignKey=true)]
 		public tblQuestionnaire tblQuestionnaire
 		{
 			get
@@ -1641,7 +1641,7 @@ namespace PetjeOp
 		
 		private int _questionnr;
 		
-		private string _linkquestionnr;
+		private int _linkquestionnr;
 		
 		private EntityRef<tblQuestionnaire> _tblQuestionnaire;
 		
@@ -1655,7 +1655,7 @@ namespace PetjeOp
     partial void OnquestionnairenrChanged();
     partial void OnquestionnrChanging(int value);
     partial void OnquestionnrChanged();
-    partial void OnlinkquestionnrChanging(string value);
+    partial void OnlinkquestionnrChanging(int value);
     partial void OnlinkquestionnrChanged();
     #endregion
 		
@@ -1714,8 +1714,8 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_linkquestionnr", CanBeNull=false, IsPrimaryKey=true, IsDbGenerated=true)]
-		public string linkquestionnr
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_linkquestionnr", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int linkquestionnr
 		{
 			get
 			{

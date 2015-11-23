@@ -29,7 +29,7 @@ namespace PetjeOp
         {           
             tblQuestionnaire query = db.tblQuestionnaires.SingleOrDefault(q => q.questionnairenr == id);
 
-            if (query==null){ return null; }else{
+            if (query!=null){
                 Questionnaire questionnaire = new Questionnaire(query.questionnairename);
                 foreach(tblLinkQuestion question in query.tblLinkQuestions.ToList())
                 {
@@ -37,11 +37,7 @@ namespace PetjeOp
                 }
                 return questionnaire;
             }
-        }
-
-        public void UpdateQuestionaire(Questionnaire input)
-        {
-
+            return null;     
         }
     }
 }

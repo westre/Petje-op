@@ -4,8 +4,8 @@
     <Type Name="tblAnswer">
       <Column Name="answernr" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="answer" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="answer_linkanswer" Member="tblLinkAnswers" ThisKey="answernr" OtherKey="answernr" Type="tblLinkAnswer" />
-      <Association Name="answer_question" Member="tblQuestions" ThisKey="answernr" OtherKey="correctanswernr" Type="tblQuestion" />
+      <Association Name="tblAnswer_tblLinkAnswer" Member="tblLinkAnswers" ThisKey="answernr" OtherKey="answernr" Type="tblLinkAnswer" />
+      <Association Name="tblAnswer_tblQuestion" Member="tblQuestions" ThisKey="answernr" OtherKey="correctanswernr" Type="tblQuestion" />
     </Type>
   </Table>
   <Table Name="dbo.teacher" Member="tblTeachers">
@@ -13,7 +13,7 @@
       <Column Name="teachernr" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="firstname" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="teacher_questionnaire" Member="tblQuestionnaires" ThisKey="teachernr" OtherKey="teachernr" Type="tblQuestionnaire" />
+      <Association Name="tblTeacher_tblQuestionnaire" Member="tblQuestionnaires" ThisKey="teachernr" OtherKey="teachernr" Type="tblQuestionnaire" />
     </Type>
   </Table>
   <Table Name="dbo.linkanswer" Member="tblLinkAnswers">
@@ -22,9 +22,9 @@
       <Column Name="questionnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[index]" Member="index" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="answernr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="linkanswer_linkresult" Member="tblLinkResults" ThisKey="linkanswernr" OtherKey="linkanswernr" Type="tblLinkResult" />
-      <Association Name="answer_linkanswer" Member="tblAnswer" ThisKey="answernr" OtherKey="answernr" Type="tblAnswer" IsForeignKey="true" />
-      <Association Name="question_linkanswer" Member="tblQuestion" ThisKey="questionnr" OtherKey="questionnr" Type="tblQuestion" IsForeignKey="true" />
+      <Association Name="tblLinkAnswer_tblLinkResult" Member="tblLinkResults" ThisKey="linkanswernr" OtherKey="linkanswernr" Type="tblLinkResult" />
+      <Association Name="tblAnswer_tblLinkAnswer" Member="tblAnswer" ThisKey="answernr" OtherKey="answernr" Type="tblAnswer" IsForeignKey="true" />
+      <Association Name="tblQuestion_tblLinkAnswer" Member="tblQuestion" ThisKey="questionnr" OtherKey="questionnr" Type="tblQuestion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.linkresult" Member="tblLinkResults">
@@ -32,9 +32,9 @@
       <Column Name="resultnr" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="linkanswernr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="studentnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="linkanswer_linkresult" Member="tblLinkAnswer" ThisKey="linkanswernr" OtherKey="linkanswernr" Type="tblLinkAnswer" IsForeignKey="true" />
-      <Association Name="result_linkresult" Member="tblResult" ThisKey="resultnr" OtherKey="resultnr" Type="tblResult" IsForeignKey="true" />
-      <Association Name="student_linkresult" Member="tblStudent" ThisKey="studentnr" OtherKey="studentnr" Type="tblStudent" IsForeignKey="true" />
+      <Association Name="tblLinkAnswer_tblLinkResult" Member="tblLinkAnswer" ThisKey="linkanswernr" OtherKey="linkanswernr" Type="tblLinkAnswer" IsForeignKey="true" />
+      <Association Name="tblResult_tblLinkResult" Member="tblResult" ThisKey="resultnr" OtherKey="resultnr" Type="tblResult" IsForeignKey="true" />
+      <Association Name="tblStudent_tblLinkResult" Member="tblStudent" ThisKey="studentnr" OtherKey="studentnr" Type="tblStudent" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.question" Member="tblQuestions">
@@ -42,9 +42,9 @@
       <Column Name="questionnr" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="question" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="correctanswernr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="question_linkanswer" Member="tblLinkAnswers" ThisKey="questionnr" OtherKey="questionnr" Type="tblLinkAnswer" />
+      <Association Name="tblQuestion_tblLinkAnswer" Member="tblLinkAnswers" ThisKey="questionnr" OtherKey="questionnr" Type="tblLinkAnswer" />
       <Association Name="tblQuestion_linkquestion" Member="tblLinkQuestions" ThisKey="questionnr" OtherKey="questionnr" Type="tblLinkQuestion" />
-      <Association Name="answer_question" Member="tblAnswer" ThisKey="correctanswernr" OtherKey="answernr" Type="tblAnswer" IsForeignKey="true" />
+      <Association Name="tblAnswer_tblQuestion" Member="tblAnswer" ThisKey="correctanswernr" OtherKey="answernr" Type="tblAnswer" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.questionnaire" Member="tblQuestionnaires">
@@ -52,17 +52,17 @@
       <Column Name="questionnairenr" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="questionnairename" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="teachernr" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="questionnaire_exam" Member="tblExams" ThisKey="questionnairenr" OtherKey="questionnairenr" Type="tblExam" />
+      <Association Name="tblQuestionnaire_tblExam" Member="tblExams" ThisKey="questionnairenr" OtherKey="questionnairenr" Type="tblExam" />
       <Association Name="tblQuestionnaire_linkquestion" Member="tblLinkQuestions" ThisKey="questionnairenr" OtherKey="questionnairenr" Type="tblLinkQuestion" />
-      <Association Name="teacher_questionnaire" Member="tblTeacher" ThisKey="teachernr" OtherKey="teachernr" Type="tblTeacher" IsForeignKey="true" />
+      <Association Name="tblTeacher_tblQuestionnaire" Member="tblTeacher" ThisKey="teachernr" OtherKey="teachernr" Type="tblTeacher" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.result" Member="tblResults">
     <Type Name="tblResult">
       <Column Name="resultnr" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="examnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="result_linkresult" Member="tblLinkResults" ThisKey="resultnr" OtherKey="resultnr" Type="tblLinkResult" />
-      <Association Name="exam_result" Member="tblExam" ThisKey="examnr" OtherKey="examnr" Type="tblExam" IsForeignKey="true" />
+      <Association Name="tblResult_tblLinkResult" Member="tblLinkResults" ThisKey="resultnr" OtherKey="resultnr" Type="tblLinkResult" />
+      <Association Name="tblExam_tblResult" Member="tblExam" ThisKey="examnr" OtherKey="examnr" Type="tblExam" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.student" Member="tblStudents">
@@ -71,7 +71,7 @@
       <Column Name="firstname" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="groupnr" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="student_linkresult" Member="tblLinkResults" ThisKey="studentnr" OtherKey="studentnr" Type="tblLinkResult" />
+      <Association Name="tblStudent_tblLinkResult" Member="tblLinkResults" ThisKey="studentnr" OtherKey="studentnr" Type="tblLinkResult" />
     </Type>
   </Table>
   <Table Name="dbo.exam" Member="tblExams">
@@ -81,15 +81,15 @@
       <Column Name="starttime" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
       <Column Name="endtime" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
       <Column Name="groupnr" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="exam_result" Member="tblResults" ThisKey="examnr" OtherKey="examnr" Type="tblResult" />
-      <Association Name="questionnaire_exam" Member="tblQuestionnaire" ThisKey="questionnairenr" OtherKey="questionnairenr" Type="tblQuestionnaire" IsForeignKey="true" />
+      <Association Name="tblExam_tblResult" Member="tblResults" ThisKey="examnr" OtherKey="examnr" Type="tblResult" />
+      <Association Name="tblQuestionnaire_tblExam" Member="tblQuestionnaire" ThisKey="questionnairenr" OtherKey="questionnairenr" Type="tblQuestionnaire" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.linkquestion" Member="tblLinkQuestions">
     <Type Name="tblLinkQuestion">
       <Column Name="questionnairenr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="questionnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Member="linkquestionnr" AutoSync="Never" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="linkquestionnr" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Association Name="tblQuestionnaire_linkquestion" Member="tblQuestionnaire" ThisKey="questionnairenr" OtherKey="questionnairenr" Type="tblQuestionnaire" IsForeignKey="true" />
       <Association Name="tblQuestion_linkquestion" Member="tblQuestion" ThisKey="questionnr" OtherKey="questionnr" Type="tblQuestion" IsForeignKey="true" />
     </Type>

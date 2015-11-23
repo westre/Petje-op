@@ -11,9 +11,10 @@ namespace PetjeOpPowerPoint
 {
     public partial class Ribbon1
     {
+        private Database DB;
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
-
+            DB = new Database();
         }
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
@@ -37,34 +38,41 @@ namespace PetjeOpPowerPoint
             PowerPoint.Shape shape1 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 120, 10 + 300 - (int)barHeight2, 100, Convert.ToInt32(barHeight2));
             
             PowerPoint.Shape shape2 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 230, 10 + 300 - (int)barHeight3, 100, Convert.ToInt32(barHeight3));
-            ;
-
-
-
-
         }
 
         private void button2_Click(object sender, RibbonControlEventArgs e)
         {
-            Questionnaire testquest = new Questionnaire("test");
-            MultipleChoiceQuestion testquestion = new MultipleChoiceQuestion("Wat is 1+1?");
-            testquest.addQuestion(testquestion);
-            MultipleChoiceQuestion testquestion1 = new MultipleChoiceQuestion("Wat is 2+2?");
-            testquest.addQuestion(testquestion1);
-            MultipleChoiceQuestion testquestion2 = new MultipleChoiceQuestion("Wat is 3+3?");
-            testquest.addQuestion(testquestion2);
-            MultipleChoiceQuestion testquestion3 = new MultipleChoiceQuestion("Wat is 4+4?");
-            testquest.addQuestion(testquestion3);
+            Questionnaire testquest = DB.GetQuestionnaire(1);
+            if(testquest != null)
+            {
+                //Questionnaire testquest = new Questionnaire("test");
+                MultipleChoiceQuestion testquestion = new MultipleChoiceQuestion("Wat is 1+1?");
+                testquest.addQuestion(testquestion);
+                MultipleChoiceQuestion testquestion1 = new MultipleChoiceQuestion("Wat is 2+2?");
+                testquest.addQuestion(testquestion1);
+                MultipleChoiceQuestion testquestion2 = new MultipleChoiceQuestion("Wat is 3+3?");
+                testquest.addQuestion(testquestion2);
+                MultipleChoiceQuestion testquestion3 = new MultipleChoiceQuestion("Wat is 4+4?");
+                testquest.addQuestion(testquestion3);
+            }
+            else
+            {
+                //Error, geen data kunnen ophalen of andere db error
+            }
+
+            MultipleChoiceQuestion testquestion4 = DB.GetQuestion(1);
+            if(testquestion4 != null)
+            {
+                testquest.addQuestion(testquestion4);
+            }            
 
             foreach (Question q in testquest.Questions)
             {
                 PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
                 PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
-               Office.MsoTextOrientation.msoTextOrientationHorizontal, 250, 250, 500, 50);
+                Office.MsoTextOrientation.msoTextOrientationHorizontal, 250, 250, 500, 50);
                 textBox.TextFrame.TextRange.InsertAfter(q.Description);
-            }
-            
-
+            }  
         }
     }
 }
