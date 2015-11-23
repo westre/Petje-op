@@ -89,6 +89,14 @@
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.Designer.cs">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\LoginController.cs" />
+    <Compile Include="Login\LoginModel.cs" />
+    <Compile Include="Login\LoginView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Login\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +117,22 @@
     <Compile Include="Example\ExampleView.Designer.cs">
       <DependentUpon>ExampleView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Student\StudentController.cs" />
+    <Compile Include="Student\StudentModel.cs" />
+    <Compile Include="Student\StudentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student\StudentView.Designer.cs">
+      <DependentUpon>StudentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\TeacherController.cs" />
+    <Compile Include="Teacher\TeacherModel.cs" />
+    <Compile Include="Teacher\TeacherView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Teacher\TeacherView.Designer.cs">
+      <DependentUpon>TeacherView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.resx">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterController.resx">
       <DependentUpon>MasterController.cs</DependentUpon>
@@ -140,6 +167,12 @@
     <EmbeddedResource Include="Example\ExampleView.resx">
       <DependentUpon>ExampleView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Student\StudentView.resx">
+      <DependentUpon>StudentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teacher\TeacherView.resx">
+      <DependentUpon>TeacherView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -156,6 +189,7 @@
   <ItemGroup>
     <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

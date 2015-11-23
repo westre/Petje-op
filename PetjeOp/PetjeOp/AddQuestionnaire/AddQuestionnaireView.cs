@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetjeOp.AddQuestionnaire.AddQuestion;
 
 namespace PetjeOp.AddQuestionnaire
 {
@@ -40,6 +41,10 @@ namespace PetjeOp.AddQuestionnaire
         private void tvQuestions_AfterSelect(object sender, TreeViewEventArgs e)
         {
             Controller.ControlEditDeleteButtons();
+        }
+
+        private void AddQuestionnaireView_Load(object sender, EventArgs e) {
+
         }
     }
 }
