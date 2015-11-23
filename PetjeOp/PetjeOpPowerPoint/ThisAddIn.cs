@@ -20,9 +20,7 @@ namespace PetjeOpPowerPoint
 
         void Application_PresentationNewSlide(PowerPoint.Slide Sld)
         {
-            PowerPoint.Shape textBox = Sld.Shapes.AddTextbox(
-                Office.MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 500, 50);
-            textBox.TextFrame.TextRange.InsertAfter("WInteractie V1.0 23-11-2015");
+          
         }
         #region VSTO generated code
 
