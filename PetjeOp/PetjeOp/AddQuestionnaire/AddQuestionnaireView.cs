@@ -41,5 +41,9 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller.ControlEditDeleteButtons();
         }
+
+        private void AddQuestionnaireView_Load(object sender, EventArgs e) {
+
+        }
     }
 }

@@ -150,6 +150,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AddQuestionnaireView";
             this.Size = new System.Drawing.Size(1140, 800);
+            this.Load += new System.EventHandler(this.AddQuestionnaireView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
