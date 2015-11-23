@@ -72,9 +72,11 @@
             this.tbAnswer.Name = "tbAnswer";
             this.tbAnswer.Size = new System.Drawing.Size(467, 31);
             this.tbAnswer.TabIndex = 17;
+            this.tbAnswer.TextChanged += new System.EventHandler(this.tbAnswer_TextChanged);
             // 
             // btnAddAnswer
             // 
+            this.btnAddAnswer.Enabled = false;
             this.btnAddAnswer.Location = new System.Drawing.Point(499, 277);
             this.btnAddAnswer.Name = "btnAddAnswer";
             this.btnAddAnswer.Size = new System.Drawing.Size(139, 40);
@@ -87,9 +89,6 @@
             // 
             this.clbAnswers.CheckOnClick = true;
             this.clbAnswers.FormattingEnabled = true;
-            this.clbAnswers.Items.AddRange(new object[] {
-            "Antwoord 1",
-            "Antwoord 2"});
             this.clbAnswers.Location = new System.Drawing.Point(11, 136);
             this.clbAnswers.Name = "clbAnswers";
             this.clbAnswers.Size = new System.Drawing.Size(467, 134);
@@ -102,9 +101,9 @@
             this.lblAnswers.AutoSize = true;
             this.lblAnswers.Location = new System.Drawing.Point(6, 107);
             this.lblAnswers.Name = "lblAnswers";
-            this.lblAnswers.Size = new System.Drawing.Size(241, 25);
+            this.lblAnswers.Size = new System.Drawing.Size(502, 25);
             this.lblAnswers.TabIndex = 14;
-            this.lblAnswers.Text = "Antwoordmogelijkheden";
+            this.lblAnswers.Text = "Antwoordmogelijkheden (vink goede antwoord aan)";
             // 
             // tbQuestion
             // 
