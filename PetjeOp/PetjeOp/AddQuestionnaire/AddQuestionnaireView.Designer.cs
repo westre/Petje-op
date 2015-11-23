@@ -47,7 +47,7 @@
             this.lblAddQuestionnaire.Location = new System.Drawing.Point(2, 8);
             this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2);
             this.lblAddQuestionnaire.Name = "lblAddQuestionnaire";
-            this.lblAddQuestionnaire.Size = new System.Drawing.Size(502, 55);
+            this.lblAddQuestionnaire.Size = new System.Drawing.Size(256, 29);
             this.lblAddQuestionnaire.TabIndex = 0;
             this.lblAddQuestionnaire.Text = "Vragenlijst Toevoegen";
             this.lblAddQuestionnaire.Click += new System.EventHandler(this.label1_Click);
@@ -68,7 +68,7 @@
             this.lblQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuestions.Location = new System.Drawing.Point(16, 194);
             this.lblQuestions.Name = "lblQuestions";
-            this.lblQuestions.Size = new System.Drawing.Size(87, 25);
+            this.lblQuestions.Size = new System.Drawing.Size(47, 13);
             this.lblQuestions.TabIndex = 9;
             this.lblQuestions.Text = "Vragen";
             // 
@@ -76,7 +76,7 @@
             // 
             this.tbQuestionnaireName.Location = new System.Drawing.Point(89, 109);
             this.tbQuestionnaireName.Name = "tbQuestionnaireName";
-            this.tbQuestionnaireName.Size = new System.Drawing.Size(391, 31);
+            this.tbQuestionnaireName.Size = new System.Drawing.Size(391, 20);
             this.tbQuestionnaireName.TabIndex = 8;
             // 
             // lblQuestionnaireName
@@ -84,7 +84,7 @@
             this.lblQuestionnaireName.AutoSize = true;
             this.lblQuestionnaireName.Location = new System.Drawing.Point(8, 109);
             this.lblQuestionnaireName.Name = "lblQuestionnaireName";
-            this.lblQuestionnaireName.Size = new System.Drawing.Size(74, 25);
+            this.lblQuestionnaireName.Size = new System.Drawing.Size(38, 13);
             this.lblQuestionnaireName.TabIndex = 7;
             this.lblQuestionnaireName.Text = "Naam:";
             // 
@@ -149,7 +149,7 @@
             this.Controls.Add(this.lblAddQuestionnaire);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AddQuestionnaireView";
-            this.Size = new System.Drawing.Size(1255, 764);
+            this.Size = new System.Drawing.Size(1140, 800);
             this.ResumeLayout(false);
             this.PerformLayout();
 
