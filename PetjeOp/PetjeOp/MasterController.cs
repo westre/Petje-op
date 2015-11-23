@@ -24,7 +24,7 @@ namespace PetjeOp {
             Controllers.Add(new AddQuestionnaireController(this));
 
             // We beginnen met deze view
-            mainPanel.Controls.Add(GetController(typeof(AddQuestionnaireController)).GetView());          
+            mainPanel.Controls.Add(GetController(typeof(AddQuestionnaireController)).GetView());
         }
 
         public Controller GetController(Type type) {
@@ -42,6 +42,7 @@ namespace PetjeOp {
 
             // Dan voegen we de nieuwe view toe
             mainPanel.Controls.Add(controller.GetView());
+
         }
 
         private void mainPanel_Paint(object sender, PaintEventArgs e)
