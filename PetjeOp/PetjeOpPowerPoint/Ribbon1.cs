@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
-using Office = Microsoft.Office.Core;
+using Office = Microsoft.Office.Core
 
 namespace PetjeOpPowerPoint
 {
@@ -23,12 +23,6 @@ namespace PetjeOpPowerPoint
             textBox.TextFrame.TextRange.InsertAfter("Deze dia is toegevoegd met de knop");
 
 
-            Office.MsoAutoShapeType henk = Office.MsoAutoShapeType.msoShapePie;
-
-
-
-            PowerPoint.Shape grafiek = currentSld.Shapes.AddShape(henk, 50, 50, 30, 30);
-            
 
 
 
