@@ -81,6 +81,7 @@
     <Compile Include="ExampleTwo\ExampleTwoView.Designer.cs">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="IEnvironment.cs" />
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEController.cs" />
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEModel.cs" />
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.cs">

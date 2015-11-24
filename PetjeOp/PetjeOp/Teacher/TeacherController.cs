@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PetjeOp {
-    public class TeacherController : Controller {
+    public class TeacherController : Controller, IEnvironment {
         public TeacherView View { get; set; }
         public TeacherModel Model { get; set; }
 
