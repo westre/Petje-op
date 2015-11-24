@@ -15,6 +15,10 @@ namespace PetjeOp {
         private List<Controller> Controllers { get; set; }
         private IEnvironment ActiveParentContainer { get; set; }
 
+        //De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
+        //Question q = masterController.DB.GetQuestion(id);
+        public Database DB { get; private set; }
+
         public MasterController() {
             InitializeComponent();
             Controllers = new List<Controller>();
@@ -27,6 +31,9 @@ namespace PetjeOp {
 
             // We beginnen met deze view, verander dit niet!
             mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
+
+            //Creëer database instantie
+            DB = new Database();
         }
 
         public Controller GetController(Type type) {
@@ -58,7 +65,7 @@ namespace PetjeOp {
                 SetController(GetController(typeof(AddQuestionnaireController)));
             }
             else if(controller is StudentController) {
-                mainPanel.Controls.Clear();
+            mainPanel.Controls.Clear();
 
                 ActiveParentContainer = (StudentController)controller;               
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
