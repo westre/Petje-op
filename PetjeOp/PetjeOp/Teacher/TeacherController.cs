@@ -22,5 +22,11 @@ namespace PetjeOp {
         public Panel GetViewPanel() {
             return View.viewPanel;
         }
+
+        public void GoToResults()
+        {
+            ViewResultsController vrc = (ViewResultsController)MasterController.GetController(typeof(ViewResultsController));
+            MasterController.SetController(vrc);
+        }
     }
 }

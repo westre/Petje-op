@@ -140,6 +140,14 @@
     <Compile Include="Teacher\TeacherView.Designer.cs">
       <DependentUpon>TeacherView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewResults\ViewResultsController.cs" />
+    <Compile Include="ViewResults\ViewResultsModel.cs" />
+    <Compile Include="ViewResults\ViewResultsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewResults\ViewResultsView.Designer.cs">
+      <DependentUpon>ViewResultsView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +215,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

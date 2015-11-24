@@ -28,6 +28,7 @@ namespace PetjeOp {
             Controllers.Add(new TeacherController(this));
             Controllers.Add(new StudentController(this));
             Controllers.Add(new AddQuestionnaireController(this));
+            Controllers.Add(new ViewResultsController(this));
 
             // We beginnen met deze view, verander dit niet!
             mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
