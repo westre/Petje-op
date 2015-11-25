@@ -12,7 +12,7 @@ namespace PetjeOp
         public List<Question> Questions { get; private set; }
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
-        public Questionnaire(string n)
+        public Questionnaire(string n, int id = 0) // Nog veranderen!, default verwijderen voor DB
         {
             Name = n;
             Questions = new List<Question>();

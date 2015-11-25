@@ -38,6 +38,14 @@ namespace PetjeOp {
 
             //Creëer database instantie
             DB = new Database();
+            Questionnaire qn = new Questionnaire(2, "test");
+            MultipleChoiceQuestion q = new MultipleChoiceQuestion(1, "Wat is het foute antwoord");
+            Answer a = new Answer(1, "Foute antwoord");
+            q.AnswerOptions.Add(a);
+            q.CorrectAnswer = a;
+
+            DB.UpdateQuestionnaire(qn);
+
         }
 
         public Controller GetController(Type type) {
