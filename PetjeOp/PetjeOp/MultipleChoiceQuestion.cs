@@ -12,7 +12,7 @@ namespace PetjeOp
         public List<Answer> AnswerOptions { get; }
 
         // MultipleChoiceQuestion Constructor
-        public MultipleChoiceQuestion(String description) : base(description)
+        public MultipleChoiceQuestion(int id, String description) : base(id, description)
         {
             AnswerOptions = new List<Answer>();
         }

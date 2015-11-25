@@ -19,6 +19,9 @@ namespace PetjeOp {
         //Question q = masterController.DB.GetQuestion(id);
         public Database DB { get; private set; }
 
+        //De user is het type gebruiker: Student, Teacher.
+        public Person User { get; set; }
+
         public MasterController() {
             InitializeComponent();
             Controllers = new List<Controller>();
@@ -28,12 +31,21 @@ namespace PetjeOp {
             Controllers.Add(new TeacherController(this));
             Controllers.Add(new StudentController(this));
             Controllers.Add(new AddQuestionnaireController(this));
+            Controllers.Add(new ViewResultsController(this));
 
             // We beginnen met deze view, verander dit niet!
             mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
 
             //Creëer database instantie
             DB = new Database();
+            Questionnaire qn = new Questionnaire(2, "test");
+            MultipleChoiceQuestion q = new MultipleChoiceQuestion(1, "Wat is het foute antwoord");
+            Answer a = new Answer(1, "Foute antwoord");
+            q.AnswerOptions.Add(a);
+            q.CorrectAnswer = a;
+
+            DB.UpdateQuestionnaire(qn);
+
         }
 
         public Controller GetController(Type type) {

@@ -4,10 +4,11 @@ namespace PetjeOp
 {
     public class Answer
     {
-        public int ID { get; set; }
+        public readonly int id;
         public String Description { get; set; }
-        public Answer(String Description)
+        public Answer(int id, String Description)
         {
+            this.id = id;
             this.Description = Description;
         }
     }

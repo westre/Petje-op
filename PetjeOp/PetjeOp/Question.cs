@@ -8,11 +8,11 @@ namespace PetjeOp
 {
     public abstract class Question
     {
-        public String ID { get; set; }
+        public readonly int id;
         public String Description { get; set; }
 
         // "Answer" is het goede antwoord op de vraag.           
-        public Answer Answer { get; set; }
+        public Answer CorrectAnswer { get; set; }
 
         // De lijst bevat de media, die bij de vraag hoord.
         private List<Media> Media;
@@ -27,15 +27,10 @@ namespace PetjeOp
         private DateTime RemainingTimeRestriction;
 
         // Constructor van "Question". Als parameter alleen de beschrijving.
-        public Question(String description)
+        public Question(int id, String description)
         {
+            this.id = id;
             this.Description = description;
-        }
-
-        //Voegt correct antwoord toe
-        public void AddCorrectAnswer(Answer ans)
-        {
-            Answer = ans;
         }
 
         // Zet een "TimeRestriction" voor de "Question."              
