@@ -55,9 +55,9 @@
             this.gbQuestion.Controls.Add(this.tbQuestion);
             this.gbQuestion.Controls.Add(this.lblQuestion);
             this.gbQuestion.Location = new System.Drawing.Point(4, 4);
-            this.gbQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.gbQuestion.Name = "gbQuestion";
-            this.gbQuestion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbQuestion.Padding = new System.Windows.Forms.Padding(4);
             this.gbQuestion.Size = new System.Drawing.Size(914, 335);
             this.gbQuestion.TabIndex = 0;
             this.gbQuestion.TabStop = false;
@@ -97,7 +97,7 @@
             // 
             this.btnDeleteAnswer.Enabled = false;
             this.btnDeleteAnswer.Location = new System.Drawing.Point(500, 137);
-            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
             this.btnDeleteAnswer.Size = new System.Drawing.Size(140, 40);
             this.btnDeleteAnswer.TabIndex = 18;
@@ -108,7 +108,7 @@
             // tbAnswer
             // 
             this.tbAnswer.Location = new System.Drawing.Point(12, 277);
-            this.tbAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.tbAnswer.Name = "tbAnswer";
             this.tbAnswer.Size = new System.Drawing.Size(468, 31);
             this.tbAnswer.TabIndex = 17;
@@ -118,7 +118,7 @@
             // 
             this.btnAddAnswer.Enabled = false;
             this.btnAddAnswer.Location = new System.Drawing.Point(500, 277);
-            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddAnswer.Name = "btnAddAnswer";
             this.btnAddAnswer.Size = new System.Drawing.Size(140, 40);
             this.btnAddAnswer.TabIndex = 16;
@@ -131,7 +131,7 @@
             this.clbAnswers.CheckOnClick = true;
             this.clbAnswers.FormattingEnabled = true;
             this.clbAnswers.Location = new System.Drawing.Point(12, 137);
-            this.clbAnswers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clbAnswers.Margin = new System.Windows.Forms.Padding(4);
             this.clbAnswers.Name = "clbAnswers";
             this.clbAnswers.Size = new System.Drawing.Size(468, 108);
             this.clbAnswers.TabIndex = 15;
@@ -151,7 +151,7 @@
             // tbQuestion
             // 
             this.tbQuestion.Location = new System.Drawing.Point(88, 37);
-            this.tbQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.tbQuestion.Name = "tbQuestion";
             this.tbQuestion.Size = new System.Drawing.Size(392, 31);
             this.tbQuestion.TabIndex = 13;
@@ -172,7 +172,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbQuestion);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddQuestionView";
             this.Size = new System.Drawing.Size(920, 344);
             this.gbQuestion.ResumeLayout(false);

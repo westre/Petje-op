@@ -85,46 +85,58 @@ namespace PetjeOp.AddQuestionnaire
 
         public void checkQuestionView()
         {
-            bool canBeEnabled1;
-            bool canBeEnabled2;
-            bool canBeEnabled3;
+            bool checkTwoAnswers;
+            bool checkQuestion;
+            bool checkCorrectAnswer;
+            bool checkMaxAnswers;
 
             if (clbAnswers.Items.Count <= 1)
             {
                 lblNonSufficientAnswers.ForeColor = Color.Red;
                 lblNonSufficientAnswers.Text = "Er moeten minimaal twee antwoorden opgegeven worden!";
-                canBeEnabled1 = false;
+                checkTwoAnswers = false;
             }else
             {
                 lblNonSufficientAnswers.Text = "";
-                canBeEnabled1 = true;
+                checkTwoAnswers = true;
             }
+
             if (!tbQuestion.Text.Any())
             {
                 lblQuestionError.ForeColor = Color.Red;
                 lblQuestionError.Text = "Vul een vraag in!";
-                canBeEnabled2 = false;
+                checkQuestion = false;
             }
             else
             {
                 lblQuestionError.Text = "";
-                canBeEnabled2 = true;
+                checkQuestion = true;
             }
 
             if (AddQuestionDialog.addQuestionView1.clbAnswers.CheckedItems.Count == 0)
             {
                 lblAnswersError.ForeColor = Color.Red;
-                canBeEnabled3 = false;
+                checkCorrectAnswer = false;
             }
             else
             {
                 lblAnswersError.ForeColor = Color.Black;
-                canBeEnabled3 = true;
+                checkCorrectAnswer = true;
             }
-            
+
+            if (AddQuestionDialog.addQuestionView1.clbAnswers.Items.Count > 26)
+            {
+                lblNonSufficientAnswers.ForeColor = Color.Red;
+                lblNonSufficientAnswers.Text = "Er mogen maximaal 26 antwoorden gegeven worden!";
+                checkMaxAnswers = false;
+            }
+            else
+            {
+                checkMaxAnswers = true;
+            }
 
             
-            if (canBeEnabled1 && canBeEnabled2 && canBeEnabled3)
+            if (checkTwoAnswers && checkQuestion && checkCorrectAnswer && checkMaxAnswers)
             {
                 AddQuestionDialog.btnAddQuestion.Enabled = true;
             }
