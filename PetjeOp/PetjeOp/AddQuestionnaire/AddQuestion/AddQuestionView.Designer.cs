@@ -62,6 +62,7 @@
             this.gbQuestion.TabIndex = 0;
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Vraag";
+            this.gbQuestion.Enter += new System.EventHandler(this.gbQuestion_Enter);
             // 
             // lblAnswersError
             // 

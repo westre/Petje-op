@@ -110,7 +110,7 @@
             this.btnEditQuestion.TabIndex = 15;
             this.btnEditQuestion.Text = "Wijzig";
             this.btnEditQuestion.UseVisualStyleBackColor = true;
-            this.btnEditQuestion.Click += new System.EventHandler(this.button1_Click);
+            this.btnEditQuestion.Click += new System.EventHandler(this.btnEditQuestion_Click);
             // 
             // btnDeleteQuestion
             // 

@@ -137,5 +137,10 @@ namespace PetjeOp.AddQuestionnaire
         {
             checkQuestionView();
         }
+
+        private void gbQuestion_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

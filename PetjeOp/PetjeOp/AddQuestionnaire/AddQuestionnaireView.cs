@@ -33,14 +33,14 @@ namespace PetjeOp.AddQuestionnaire
             Controller.ShowQuestionDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tvQuestions_AfterSelect(object sender, TreeViewEventArgs e)
         {
             Controller.ControlEditDeleteButtons();
+        }
+
+        private void btnEditQuestion_Click(object sender, EventArgs e)
+        {
+            Controller.editQuestion();
         }
     }
 }
