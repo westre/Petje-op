@@ -15,12 +15,22 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         public MultipleChoiceQuestion Question { get; set; }
         public List<Answer> answers = new List<Answer>();
         public Answer correct;
+        public AddQuestionnaireController Controller { get; set; }
+        private int toBeAdded;
 
-        public AddQuestionDialog()
+        public AddQuestionDialog(AddQuestionnaireController controller)
         {
             InitializeComponent();
             addQuestionView1.lblNonSufficientAnswers.ForeColor = Color.Red;
             addQuestionView1.SetQuestionDialog(this);
+            this.Controller = controller;
+            toBeAdded = 1;
+        }
+
+        public AddQuestionDialog(AddQuestionnaireController controller, MultipleChoiceQuestion question) : this(controller)
+        {
+            Question = question;
+            toBeAdded = 0;
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -46,6 +56,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
                     Question.AddCorrectAnswer(correct);
 
+                    Question.QuestionNumber = Controller.Model.Questions.Count + toBeAdded;
                     this.Close();
                 }
             }
@@ -88,6 +99,21 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddQuestionDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(Question != null)
+            Controller.AddDialogInformation(Question);
+        }
+        
+
+        private void AddQuestionDialog_Load(object sender, EventArgs e)
+        {
+            if (Question != null)
+            {
+                addQuestionView1.tbQuestion.Text = Question.Description;
+            }
         }
     }
 }

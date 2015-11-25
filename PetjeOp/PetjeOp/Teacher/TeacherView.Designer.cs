@@ -27,7 +27,9 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.viewPanel = new System.Windows.Forms.Panel();
+            this.btnResults = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
+            this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTeacherTest
@@ -52,6 +54,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlMenu.Controls.Add(this.btnResults);
             this.pnlMenu.Location = new System.Drawing.Point(3, 72);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(126, 219);
@@ -64,6 +67,16 @@
             this.viewPanel.Size = new System.Drawing.Size(540, 386);
             this.viewPanel.TabIndex = 4;
             // 
+            // btnResults
+            // 
+            this.btnResults.Location = new System.Drawing.Point(3, 24);
+            this.btnResults.Name = "btnResults";
+            this.btnResults.Size = new System.Drawing.Size(97, 23);
+            this.btnResults.TabIndex = 2;
+            this.btnResults.Text = "Resultaten";
+            this.btnResults.UseVisualStyleBackColor = true;
+            this.btnResults.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TeacherView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -74,6 +87,7 @@
             this.Name = "TeacherView";
             this.Size = new System.Drawing.Size(699, 476);
             this.pnlHeader.ResumeLayout(false);
+            this.pnlMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -83,5 +97,6 @@
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Panel pnlMenu;
         public System.Windows.Forms.Panel viewPanel;
+        private System.Windows.Forms.Button btnResults;
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace PetjeOp {
     public partial class TeacherView : UserControl {
         public TeacherController Controller;
+        
 
         public TeacherView(TeacherController controller) {
             InitializeComponent();
@@ -24,6 +25,12 @@ namespace PetjeOp {
 
         private void btnLoginTeacher_Click(object sender, EventArgs e) {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           Controller.ShowExamDialog();
+           
         }
     }
 }

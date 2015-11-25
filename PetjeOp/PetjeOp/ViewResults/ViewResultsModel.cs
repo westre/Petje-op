@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PetjeOp {
-    public class TeacherModel {
+    public class ViewResultsModel {
         public string Name { get; set; }
-        public ChooseExamDialog Dialog { get; set; }
+       
     }
 }

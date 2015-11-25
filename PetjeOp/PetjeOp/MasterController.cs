@@ -13,11 +13,14 @@ using PetjeOp.AddQuestionnaire;
 namespace PetjeOp {
     public partial class MasterController : Form {
         private List<Controller> Controllers { get; set; }
-        private Controller ActiveParentContainer { get; set; }
+        private IEnvironment ActiveParentContainer { get; set; }
 
         //De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
         //Question q = masterController.DB.GetQuestion(id);
         public Database DB { get; private set; }
+
+        //De user is het type gebruiker: Student, Teacher.
+        public Person User { get; set; }
 
         public MasterController() {
             InitializeComponent();
@@ -28,6 +31,7 @@ namespace PetjeOp {
             Controllers.Add(new TeacherController(this));
             Controllers.Add(new StudentController(this));
             Controllers.Add(new AddQuestionnaireController(this));
+            Controllers.Add(new ViewResultsController(this));
 
             // We beginnen met deze view, verander dit niet!
             mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
@@ -46,15 +50,9 @@ namespace PetjeOp {
 
         // Dit wordt bijvoorbeeld aangeroepen wanneer we op een knop klikken (zie ExampleView.button1_Click)
         public void SetController(Controller controller) {
-            if (ActiveParentContainer is TeacherController) {
-                TeacherController teacherController = (TeacherController)ActiveParentContainer;
-                teacherController.GetViewPanel().Controls.Clear();
-                teacherController.GetViewPanel().Controls.Add(controller.GetView());
-            }
-            else if (ActiveParentContainer is StudentController) {
-                StudentController studentController = (StudentController)ActiveParentContainer;
-                studentController.GetViewPanel().Controls.Clear();
-                studentController.GetViewPanel().Controls.Add(controller.GetView());
+            if (ActiveParentContainer != null) {
+                ActiveParentContainer.GetViewPanel().Controls.Clear();
+                ActiveParentContainer.GetViewPanel().Controls.Add(controller.GetView());
             }
 
             if (controller is TeacherController) {
