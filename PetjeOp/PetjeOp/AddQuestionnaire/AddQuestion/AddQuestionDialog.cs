@@ -89,5 +89,10 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         {
             this.Close();
         }
+
+        private void btnAddQuestion_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

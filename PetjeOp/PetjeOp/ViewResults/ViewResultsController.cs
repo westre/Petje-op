@@ -10,6 +10,7 @@ namespace PetjeOp {
     public class ViewResultsController : Controller {
         public ViewResultsView View { get; set; }
         public ViewResultsModel Model { get; set; }
+        public Exam ex;
 
         public ViewResultsController(MasterController masterController) : base(masterController) {
             Model = new ViewResultsModel();
@@ -20,7 +21,29 @@ namespace PetjeOp {
             return View;
         }
 
-   
-       
+        public void ShowResults()
+        {
+            AddQuestionsToList();
+
+            
+        }
+
+        public void AddQuestionsToList()
+        {
+            foreach (Question q in ex.questionnaire.Questions)
+            {
+                View.listQuestions.Items.AddRange(new object[] {
+            q});
+            }
+            
+        }
+
+        public void ShowChart()
+        {
+            Question chosen = (Question)View.listQuestions.SelectedItem;
+           // View.label1.Text = chosen.ToString() + " : " ex.results[chosen.ID].ToString();
+            
+        }
+
     }
 }
