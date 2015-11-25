@@ -19,13 +19,6 @@ namespace PetjeOp.AddQuestionnaire
             View = new AddQuestionnaireView(this);
         }
 
-        // In de controller wordt zowel de Model als View aangestuurd
-        // Als voorbeeld veranderen we nu data van de Model, een Model kun je zien als een entiteit/object die ALLEEN properties/variabelen vasthoudt
-        public void SetName(string name)
-        {
-            Model.Name = name;
-        }
-
         // Hier veranderen we de View met de data van ExampleModel
         public void UpdateView()
         {
@@ -39,31 +32,69 @@ namespace PetjeOp.AddQuestionnaire
             Model.Dialog.ShowDialog();
         }
 
+        //Zet 'Wijzig' en 'Verwijder' aan
+        public void EnableEditDeleteButtons()
+        {
+            View.btnEditQuestion.Enabled = true;
+            View.btnDeleteQuestion.Enabled = true;
+        }
+
+        //Zet 'Wijzig' en 'Verwijder' uit
+        public void DisableEditDeleteButtons()
+        {
+            View.btnEditQuestion.Enabled = false;
+            View.btnDeleteQuestion.Enabled = false;
+        }
+
+        //Functie om 'Wijzig' en 'Verwijder' aan en uit te zetten wanneer er al dan niet een vraag is geselecteerd
         public void ControlEditDeleteButtons()
         {
-            if (View.tvQuestions.SelectedNode != null)
+            if (View.tvQuestions.SelectedNode != null && View.tvQuestions.SelectedNode.Parent == null)
             {
-                View.btnEditQuestion.Enabled = true;
-                View.btnDeleteQuestion.Enabled = true;
-            } else
+                EnableEditDeleteButtons();
+            }
+            else
             {
-                View.btnEditQuestion.Enabled = false;
-                View.btnDeleteQuestion.Enabled = false;
+                DisableEditDeleteButtons();
             }
         }
 
-        private void UpdateTreeView()
+        //Functie om de TreeView met vragen en antwoorden te updaten
+        public void UpdateTreeView()
         {
+            //Sorteer de lijst met vragen op QuestionIndex
             Model.Questions.Sort();
+
+            //Maak de TreeView leeg
             View.tvQuestions.Nodes.Clear();
-            foreach (Question q in Model.Questions)
+
+            //Loop door alle vragen heen
+            foreach (MultipleChoiceQuestion q in Model.Questions)
             {
-                View.tvQuestions.Nodes.Add(q.QuestionNumber + ": " + q.Description);
-                foreach (Answer answer in Model.Dialog.Question.AnswerOptions)
+                //Voeg Node toe met vraag
+                TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
+
+                //Koppel vraagobject aan de Node
+                addedNode.Tag = q;
+
+                //Loop door alle antwoorden heen
+                foreach (Answer answer in q.AnswerOptions)
                 {
-                    View.tvQuestions.Nodes[q.QuestionNumber-1].Nodes.Add(answer.Description);
+                    string answerDescription = answer.Description;
+
+                    if (answer.Equals(q.CorrectAnswer))
+                        answerDescription += " (Correct Antwoord)";
+
+                    //Voeg Child toe
+                    TreeNode addedChild = addedNode.Nodes.Add(answerDescription);
+
+                    //Koppel antwoord aan Child
+                    addedChild.Tag = answer;
                 }
             }
+            
+            //Klap alle vragen uit
+            View.tvQuestions.ExpandAll();
         }
 
         public override UserControl GetView()
@@ -71,48 +102,53 @@ namespace PetjeOp.AddQuestionnaire
             return View;
         }
 
-        public void AddDialogInformation(MultipleChoiceQuestion question)
+        //Geef gegenereerde vraag door aan het model
+        public void AddDialogInformation(MultipleChoiceQuestion question, bool updateTV)
         {
-
-            //Model.Questions[question.ID] = question;
-
+            //Voeg vraag toe aan lijst met vragen in Model
             Model.Questions.Add(question);
-            foreach (MultipleChoiceQuestion q in Model.Questions)
+
+            //Bepaal of TreeView geupdatet moet worden
+            if (updateTV)
             {
-                Console.WriteLine(q.Description);
+                UpdateTreeView();
             }
-            UpdateTreeView();
         }
 
+        //Functie die uitgevoerd wordt bij wijzigen van een vraag
         public void editQuestion()
         {
             MultipleChoiceQuestion currentQuestion = null;
-            int currentQuestionNumber = 0;
+            int currentQuestionIndex = 0;
+
+            //Bepaal vraag als attribuut voor Dialog
             foreach (MultipleChoiceQuestion q in Model.Questions)
             {
+                //Controleer of er een Node geselecteerd is
                 if (View.tvQuestions.SelectedNode != null)
                 {
-                    if (q.QuestionNumber == (View.tvQuestions.SelectedNode.Index + 1))
+                    //Controleer of de geselecteerde vraag gelijk is aan de vraag in de lijst
+                    if (q.Equals(View.tvQuestions.SelectedNode.Tag))
                     {
+                        //Match de vraag
                         currentQuestion = q;
-                        currentQuestionNumber = q.QuestionNumber;
+
+                        //Match de index
+                        currentQuestionIndex = q.QuestionIndex;
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Selected node is null!");
-                }
             }
-            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion);
-            editDialog.ShowDialog();
-            Model.Questions.RemoveAt(currentQuestionNumber);
-            foreach (MultipleChoiceQuestion q in Model.Questions)
-            {
-                foreach (Answer a in q.AnswerOptions)
-                {
-                    Console.WriteLine(a.Description);
-                }
-            }
+
+            //Toon dialoog
+            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion, currentQuestionIndex);
+            DialogResult dr = editDialog.ShowDialog();
+
+            //Als op OK is geklikt, verwijder de oude vraag.
+            //Nieuwe vraag is toegevoegd bij het sluiten van het dialoog
+            if(dr == DialogResult.OK)
+                Model.Questions.RemoveAt(currentQuestionIndex - 1);
+
+            //Update de TreeView
             UpdateTreeView();
         }
     }
