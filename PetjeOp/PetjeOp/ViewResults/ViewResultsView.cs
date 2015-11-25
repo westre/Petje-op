@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace PetjeOp
+{
+    public partial class ViewResultsView : UserControl
+    {
+        public ViewResultsController Controller { get; set; }
+
+        public ViewResultsView(ViewResultsController controller)
+        {
+            Controller = controller;
+            InitializeComponent();
+        }
+    }
+}

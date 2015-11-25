@@ -25,5 +25,10 @@ namespace PetjeOp {
         private void btnLoginTeacher_Click(object sender, EventArgs e) {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           Controller.GoToResults();
+        }
     }
 }
