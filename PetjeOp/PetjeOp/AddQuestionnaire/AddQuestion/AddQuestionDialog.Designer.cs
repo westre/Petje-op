@@ -44,7 +44,7 @@
             this.btnAddQuestion.TabIndex = 1;
             this.btnAddQuestion.Text = "Vraag Toevoegen";
             this.btnAddQuestion.UseVisualStyleBackColor = true;
-            this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click_1);
+            this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click);
             // 
             // btnCancel
             // 
@@ -84,6 +84,8 @@
             this.Name = "AddQuestionDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Vraag Toevoegen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddQuestionDialog_FormClosing);
+            this.Load += new System.EventHandler(this.AddQuestionDialog_Load);
             this.ResumeLayout(false);
 
         }

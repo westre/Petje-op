@@ -14,5 +14,11 @@ namespace PetjeOp {
         }
 
         public abstract UserControl GetView();
+
+        public void InitializeView() {
+            GetView().Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            GetView().Width = MasterController.ActiveParentContainer.GetViewPanel().Width;
+            GetView().Height = MasterController.ActiveParentContainer.GetViewPanel().Height;
+        }
     }
 }

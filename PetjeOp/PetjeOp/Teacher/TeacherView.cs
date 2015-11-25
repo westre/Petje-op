@@ -33,5 +33,9 @@ namespace PetjeOp {
            Controller.ShowExamDialog();
            
         }
+
+        private void TeacherView_Load(object sender, EventArgs e) {
+
+        }
     }
 }
