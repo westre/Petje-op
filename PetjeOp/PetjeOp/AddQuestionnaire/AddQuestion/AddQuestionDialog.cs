@@ -23,7 +23,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             InitializeComponent();
             addQuestionView1.lblNonSufficientAnswers.ForeColor = Color.Red;
             addQuestionView1.SetQuestionDialog(this);
-            this.Controller = controller;
+            Controller = controller;
             toBeAdded = 1;
         }
 
@@ -31,6 +31,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         {
             Question = question;
             toBeAdded = 0;
+            Text = btnAddQuestion.Text = "Vraag Wijzigen";
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -113,7 +114,19 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             if (Question != null)
             {
                 addQuestionView1.tbQuestion.Text = Question.Description;
+
+                foreach (Answer a in Question.AnswerOptions)
+                {
+                    int addedIndex = addQuestionView1.clbAnswers.Items.Add(a.Description);
+
+                    if (a == Question.Answer)
+                    {
+                        addQuestionView1.clbAnswers.SetItemChecked(addedIndex, true);
+                    }
+                }
             }
+
+            addQuestionView1.checkQuestionView();
         }
     }
 }

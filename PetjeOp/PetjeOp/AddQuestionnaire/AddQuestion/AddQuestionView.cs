@@ -83,7 +83,7 @@ namespace PetjeOp.AddQuestionnaire
             }
         }
 
-        private void checkQuestionView()
+        public void checkQuestionView()
         {
             bool canBeEnabled1;
             bool canBeEnabled2;
