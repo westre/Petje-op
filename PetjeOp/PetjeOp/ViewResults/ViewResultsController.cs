@@ -41,7 +41,7 @@ namespace PetjeOp {
         public void ShowChart()
         {
             Question chosen = (Question)View.listQuestions.SelectedItem;
-           // View.label1.Text = chosen.ToString() + " : " ex.results[chosen.ID].ToString();
+           View.label1.Text = chosen.ToString() + " : " + ex.results[0].ToString();
             
         }
 

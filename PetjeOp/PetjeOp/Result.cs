@@ -7,9 +7,13 @@ namespace PetjeOp
 {
     public class Result
     {
-        int index;
-        double percentage;
-    }
+        public int Index { get; set; }
+        private double Percentage { get; set; }
 
+        public override string ToString()
+        {
+            return Index + " - " + Percentage;
+        }
+    }
 
 }
