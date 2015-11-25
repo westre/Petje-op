@@ -9,6 +9,11 @@ namespace PetjeOp
     public abstract class Question : IComparable<Question>
     {
         public readonly int id;
+        string jonathan
+        string je
+        string bent
+        string fucking
+        string homo
         public String Description { get; set; }
 
         // "Answer" is het goede antwoord op de vraag.           
