@@ -42,5 +42,9 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller.editQuestion();
         }
+
+        private void AddQuestionnaireView_Load(object sender, EventArgs e) {
+
+        }
     }
 }

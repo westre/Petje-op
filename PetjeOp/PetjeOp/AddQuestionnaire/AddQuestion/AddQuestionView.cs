@@ -14,6 +14,7 @@ namespace PetjeOp.AddQuestionnaire
     public partial class AddQuestionView : UserControl
     {
         public AddQuestionDialog AddQuestionDialog { get; set; }
+
         public AddQuestionView()
         {
             InitializeComponent();

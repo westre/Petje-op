@@ -1,40 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PetjeOp
 {
-    class Database
+    //De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
+    //Question q = masterController.DB.GetQuestion(id);
+    public class Database
     {
-        SqlConnection connection;
+        DatabaseDataContext db = new DatabaseDataContext();
 
-        public string LoadConfig()
+        public void Query()
         {
-            string connectionString = "user id=jonaham;password=12;server=176.31.253.42,119;database=kbs2;";
-
-            return connectionString;
+            Console.WriteLine(GetQuestion(0).Description);
         }
 
-        public bool Connect()
-        {            
-            SqlConnection connection = new SqlConnection(LoadConfig());
-            connection.Open();
+        public MultipleChoiceQuestion GetQuestion(int id)
+        {
+            tblQuestion query = db.tblQuestions.SingleOrDefault(q => q.questionnr == id);
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [user]";
-            cmd.Connection = connection;
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Console.WriteLine(reader["user"].ToString());
-                }
+            if (query!=null){                
+                MultipleChoiceQuestion question = new MultipleChoiceQuestion(query.question);
+                return question;
             }
-            return true;
+            return null;          
+        }
+
+        public Questionnaire GetQuestionnaire(int id)
+        {           
+            tblQuestionnaire query = db.tblQuestionnaires.SingleOrDefault(q => q.questionnairenr == id);
+
+            if (query!=null){
+                Questionnaire questionnaire = new Questionnaire(query.questionnairename);
+                foreach(tblLinkQuestion question in query.tblLinkQuestions.ToList())
+                {
+                    questionnaire.addQuestion(new MultipleChoiceQuestion(question.tblQuestion.question));
+                }
+                return questionnaire;
+            }
+            return null;     
+        }
+
+        public Student GetStudent(int code)
+        {
+            Student person = (from tblStudent in db.tblStudents
+                               where tblStudent.studentnr == code
+                               select new Student
+                               {
+                                   StudentNr = tblStudent.studentnr,
+                                   FirstName = tblStudent.firstname,
+                                   SurName = tblStudent.name,
+                                   GroupNr = tblStudent.groupnr
+
+                               }).FirstOrDefault();
+
+            
+
+            if (person!=null){
+                return person;
+            }
+            return null;  
+        }
+        public Teacher GetTeacher(String code)
+        {
+            Teacher person = (from tblTeacher in db.tblTeachers
+                              where tblTeacher.teachernr == code
+                              select new Teacher
+                              {
+                                  TeacherNr = tblTeacher.teachernr,
+                                  FirstName = tblTeacher.firstname,
+                                  SurName = tblTeacher.name
+
+                              }).FirstOrDefault();
+
+            if (person != null)
+            {
+                return person;
+            }
+            return null;
         }
     }
 }
