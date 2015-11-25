@@ -47,5 +47,12 @@ namespace PetjeOp
                 System.Console.WriteLine(Option.ID + ", " + Option.Description);
             }
         }
+        public override string ToString()
+        {
+            return Description;
+        }
+        
+
+        }
     }
-}
+    

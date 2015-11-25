@@ -66,7 +66,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                     {
                         Question.QuestionNumber = Controller.Model.Questions.Count + 1;
                     }
-                    
+
                     this.Close();
                 }
             }
@@ -130,7 +130,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 {
                     int addedIndex = addQuestionView1.clbAnswers.Items.Add(a.Description);
 
-                    if (a == Question.Answer)
+                    if (a == Question.CorrectAnswer)
                     {
                         addQuestionView1.clbAnswers.SetItemChecked(addedIndex, true);
                     }

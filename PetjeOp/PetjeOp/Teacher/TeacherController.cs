@@ -10,10 +10,12 @@ namespace PetjeOp {
     public class TeacherController : Controller, IEnvironment {
         public TeacherView View { get; set; }
         public TeacherModel Model { get; set; }
+        public Exam x { get; set; }
 
         public TeacherController(MasterController masterController) : base(masterController) {
             Model = new TeacherModel();
             View = new TeacherView(this);
+            x = null;
         }
 
         public override UserControl GetView() {
@@ -26,7 +28,8 @@ namespace PetjeOp {
 
         public void ShowExamDialog()
         {
-            Model.Dialog = new ChooseExamDialog();
+            Model.Dialog = new ChooseExamDialog(this);
+
             Model.Dialog.ShowDialog();
         }
 
@@ -34,6 +37,12 @@ namespace PetjeOp {
         {
             ViewResultsController vrc = (ViewResultsController)MasterController.GetController(typeof(ViewResultsController));
             MasterController.SetController(vrc);
+            vrc.ex = x;
+            
+                vrc.ShowResults();
+            
+            
+            
         }
     }
 }
