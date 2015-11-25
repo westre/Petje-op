@@ -8,14 +8,12 @@ namespace PetjeOp
 {
     public class Questionnaire
     {
-        public readonly int id;
         public string Name { get; set; }
         public List<Question> Questions { get; private set; }
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
-        public Questionnaire(int id, string n)
+        public Questionnaire(string n, int id = 0) // Nog veranderen!, default verwijderen voor DB
         {
-            this.id = id;
             Name = n;
             Questions = new List<Question>();
         }
