@@ -98,7 +98,7 @@
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\LoginController.cs" />
-    <Compile Include="Login\LoginModel.cs" />
+    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\LoginModel.cs" />
     <Compile Include="Login\LoginView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +113,9 @@
     </Compile>
     <Compile Include="Media.cs" />
     <Compile Include="MultipleChoiceQuestion.cs" />
+    <Compile Include="Teacher.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
