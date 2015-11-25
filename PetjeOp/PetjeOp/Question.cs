@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PetjeOp
 {
-    public abstract class Question
+    public abstract class Question : IComparable<Question>
     {
-        public readonly int id;
+        public String ID { get; set; }
         public String Description { get; set; }
 
         // "Answer" is het goede antwoord op de vraag.           
@@ -65,6 +65,11 @@ namespace PetjeOp
             {
                 System.Console.WriteLine(Media.Name + ", " + Media.Url + ", " + Media.Type);
             }
+        }
+
+        public int CompareTo(Question q)
+        {
+            return QuestionNumber.CompareTo(q.QuestionNumber);
         }
     }
 }

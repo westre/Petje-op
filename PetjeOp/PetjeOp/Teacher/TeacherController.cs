@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetjeOp.ViewResults.ChooseExam;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,12 @@ namespace PetjeOp {
 
         public Panel GetViewPanel() {
             return View.viewPanel;
+        }
+
+        public void ShowExamDialog()
+        {
+            Model.Dialog = new ChooseExamDialog();
+            Model.Dialog.ShowDialog();
         }
 
         public void GoToResults()

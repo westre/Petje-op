@@ -83,7 +83,7 @@ namespace PetjeOp.AddQuestionnaire
             }
         }
 
-        private void checkQuestionView()
+        public void checkQuestionView()
         {
             bool canBeEnabled1;
             bool canBeEnabled2;
@@ -137,6 +137,11 @@ namespace PetjeOp.AddQuestionnaire
         private void tbQuestion_TextChanged(object sender, EventArgs e)
         {
             checkQuestionView();
+        }
+
+        private void gbQuestion_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
