@@ -28,9 +28,8 @@ namespace PetjeOp
         private DateTime RemainingTimeRestriction;
 
         // Constructor van "Question". Als parameter alleen de beschrijving.
-        public Question(String description, int id = 0) // Nog veranderen!, default verwijderen voor DB
+        public Question(String description)
         {
-            this.id = id;
             this.Description = description;
         }
 
@@ -70,7 +69,7 @@ namespace PetjeOp
 
         public int CompareTo(Question q)
         {
-            return id.CompareTo(q.id);
+            return QuestionNumber.CompareTo(q.QuestionNumber);
         }
     }
 }
