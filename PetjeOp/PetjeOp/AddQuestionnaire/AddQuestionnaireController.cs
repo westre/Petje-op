@@ -32,19 +32,30 @@ namespace PetjeOp.AddQuestionnaire
             Model.Dialog.ShowDialog();
         }
 
+        //Zet 'Wijzig' en 'Verwijder' aan
+        public void EnableEditDeleteButtons()
+        {
+            View.btnEditQuestion.Enabled = true;
+            View.btnDeleteQuestion.Enabled = true;
+        }
+
+        //Zet 'Wijzig' en 'Verwijder' uit
+        public void DisableEditDeleteButtons()
+        {
+            View.btnEditQuestion.Enabled = false;
+            View.btnDeleteQuestion.Enabled = false;
+        }
+
         //Functie om 'Wijzig' en 'Verwijder' aan en uit te zetten wanneer er al dan niet een vraag is geselecteerd
         public void ControlEditDeleteButtons()
         {
-            if (View.tvQuestions.SelectedNode != null)
+            if (View.tvQuestions.SelectedNode != null && View.tvQuestions.SelectedNode.Parent == null)
             {
-                //Vraag geselecteerd: zet knoppen aan
-                View.btnEditQuestion.Enabled = true;
-                View.btnDeleteQuestion.Enabled = true;
-            } else
+                EnableEditDeleteButtons();
+            }
+            else
             {
-                //Geen vraag geselecteerd: zet knoppen uit
-                View.btnEditQuestion.Enabled = false;
-                View.btnDeleteQuestion.Enabled = false;
+                DisableEditDeleteButtons();
             }
         }
 
@@ -69,8 +80,13 @@ namespace PetjeOp.AddQuestionnaire
                 //Loop door alle antwoorden heen
                 foreach (Answer answer in q.AnswerOptions)
                 {
+                    string answerDescription = answer.Description;
+
+                    if (answer.Equals(q.CorrectAnswer))
+                        answerDescription += " (Correct Antwoord)";
+
                     //Voeg Child toe
-                    TreeNode addedChild = addedNode.Nodes.Add(answer.Description);
+                    TreeNode addedChild = addedNode.Nodes.Add(answerDescription);
 
                     //Koppel antwoord aan Child
                     addedChild.Tag = answer;
