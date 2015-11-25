@@ -57,14 +57,14 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
                     Question.AddAnswerOptions(answers);
 
-                    Question.AddCorrectAnswer(correct);
+                    Question.CorrectAnswer = correct;
                     if (QuestionNumber != 0)
                     {
-                        Question.QuestionNumber = QuestionNumber;
+                        Question.QuestionIndex = QuestionNumber;
                     }
                     else
                     {
-                        Question.QuestionNumber = Controller.Model.Questions.Count + 1;
+                        Question.QuestionIndex = Controller.Model.Questions.Count + 1;
                     }
 
                     this.Close();

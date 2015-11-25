@@ -9,7 +9,7 @@ namespace PetjeOp
     public abstract class Question : IComparable<Question>
     {
         public int ID { get; set; }
-        public int QuestionNumber { get; set; } // :D
+        public int QuestionIndex { get; set; } // :D
         public String Description { get; set; }
 
         // "Answer" is het goede antwoord op de vraag.           
@@ -69,7 +69,7 @@ namespace PetjeOp
 
         public int CompareTo(Question q)
         {
-            return QuestionNumber.CompareTo(q.QuestionNumber);
+            return QuestionIndex.CompareTo(q.QuestionIndex);
         }
     }
 }

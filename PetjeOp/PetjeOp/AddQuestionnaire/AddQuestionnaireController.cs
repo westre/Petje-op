@@ -59,7 +59,7 @@ namespace PetjeOp.AddQuestionnaire
 
             foreach (MultipleChoiceQuestion q in Model.Questions)
             {
-                TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionNumber + ": " + q.Description);
+                TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
                 addedNode.Tag = q;
 
                 foreach (Answer answer in q.AnswerOptions)
@@ -98,7 +98,7 @@ namespace PetjeOp.AddQuestionnaire
                     if (q.Equals(View.tvQuestions.SelectedNode.Tag))
                     {
                         currentQuestion = q;
-                        currentQuestionNumber = q.QuestionNumber;
+                        currentQuestionNumber = q.QuestionIndex;
                     }
                 }
             }
