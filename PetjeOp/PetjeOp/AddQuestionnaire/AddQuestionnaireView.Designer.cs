@@ -33,7 +33,6 @@
             this.tvQuestions = new System.Windows.Forms.TreeView();
             this.btnEditQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -43,7 +42,7 @@
             this.lblAddQuestionnaire.Location = new System.Drawing.Point(2, 8);
             this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2);
             this.lblAddQuestionnaire.Name = "lblAddQuestionnaire";
-            this.lblAddQuestionnaire.Size = new System.Drawing.Size(256, 29);
+            this.lblAddQuestionnaire.Size = new System.Drawing.Size(502, 55);
             this.lblAddQuestionnaire.TabIndex = 0;
             this.lblAddQuestionnaire.Text = "Vragenlijst Toevoegen";
             this.lblAddQuestionnaire.Click += new System.EventHandler(this.label1_Click);
@@ -64,7 +63,7 @@
             this.lblQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuestions.Location = new System.Drawing.Point(16, 194);
             this.lblQuestions.Name = "lblQuestions";
-            this.lblQuestions.Size = new System.Drawing.Size(47, 13);
+            this.lblQuestions.Size = new System.Drawing.Size(87, 25);
             this.lblQuestions.TabIndex = 9;
             this.lblQuestions.Text = "Vragen";
             // 
@@ -72,7 +71,7 @@
             // 
             this.tbQuestionnaireName.Location = new System.Drawing.Point(89, 109);
             this.tbQuestionnaireName.Name = "tbQuestionnaireName";
-            this.tbQuestionnaireName.Size = new System.Drawing.Size(391, 20);
+            this.tbQuestionnaireName.Size = new System.Drawing.Size(391, 31);
             this.tbQuestionnaireName.TabIndex = 8;
             // 
             // lblQuestionnaireName
@@ -80,7 +79,7 @@
             this.lblQuestionnaireName.AutoSize = true;
             this.lblQuestionnaireName.Location = new System.Drawing.Point(8, 109);
             this.lblQuestionnaireName.Name = "lblQuestionnaireName";
-            this.lblQuestionnaireName.Size = new System.Drawing.Size(38, 13);
+            this.lblQuestionnaireName.Size = new System.Drawing.Size(74, 25);
             this.lblQuestionnaireName.TabIndex = 7;
             this.lblQuestionnaireName.Text = "Naam:";
             // 
@@ -95,6 +94,7 @@
             // 
             // tvQuestions
             // 
+            this.tvQuestions.HideSelection = false;
             this.tvQuestions.Location = new System.Drawing.Point(21, 233);
             this.tvQuestions.Name = "tvQuestions";
             this.tvQuestions.Size = new System.Drawing.Size(907, 361);
@@ -110,7 +110,7 @@
             this.btnEditQuestion.TabIndex = 15;
             this.btnEditQuestion.Text = "Wijzig";
             this.btnEditQuestion.UseVisualStyleBackColor = true;
-            this.btnEditQuestion.Click += new System.EventHandler(this.button1_Click);
+            this.btnEditQuestion.Click += new System.EventHandler(this.btnEditQuestion_Click);
             // 
             // btnDeleteQuestion
             // 
@@ -122,20 +122,10 @@
             this.btnDeleteQuestion.Text = "Verwijder";
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(153, 193);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "label1";
-            // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDeleteQuestion);
             this.Controls.Add(this.btnEditQuestion);
             this.Controls.Add(this.tvQuestions);
@@ -165,6 +155,5 @@
         public System.Windows.Forms.TreeView tvQuestions;
         public System.Windows.Forms.Button btnEditQuestion;
         public System.Windows.Forms.Button btnDeleteQuestion;
-        public System.Windows.Forms.Label label1;
     }
 }

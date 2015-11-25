@@ -19,6 +19,9 @@ namespace PetjeOp {
         //Question q = masterController.DB.GetQuestion(id);
         public Database DB { get; private set; }
 
+        //De user is het type gebruiker: Student, Teacher.
+        public Person User { get; set; }
+
         public MasterController() {
             InitializeComponent();
             Controllers = new List<Controller>();

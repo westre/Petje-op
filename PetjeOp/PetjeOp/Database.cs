@@ -39,5 +39,44 @@ namespace PetjeOp
             }
             return null;     
         }
+
+        public Student GetStudent(int code)
+        {
+            Student person = (from tblStudent in db.tblStudents
+                               where tblStudent.studentnr == code
+                               select new Student
+                               {
+                                   StudentNr = tblStudent.studentnr,
+                                   FirstName = tblStudent.firstname,
+                                   SurName = tblStudent.name,
+                                   GroupNr = tblStudent.groupnr
+
+                               }).FirstOrDefault();
+
+            
+
+            if (person!=null){
+                return person;
+            }
+            return null;  
+        }
+        public Teacher GetTeacher(String code)
+        {
+            Teacher person = (from tblTeacher in db.tblTeachers
+                              where tblTeacher.teachernr == code
+                              select new Teacher
+                              {
+                                  TeacherNr = tblTeacher.teachernr,
+                                  FirstName = tblTeacher.firstname,
+                                  SurName = tblTeacher.name
+
+                              }).FirstOrDefault();
+
+            if (person != null)
+            {
+                return person;
+            }
+            return null;
+        }
     }
 }
