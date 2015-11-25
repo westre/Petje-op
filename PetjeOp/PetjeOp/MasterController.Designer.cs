@@ -46,6 +46,7 @@
             this.MinimumSize = new System.Drawing.Size(690, 420);
             this.Name = "MasterController";
             this.Text = "Form1";
+            this.Resize += new System.EventHandler(this.MasterController_Resize);
             this.ResumeLayout(false);
 
         }
