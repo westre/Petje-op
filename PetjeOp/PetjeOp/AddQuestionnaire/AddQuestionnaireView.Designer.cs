@@ -45,7 +45,6 @@
             this.lblAddQuestionnaire.Size = new System.Drawing.Size(502, 55);
             this.lblAddQuestionnaire.TabIndex = 0;
             this.lblAddQuestionnaire.Text = "Vragenlijst Toevoegen";
-            this.lblAddQuestionnaire.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnAddQuestion
             // 
@@ -138,7 +137,6 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AddQuestionnaireView";
             this.Size = new System.Drawing.Size(1140, 800);
-            this.Load += new System.EventHandler(this.AddQuestionnaireView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

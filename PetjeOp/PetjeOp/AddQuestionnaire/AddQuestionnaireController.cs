@@ -52,16 +52,20 @@ namespace PetjeOp.AddQuestionnaire
             }
         }
 
-        private void UpdateTreeView()
+        public void UpdateTreeView()
         {
             Model.Questions.Sort();
             View.tvQuestions.Nodes.Clear();
-            foreach (Question q in Model.Questions)
+
+            foreach (MultipleChoiceQuestion q in Model.Questions)
             {
-                View.tvQuestions.Nodes.Add(q.QuestionNumber + ": " + q.Description);
-                foreach (Answer answer in Model.Dialog.Question.AnswerOptions)
+                TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionNumber + ": " + q.Description);
+                addedNode.Tag = q;
+
+                foreach (Answer answer in q.AnswerOptions)
                 {
-                    View.tvQuestions.Nodes[q.QuestionNumber-1].Nodes.Add(answer.Description);
+                    TreeNode addedChild = addedNode.Nodes.Add(answer.Description);
+                    addedChild.Tag = answer;
                 }
             }
         }
@@ -71,48 +75,44 @@ namespace PetjeOp.AddQuestionnaire
             return View;
         }
 
-        public void AddDialogInformation(MultipleChoiceQuestion question)
+        public void AddDialogInformation(MultipleChoiceQuestion question, bool updateTV)
         {
-
-            //Model.Questions[question.ID] = question;
-
             Model.Questions.Add(question);
-            foreach (MultipleChoiceQuestion q in Model.Questions)
+
+            if (updateTV)
             {
-                Console.WriteLine(q.Description);
+                UpdateTreeView();
             }
-            UpdateTreeView();
         }
 
         public void editQuestion()
         {
             MultipleChoiceQuestion currentQuestion = null;
             int currentQuestionNumber = 0;
+
+            //Bepaal vraag als attribuut voor Dialog
             foreach (MultipleChoiceQuestion q in Model.Questions)
             {
                 if (View.tvQuestions.SelectedNode != null)
                 {
-                    if (q.QuestionNumber == (View.tvQuestions.SelectedNode.Index + 1))
+                    if (q.Equals(View.tvQuestions.SelectedNode.Tag))
                     {
                         currentQuestion = q;
                         currentQuestionNumber = q.QuestionNumber;
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Selected node is null!");
-                }
             }
-            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion);
-            editDialog.ShowDialog();
-            Model.Questions.RemoveAt(currentQuestionNumber);
-            foreach (MultipleChoiceQuestion q in Model.Questions)
-            {
-                foreach (Answer a in q.AnswerOptions)
-                {
-                    Console.WriteLine(a.Description);
-                }
-            }
+
+            //Toon dialoog
+            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion, currentQuestionNumber);
+            DialogResult dr = editDialog.ShowDialog();
+
+            //Als op OK is geklikt, verwijder de oude vraag.
+            //Nieuwe vraag is toegevoegd bij het sluiten van het dialoog
+            if(dr == DialogResult.OK)
+                Model.Questions.RemoveAt(currentQuestionNumber - 1);
+
+            //Update de TreeView
             UpdateTreeView();
         }
     }

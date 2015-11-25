@@ -17,6 +17,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         public Answer correct;
         public AddQuestionnaireController Controller { get; set; }
         private int toBeAdded;
+        private int QuestionNumber { get; set; }
 
         public AddQuestionDialog(AddQuestionnaireController controller)
         {
@@ -24,13 +25,14 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             addQuestionView1.lblNonSufficientAnswers.ForeColor = Color.Red;
             addQuestionView1.SetQuestionDialog(this);
             Controller = controller;
-            toBeAdded = 1;
+            QuestionNumber = 0;
         }
 
-        public AddQuestionDialog(AddQuestionnaireController controller, MultipleChoiceQuestion question) : this(controller)
+        public AddQuestionDialog(AddQuestionnaireController controller, MultipleChoiceQuestion question,
+            int questionNumber) : this(controller)
         {
+            QuestionNumber = questionNumber;
             Question = question;
-            toBeAdded = 0;
             Text = btnAddQuestion.Text = "Vraag Wijzigen";
         }
 
@@ -56,8 +58,15 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                     Question.AddAnswerOptions(answers);
 
                     Question.AddCorrectAnswer(correct);
-
-                    Question.QuestionNumber = Controller.Model.Questions.Count + toBeAdded;
+                    if (QuestionNumber != 0)
+                    {
+                        Question.QuestionNumber = QuestionNumber;
+                    }
+                    else
+                    {
+                        Question.QuestionNumber = Controller.Model.Questions.Count + 1;
+                    }
+                    
                     this.Close();
                 }
             }
@@ -104,8 +113,10 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
         private void AddQuestionDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
+            bool update = !(QuestionNumber != 0);
+
             if(Question != null)
-            Controller.AddDialogInformation(Question);
+                Controller.AddDialogInformation(Question, update);
         }
         
 
