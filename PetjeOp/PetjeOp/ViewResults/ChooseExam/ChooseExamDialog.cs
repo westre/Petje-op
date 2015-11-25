@@ -25,7 +25,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             Questionnaire test = new Questionnaire("Databaseontwerp");
             Question q1 = new MultipleChoiceQuestion("Wat is 1+1?");
             test.addQuestion(q1);
-            Result q1result = new Result();
+           // Result q1result = new Result();
             List<Exam> exams = new List<Exam>();
             exams.Add(new Exam(1, test, DateTime.Now, DateTime.Now, "ICTSE1b"));
             ////////
