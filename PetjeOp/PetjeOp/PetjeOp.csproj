@@ -79,6 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Exam.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
     <Compile Include="ExampleTwo\ExampleTwoView.cs">
@@ -140,6 +141,12 @@
     <Compile Include="Teacher\TeacherView.Designer.cs">
       <DependentUpon>TeacherView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewResults\ChooseExam\ChooseExamDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewResults\ChooseExam\ChooseExamDialog.Designer.cs">
+      <DependentUpon>ChooseExamDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewResults\ViewResultsController.cs" />
     <Compile Include="ViewResults\ViewResultsModel.cs" />
     <Compile Include="ViewResults\ViewResultsView.cs">
@@ -156,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddQuestionnaire\AddQuestion\AddQuestionView.resx">
       <DependentUpon>AddQuestionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewResults\ChooseExam\ChooseExamDialog.resx">
+      <DependentUpon>ChooseExamDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewResults\ViewResultsView.resx">
+      <DependentUpon>ViewResultsView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Database.dbml.layout">
       <DependentUpon>Database.dbml</DependentUpon>

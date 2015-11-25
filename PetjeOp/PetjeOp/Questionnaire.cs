@@ -38,5 +38,9 @@ namespace PetjeOp
                 Console.WriteLine(q);
             }
         }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
