@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PetjeOp
@@ -95,6 +96,22 @@ namespace PetjeOp
                 return person; // Returnt, uit database opgehaalde, Teacher.
             }
             return null;
+        }
+
+        public Questionnaire AddQuestionnaire(string name) { // Dit moet echt even een AI worden
+            tblQuestionnaire questionnaire = new tblQuestionnaire();
+            questionnaire.id = new Random().Next(100, 1000);
+            questionnaire.author = "eltjo1";
+            questionnaire.description = name;
+            db.tblQuestionnaires.InsertOnSubmit(questionnaire);
+            db.SubmitChanges();
+
+            //return questionnaire.id;
+
+            return new Questionnaire(name) {
+                ID = questionnaire.id,
+                Name = name
+            };
         }
     }
 }

@@ -68,7 +68,8 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             //Voeg tijdsrestrictie toe aan vraag
             if (addQuestionView1.rbNoLimit.Checked)
             {
-                int seconds = int.Parse(addQuestionView1.tbSeconds.Text);
+                //int seconds = int.Parse(addQuestionView1.tbSeconds.Text); // FormatException, kan niet van string naar int converten
+                int seconds = 30; // ben lui, sorry ;)
                 
                 Question.TimeRestriction = new TimeSpan(0,0,seconds);
             }

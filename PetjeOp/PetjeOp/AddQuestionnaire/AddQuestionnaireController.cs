@@ -47,6 +47,15 @@ namespace PetjeOp.AddQuestionnaire
             View.btnDeleteQuestion.Enabled = false;
         }
 
+        public void AddQuestionnaire() {
+            string questionnaireName = View.tbQuestionnaireName.Text;
+
+            if(questionnaireName.Length > 0) {
+                Model.Questionnaire = MasterController.DB.AddQuestionnaire(questionnaireName);
+                Console.WriteLine("ID: " + Model.Questionnaire.ID);
+            }
+        }
+
         //Functie om 'Wijzig' en 'Verwijder' aan en uit te zetten wanneer er al dan niet een vraag is geselecteerd
         public void ControlEditDeleteButtons()
         {
