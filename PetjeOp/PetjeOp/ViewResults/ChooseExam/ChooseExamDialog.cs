@@ -28,6 +28,15 @@ namespace PetjeOp.ViewResults.ChooseExam
            // Result q1result = new Result();
             List<Exam> exams = new List<Exam>();
             exams.Add(new Exam(1, test, DateTime.Now, DateTime.Now, "ICTSE1b"));
+
+            Questionnaire test2 = new Questionnaire("UML");
+            Question q1q1 = new MultipleChoiceQuestion("Wat is 2+2?");
+            test2.addQuestion(q1q1);
+            Question q1q2 = new MultipleChoiceQuestion("Wat is 3+3?");
+            test2.addQuestion(q1q2);
+            // Result q1result = new Result();
+
+            exams.Add(new Exam(2, test2, DateTime.Now, DateTime.Now, "ICTSE1b"));
             ////////
             foreach (Exam ex in exams)
             {
