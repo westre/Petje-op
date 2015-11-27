@@ -39,6 +39,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         //Functie voor afhandeling van klik op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
+
             //Maak het vraagobject aan
             Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
 
@@ -52,8 +53,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                     ans = Controller.MasterController.DB.AddAnswer(item.ToString());
                     Console.WriteLine("aID: " + ans.ID);
                 }
-                // DB link
-                //Controller.MasterController.LinkAnswerToQuestion(Question, ans);
 
                 //Maak een antwoordobject aan
                 //Answer ans = new Answer(item.ToString());
@@ -97,7 +96,13 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             }
 
             // Maak nieuwe question record aan in tabel
-            Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
+            MultipleChoiceQuestion dbQuestion = Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
+
+            // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+            foreach(Answer answer in answers) {
+                // DB link
+                Controller.MasterController.DB.LinkAnswerToQuestion(dbQuestion, answer);
+            }
 
             //Sluit het dialoog
             Close();

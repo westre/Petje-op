@@ -143,7 +143,7 @@ namespace PetjeOp
             };
         }
 
-        public void AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
+        public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
             tblQuestion question = new tblQuestion();
             question.id = new Random().Next(100, 1000); // AI maken!!
             question.description = createdQuestion.Description;
@@ -152,6 +152,19 @@ namespace PetjeOp
 
             db.tblQuestions.InsertOnSubmit(question);
             db.SubmitChanges();
+
+            return new MultipleChoiceQuestion(question.description) {
+                ID = question.id,
+                Description = question.description,
+                CorrectAnswer = createdQuestion.CorrectAnswer,
+                AnswerOptions = createdQuestion.AnswerOptions,
+                QuestionIndex = createdQuestion.QuestionIndex,
+                TimeRestriction = createdQuestion.TimeRestriction
+            };
+        }
+
+        public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer) {
+            db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
         }
     }
 }
