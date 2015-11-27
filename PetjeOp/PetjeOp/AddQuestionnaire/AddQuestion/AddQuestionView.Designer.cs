@@ -43,12 +43,14 @@
             this.lblAnswers = new System.Windows.Forms.Label();
             this.tbQuestion = new System.Windows.Forms.TextBox();
             this.lblQuestion = new System.Windows.Forms.Label();
+            this.lblErrorSeconds = new System.Windows.Forms.Label();
             this.gbQuestion.SuspendLayout();
             this.gbTime.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbQuestion
             // 
+            this.gbQuestion.Controls.Add(this.lblErrorSeconds);
             this.gbQuestion.Controls.Add(this.gbTime);
             this.gbQuestion.Controls.Add(this.lblAnswersError);
             this.gbQuestion.Controls.Add(this.lblQuestionError);
@@ -68,6 +70,7 @@
             this.gbQuestion.TabIndex = 0;
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Vraag";
+            this.gbQuestion.Enter += new System.EventHandler(this.gbQuestion_Enter);
             // 
             // gbTime
             // 
@@ -103,6 +106,7 @@
             this.rbNoLimit.TabStop = true;
             this.rbNoLimit.Text = "Geen Limiet";
             this.rbNoLimit.UseVisualStyleBackColor = true;
+            this.rbNoLimit.CheckedChanged += new System.EventHandler(this.rbNoLimit_CheckedChanged);
             // 
             // tbSeconds
             // 
@@ -110,6 +114,7 @@
             this.tbSeconds.Name = "tbSeconds";
             this.tbSeconds.Size = new System.Drawing.Size(100, 31);
             this.tbSeconds.TabIndex = 2;
+            this.tbSeconds.TextChanged += new System.EventHandler(this.tbSeconds_TextChanged);
             // 
             // lblAnswersError
             // 
@@ -214,6 +219,16 @@
             this.lblQuestion.TabIndex = 12;
             this.lblQuestion.Text = "Vraag:";
             // 
+            // lblErrorSeconds
+            // 
+            this.lblErrorSeconds.AutoSize = true;
+            this.lblErrorSeconds.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorSeconds.Location = new System.Drawing.Point(499, 415);
+            this.lblErrorSeconds.Name = "lblErrorSeconds";
+            this.lblErrorSeconds.Size = new System.Drawing.Size(245, 25);
+            this.lblErrorSeconds.TabIndex = 23;
+            this.lblErrorSeconds.Text = "Voer een geldig getal in!";
+            // 
             // AddQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -222,6 +237,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddQuestionView";
             this.Size = new System.Drawing.Size(1015, 478);
+            this.Load += new System.EventHandler(this.AddQuestionView_Load);
             this.gbQuestion.ResumeLayout(false);
             this.gbQuestion.PerformLayout();
             this.gbTime.ResumeLayout(false);
@@ -244,8 +260,9 @@
         private System.Windows.Forms.Label lblQuestionError;
         private System.Windows.Forms.Label lblAnswersError;
         private System.Windows.Forms.GroupBox gbTime;
-        private System.Windows.Forms.RadioButton rbLimit;
-        private System.Windows.Forms.RadioButton rbNoLimit;
-        private System.Windows.Forms.TextBox tbSeconds;
+        public System.Windows.Forms.RadioButton rbLimit;
+        public System.Windows.Forms.RadioButton rbNoLimit;
+        public System.Windows.Forms.TextBox tbSeconds;
+        private System.Windows.Forms.Label lblErrorSeconds;
     }
 }
