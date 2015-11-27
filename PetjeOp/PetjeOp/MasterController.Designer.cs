@@ -43,10 +43,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1554, 1054);
             this.Controls.Add(this.mainPanel);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(1354, 742);
             this.Name = "MasterController";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "WinQ";
             this.Resize += new System.EventHandler(this.MasterController_Resize);
             this.ResumeLayout(false);
 
