@@ -24,8 +24,8 @@ namespace PetjeOp
         // "RemainingTimeRestriction" wordt gebruikt om de nog
         // beschikbare tijd in op te slaan.
         // ******************************************************************** //
-        private DateTime TimeRestriction;
-        private DateTime RemainingTimeRestriction;
+        public TimeSpan TimeRestriction { get; set; }
+        private TimeSpan RemainingTimeRestriction;
 
         // Constructor van "Question". Als parameter alleen de beschrijving.
         public Question(String description)
@@ -34,7 +34,7 @@ namespace PetjeOp
         }
 
         // Zet een "TimeRestriction" voor de "Question."              
-        public void TimeRestrictionSet(DateTime TimeRestricton)
+        public void TimeRestrictionSet(TimeSpan TimeRestricton)
         {
             this.TimeRestriction = TimeRestricton;
             this.RemainingTimeRestriction = TimeRestricton;
@@ -43,8 +43,8 @@ namespace PetjeOp
         // Verwijdert de "TimeRestriction" van de "Question."          
         public void TimeRestrictionClear()
         {
-            this.TimeRestriction = new DateTime();
-            this.RemainingTimeRestriction = new DateTime();
+            this.TimeRestriction = new TimeSpan();
+            this.RemainingTimeRestriction = new TimeSpan();
         }
 
         // Voegt een "Media" object toe aan de "Question."            
