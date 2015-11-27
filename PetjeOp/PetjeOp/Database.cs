@@ -40,7 +40,7 @@ namespace PetjeOp
             return null;     
         }*/
 
-        public void UpdateQuestionnaire(Questionnaire questionnaire)
+        /*public void UpdateQuestionnaire(Questionnaire questionnaire)
         {
             tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.questionnairenr == 0);         // Haalt questionnaire op uit DB
             updateQuestionnaire.questionnairename = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
@@ -58,7 +58,7 @@ namespace PetjeOp
                 dbQuestion.tblQuestion.correctanswernr = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
             }
             db.SubmitChanges();                                                                                                              // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB            
-        }
+        }*/
 
         public Student GetStudent(String code)
         {
