@@ -113,5 +113,34 @@ namespace PetjeOp
                 Name = name
             };
         }
+
+        public Answer GetAnswer(string answer) {
+            tblAnswer foundAnswer =   (from answers in db.tblAnswers
+                                where answers.description.ToString().Equals(answer)
+                                select answers).FirstOrDefault();
+
+            if(foundAnswer != null) {
+                Console.WriteLine("Found answer: " + foundAnswer.ToString());
+
+                Answer retrievedAnswer = new Answer(foundAnswer.ToString());
+                retrievedAnswer.ID = foundAnswer.id;
+
+                return retrievedAnswer;
+            }
+            return null;
+        }
+
+        public Answer AddAnswer(string receivedAnswer) {
+            tblAnswer answer = new tblAnswer();
+            answer.id = new Random().Next(100, 1000); // AI maken!!
+            answer.description = receivedAnswer;
+
+            db.tblAnswers.InsertOnSubmit(answer);
+            db.SubmitChanges();
+
+            return new Answer(answer.description) {
+                ID = answer.id
+            };
+        }
     }
 }

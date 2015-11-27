@@ -52,6 +52,7 @@
             // 
             // btnAddQuestion
             // 
+            this.btnAddQuestion.Enabled = false;
             this.btnAddQuestion.Location = new System.Drawing.Point(21, 600);
             this.btnAddQuestion.Name = "btnAddQuestion";
             this.btnAddQuestion.Size = new System.Drawing.Size(480, 50);
@@ -193,7 +194,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblAddQuestionnaire;
-        private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.Label lblQuestions;
         public System.Windows.Forms.TextBox tbQuestionnaireName;
         private System.Windows.Forms.Label lblQuestionnaireName;
@@ -205,5 +205,6 @@
         public System.Windows.Forms.Label lblNoNodeSelectedError;
         public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
         private System.Windows.Forms.Button btnAddQuestionnaire;
+        public System.Windows.Forms.Button btnAddQuestion;
     }
 }

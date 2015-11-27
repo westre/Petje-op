@@ -53,6 +53,7 @@ namespace PetjeOp.AddQuestionnaire
             if(questionnaireName.Length > 0) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(questionnaireName);
                 Console.WriteLine("ID: " + Model.Questionnaire.ID);
+                View.btnAddQuestion.Enabled = true;
             }
         }
 

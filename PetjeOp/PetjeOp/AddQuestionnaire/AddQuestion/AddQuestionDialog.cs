@@ -45,8 +45,16 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             //Loop voor alle ingevoerde antwoorden
             foreach (var item in addQuestionView1.clbAnswers.Items)
             {
+                // Check of het antwoord al in de database bestaat
+                Answer ans = Controller.MasterController.DB.GetAnswer(item.ToString());
+                if(ans == null) {
+                    // Het bestaat niet :(, dus maken we een nieuwe record aan!
+                    ans = Controller.MasterController.DB.AddAnswer(item.ToString());
+                    Console.WriteLine("aID: " + ans.ID);
+                }
+
                 //Maak een antwoordobject aan
-                Answer ans = new Answer(item.ToString());
+                //Answer ans = new Answer(item.ToString());
 
                 //Voeg het antwoord toe aan de lijst met antwoorden
                 answers.Add(ans);
