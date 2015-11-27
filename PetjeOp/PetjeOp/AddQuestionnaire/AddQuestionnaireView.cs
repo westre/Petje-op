@@ -23,11 +23,6 @@ namespace PetjeOp.AddQuestionnaire
             Controller = controller;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
             Controller.ShowQuestionDialog();
@@ -43,8 +38,9 @@ namespace PetjeOp.AddQuestionnaire
             Controller.editQuestion();
         }
 
-        private void AddQuestionnaireView_Load(object sender, EventArgs e) {
-
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            Controller.DeleteQuestion();
         }
     }
 }
