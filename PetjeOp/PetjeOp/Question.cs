@@ -8,7 +8,8 @@ namespace PetjeOp
 {
     public abstract class Question : IComparable<Question>
     {
-        public readonly int id;
+        public int ID { get; set; }
+        public int QuestionIndex { get; set; } // :D
         public String Description { get; set; }
 
         // "Answer" is het goede antwoord op de vraag.           
@@ -27,9 +28,8 @@ namespace PetjeOp
         private DateTime RemainingTimeRestriction;
 
         // Constructor van "Question". Als parameter alleen de beschrijving.
-        public Question(String description, int id = 0) // Nog veranderen!, default verwijderen voor DB
+        public Question(String description)
         {
-            this.id = id;
             this.Description = description;
         }
 
@@ -69,7 +69,7 @@ namespace PetjeOp
 
         public int CompareTo(Question q)
         {
-            return id.CompareTo(q.id);
+            return QuestionIndex.CompareTo(q.QuestionIndex);
         }
     }
 }

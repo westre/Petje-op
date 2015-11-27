@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,13 +20,6 @@ namespace PetjeOp.AddQuestionnaire
             View = new AddQuestionnaireView(this);
         }
 
-        // In de controller wordt zowel de Model als View aangestuurd
-        // Als voorbeeld veranderen we nu data van de Model, een Model kun je zien als een entiteit/object die ALLEEN properties/variabelen vasthoudt
-        public void SetName(string name)
-        {
-            Model.Name = name;
-        }
-
         // Hier veranderen we de View met de data van ExampleModel
         public void UpdateView()
         {
@@ -39,31 +33,83 @@ namespace PetjeOp.AddQuestionnaire
             Model.Dialog.ShowDialog();
         }
 
+        //Zet 'Wijzig' en 'Verwijder' aan
+        public void EnableEditDeleteButtons()
+        {
+            View.btnEditQuestion.Enabled = true;
+            View.btnDeleteQuestion.Enabled = true;
+        }
+
+        //Zet 'Wijzig' en 'Verwijder' uit
+        public void DisableEditDeleteButtons()
+        {
+            View.btnEditQuestion.Enabled = false;
+            View.btnDeleteQuestion.Enabled = false;
+        }
+
+        //Functie om 'Wijzig' en 'Verwijder' aan en uit te zetten wanneer er al dan niet een vraag is geselecteerd
         public void ControlEditDeleteButtons()
         {
-            if (View.tvQuestions.SelectedNode != null)
+            if (View.tvQuestions.SelectedNode != null && View.tvQuestions.SelectedNode.Parent == null)
             {
-                View.btnEditQuestion.Enabled = true;
-                View.btnDeleteQuestion.Enabled = true;
-            } else
+                EnableEditDeleteButtons();
+            }
+            else
             {
-                View.btnEditQuestion.Enabled = false;
-                View.btnDeleteQuestion.Enabled = false;
+                DisableEditDeleteButtons();
             }
         }
 
-        private void UpdateTreeView()
+        //Functie om de TreeView met vragen en antwoorden te updaten
+        public void UpdateTreeView()
         {
+            //Sorteer de lijst met vragen op QuestionIndex
             Model.Questions.Sort();
+
+            //Maak de TreeView leeg
             View.tvQuestions.Nodes.Clear();
-            foreach (Question q in Model.Questions)
+
+            //Loop door alle vragen heen
+            foreach (MultipleChoiceQuestion q in Model.Questions)
             {
-                View.tvQuestions.Nodes.Add(q.QuestionNumber + ": " + q.Description);
-                foreach (Answer answer in Model.Dialog.Question.AnswerOptions)
+                //Voeg Node toe met vraag
+                TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
+
+                //Maak een bold font aan
+                Font boldFont = new Font(View.tvQuestions.Font, FontStyle.Bold);
+
+                //Stel het bold font in voor de Node
+                addedNode.NodeFont = boldFont;
+
+                //Reset de tekst van de Node, zodat het nieuw font toegepast wordt
+                addedNode.Text = addedNode.Text;
+
+                //Koppel vraagobject aan de Node
+                addedNode.Tag = q;
+
+                //Loop door alle antwoorden heen
+                foreach (Answer answer in q.AnswerOptions)
                 {
-                    View.tvQuestions.Nodes[q.QuestionNumber-1].Nodes.Add(answer.Description);
+                    string answerDescription = answer.Description;
+
+                    Color childColor = Color.Red;
+
+                    if (answer.Equals(q.CorrectAnswer))
+                    {
+                        childColor = Color.Green;
+                    }
+
+                    //Voeg Child toe
+                    TreeNode addedChild = addedNode.Nodes.Add(answerDescription);
+                    addedChild.ForeColor = childColor;
+
+                    //Koppel antwoord aan Child
+                    addedChild.Tag = answer;
                 }
             }
+            
+            //Klap alle vragen uit
+            View.tvQuestions.ExpandAll();
         }
 
         public override UserControl GetView()
@@ -71,49 +117,72 @@ namespace PetjeOp.AddQuestionnaire
             return View;
         }
 
-        public void AddDialogInformation(MultipleChoiceQuestion question)
+        //Geef gegenereerde vraag door aan het model
+        public void AddDialogInformation(MultipleChoiceQuestion question, bool updateTV)
         {
-
-            //Model.Questions[question.ID] = question;
-
+            //Voeg vraag toe aan lijst met vragen in Model
             Model.Questions.Add(question);
-            foreach (MultipleChoiceQuestion q in Model.Questions)
+
+            //Bepaal of TreeView geupdatet moet worden
+            if (updateTV)
             {
-                Console.WriteLine(q.Description);
+                UpdateTreeView();
             }
-            UpdateTreeView();
         }
 
+        //Functie die uitgevoerd wordt bij wijzigen van een vraag
         public void editQuestion()
         {
             MultipleChoiceQuestion currentQuestion = null;
-            int currentQuestionNumber = 0;
-            foreach (MultipleChoiceQuestion q in Model.Questions)
+            int currentQuestionIndex = 0;
+
+                //Controleer of er een Node geselecteerd is
+            if (View.tvQuestions.SelectedNode != null)
             {
-                if (View.tvQuestions.SelectedNode != null)
-                {
-                    if (q.QuestionNumber == (View.tvQuestions.SelectedNode.Index + 1))
-                    {
-                        currentQuestion = q;
-                        currentQuestionNumber = q.QuestionNumber;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Selected node is null!");
-                }
+                //Bepaal vraag als attribuut voor Dialog
+                currentQuestion = (MultipleChoiceQuestion) View.tvQuestions.SelectedNode.Tag;
+
+                currentQuestionIndex = Model.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
             }
-            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion);
-            editDialog.ShowDialog();
-            Model.Questions.RemoveAt(currentQuestionNumber);
-            foreach (MultipleChoiceQuestion q in Model.Questions)
+
+            //Toon dialoog
+            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion, (currentQuestionIndex + 1));
+            DialogResult dr = editDialog.ShowDialog();
+
+            //Als op OK is geklikt, verwijder de oude vraag.
+            //Nieuwe vraag is toegevoegd bij het sluiten van het dialoog
+            if (dr == DialogResult.OK)
             {
-                foreach (Answer a in q.AnswerOptions)
-                {
-                    Console.WriteLine(a.Description);
-                }
+                Model.Questions.RemoveAt(currentQuestionIndex);
             }
+                
+            //Update de TreeView
             UpdateTreeView();
+        }
+
+        public void DeleteQuestion()
+        {
+            //Dialoog voor bevestiging
+            DialogResult dr = MessageBox.Show("Weet u zeker dat u deze vraag wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            //Als er op OK geklikt is, verwijder antwoord uit lijst
+            if (dr == DialogResult.Yes)
+            {
+                MultipleChoiceQuestion q = (MultipleChoiceQuestion) View.tvQuestions.SelectedNode.Tag;
+
+                int index = Model.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
+                Model.Questions.RemoveAt(index);
+
+                int newQuestionIndex = 1;
+                foreach (Question question in Model.Questions)
+                {
+                    question.QuestionIndex = newQuestionIndex ++;
+                }
+
+                UpdateTreeView();
+
+                DisableEditDeleteButtons();
+            }
         }
     }
 }
