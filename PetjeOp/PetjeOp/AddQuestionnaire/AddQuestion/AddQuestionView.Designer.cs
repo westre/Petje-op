@@ -62,7 +62,6 @@
             this.gbQuestion.TabIndex = 0;
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Vraag";
-            this.gbQuestion.Enter += new System.EventHandler(this.gbQuestion_Enter);
             // 
             // lblAnswersError
             // 
@@ -103,7 +102,7 @@
             this.btnDeleteAnswer.TabIndex = 18;
             this.btnDeleteAnswer.Text = "Verwijder";
             this.btnDeleteAnswer.UseVisualStyleBackColor = true;
-            this.btnDeleteAnswer.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
+            this.btnDeleteAnswer.Click += new System.EventHandler(this.btnDeleteAnswer_Click);
             // 
             // tbAnswer
             // 

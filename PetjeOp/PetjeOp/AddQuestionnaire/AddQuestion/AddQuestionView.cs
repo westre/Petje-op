@@ -20,10 +20,13 @@ namespace PetjeOp.AddQuestionnaire
             InitializeComponent();
         }
 
+        //Functie na klikken op 'Antwoord Toevoegen'
         private void btnAddAnswer_Click(object sender, EventArgs e)
         {
+            //Als de textbox niet leeg is, antwoord toevoegen
             if (tbAnswer.Text != null)
             {
+                //Voeg antwoord toe aan lijst
                 clbAnswers.Items.Add(tbAnswer.Text);
                 checkQuestionView();
                 tbAnswer.Clear();
@@ -34,16 +37,23 @@ namespace PetjeOp.AddQuestionnaire
         {
             this.AddQuestionDialog = questionDialog;
         }
-        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+
+        //Functie om antwoord te verwijderen
+        private void btnDeleteAnswer_Click(object sender, EventArgs e)
         {
+            //Dialoog voor bevestiging
             DialogResult dr = MessageBox.Show("Weet u zeker dat u dit antwoord wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            //Als er op OK geklikt is, verwijder antwoord uit lijst
             if (dr == DialogResult.Yes)
             {
                 clbAnswers.Items.Remove(clbAnswers.SelectedItem);
             }
+
             checkQuestionView();
         }
 
+        //Knop om te verwijderen van antwoord aan- en uitzetten
         private void clbAnswers_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (clbAnswers.SelectedIndex != -1)
@@ -54,9 +64,11 @@ namespace PetjeOp.AddQuestionnaire
             {
                 btnDeleteAnswer.Enabled = false;
             }
+
             checkQuestionView();
         }
 
+        //Functie zodat er maar 1 checkbox aangevinkt kan worden
         private void clbAnswers_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (e.NewValue == CheckState.Checked)
@@ -71,6 +83,7 @@ namespace PetjeOp.AddQuestionnaire
             }
         }
 
+        //Knop om antwoord toe te voegen aan- en uitzetten
         private void tbAnswer_TextChanged(object sender, EventArgs e)
         {
             if (tbAnswer.Text.Count() > 0)
@@ -83,6 +96,7 @@ namespace PetjeOp.AddQuestionnaire
             }
         }
 
+        //Valideer de ingevoerde gegevens
         public void checkQuestionView()
         {
             bool checkTwoAnswers;
@@ -90,70 +104,66 @@ namespace PetjeOp.AddQuestionnaire
             bool checkCorrectAnswer;
             bool checkMaxAnswers;
 
+            //Check of er minimaal 2 antwoorden ingevuld zijn
             if (clbAnswers.Items.Count <= 1)
             {
                 lblNonSufficientAnswers.ForeColor = Color.Red;
                 lblNonSufficientAnswers.Text = "Er moeten minimaal twee antwoorden opgegeven worden!";
                 checkTwoAnswers = false;
-            }else
+            } else
             {
                 lblNonSufficientAnswers.Text = "";
                 checkTwoAnswers = true;
             }
 
+            //Check of er een vraag is ingevuld
             if (!tbQuestion.Text.Any())
             {
                 lblQuestionError.ForeColor = Color.Red;
                 lblQuestionError.Text = "Vul een vraag in!";
                 checkQuestion = false;
-            }
-            else
+            } else
             {
                 lblQuestionError.Text = "";
                 checkQuestion = true;
             }
 
+            //Check of er een correct antwoord is geselecteerd
             if (AddQuestionDialog.addQuestionView1.clbAnswers.CheckedItems.Count == 0)
             {
                 lblAnswersError.ForeColor = Color.Red;
                 checkCorrectAnswer = false;
-            }
-            else
+            } else
             {
                 lblAnswersError.ForeColor = Color.Black;
                 checkCorrectAnswer = true;
             }
 
+            //Check of er meer dan 26 antwoorden ingevuld zijn
             if (AddQuestionDialog.addQuestionView1.clbAnswers.Items.Count > 26)
             {
                 lblNonSufficientAnswers.ForeColor = Color.Red;
                 lblNonSufficientAnswers.Text = "Er mogen maximaal 26 antwoorden gegeven worden!";
                 checkMaxAnswers = false;
-            }
-            else
+            } else
             {
                 checkMaxAnswers = true;
             }
 
-            
+            //Zet knop 'Vraag Toevoegen' aan of uit
             if (checkTwoAnswers && checkQuestion && checkCorrectAnswer && checkMaxAnswers)
             {
                 AddQuestionDialog.btnAddQuestion.Enabled = true;
-            }
-            else
+            } else
             {
                 AddQuestionDialog.btnAddQuestion.Enabled = false;
             }
         }
 
+        //Valideer gegevens als tekst in textbox verandert
         private void tbQuestion_TextChanged(object sender, EventArgs e)
         {
             checkQuestionView();
-        }
-
-        private void gbQuestion_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
