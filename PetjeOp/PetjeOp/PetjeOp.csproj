@@ -167,15 +167,15 @@
     <EmbeddedResource Include="AddQuestionnaire\AddQuestion\AddQuestionView.resx">
       <DependentUpon>AddQuestionView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Database.dbml.layout">
+      <DependentUpon>Database.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="ViewResults\ChooseExam\ChooseExamDialog.resx">
       <DependentUpon>ChooseExamDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewResults\ViewResultsView.resx">
       <DependentUpon>ViewResultsView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Database.dbml.layout">
-      <DependentUpon>Database.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="ExampleTwo\ExampleTwoView.resx">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
     </EmbeddedResource>
