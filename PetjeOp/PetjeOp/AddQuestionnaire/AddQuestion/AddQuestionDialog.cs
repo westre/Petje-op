@@ -16,128 +16,118 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         public List<Answer> answers = new List<Answer>();
         public Answer correct;
         public AddQuestionnaireController Controller { get; set; }
-        private int toBeAdded;
-        private int QuestionNumber { get; set; }
+        private int QuestionIndex { get; }
 
+        //Constructor voor het toevoegen van een vraag
         public AddQuestionDialog(AddQuestionnaireController controller)
         {
             InitializeComponent();
-            addQuestionView1.lblNonSufficientAnswers.ForeColor = Color.Red;
             addQuestionView1.SetQuestionDialog(this);
             Controller = controller;
-            QuestionNumber = 0;
+            QuestionIndex = 0;
         }
 
+        //Constructor voor het wijzigen van een vraag
         public AddQuestionDialog(AddQuestionnaireController controller, MultipleChoiceQuestion question,
-            int questionNumber) : this(controller)
+            int questionIndex) : this(controller)
         {
-            QuestionNumber = questionNumber;
+            QuestionIndex = questionIndex;
             Question = question;
             Text = btnAddQuestion.Text = "Vraag Wijzigen";
         }
 
+        //Functie voor afhandeling van klik op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
-            if (ValidateInput())
-            {
-                if (ValidateAnswers())
-                {
+                    //Maak het vraagobject aan
                     Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
 
-                    foreach (var item in addQuestionView1.clbAnswers.Items)
-                    {
-                        Answer ans = new Answer(item.ToString());
-                        answers.Add(ans);
+                    //Loop voor alle ingevoerde antwoorden
+            foreach (var item in addQuestionView1.clbAnswers.Items)
+            {
+                //Maak een antwoordobject aan
+                Answer ans = new Answer(item.ToString());
 
-                        if (addQuestionView1.clbAnswers.CheckedItems.Contains(item))
-                        {
-                            correct = ans;
-                        }
-                    }
+                //Voeg het antwoord toe aan de lijst met antwoorden
+                answers.Add(ans);
 
+                //Controleer of het antwoord het correcte antwoord is
+                if (addQuestionView1.clbAnswers.CheckedItems.Contains(item))
+                {
+                    //Stel het correcte antwoord gelijk aan het huidge antwoord in de loop
+                    correct = ans;
+                }
+            }
+
+            //Voeg antwoorden toe aan het vraagobject
                     Question.AddAnswerOptions(answers);
 
+                    //Voeg correct antwoord toe aan het vraagobject
                     Question.CorrectAnswer = correct;
-                    if (QuestionNumber != 0)
+
+                    //Controleer of QuestionIndex 0 is
+                    if (QuestionIndex != 0)
                     {
-                        Question.QuestionIndex = QuestionNumber;
+                        //Nee, de Question index moet gelijk zijn aan de meegegeven index
+                        Question.QuestionIndex = QuestionIndex;
                     }
                     else
                     {
+                        //Ja, er wordt een nieuwe index gegenereerd
                         Question.QuestionIndex = Controller.Model.Questions.Count + 1;
                     }
 
-                    this.Close();
+                    //Sluit het dialoog
+                    Close();
                 }
-            }
-            else
-            {
-                addQuestionView1.lblNonSufficientAnswers.Text = "Er moeten minimaal twee antwoorden opgegeven worden!";
-            }     
-        }
 
-        private bool ValidateInput()
-        {
-            if (addQuestionView1.clbAnswers.CheckedItems.Count == 0)
-            {
-                return false;
-            } else if (addQuestionView1.tbQuestion.Text == null)
-            {
-                return false;
-            } else if (addQuestionView1.clbAnswers.Items.Count == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        public bool ValidateAnswers()
-        {
-            if (addQuestionView1.clbAnswers.Items.Count >= 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+        //Afhandeling annuleerknop
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //Sluit dialoog
+            Close();
         }
 
+        //Wanneer dialoog sluit
         private void AddQuestionDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bool update = !(QuestionNumber != 0);
+            //Check of QuestionIndex 0 is. Zo ja, update TreeView anders niet
+            bool update = !(QuestionIndex != 0);
 
-            if(Question != null)
+            if(Question != null && this.DialogResult == DialogResult.OK)
                 Controller.AddDialogInformation(Question, update);
         }
         
-
+        //Wanneer dialoog laadt
         private void AddQuestionDialog_Load(object sender, EventArgs e)
         {
+            //Stel kleur in voor errors
+            addQuestionView1.lblNonSufficientAnswers.ForeColor = Color.Red;
+
+            //Controleer of er een vraagobject is meegegeven
             if (Question != null)
             {
+                //Vul tekstbox met vraag
                 addQuestionView1.tbQuestion.Text = Question.Description;
 
+                //Vul CheckedListBox met antwoorden
                 foreach (Answer a in Question.AnswerOptions)
                 {
                     int addedIndex = addQuestionView1.clbAnswers.Items.Add(a.Description);
 
                     if (a == Question.CorrectAnswer)
                     {
+                        //Vink correct antwoord aan
                         addQuestionView1.clbAnswers.SetItemChecked(addedIndex, true);
                     }
                 }
             }
 
-            addQuestionView1.checkQuestionView();
+            if (Question != null)
+            {
+                //Valideer gegevens
+                addQuestionView1.checkQuestionView();
+            }
         }
     }
 }

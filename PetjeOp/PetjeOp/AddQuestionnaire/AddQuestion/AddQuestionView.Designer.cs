@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.gbQuestion = new System.Windows.Forms.GroupBox();
+            this.gbTime = new System.Windows.Forms.GroupBox();
+            this.rbLimit = new System.Windows.Forms.RadioButton();
+            this.rbNoLimit = new System.Windows.Forms.RadioButton();
+            this.tbSeconds = new System.Windows.Forms.TextBox();
             this.lblAnswersError = new System.Windows.Forms.Label();
             this.lblQuestionError = new System.Windows.Forms.Label();
             this.lblNonSufficientAnswers = new System.Windows.Forms.Label();
@@ -40,10 +44,12 @@
             this.tbQuestion = new System.Windows.Forms.TextBox();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.gbQuestion.SuspendLayout();
+            this.gbTime.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbQuestion
             // 
+            this.gbQuestion.Controls.Add(this.gbTime);
             this.gbQuestion.Controls.Add(this.lblAnswersError);
             this.gbQuestion.Controls.Add(this.lblQuestionError);
             this.gbQuestion.Controls.Add(this.lblNonSufficientAnswers);
@@ -55,14 +61,55 @@
             this.gbQuestion.Controls.Add(this.tbQuestion);
             this.gbQuestion.Controls.Add(this.lblQuestion);
             this.gbQuestion.Location = new System.Drawing.Point(4, 4);
-            this.gbQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.gbQuestion.Name = "gbQuestion";
-            this.gbQuestion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbQuestion.Size = new System.Drawing.Size(914, 335);
+            this.gbQuestion.Padding = new System.Windows.Forms.Padding(4);
+            this.gbQuestion.Size = new System.Drawing.Size(1007, 465);
             this.gbQuestion.TabIndex = 0;
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Vraag";
-            this.gbQuestion.Enter += new System.EventHandler(this.gbQuestion_Enter);
+            // 
+            // gbTime
+            // 
+            this.gbTime.Controls.Add(this.rbLimit);
+            this.gbTime.Controls.Add(this.rbNoLimit);
+            this.gbTime.Controls.Add(this.tbSeconds);
+            this.gbTime.Location = new System.Drawing.Point(12, 346);
+            this.gbTime.Name = "gbTime";
+            this.gbTime.Size = new System.Drawing.Size(468, 108);
+            this.gbTime.TabIndex = 22;
+            this.gbTime.TabStop = false;
+            this.gbTime.Text = "Tijdrestrictie";
+            // 
+            // rbLimit
+            // 
+            this.rbLimit.AutoSize = true;
+            this.rbLimit.Location = new System.Drawing.Point(6, 65);
+            this.rbLimit.Name = "rbLimit";
+            this.rbLimit.Size = new System.Drawing.Size(213, 29);
+            this.rbLimit.TabIndex = 4;
+            this.rbLimit.TabStop = true;
+            this.rbLimit.Text = "Aantal Seconden:";
+            this.rbLimit.UseVisualStyleBackColor = true;
+            // 
+            // rbNoLimit
+            // 
+            this.rbNoLimit.AutoSize = true;
+            this.rbNoLimit.Checked = true;
+            this.rbNoLimit.Location = new System.Drawing.Point(6, 30);
+            this.rbNoLimit.Name = "rbNoLimit";
+            this.rbNoLimit.Size = new System.Drawing.Size(158, 29);
+            this.rbNoLimit.TabIndex = 3;
+            this.rbNoLimit.TabStop = true;
+            this.rbNoLimit.Text = "Geen Limiet";
+            this.rbNoLimit.UseVisualStyleBackColor = true;
+            // 
+            // tbSeconds
+            // 
+            this.tbSeconds.Location = new System.Drawing.Point(225, 64);
+            this.tbSeconds.Name = "tbSeconds";
+            this.tbSeconds.Size = new System.Drawing.Size(100, 31);
+            this.tbSeconds.TabIndex = 2;
             // 
             // lblAnswersError
             // 
@@ -97,18 +144,18 @@
             // 
             this.btnDeleteAnswer.Enabled = false;
             this.btnDeleteAnswer.Location = new System.Drawing.Point(500, 137);
-            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
             this.btnDeleteAnswer.Size = new System.Drawing.Size(140, 40);
             this.btnDeleteAnswer.TabIndex = 18;
             this.btnDeleteAnswer.Text = "Verwijder";
             this.btnDeleteAnswer.UseVisualStyleBackColor = true;
-            this.btnDeleteAnswer.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
+            this.btnDeleteAnswer.Click += new System.EventHandler(this.btnDeleteAnswer_Click);
             // 
             // tbAnswer
             // 
             this.tbAnswer.Location = new System.Drawing.Point(12, 277);
-            this.tbAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.tbAnswer.Name = "tbAnswer";
             this.tbAnswer.Size = new System.Drawing.Size(468, 31);
             this.tbAnswer.TabIndex = 17;
@@ -118,7 +165,7 @@
             // 
             this.btnAddAnswer.Enabled = false;
             this.btnAddAnswer.Location = new System.Drawing.Point(500, 277);
-            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddAnswer.Name = "btnAddAnswer";
             this.btnAddAnswer.Size = new System.Drawing.Size(140, 40);
             this.btnAddAnswer.TabIndex = 16;
@@ -131,7 +178,7 @@
             this.clbAnswers.CheckOnClick = true;
             this.clbAnswers.FormattingEnabled = true;
             this.clbAnswers.Location = new System.Drawing.Point(12, 137);
-            this.clbAnswers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clbAnswers.Margin = new System.Windows.Forms.Padding(4);
             this.clbAnswers.Name = "clbAnswers";
             this.clbAnswers.Size = new System.Drawing.Size(468, 108);
             this.clbAnswers.TabIndex = 15;
@@ -151,7 +198,7 @@
             // tbQuestion
             // 
             this.tbQuestion.Location = new System.Drawing.Point(88, 37);
-            this.tbQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.tbQuestion.Name = "tbQuestion";
             this.tbQuestion.Size = new System.Drawing.Size(392, 31);
             this.tbQuestion.TabIndex = 13;
@@ -172,11 +219,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbQuestion);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddQuestionView";
-            this.Size = new System.Drawing.Size(920, 344);
+            this.Size = new System.Drawing.Size(1015, 478);
             this.gbQuestion.ResumeLayout(false);
             this.gbQuestion.PerformLayout();
+            this.gbTime.ResumeLayout(false);
+            this.gbTime.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -194,5 +243,9 @@
         public System.Windows.Forms.Label lblNonSufficientAnswers;
         private System.Windows.Forms.Label lblQuestionError;
         private System.Windows.Forms.Label lblAnswersError;
+        private System.Windows.Forms.GroupBox gbTime;
+        private System.Windows.Forms.RadioButton rbLimit;
+        private System.Windows.Forms.RadioButton rbNoLimit;
+        private System.Windows.Forms.TextBox tbSeconds;
     }
 }

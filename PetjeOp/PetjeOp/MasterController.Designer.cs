@@ -28,22 +28,23 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.mainPanel.BackColor = System.Drawing.SystemColors.Window;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(777, 548);
+            this.mainPanel.Size = new System.Drawing.Size(1554, 1054);
             this.mainPanel.TabIndex = 0;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
             // MasterController
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 548);
+            this.ClientSize = new System.Drawing.Size(1554, 1054);
             this.Controls.Add(this.mainPanel);
-            this.MinimumSize = new System.Drawing.Size(690, 420);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MinimumSize = new System.Drawing.Size(1354, 742);
             this.Name = "MasterController";
             this.Text = "Form1";
             this.Resize += new System.EventHandler(this.MasterController_Resize);
