@@ -53,10 +53,12 @@ namespace PetjeOp.AddQuestionnaire
             if (View.tvQuestions.SelectedNode != null && View.tvQuestions.SelectedNode.Parent == null)
             {
                 EnableEditDeleteButtons();
+                View.lblNoNodeSelectedError.Text = "";
             }
             else
             {
                 DisableEditDeleteButtons();
+                View.lblNoNodeSelectedError.Text = "Selecteer een vraag om de knoppen te activeren!";
             }
         }
 
@@ -110,6 +112,7 @@ namespace PetjeOp.AddQuestionnaire
             
             //Klap alle vragen uit
             View.tvQuestions.ExpandAll();
+            CheckButtons();
         }
 
         public override UserControl GetView()
@@ -182,6 +185,31 @@ namespace PetjeOp.AddQuestionnaire
                 UpdateTreeView();
 
                 DisableEditDeleteButtons();
+            }
+        }
+
+        public void CheckButtons()
+        {
+            if (!View.tbQuestionnaireName.Text.Any())
+            {
+                View.lblQuestionaireNameError.Text = "Vul een vraagnaam in!";
+                View.btnSaveQuestionnaire.Enabled = false;
+            }
+            else
+            {
+                View.lblQuestionaireNameError.Text = "";
+                View.btnSaveQuestionnaire.Enabled = true;
+            }
+
+            if (View.tvQuestions.Nodes.Count == 0)
+            {
+                View.lblNoQuestionsInQuestionaire.Text = "Voeg vragen toe!";
+                View.btnSaveQuestionnaire.Enabled = false;
+            }
+            else
+            {
+                View.lblNoQuestionsInQuestionaire.Text = "";
+                View.btnSaveQuestionnaire.Enabled = true;
             }
         }
     }

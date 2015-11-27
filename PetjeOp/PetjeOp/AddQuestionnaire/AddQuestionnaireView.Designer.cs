@@ -33,6 +33,9 @@
             this.tvQuestions = new System.Windows.Forms.TreeView();
             this.btnEditQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
+            this.lblQuestionaireNameError = new System.Windows.Forms.Label();
+            this.lblNoNodeSelectedError = new System.Windows.Forms.Label();
+            this.lblNoQuestionsInQuestionaire = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -72,6 +75,7 @@
             this.tbQuestionnaireName.Name = "tbQuestionnaireName";
             this.tbQuestionnaireName.Size = new System.Drawing.Size(391, 20);
             this.tbQuestionnaireName.TabIndex = 8;
+            this.tbQuestionnaireName.TextChanged += new System.EventHandler(this.tbQuestionnaireName_TextChanged);
             // 
             // lblQuestionnaireName
             // 
@@ -84,6 +88,7 @@
             // 
             // btnSaveQuestionnaire
             // 
+            this.btnSaveQuestionnaire.Enabled = false;
             this.btnSaveQuestionnaire.Location = new System.Drawing.Point(21, 677);
             this.btnSaveQuestionnaire.Name = "btnSaveQuestionnaire";
             this.btnSaveQuestionnaire.Size = new System.Drawing.Size(267, 49);
@@ -122,10 +127,40 @@
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
             this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
             // 
+            // lblQuestionaireNameError
+            // 
+            this.lblQuestionaireNameError.AutoSize = true;
+            this.lblQuestionaireNameError.ForeColor = System.Drawing.Color.Red;
+            this.lblQuestionaireNameError.Location = new System.Drawing.Point(486, 112);
+            this.lblQuestionaireNameError.Name = "lblQuestionaireNameError";
+            this.lblQuestionaireNameError.Size = new System.Drawing.Size(0, 13);
+            this.lblQuestionaireNameError.TabIndex = 17;
+            // 
+            // lblNoNodeSelectedError
+            // 
+            this.lblNoNodeSelectedError.AutoSize = true;
+            this.lblNoNodeSelectedError.ForeColor = System.Drawing.Color.Red;
+            this.lblNoNodeSelectedError.Location = new System.Drawing.Point(852, 211);
+            this.lblNoNodeSelectedError.Name = "lblNoNodeSelectedError";
+            this.lblNoNodeSelectedError.Size = new System.Drawing.Size(0, 13);
+            this.lblNoNodeSelectedError.TabIndex = 18;
+            // 
+            // lblNoQuestionsInQuestionaire
+            // 
+            this.lblNoQuestionsInQuestionaire.AutoSize = true;
+            this.lblNoQuestionsInQuestionaire.ForeColor = System.Drawing.Color.Red;
+            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(21, 657);
+            this.lblNoQuestionsInQuestionaire.Name = "lblNoQuestionsInQuestionaire";
+            this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 13);
+            this.lblNoQuestionsInQuestionaire.TabIndex = 19;
+            // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
+            this.Controls.Add(this.lblNoQuestionsInQuestionaire);
+            this.Controls.Add(this.lblNoNodeSelectedError);
+            this.Controls.Add(this.lblQuestionaireNameError);
             this.Controls.Add(this.btnDeleteQuestion);
             this.Controls.Add(this.btnEditQuestion);
             this.Controls.Add(this.tvQuestions);
@@ -148,11 +183,14 @@
         private System.Windows.Forms.Label lblAddQuestionnaire;
         private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.Label lblQuestions;
-        private System.Windows.Forms.TextBox tbQuestionnaireName;
+        public System.Windows.Forms.TextBox tbQuestionnaireName;
         private System.Windows.Forms.Label lblQuestionnaireName;
-        private System.Windows.Forms.Button btnSaveQuestionnaire;
+        public System.Windows.Forms.Button btnSaveQuestionnaire;
         public System.Windows.Forms.TreeView tvQuestions;
         public System.Windows.Forms.Button btnEditQuestion;
         public System.Windows.Forms.Button btnDeleteQuestion;
+        public System.Windows.Forms.Label lblQuestionaireNameError;
+        public System.Windows.Forms.Label lblNoNodeSelectedError;
+        public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
     }
 }
