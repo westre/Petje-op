@@ -51,7 +51,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 if(ans == null) {
                     // Het bestaat niet :(, dus maken we een nieuwe record aan!
                     ans = Controller.MasterController.DB.AddAnswer(item.ToString());
-                    Console.WriteLine("aID: " + ans.ID);
                 }
 
                 //Maak een antwoordobject aan

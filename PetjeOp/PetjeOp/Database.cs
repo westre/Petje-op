@@ -98,9 +98,9 @@ namespace PetjeOp
             return null;
         }
 
-        public Questionnaire AddQuestionnaire(string name) { // Dit moet echt even een AI worden
+        public Questionnaire AddQuestionnaire(string name) { 
             tblQuestionnaire questionnaire = new tblQuestionnaire();
-            questionnaire.id = new Random().Next(100, 1000);
+            questionnaire.id = new Random().Next(100, 1000); // Dit moet echt even een AI worden
             questionnaire.author = "eltjo1";
             questionnaire.description = name;
             db.tblQuestionnaires.InsertOnSubmit(questionnaire);
@@ -164,6 +164,7 @@ namespace PetjeOp
         }
 
         public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer) {
+            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
             db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
         }
     }
