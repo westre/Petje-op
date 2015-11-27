@@ -37,5 +37,15 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller.editQuestion();
         }
+
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            Controller.DeleteQuestion();
+        }
+
+        private void tbQuestionnaireName_TextChanged(object sender, EventArgs e)
+        {
+            Controller.CheckButtons();
+        }
     }
 }

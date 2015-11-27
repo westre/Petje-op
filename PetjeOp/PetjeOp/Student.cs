@@ -7,7 +7,7 @@ namespace PetjeOp
 {
     public class Student : Person
     {
-        public int StudentNr { get; set; }
+        public String StudentNr { get; set; }
         public String GroupNr { get; set; }
     }
 }

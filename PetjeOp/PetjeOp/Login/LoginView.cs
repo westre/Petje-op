@@ -36,9 +36,9 @@ namespace PetjeOp {
             }
             else
             {
-                if (Controller.MasterController.DB.GetStudent(int.Parse(textBox1.Text)) != null) // Controleer op een code van een Student
+                if (Controller.MasterController.DB.GetStudent(textBox1.Text) != null) // Controleer op een code van een Student
                 {
-                    Controller.MasterController.User = Controller.MasterController.DB.GetStudent(int.Parse(textBox1.Text)); // Haal de Student uit de DB.
+                    Controller.MasterController.User = Controller.MasterController.DB.GetStudent(textBox1.Text); // Haal de Student uit de DB.
                     Controller.StudentLogin(); // Zet de client over naar Student omgeving
                 }
                 else if (Controller.MasterController.DB.GetTeacher(textBox1.Text) != null) // Controleer op een code van een Teacher

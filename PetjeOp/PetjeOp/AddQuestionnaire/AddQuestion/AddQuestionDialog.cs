@@ -123,8 +123,11 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 }
             }
 
-            //Valideer gegevens
-            addQuestionView1.checkQuestionView();
+            if (Question != null)
+            {
+                //Valideer gegevens
+                addQuestionView1.checkQuestionView();
+            }
         }
     }
 }
