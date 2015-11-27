@@ -52,6 +52,8 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                     ans = Controller.MasterController.DB.AddAnswer(item.ToString());
                     Console.WriteLine("aID: " + ans.ID);
                 }
+                // DB link
+                //Controller.MasterController.LinkAnswerToQuestion(Question, ans);
 
                 //Maak een antwoordobject aan
                 //Answer ans = new Answer(item.ToString());
@@ -93,6 +95,9 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 //Ja, er wordt een nieuwe index gegenereerd
                 Question.QuestionIndex = Controller.Model.Questions.Count + 1;
             }
+
+            // Maak nieuwe question record aan in tabel
+            Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
 
             //Sluit het dialoog
             Close();

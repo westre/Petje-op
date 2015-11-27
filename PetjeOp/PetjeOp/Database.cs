@@ -142,5 +142,16 @@ namespace PetjeOp
                 ID = answer.id
             };
         }
+
+        public void AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
+            tblQuestion question = new tblQuestion();
+            question.id = new Random().Next(100, 1000); // AI maken!!
+            question.description = createdQuestion.Description;
+            question.correctanswer = createdQuestion.CorrectAnswer.ID;
+            question.questionnaire = questionnaireId;
+
+            db.tblQuestions.InsertOnSubmit(question);
+            db.SubmitChanges();
+        }
     }
 }
