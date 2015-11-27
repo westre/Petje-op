@@ -120,6 +120,7 @@
             this.btnDeleteQuestion.TabIndex = 16;
             this.btnDeleteQuestion.Text = "Verwijder";
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
+            this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
             // 
             // AddQuestionnaireView
             // 

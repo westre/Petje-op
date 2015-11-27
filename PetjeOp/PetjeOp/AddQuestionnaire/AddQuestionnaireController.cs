@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -74,6 +75,15 @@ namespace PetjeOp.AddQuestionnaire
                 //Voeg Node toe met vraag
                 TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
 
+                //Maak een bold font aan
+                Font boldFont = new Font(View.tvQuestions.Font, FontStyle.Bold);
+
+                //Stel het bold font in voor de Node
+                addedNode.NodeFont = boldFont;
+
+                //Reset de tekst van de Node, zodat het nieuw font toegepast wordt
+                addedNode.Text = addedNode.Text;
+
                 //Koppel vraagobject aan de Node
                 addedNode.Tag = q;
 
@@ -82,11 +92,16 @@ namespace PetjeOp.AddQuestionnaire
                 {
                     string answerDescription = answer.Description;
 
+                    Color childColor = Color.Red;
+
                     if (answer.Equals(q.CorrectAnswer))
-                        answerDescription += " (Correct Antwoord)";
+                    {
+                        childColor = Color.Green;
+                    }
 
                     //Voeg Child toe
                     TreeNode addedChild = addedNode.Nodes.Add(answerDescription);
+                    addedChild.ForeColor = childColor;
 
                     //Koppel antwoord aan Child
                     addedChild.Tag = answer;
@@ -121,35 +136,53 @@ namespace PetjeOp.AddQuestionnaire
             MultipleChoiceQuestion currentQuestion = null;
             int currentQuestionIndex = 0;
 
-            //Bepaal vraag als attribuut voor Dialog
-            foreach (MultipleChoiceQuestion q in Model.Questions)
-            {
                 //Controleer of er een Node geselecteerd is
-                if (View.tvQuestions.SelectedNode != null)
-                {
-                    //Controleer of de geselecteerde vraag gelijk is aan de vraag in de lijst
-                    if (q.Equals(View.tvQuestions.SelectedNode.Tag))
-                    {
-                        //Match de vraag
-                        currentQuestion = q;
+            if (View.tvQuestions.SelectedNode != null)
+            {
+                //Bepaal vraag als attribuut voor Dialog
+                currentQuestion = (MultipleChoiceQuestion) View.tvQuestions.SelectedNode.Tag;
 
-                        //Match de index
-                        currentQuestionIndex = q.QuestionIndex;
-                    }
-                }
+                currentQuestionIndex = Model.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
             }
 
             //Toon dialoog
-            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion, currentQuestionIndex);
+            AddQuestionDialog editDialog = new AddQuestionDialog(this, currentQuestion, (currentQuestionIndex + 1));
             DialogResult dr = editDialog.ShowDialog();
 
             //Als op OK is geklikt, verwijder de oude vraag.
             //Nieuwe vraag is toegevoegd bij het sluiten van het dialoog
-            if(dr == DialogResult.OK)
-                Model.Questions.RemoveAt(currentQuestionIndex - 1);
-
+            if (dr == DialogResult.OK)
+            {
+                Model.Questions.RemoveAt(currentQuestionIndex);
+            }
+                
             //Update de TreeView
             UpdateTreeView();
+        }
+
+        public void DeleteQuestion()
+        {
+            //Dialoog voor bevestiging
+            DialogResult dr = MessageBox.Show("Weet u zeker dat u deze vraag wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            //Als er op OK geklikt is, verwijder antwoord uit lijst
+            if (dr == DialogResult.Yes)
+            {
+                MultipleChoiceQuestion q = (MultipleChoiceQuestion) View.tvQuestions.SelectedNode.Tag;
+
+                int index = Model.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
+                Model.Questions.RemoveAt(index);
+
+                int newQuestionIndex = 1;
+                foreach (Question question in Model.Questions)
+                {
+                    question.QuestionIndex = newQuestionIndex ++;
+                }
+
+                UpdateTreeView();
+
+                DisableEditDeleteButtons();
+            }
         }
     }
 }
