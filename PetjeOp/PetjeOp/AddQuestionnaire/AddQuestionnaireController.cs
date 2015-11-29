@@ -47,14 +47,39 @@ namespace PetjeOp.AddQuestionnaire
             View.btnDeleteQuestion.Enabled = false;
         }
 
-        public void AddQuestionnaire() {
+        public void SaveQuestionnaire() {
             string questionnaireName = View.tbQuestionnaireName.Text;
+            Model.Questionnaire = MasterController.DB.AddQuestionnaire(questionnaireName);
 
-            if(questionnaireName.Length > 0) {
-                Model.Questionnaire = MasterController.DB.AddQuestionnaire(questionnaireName);
-                Console.WriteLine("ID: " + Model.Questionnaire.ID);
-                View.btnAddQuestion.Enabled = true;
+            //Loop door alle vragen heen
+            foreach (MultipleChoiceQuestion q in Model.Questions) {
+                //Loop door alle antwoorden heen
+                foreach (Answer answer in q.AnswerOptions) {
+                    Answer ans = MasterController.DB.GetAnswer(answer.Description);
+                    if (ans == null) {
+                        ans = MasterController.DB.AddAnswer(answer.Description.ToString());
+                    }
+
+                    if (q.CorrectAnswer == answer) {
+                        q.CorrectAnswer = ans;
+                    }
+
+                    // Synchroniseer onze offline answer met primary key van DB
+                    answer.ID = ans.ID;
+                }
+
+                MultipleChoiceQuestion dbQuestion = MasterController.DB.AddMultipleChoiceQuestion(q, Model.Questionnaire.ID);
+                // Synchroniseer onze offline dbQuestion met primary key van DB
+                q.ID = dbQuestion.ID;
+
+                // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+                foreach (Answer answer in q.AnswerOptions) {
+                    MasterController.DB.LinkAnswerToQuestion(q, answer);
+                } 
             }
+
+            View.btnSaveQuestionnaire.Text = "Vragenlijst opgeslagen";
+            View.btnSaveQuestionnaire.Enabled = false;
         }
 
         //Functie om 'Wijzig' en 'Verwijder' aan en uit te zetten wanneer er al dan niet een vraag is geselecteerd

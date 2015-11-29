@@ -39,7 +39,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         //Functie voor afhandeling van klik op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
-
             //Maak het vraagobject aan
             Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
 
@@ -47,19 +46,17 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             foreach (var item in addQuestionView1.clbAnswers.Items)
             {
                 // Check of het antwoord al in de database bestaat
-                Answer ans = Controller.MasterController.DB.GetAnswer(item.ToString());
+                /*Answer ans = Controller.MasterController.DB.GetAnswer(item.ToString());
                 if(ans == null) {
                     // Het bestaat niet :(, dus maken we een nieuwe record aan!
                     ans = Controller.MasterController.DB.AddAnswer(item.ToString());
-                }
+                }*/
 
                 //Maak een antwoordobject aan
-                //Answer ans = new Answer(item.ToString());
+                Answer ans = new Answer(item.ToString());
 
                 //Voeg het antwoord toe aan de lijst met antwoorden
                 answers.Add(ans);
-
-                Console.WriteLine("ANS DESC: " + ans.Description);
 
                 //Controleer of het antwoord het correcte antwoord is
                 if (addQuestionView1.clbAnswers.CheckedItems.Contains(item))
@@ -97,16 +94,16 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             }
 
             // Maak nieuwe question record aan in tabel
-            MultipleChoiceQuestion dbQuestion = Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
+            //MultipleChoiceQuestion dbQuestion = Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
 
             // Update lokale Question variabel met ID van DBQuestion
-            Question.ID = dbQuestion.ID;
+            //Question.ID = dbQuestion.ID;
 
             // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
-            foreach(Answer answer in answers) {
+            //foreach(Answer answer in answers) {
                 // DB link
-                Controller.MasterController.DB.LinkAnswerToQuestion(dbQuestion, answer);
-            }
+            //    Controller.MasterController.DB.LinkAnswerToQuestion(dbQuestion, answer);
+            //}
 
             //Sluit het dialoog
             Close();

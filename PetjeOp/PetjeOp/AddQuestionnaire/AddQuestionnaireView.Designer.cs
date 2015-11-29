@@ -36,7 +36,6 @@
             this.lblQuestionaireNameError = new System.Windows.Forms.Label();
             this.lblNoNodeSelectedError = new System.Windows.Forms.Label();
             this.lblNoQuestionsInQuestionaire = new System.Windows.Forms.Label();
-            this.btnAddQuestionnaire = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -52,7 +51,6 @@
             // 
             // btnAddQuestion
             // 
-            this.btnAddQuestion.Enabled = false;
             this.btnAddQuestion.Location = new System.Drawing.Point(21, 600);
             this.btnAddQuestion.Name = "btnAddQuestion";
             this.btnAddQuestion.Size = new System.Drawing.Size(480, 50);
@@ -97,6 +95,7 @@
             this.btnSaveQuestionnaire.TabIndex = 13;
             this.btnSaveQuestionnaire.Text = "Vragenlijst Opslaan";
             this.btnSaveQuestionnaire.UseVisualStyleBackColor = true;
+            this.btnSaveQuestionnaire.Click += new System.EventHandler(this.btnSaveQuestionnaire_Click);
             // 
             // tvQuestions
             // 
@@ -156,21 +155,10 @@
             this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 13);
             this.lblNoQuestionsInQuestionaire.TabIndex = 19;
             // 
-            // btnAddQuestionnaire
-            // 
-            this.btnAddQuestionnaire.Location = new System.Drawing.Point(517, 105);
-            this.btnAddQuestionnaire.Name = "btnAddQuestionnaire";
-            this.btnAddQuestionnaire.Size = new System.Drawing.Size(75, 23);
-            this.btnAddQuestionnaire.TabIndex = 20;
-            this.btnAddQuestionnaire.Text = "Toevoegen";
-            this.btnAddQuestionnaire.UseVisualStyleBackColor = true;
-            this.btnAddQuestionnaire.Click += new System.EventHandler(this.btnAddQuestionnaire_Click);
-            // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.Controls.Add(this.btnAddQuestionnaire);
             this.Controls.Add(this.lblNoQuestionsInQuestionaire);
             this.Controls.Add(this.lblNoNodeSelectedError);
             this.Controls.Add(this.lblQuestionaireNameError);
@@ -204,7 +192,6 @@
         public System.Windows.Forms.Label lblQuestionaireNameError;
         public System.Windows.Forms.Label lblNoNodeSelectedError;
         public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
-        private System.Windows.Forms.Button btnAddQuestionnaire;
         public System.Windows.Forms.Button btnAddQuestion;
     }
 }
