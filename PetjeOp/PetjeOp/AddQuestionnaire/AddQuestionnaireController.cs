@@ -166,6 +166,8 @@ namespace PetjeOp.AddQuestionnaire
             //Nieuwe vraag is toegevoegd bij het sluiten van het dialoog
             if (dr == DialogResult.OK)
             {
+                // Database actie
+                MasterController.DB.DeleteMultipleChoiceQuestion(currentQuestion);
                 Model.Questions.RemoveAt(currentQuestionIndex);
             }
                 

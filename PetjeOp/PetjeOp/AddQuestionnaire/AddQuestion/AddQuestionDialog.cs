@@ -59,6 +59,8 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 //Voeg het antwoord toe aan de lijst met antwoorden
                 answers.Add(ans);
 
+                Console.WriteLine("ANS DESC: " + ans.Description);
+
                 //Controleer of het antwoord het correcte antwoord is
                 if (addQuestionView1.clbAnswers.CheckedItems.Contains(item))
                 {

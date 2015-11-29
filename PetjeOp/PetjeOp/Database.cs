@@ -120,9 +120,9 @@ namespace PetjeOp
                                 select answers).FirstOrDefault();
 
             if(foundAnswer != null) {
-                Console.WriteLine("Found answer: " + foundAnswer.ToString());
+                Console.WriteLine("Found answer: " + foundAnswer.description.ToString());
 
-                Answer retrievedAnswer = new Answer(foundAnswer.ToString());
+                Answer retrievedAnswer = new Answer(foundAnswer.description);
                 retrievedAnswer.ID = foundAnswer.id;
 
                 return retrievedAnswer;
