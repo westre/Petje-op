@@ -201,19 +201,23 @@ namespace PetjeOp
         public List<Questionnaire> GetAllQuestionnaires() {
             List<Questionnaire> questionnaires = new List<Questionnaire>();
 
+            // Loop door alle questionnaires
             foreach(tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires) {
                 Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
                 questionnaire.ID = tblQuestionnaire.id;
 
+                // Loop door alle questions binnen die questionnaire
                 foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
                     MultipleChoiceQuestion question = new MultipleChoiceQuestion(tblQuestion.description);
 
+                    // Maak een nieuwe answer object aan voor onze correct answer
                     Answer correctAnswer = new Answer(tblQuestion.tblAnswer.description);
                     correctAnswer.ID = tblQuestion.tblAnswer.id;
 
                     question.CorrectAnswer = correctAnswer;
                     question.ID = tblQuestion.id;
 
+                    // Haal alle answeroptions op die bij deze vraag horen
                     List<tblAnsweroption> tblAnswerOption = (from answer in db.tblAnsweroptions
                                                where answer.question == question.ID
                                                select answer).ToList();
@@ -221,6 +225,7 @@ namespace PetjeOp
                     List<Answer> answerOptions = new List<Answer>();
 
                     foreach(tblAnsweroption answerOption in tblAnswerOption) {
+                        // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
                         tblAnswer tblAnswer = (from foundAnswer in db.tblAnswers
                                                where foundAnswer.id == answerOption.answer
                                                select foundAnswer).FirstOrDefault();
@@ -230,9 +235,13 @@ namespace PetjeOp
                         answerOptions.Add(answer);
                     }
 
+                    // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
                     question.AnswerOptions = answerOptions;
+
+                    // Voeg vragen toe aan onze questionnaire
                     questionnaire.Questions.Add(question);
                 }
+                // Voeg questionnaire toe aan onze lijst met questionnaire
                 questionnaires.Add(questionnaire);
             }
 
