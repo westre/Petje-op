@@ -97,6 +97,9 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             // Maak nieuwe question record aan in tabel
             MultipleChoiceQuestion dbQuestion = Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
 
+            // Update lokale Question variabel met ID van DBQuestion
+            Question.ID = dbQuestion.ID;
+
             // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
             foreach(Answer answer in answers) {
                 // DB link

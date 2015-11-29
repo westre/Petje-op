@@ -143,6 +143,31 @@ namespace PetjeOp
             };
         }
 
+        public void DeleteMultipleChoiceQuestion(MultipleChoiceQuestion question) {
+            // Eerst moeten we de link verwijderen om referentiele integriteit te behouden
+            List<tblAnsweroption> referencedAnswerOption = (from ao in db.tblAnsweroptions
+                                                            where ao.question == question.ID
+                                                            select ao).ToList();
+
+            foreach(tblAnsweroption answerOption in referencedAnswerOption) {
+                Console.WriteLine("Removing AnswerOption ID: " + answerOption.question);
+                DeleteLinkAnswerToQuestion(answerOption.question);
+            }
+
+            Console.WriteLine("Question ID: " + question.ID);
+            tblQuestion selectedQuestion = (from q in db.tblQuestions
+                                            where q.id == question.ID
+                                            select q).FirstOrDefault();
+
+            if(selectedQuestion != null) {
+                db.tblQuestions.DeleteOnSubmit(selectedQuestion);
+                db.SubmitChanges();
+            }
+            else {
+                Console.WriteLine("wtf, null record?");
+            }
+        }
+
         public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
             tblQuestion question = new tblQuestion();
             question.id = new Random().Next(100, 1000); // AI maken!!
@@ -166,6 +191,11 @@ namespace PetjeOp
         public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer) {
             // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
             db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
+        }
+
+        private void DeleteLinkAnswerToQuestion(int questionId) {
+            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
+            db.ExecuteCommand("DELETE FROM [answeroption] WHERE question = {0}", questionId);
         }
     }
 }

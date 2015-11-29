@@ -186,6 +186,9 @@ namespace PetjeOp.AddQuestionnaire
                 int index = Model.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
                 Model.Questions.RemoveAt(index);
 
+                // Verwijder van DB
+                MasterController.DB.DeleteMultipleChoiceQuestion(q);
+
                 int newQuestionIndex = 1;
                 foreach (Question question in Model.Questions)
                 {
