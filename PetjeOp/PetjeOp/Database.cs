@@ -197,5 +197,46 @@ namespace PetjeOp
             // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
             db.ExecuteCommand("DELETE FROM [answeroption] WHERE question = {0}", questionId);
         }
+
+        public List<Questionnaire> GetAllQuestionnaires() {
+            List<Questionnaire> questionnaires = new List<Questionnaire>();
+
+            foreach(tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires) {
+                Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
+                questionnaire.ID = tblQuestionnaire.id;
+
+                foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
+                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(tblQuestion.description);
+
+                    Answer correctAnswer = new Answer(tblQuestion.tblAnswer.description);
+                    correctAnswer.ID = tblQuestion.tblAnswer.id;
+
+                    question.CorrectAnswer = correctAnswer;
+                    question.ID = tblQuestion.id;
+
+                    List<tblAnsweroption> tblAnswerOption = (from answer in db.tblAnsweroptions
+                                               where answer.question == question.ID
+                                               select answer).ToList();
+
+                    List<Answer> answerOptions = new List<Answer>();
+
+                    foreach(tblAnsweroption answerOption in tblAnswerOption) {
+                        tblAnswer tblAnswer = (from foundAnswer in db.tblAnswers
+                                               where foundAnswer.id == answerOption.answer
+                                               select foundAnswer).FirstOrDefault();
+
+                        Answer answer = new Answer(tblAnswer.description);
+                        answer.ID = tblAnswer.id;
+                        answerOptions.Add(answer);
+                    }
+
+                    question.AnswerOptions = answerOptions;
+                    questionnaire.Questions.Add(question);
+                }
+                questionnaires.Add(questionnaire);
+            }
+
+            return questionnaires;
+        }
     }
 }
