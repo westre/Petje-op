@@ -31,6 +31,10 @@ namespace PetjeOp.Questionnaires
 
         public void UpdateTreeView()
         {
+            LoadingDialog l = new LoadingDialog();
+            l.Show();
+            Application.DoEvents();
+
             View.tvQuestionnaires.Nodes.Clear();
 
             Model.Questionnaires = MasterController.DB.GetAllQuestionnaires();
@@ -63,6 +67,8 @@ namespace PetjeOp.Questionnaires
             }
 
             View.tvQuestionnaires.Sort();
+
+            l.Hide();
         }
     }
 }

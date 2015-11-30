@@ -120,6 +120,12 @@
     </Compile>
     <Compile Include="Media.cs" />
     <Compile Include="MultipleChoiceQuestion.cs" />
+    <Compile Include="Questionnaires\LoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Questionnaires\LoadingDialog.Designer.cs">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Questionnaires\QuestionnaireOverviewController.cs" />
     <Compile Include="Questionnaires\QuestionnaireOverviewModel.cs" />
     <Compile Include="Questionnaires\QuestionnaireOverviewView.cs">
@@ -188,6 +194,9 @@
     </None>
     <EmbeddedResource Include="DebugDialog.resx">
       <DependentUpon>DebugDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\QuestionnaireOverviewView.resx">
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
