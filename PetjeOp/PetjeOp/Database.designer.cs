@@ -354,7 +354,7 @@ namespace PetjeOp
 		
 		private string _description;
 		
-		private EntitySet<tblQuestion> _questions;
+		private EntitySet<tblQuestion> _tblQuestions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -368,7 +368,7 @@ namespace PetjeOp
 		
 		public tblAnswer()
 		{
-			this._questions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_questions), new Action<tblQuestion>(this.detach_questions));
+			this._tblQuestions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_tblQuestions), new Action<tblQuestion>(this.detach_tblQuestions));
 			OnCreated();
 		}
 		
@@ -412,16 +412,16 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_question", Storage="_questions", ThisKey="id", OtherKey="correctanswer")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_question", Storage="_tblQuestions", ThisKey="id", OtherKey="correctanswer")]
 		public EntitySet<tblQuestion> tblQuestions
 		{
 			get
 			{
-				return this._questions;
+				return this._tblQuestions;
 			}
 			set
 			{
-				this._questions.Assign(value);
+				this._tblQuestions.Assign(value);
 			}
 		}
 		
@@ -445,13 +445,13 @@ namespace PetjeOp
 			}
 		}
 		
-		private void attach_questions(tblQuestion entity)
+		private void attach_tblQuestions(tblQuestion entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblAnswer = this;
 		}
 		
-		private void detach_questions(tblQuestion entity)
+		private void detach_tblQuestions(tblQuestion entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblAnswer = null;
@@ -1112,7 +1112,7 @@ namespace PetjeOp
 		
 		private EntitySet<tblExam> _exams;
 		
-		private EntitySet<tblQuestion> _questions;
+		private EntitySet<tblQuestion> _tblQuestions;
 		
 		private EntityRef<tblTeacher> _teacher;
 		
@@ -1131,7 +1131,7 @@ namespace PetjeOp
 		public tblQuestionnaire()
 		{
 			this._exams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_exams), new Action<tblExam>(this.detach_exams));
-			this._questions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_questions), new Action<tblQuestion>(this.detach_questions));
+			this._tblQuestions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_tblQuestions), new Action<tblQuestion>(this.detach_tblQuestions));
 			this._teacher = default(EntityRef<tblTeacher>);
 			OnCreated();
 		}
@@ -1213,16 +1213,16 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_question", Storage="_questions", ThisKey="id", OtherKey="questionnaire")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_question", Storage="_tblQuestions", ThisKey="id", OtherKey="questionnaire")]
 		public EntitySet<tblQuestion> tblQuestions
 		{
 			get
 			{
-				return this._questions;
+				return this._tblQuestions;
 			}
 			set
 			{
-				this._questions.Assign(value);
+				this._tblQuestions.Assign(value);
 			}
 		}
 		
@@ -1292,13 +1292,13 @@ namespace PetjeOp
 			entity.tblQuestionnaire = null;
 		}
 		
-		private void attach_questions(tblQuestion entity)
+		private void attach_tblQuestions(tblQuestion entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblQuestionnaire = this;
 		}
 		
-		private void detach_questions(tblQuestion entity)
+		private void detach_tblQuestions(tblQuestion entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblQuestionnaire = null;
@@ -1689,7 +1689,7 @@ namespace PetjeOp
 		
 		private int _questionnaire;
 		
-		private System.Nullable<int> _questionindex;
+		private int _questionindex;
 		
 		private EntityRef<tblAnswer> _tblAnswer;
 		
@@ -1707,7 +1707,7 @@ namespace PetjeOp
     partial void OncorrectanswerChanged();
     partial void OnquestionnaireChanging(int value);
     partial void OnquestionnaireChanged();
-    partial void OnquestionindexChanging(System.Nullable<int> value);
+    partial void OnquestionindexChanging(int value);
     partial void OnquestionindexChanged();
     #endregion
 		
@@ -1806,8 +1806,8 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_questionindex", DbType="Int")]
-		public System.Nullable<int> questionindex
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_questionindex", DbType="Int NOT NULL")]
+		public int questionindex
 		{
 			get
 			{

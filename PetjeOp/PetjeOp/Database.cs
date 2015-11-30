@@ -174,6 +174,7 @@ namespace PetjeOp
             question.description = createdQuestion.Description;
             question.correctanswer = createdQuestion.CorrectAnswer.ID;
             question.questionnaire = questionnaireId;
+            question.questionindex = createdQuestion.QuestionIndex;
 
             db.tblQuestions.InsertOnSubmit(question);
             db.SubmitChanges();
@@ -216,7 +217,7 @@ namespace PetjeOp
 
                     question.CorrectAnswer = correctAnswer;
                     question.ID = tblQuestion.id;
-                    if (tblQuestion.questionindex != null) question.QuestionIndex = tblQuestion.questionindex.Value;
+                    question.QuestionIndex = tblQuestion.questionindex;
 
                     // Haal alle answeroptions op die bij deze vraag horen
                     List<tblAnsweroption> tblAnswerOption = (from answer in db.tblAnsweroptions

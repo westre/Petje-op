@@ -15,7 +15,7 @@
       <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="tblAnswer_tblAnsweroption" Member="tblAnsweroptions" Storage="_answeroptions" ThisKey="id" OtherKey="answer" Type="tblAnsweroption" />
       <Association Name="tblAnswer_tblResult" Member="tblResults" Storage="_results" ThisKey="id" OtherKey="answer" Type="tblResult" />
-      <Association Name="tblAnswer_question" Member="tblQuestions" Storage="_questions" ThisKey="id" OtherKey="correctanswer" Type="tblQuestion" />
+      <Association Name="tblAnswer_question" Member="tblQuestions" ThisKey="id" OtherKey="correctanswer" Type="tblQuestion" />
     </Type>
   </Table>
   <Table Name="dbo.answeroption" Member="tblAnsweroptions">
@@ -23,7 +23,7 @@
       <Column Name="question" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="answer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="tblAnswer_tblAnsweroption" Member="tblAnswer" Storage="_answer1" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
-      <Association Name="question_tblAnsweroption" Member="tblQuestion" Storage="_question1" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
+      <Association Name="question_tblAnsweroption" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.class" Member="tblClasses">
@@ -61,7 +61,7 @@
       <Column Name="author" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="tblQuestionnaire_tblExam" Member="tblExams" Storage="_exams" ThisKey="id" OtherKey="questionnaire" Type="tblExam" />
-      <Association Name="tblQuestionnaire_question" Member="tblQuestions" Storage="_questions" ThisKey="id" OtherKey="questionnaire" Type="tblQuestion" />
+      <Association Name="tblQuestionnaire_question" Member="tblQuestions" ThisKey="id" OtherKey="questionnaire" Type="tblQuestion" />
       <Association Name="tblTeacher_tblQuestionnaire" Member="tblTeacher" Storage="_teacher" ThisKey="author" OtherKey="nr" Type="tblTeacher" IsForeignKey="true" />
     </Type>
   </Table>
@@ -74,7 +74,7 @@
       <Association Name="tblAnswer_tblResult" Member="tblAnswer" Storage="_answer1" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
       <Association Name="tblExam_tblResult" Member="tblExam" Storage="_exam1" ThisKey="exam" OtherKey="id" Type="tblExam" IsForeignKey="true" />
       <Association Name="tblStudent_tblResult" Member="tblStudent" Storage="_student1" ThisKey="student" OtherKey="nr" Type="tblStudent" IsForeignKey="true" />
-      <Association Name="question_tblResult" Member="tblQuestion" Storage="_question1" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
+      <Association Name="question_tblResult" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.student" Member="tblStudents">
@@ -100,7 +100,7 @@
       <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="correctanswer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="questionnaire" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="questionindex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="questionindex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="question_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="question" Type="tblAnsweroption" />
       <Association Name="question_tblResult" Member="tblResults" ThisKey="id" OtherKey="question" Type="tblResult" />
       <Association Name="tblAnswer_question" Member="tblAnswer" ThisKey="correctanswer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />

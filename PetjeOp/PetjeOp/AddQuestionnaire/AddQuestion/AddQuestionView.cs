@@ -231,5 +231,13 @@ namespace PetjeOp.AddQuestionnaire
             if(rbNoLimit.Checked)
                 lblErrorSeconds.Hide();
         }
+
+        private void tbAnswer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAddAnswer_Click(this, new EventArgs());
+            }
+        }
     }
 }
