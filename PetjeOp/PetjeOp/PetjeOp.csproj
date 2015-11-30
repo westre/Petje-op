@@ -128,7 +128,9 @@
     </Compile>
     <Compile Include="Questionnaires\QuestionnaireOverviewController.cs" />
     <Compile Include="Questionnaires\QuestionnaireOverviewModel.cs" />
-    <Compile Include="Questionnaires\QuestionnaireOverviewView.cs" />
+    <Compile Include="Questionnaires\QuestionnaireOverviewView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Questionnaires\QuestionnaireOverviewView.Designer.cs">
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
     </Compile>
