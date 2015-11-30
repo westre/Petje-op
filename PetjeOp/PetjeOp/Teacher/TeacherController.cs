@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PetjeOp.AddQuestionnaire;
-using PetjeOp.Questionnaires;
 
 namespace PetjeOp {
     public class TeacherController : Controller, IEnvironment {
@@ -42,12 +40,9 @@ namespace PetjeOp {
             vrc.ex = x;
             
                 vrc.ShowResults();
-        }
-
-        public void GoToQuestionnaireOverview()
-        {
-            QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
-            MasterController.SetController(qoc);
+            
+            
+            
         }
 
         public void ShowDebugDialog() {
