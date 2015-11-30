@@ -29,7 +29,6 @@ namespace PetjeOp {
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
            Controller.ShowExamDialog();
            
         }
@@ -40,6 +39,11 @@ namespace PetjeOp {
 
         private void btnDebugGetQuestionnaires_Click(object sender, EventArgs e) {
             Controller.ShowDebugDialog();
+        }
+
+        private void btnQuestionnaires_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireOverview();
         }
     }
 }
