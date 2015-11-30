@@ -216,6 +216,7 @@ namespace PetjeOp
 
                     question.CorrectAnswer = correctAnswer;
                     question.ID = tblQuestion.id;
+                    if (tblQuestion.questionindex != null) question.QuestionIndex = tblQuestion.questionindex.Value;
 
                     // Haal alle answeroptions op die bij deze vraag horen
                     List<tblAnsweroption> tblAnswerOption = (from answer in db.tblAnsweroptions

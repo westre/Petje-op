@@ -42,7 +42,7 @@ namespace PetjeOp.Questionnaires
 
                 foreach (MultipleChoiceQuestion question in questionnaire.Questions)
                 {
-                    TreeNode questionTreeNode = questionnaireTreeNode.Nodes.Add(question.Description);
+                    TreeNode questionTreeNode = questionnaireTreeNode.Nodes.Add(question.QuestionIndex + ": " + question.Description);
                     questionTreeNode.Tag = question;
 
                     foreach (Answer answer in question.AnswerOptions)
