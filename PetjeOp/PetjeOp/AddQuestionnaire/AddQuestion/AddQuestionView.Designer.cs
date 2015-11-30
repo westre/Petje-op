@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbQuestion = new System.Windows.Forms.GroupBox();
+            this.lblErrorSeconds = new System.Windows.Forms.Label();
             this.gbTime = new System.Windows.Forms.GroupBox();
             this.rbLimit = new System.Windows.Forms.RadioButton();
             this.rbNoLimit = new System.Windows.Forms.RadioButton();
@@ -43,7 +44,6 @@
             this.lblAnswers = new System.Windows.Forms.Label();
             this.tbQuestion = new System.Windows.Forms.TextBox();
             this.lblQuestion = new System.Windows.Forms.Label();
-            this.lblErrorSeconds = new System.Windows.Forms.Label();
             this.gbQuestion.SuspendLayout();
             this.gbTime.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,16 @@
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Vraag";
             this.gbQuestion.Enter += new System.EventHandler(this.gbQuestion_Enter);
+            // 
+            // lblErrorSeconds
+            // 
+            this.lblErrorSeconds.AutoSize = true;
+            this.lblErrorSeconds.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorSeconds.Location = new System.Drawing.Point(499, 415);
+            this.lblErrorSeconds.Name = "lblErrorSeconds";
+            this.lblErrorSeconds.Size = new System.Drawing.Size(245, 25);
+            this.lblErrorSeconds.TabIndex = 23;
+            this.lblErrorSeconds.Text = "Voer een geldig getal in!";
             // 
             // gbTime
             // 
@@ -165,6 +175,7 @@
             this.tbAnswer.Size = new System.Drawing.Size(468, 31);
             this.tbAnswer.TabIndex = 17;
             this.tbAnswer.TextChanged += new System.EventHandler(this.tbAnswer_TextChanged);
+            this.tbAnswer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbAnswer_KeyDown);
             // 
             // btnAddAnswer
             // 
@@ -218,16 +229,6 @@
             this.lblQuestion.Size = new System.Drawing.Size(75, 25);
             this.lblQuestion.TabIndex = 12;
             this.lblQuestion.Text = "Vraag:";
-            // 
-            // lblErrorSeconds
-            // 
-            this.lblErrorSeconds.AutoSize = true;
-            this.lblErrorSeconds.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorSeconds.Location = new System.Drawing.Point(499, 415);
-            this.lblErrorSeconds.Name = "lblErrorSeconds";
-            this.lblErrorSeconds.Size = new System.Drawing.Size(245, 25);
-            this.lblErrorSeconds.TabIndex = 23;
-            this.lblErrorSeconds.Text = "Voer een geldig getal in!";
             // 
             // AddQuestionView
             // 
