@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
+using PetjeOp.Questionnaires;
 
 namespace PetjeOp {
     public partial class MasterController : Form {
@@ -32,6 +33,7 @@ namespace PetjeOp {
             Controllers.Add(new StudentController(this));
             Controllers.Add(new AddQuestionnaireController(this));
             Controllers.Add(new ViewResultsController(this));
+            Controllers.Add(new QuestionnaireOverviewController(this));
 
             // We beginnen met deze view, verander dit niet!
             mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
@@ -67,10 +69,10 @@ namespace PetjeOp {
                 ActiveParentContainer = (TeacherController)controller;           
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
 
-                // Initialisatie van AddQuestionnaireController wanneer we in TeacherController zitten
-                AddQuestionnaireController addQuestionnaireController = (AddQuestionnaireController)GetController(typeof(AddQuestionnaireController));
-                addQuestionnaireController.InitializeView();
-                SetController(addQuestionnaireController);
+                // Initialisatie van QuestionnaireOverviewController wanneer we in TeacherController zitten
+                QuestionnaireOverviewController questionnaireOverviewController = (QuestionnaireOverviewController)GetController(typeof(QuestionnaireOverviewController));
+                questionnaireOverviewController.InitializeView();
+                SetController(questionnaireOverviewController);
             }
             else if(controller is StudentController) {
                 mainPanel.Controls.Clear();

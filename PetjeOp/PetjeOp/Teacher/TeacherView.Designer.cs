@@ -68,6 +68,7 @@
             this.pnlHeader.Controls.Add(this.pnlButton_Result_Background);
             this.pnlHeader.Controls.Add(this.pnlButton_QuestionnaireOverview_Background);
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1287, 65);
             this.pnlHeader.TabIndex = 2;
@@ -88,9 +89,10 @@
             this.pnlMenu.Controls.Add(this.btnDebugGetQuestionnaires);
             this.pnlMenu.Controls.Add(this.label2);
             this.pnlMenu.Controls.Add(this.btnResults);
-            this.pnlMenu.Location = new System.Drawing.Point(0, 71);
+            this.pnlMenu.Location = new System.Drawing.Point(0, 137);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(129, 405);
+            this.pnlMenu.Size = new System.Drawing.Size(258, 779);
             this.pnlMenu.TabIndex = 3;
             // 
             // label2
@@ -98,18 +100,19 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(65)))), ((int)(((byte)(150)))));
-            this.label2.Location = new System.Drawing.Point(5, 6);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(10, 12);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 25);
+            this.label2.Size = new System.Drawing.Size(129, 49);
             this.label2.TabIndex = 1;
             this.label2.Text = "Menu";
             // 
             // btnResults
             // 
-            this.btnResults.Location = new System.Drawing.Point(3, 35);
+            this.btnResults.Location = new System.Drawing.Point(6, 123);
+            this.btnResults.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnResults.Name = "btnResults";
-            this.btnResults.Size = new System.Drawing.Size(123, 23);
+            this.btnResults.Size = new System.Drawing.Size(246, 44);
             this.btnResults.TabIndex = 2;
             this.btnResults.Text = "Resultaten";
             this.btnResults.UseVisualStyleBackColor = true;
@@ -279,11 +282,12 @@
             // 
             // TeacherView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlHeader);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "TeacherView";
             this.Size = new System.Drawing.Size(1275, 476);
             this.Load += new System.EventHandler(this.TeacherView_Load);
