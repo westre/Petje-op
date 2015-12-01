@@ -31,6 +31,8 @@
             this.lblAddQuestionnaire = new System.Windows.Forms.Label();
             this.tvQuestionnaires = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblSubject = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -47,16 +49,16 @@
             // 
             // tvQuestionnaires
             // 
-            this.tvQuestionnaires.Location = new System.Drawing.Point(12, 78);
+            this.tvQuestionnaires.Location = new System.Drawing.Point(12, 182);
             this.tvQuestionnaires.Name = "tvQuestionnaires";
-            this.tvQuestionnaires.Size = new System.Drawing.Size(1123, 628);
+            this.tvQuestionnaires.Size = new System.Drawing.Size(1123, 581);
             this.tvQuestionnaires.TabIndex = 2;
             this.tvQuestionnaires.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvQuestionnaires_AfterSelect);
             this.tvQuestionnaires.VisibleChanged += new System.EventHandler(this.tvQuestionnaires_VisibleChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 713);
+            this.button1.Location = new System.Drawing.Point(12, 780);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(291, 76);
             this.button1.TabIndex = 3;
@@ -64,10 +66,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblSubject
+            // 
+            this.lblSubject.AutoSize = true;
+            this.lblSubject.Location = new System.Drawing.Point(12, 118);
+            this.lblSubject.Name = "lblSubject";
+            this.lblSubject.Size = new System.Drawing.Size(55, 25);
+            this.lblSubject.TabIndex = 4;
+            this.lblSubject.Text = "Vak:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(74, 118);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(327, 33);
+            this.comboBox1.TabIndex = 5;
+            // 
             // QuestionnaireOverviewView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tvQuestionnaires);
             this.Controls.Add(this.lblAddQuestionnaire);
@@ -84,5 +105,7 @@
         private System.Windows.Forms.Label lblAddQuestionnaire;
         public System.Windows.Forms.TreeView tvQuestionnaires;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblSubject;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
