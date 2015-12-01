@@ -113,7 +113,7 @@ namespace PetjeOp
             tblQuestionnaire tblQuestionnaire = new tblQuestionnaire();
             tblQuestionnaire.author = "eltjo1";
             tblQuestionnaire.description = questionnaire.Name;
-            tblQuestionnaire.subject = 1; // test data
+            tblQuestionnaire.subject = questionnaire.Subject.Id;
             db.tblQuestionnaires.InsertOnSubmit(tblQuestionnaire);
             db.SubmitChanges();
 

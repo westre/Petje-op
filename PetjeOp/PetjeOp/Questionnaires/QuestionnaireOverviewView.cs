@@ -20,25 +20,10 @@ namespace PetjeOp.Questionnaires
             Controller = controller;
         }
 
-        private void lblAddQuestionnaire_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void QuestionnaireOverviewView_Load(object sender, EventArgs e)
         {
             Controller.GetAllQuestionnairesAndSubjects();
             Controller.FillSubjects();
-        }
-
-        private void tvQuestionnaires_VisibleChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void tvQuestionnaires_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,6 +39,7 @@ namespace PetjeOp.Questionnaires
             {
                 Subject selectedSubject = (Subject) cbSubjects.SelectedItem;
 
+                Controller.GetAllQuestionnairesAndSubjects();
                 Controller.FilterQuestionnaires(selectedSubject);
                 Controller.FillTreeView();
             }
@@ -61,7 +47,6 @@ namespace PetjeOp.Questionnaires
             {
                 Controller.GetAllQuestionnairesAndSubjects();
                 Controller.FillTreeView();
-                //Controller.FillSubjects();
             }
         }
     }
