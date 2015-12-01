@@ -42,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnResults = new System.Windows.Forms.Button();
             this.viewPanel = new System.Windows.Forms.Panel();
-            this.btnDebugGetQuestionnaires = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlButton_Logout_Background.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).BeginInit();
@@ -224,17 +223,6 @@
             this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(21, 21);
             this.pbIcon_QuestionnaireOverview_Icon.TabIndex = 6;
             this.pbIcon_QuestionnaireOverview_Icon.TabStop = false;
-            // 
-            // btnDebugGetQuestionnaires
-            // 
-            this.btnDebugGetQuestionnaires.Location = new System.Drawing.Point(580, 29);
-            this.btnDebugGetQuestionnaires.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDebugGetQuestionnaires.Name = "btnDebugGetQuestionnaires";
-            this.btnDebugGetQuestionnaires.Size = new System.Drawing.Size(102, 27);
-            this.btnDebugGetQuestionnaires.TabIndex = 1;
-            this.btnDebugGetQuestionnaires.Text = "kevin\'s q debug";
-            this.btnDebugGetQuestionnaires.UseVisualStyleBackColor = true;
-            this.btnDebugGetQuestionnaires.Click += new System.EventHandler(this.btnDebugGetQuestionnaires_Click);
             // 
             // pnlMenu
             // 
