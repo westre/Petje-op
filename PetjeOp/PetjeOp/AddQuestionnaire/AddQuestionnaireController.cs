@@ -257,10 +257,21 @@ namespace PetjeOp.AddQuestionnaire
 
         public void AddSubjects()
         {
+
             Model.Subjects = MasterController.DB.GetSubjects();
             foreach (Subject subject in Model.Subjects)
             {
                 View.cbSubjects.Items.Add(subject);
+
+            }
+
+        }
+
+        public void setSubject()
+        {
+            if (View.cbSubjects.SelectedItem != null)
+            {
+                Model.Questionnaire.Subject = (Subject)View.cbSubjects.SelectedItem;
             }
         }
     }
