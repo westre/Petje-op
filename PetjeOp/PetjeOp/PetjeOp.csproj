@@ -80,12 +80,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DebugDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DebugDialog.Designer.cs">
-      <DependentUpon>DebugDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Exam.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
@@ -193,9 +187,6 @@
     <None Include="Database.dbml.layout">
       <DependentUpon>Database.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="DebugDialog.resx">
-      <DependentUpon>DebugDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>

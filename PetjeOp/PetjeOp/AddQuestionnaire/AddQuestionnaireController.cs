@@ -53,6 +53,7 @@ namespace PetjeOp.AddQuestionnaire
             
             if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
+                Console.WriteLine("SUBJECT: " + Model.Questionnaire.Subject.Name);
                 Console.WriteLine("Nog geen DB");
             }
             else {
@@ -233,6 +234,16 @@ namespace PetjeOp.AddQuestionnaire
             else
             {
                 View.lblNoQuestionsInQuestionaire.Text = "";
+                View.btnSaveQuestionnaire.Enabled = true;
+            }
+
+            if (View.cbSubjects.SelectedItem == null)
+            {
+                View.lblErrorSubject.Text = "Selecteer een vak!";
+                View.btnSaveQuestionnaire.Enabled = false;
+            } else
+            {
+                View.lblErrorSubject.Text = "";
                 View.btnSaveQuestionnaire.Enabled = true;
             }
         }
