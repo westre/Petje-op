@@ -49,34 +49,14 @@ namespace PetjeOp.AddQuestionnaire
         }
 
         public void SaveQuestionnaire() {
-            string questionnaireName = View.tbQuestionnaireName.Text;
-            Model.Questionnaire = MasterController.DB.AddQuestionnaire(questionnaireName);
+            string questionnaireName = View.tbQuestionnaireName.Text;           
 
-            //Loop door alle vragen heen
-            foreach (MultipleChoiceQuestion q in Model.Questions) {
-                //Loop door alle antwoorden heen
-                foreach (Answer answer in q.AnswerOptions) {
-                    Answer ans = MasterController.DB.GetAnswer(answer.Description);
-                    if (ans == null) {
-                        ans = MasterController.DB.AddAnswer(answer.Description.ToString());
-                    }
-
-                    if (q.CorrectAnswer == answer) {
-                        q.CorrectAnswer = ans;
-                    }
-
-                    // Synchroniseer onze offline answer met primary key van DB
-                    answer.ID = ans.ID;
-                }
-
-                MultipleChoiceQuestion dbQuestion = MasterController.DB.AddMultipleChoiceQuestion(q, Model.Questionnaire.ID);
-                // Synchroniseer onze offline dbQuestion met primary key van DB
-                q.ID = dbQuestion.ID;
-
-                // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
-                foreach (Answer answer in q.AnswerOptions) {
-                    MasterController.DB.LinkAnswerToQuestion(q, answer);
-                } 
+            if(Model.Questionnaire.ID == -1) {
+                Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
+                Console.WriteLine("Nog geen DB");
+            }
+            else {
+                Console.WriteLine("het bestaat, dus updaten maar");
             }
 
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
@@ -102,13 +82,13 @@ namespace PetjeOp.AddQuestionnaire
         public void UpdateTreeView()
         {
             //Sorteer de lijst met vragen op QuestionIndex
-            Model.Questions.Sort();
+            Model.Questionnaire.Questions.Sort();
 
             //Maak de TreeView leeg
             View.tvQuestions.Nodes.Clear();
 
             //Loop door alle vragen heen
-            foreach (MultipleChoiceQuestion q in Model.Questions)
+            foreach (MultipleChoiceQuestion q in Model.Questionnaire.Questions)
             {
                 //Voeg Node toe met vraag
                 TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
@@ -161,7 +141,7 @@ namespace PetjeOp.AddQuestionnaire
         public void AddDialogInformation(MultipleChoiceQuestion question, bool updateTV)
         {
             //Voeg vraag toe aan lijst met vragen in Model
-            Model.Questions.Add(question);
+            Model.Questionnaire.Questions.Add(question);
 
             //Bepaal of TreeView geupdatet moet worden
             if (updateTV)
@@ -182,7 +162,7 @@ namespace PetjeOp.AddQuestionnaire
                 //Bepaal vraag als attribuut voor Dialog
                 currentQuestion = (MultipleChoiceQuestion) View.tvQuestions.SelectedNode.Tag;
 
-                currentQuestionIndex = Model.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
+                currentQuestionIndex = Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
             }
 
             //Toon dialoog
@@ -195,7 +175,7 @@ namespace PetjeOp.AddQuestionnaire
             {
                 // Database actie
                 MasterController.DB.DeleteMultipleChoiceQuestion(currentQuestion);
-                Model.Questions.RemoveAt(currentQuestionIndex);
+                Model.Questionnaire.Questions.RemoveAt(currentQuestionIndex);
             }
                 
             //Update de TreeView
@@ -212,14 +192,14 @@ namespace PetjeOp.AddQuestionnaire
             {
                 MultipleChoiceQuestion q = (MultipleChoiceQuestion) View.tvQuestions.SelectedNode.Tag;
 
-                int index = Model.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
-                Model.Questions.RemoveAt(index);
+                int index = Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
+                Model.Questionnaire.Questions.RemoveAt(index);
 
                 // Verwijder van DB
                 MasterController.DB.DeleteMultipleChoiceQuestion(q);
 
                 int newQuestionIndex = 1;
-                foreach (Question question in Model.Questions)
+                foreach (Question question in Model.Questionnaire.Questions)
                 {
                     question.QuestionIndex = newQuestionIndex ++;
                 }

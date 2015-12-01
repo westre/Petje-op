@@ -93,7 +93,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             else
             {
                 //Ja, er wordt een nieuwe index gegenereerd
-                Question.QuestionIndex = Controller.Model.Questions.Count + 1;
+                Question.QuestionIndex = Controller.Model.Questionnaire.Questions.Count + 1;
             }
 
             // Maak nieuwe question record aan in tabel

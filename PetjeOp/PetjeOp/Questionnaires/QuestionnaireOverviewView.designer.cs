@@ -78,10 +78,13 @@
             // cbSubjects
             // 
             this.cbSubjects.FormattingEnabled = true;
+            this.cbSubjects.Items.AddRange(new object[] {
+            "Alle vakken"});
             this.cbSubjects.Location = new System.Drawing.Point(74, 118);
             this.cbSubjects.Name = "cbSubjects";
             this.cbSubjects.Size = new System.Drawing.Size(327, 33);
             this.cbSubjects.TabIndex = 5;
+            this.cbSubjects.SelectedIndexChanged += new System.EventHandler(this.cbSubjects_SelectedIndexChanged);
             // 
             // QuestionnaireOverviewView
             // 
