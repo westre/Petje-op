@@ -100,7 +100,7 @@ namespace PetjeOp
 
         public Questionnaire AddQuestionnaire(string name) { 
             tblQuestionnaire questionnaire = new tblQuestionnaire();
-            questionnaire.id = new Random().Next(100, 1000); // Dit moet echt even een AI worden
+            //questionnaire.id = new Random().Next(100, 1000); // Dit moet echt even een AI worden
             questionnaire.author = "eltjo1";
             questionnaire.description = name;
             db.tblQuestionnaires.InsertOnSubmit(questionnaire);
@@ -132,7 +132,7 @@ namespace PetjeOp
 
         public Answer AddAnswer(string receivedAnswer) {
             tblAnswer answer = new tblAnswer();
-            answer.id = new Random().Next(100, 1000); // AI maken!!
+            //answer.id = new Random().Next(100, 1000); // AI maken!!
             answer.description = receivedAnswer;
 
             db.tblAnswers.InsertOnSubmit(answer);
@@ -170,7 +170,7 @@ namespace PetjeOp
 
         public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
             tblQuestion question = new tblQuestion();
-            question.id = new Random().Next(100, 1000); // AI maken!!
+            //question.id = new Random().Next(100, 1000); // AI maken!!
             question.description = createdQuestion.Description;
             question.correctanswer = createdQuestion.CorrectAnswer.ID;
             question.questionnaire = questionnaireId;
