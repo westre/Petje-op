@@ -246,6 +246,7 @@ namespace PetjeOp
             foreach(tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires) {
                 Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
                 questionnaire.ID = tblQuestionnaire.id;
+                questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);
 
                 // Loop door alle questions binnen die questionnaire
                 foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
@@ -305,5 +306,35 @@ namespace PetjeOp
                 return exams;
             
         }
+
+        public List<Subject> GetSubjects()
+        {
+            List<Subject> subjects = new List<Subject>();
+
+            foreach (tblSubject tblSubject in db.tblSubjects)
+            {
+                Subject subject = new Subject(tblSubject.id, tblSubject.name);
+
+                subjects.Add(subject);
+            }
+
+            return subjects;
+        }
+
+        public Subject GetSubjectByID(int id)
+        {
+            Subject found = new Subject(0,"");
+
+            foreach (tblSubject tblSubject in db.tblSubjects)
+            {
+                if (tblSubject.id == id)
+                {
+                    found = new Subject(tblSubject.id, tblSubject.name);
+                }
+            }
+
+            return found;
+        }
+
     }
 }
