@@ -33,27 +33,27 @@ namespace PetjeOp
     partial void InserttblTeacher(tblTeacher instance);
     partial void UpdatetblTeacher(tblTeacher instance);
     partial void DeletetblTeacher(tblTeacher instance);
-    partial void InserttblAnswer(tblAnswer instance);
-    partial void UpdatetblAnswer(tblAnswer instance);
-    partial void DeletetblAnswer(tblAnswer instance);
     partial void InserttblClass(tblClass instance);
     partial void UpdatetblClass(tblClass instance);
     partial void DeletetblClass(tblClass instance);
-    partial void InserttblExam(tblExam instance);
-    partial void UpdatetblExam(tblExam instance);
-    partial void DeletetblExam(tblExam instance);
     partial void InserttblLecture(tblLecture instance);
     partial void UpdatetblLecture(tblLecture instance);
     partial void DeletetblLecture(tblLecture instance);
-    partial void InserttblQuestionnaire(tblQuestionnaire instance);
-    partial void UpdatetblQuestionnaire(tblQuestionnaire instance);
-    partial void DeletetblQuestionnaire(tblQuestionnaire instance);
     partial void InserttblStudent(tblStudent instance);
     partial void UpdatetblStudent(tblStudent instance);
     partial void DeletetblStudent(tblStudent instance);
     partial void InserttblSubject(tblSubject instance);
     partial void UpdatetblSubject(tblSubject instance);
     partial void DeletetblSubject(tblSubject instance);
+    partial void InserttblExam(tblExam instance);
+    partial void UpdatetblExam(tblExam instance);
+    partial void DeletetblExam(tblExam instance);
+    partial void InserttblQuestionnaire(tblQuestionnaire instance);
+    partial void UpdatetblQuestionnaire(tblQuestionnaire instance);
+    partial void DeletetblQuestionnaire(tblQuestionnaire instance);
+    partial void InserttblAnswer(tblAnswer instance);
+    partial void UpdatetblAnswer(tblAnswer instance);
+    partial void DeletetblAnswer(tblAnswer instance);
     partial void InserttblQuestion(tblQuestion instance);
     partial void UpdatetblQuestion(tblQuestion instance);
     partial void DeletetblQuestion(tblQuestion instance);
@@ -97,14 +97,6 @@ namespace PetjeOp
 			}
 		}
 		
-		public System.Data.Linq.Table<tblAnswer> tblAnswers
-		{
-			get
-			{
-				return this.GetTable<tblAnswer>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblAnsweroption> tblAnsweroptions
 		{
 			get
@@ -121,27 +113,11 @@ namespace PetjeOp
 			}
 		}
 		
-		public System.Data.Linq.Table<tblExam> tblExams
-		{
-			get
-			{
-				return this.GetTable<tblExam>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblLecture> tblLectures
 		{
 			get
 			{
 				return this.GetTable<tblLecture>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblQuestionnaire> tblQuestionnaires
-		{
-			get
-			{
-				return this.GetTable<tblQuestionnaire>();
 			}
 		}
 		
@@ -169,6 +145,30 @@ namespace PetjeOp
 			}
 		}
 		
+		public System.Data.Linq.Table<tblExam> tblExams
+		{
+			get
+			{
+				return this.GetTable<tblExam>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblQuestionnaire> tblQuestionnaires
+		{
+			get
+			{
+				return this.GetTable<tblQuestionnaire>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblAnswer> tblAnswers
+		{
+			get
+			{
+				return this.GetTable<tblAnswer>();
+			}
+		}
+		
 		public System.Data.Linq.Table<tblQuestion> tblQuestions
 		{
 			get
@@ -192,7 +192,7 @@ namespace PetjeOp
 		
 		private EntitySet<tblLecture> _lectures;
 		
-		private EntitySet<tblQuestionnaire> _questionnaires;
+		private EntitySet<tblQuestionnaire> _tblQuestionnaires;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -209,7 +209,7 @@ namespace PetjeOp
 		public tblTeacher()
 		{
 			this._lectures = new EntitySet<tblLecture>(new Action<tblLecture>(this.attach_lectures), new Action<tblLecture>(this.detach_lectures));
-			this._questionnaires = new EntitySet<tblQuestionnaire>(new Action<tblQuestionnaire>(this.attach_questionnaires), new Action<tblQuestionnaire>(this.detach_questionnaires));
+			this._tblQuestionnaires = new EntitySet<tblQuestionnaire>(new Action<tblQuestionnaire>(this.attach_tblQuestionnaires), new Action<tblQuestionnaire>(this.detach_tblQuestionnaires));
 			OnCreated();
 		}
 		
@@ -286,16 +286,16 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_tblQuestionnaire", Storage="_questionnaires", ThisKey="nr", OtherKey="author")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_questionnaire", Storage="_tblQuestionnaires", ThisKey="nr", OtherKey="author")]
 		public EntitySet<tblQuestionnaire> tblQuestionnaires
 		{
 			get
 			{
-				return this._questionnaires;
+				return this._tblQuestionnaires;
 			}
 			set
 			{
-				this._questionnaires.Assign(value);
+				this._tblQuestionnaires.Assign(value);
 			}
 		}
 		
@@ -331,130 +331,16 @@ namespace PetjeOp
 			entity.tblTeacher = null;
 		}
 		
-		private void attach_questionnaires(tblQuestionnaire entity)
+		private void attach_tblQuestionnaires(tblQuestionnaire entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblTeacher = this;
 		}
 		
-		private void detach_questionnaires(tblQuestionnaire entity)
+		private void detach_tblQuestionnaires(tblQuestionnaire entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblTeacher = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.answer")]
-	public partial class tblAnswer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _description;
-		
-		private EntitySet<tblQuestion> _tblQuestions;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    #endregion
-		
-		public tblAnswer()
-		{
-			this._tblQuestions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_tblQuestions), new Action<tblQuestion>(this.detach_tblQuestions));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this.OndescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._description = value;
-					this.SendPropertyChanged("description");
-					this.OndescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_question", Storage="_tblQuestions", ThisKey="id", OtherKey="correctanswer")]
-		public EntitySet<tblQuestion> tblQuestions
-		{
-			get
-			{
-				return this._tblQuestions;
-			}
-			set
-			{
-				this._tblQuestions.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblQuestions(tblQuestion entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblAnswer = this;
-		}
-		
-		private void detach_tblQuestions(tblQuestion entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblAnswer = null;
 		}
 	}
 	
@@ -621,198 +507,6 @@ namespace PetjeOp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.exam")]
-	public partial class tblExam : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private int _questionnaire;
-		
-		private int _lecture;
-		
-		private EntityRef<tblLecture> _lecture1;
-		
-		private EntityRef<tblQuestionnaire> _questionnaire1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnquestionnaireChanging(int value);
-    partial void OnquestionnaireChanged();
-    partial void OnlectureChanging(int value);
-    partial void OnlectureChanged();
-    #endregion
-		
-		public tblExam()
-		{
-			this._lecture1 = default(EntityRef<tblLecture>);
-			this._questionnaire1 = default(EntityRef<tblQuestionnaire>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_questionnaire", DbType="Int NOT NULL")]
-		public int questionnaire
-		{
-			get
-			{
-				return this._questionnaire;
-			}
-			set
-			{
-				if ((this._questionnaire != value))
-				{
-					if (this._questionnaire1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnquestionnaireChanging(value);
-					this.SendPropertyChanging();
-					this._questionnaire = value;
-					this.SendPropertyChanged("questionnaire");
-					this.OnquestionnaireChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lecture", DbType="Int NOT NULL")]
-		public int lecture
-		{
-			get
-			{
-				return this._lecture;
-			}
-			set
-			{
-				if ((this._lecture != value))
-				{
-					if (this._lecture1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnlectureChanging(value);
-					this.SendPropertyChanging();
-					this._lecture = value;
-					this.SendPropertyChanged("lecture");
-					this.OnlectureChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_tblExam", Storage="_lecture1", ThisKey="lecture", OtherKey="id", IsForeignKey=true)]
-		public tblLecture tblLecture
-		{
-			get
-			{
-				return this._lecture1.Entity;
-			}
-			set
-			{
-				tblLecture previousValue = this._lecture1.Entity;
-				if (((previousValue != value) 
-							|| (this._lecture1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._lecture1.Entity = null;
-						previousValue.tblExams.Remove(this);
-					}
-					this._lecture1.Entity = value;
-					if ((value != null))
-					{
-						value.tblExams.Add(this);
-						this._lecture = value.id;
-					}
-					else
-					{
-						this._lecture = default(int);
-					}
-					this.SendPropertyChanged("tblLecture");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblExam", Storage="_questionnaire1", ThisKey="questionnaire", OtherKey="id", IsForeignKey=true)]
-		public tblQuestionnaire tblQuestionnaire
-		{
-			get
-			{
-				return this._questionnaire1.Entity;
-			}
-			set
-			{
-				tblQuestionnaire previousValue = this._questionnaire1.Entity;
-				if (((previousValue != value) 
-							|| (this._questionnaire1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._questionnaire1.Entity = null;
-						previousValue.tblExams.Remove(this);
-					}
-					this._questionnaire1.Entity = value;
-					if ((value != null))
-					{
-						value.tblExams.Add(this);
-						this._questionnaire = value.id;
-					}
-					else
-					{
-						this._questionnaire = default(int);
-					}
-					this.SendPropertyChanged("tblQuestionnaire");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lecture")]
 	public partial class tblLecture : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -827,7 +521,7 @@ namespace PetjeOp
 		
 		private int _subject;
 		
-		private EntitySet<tblExam> _exams;
+		private EntitySet<tblExam> _tblExams;
 		
 		private EntityRef<tblClass> _class1;
 		
@@ -851,7 +545,7 @@ namespace PetjeOp
 		
 		public tblLecture()
 		{
-			this._exams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_exams), new Action<tblExam>(this.detach_exams));
+			this._tblExams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_tblExams), new Action<tblExam>(this.detach_tblExams));
 			this._class1 = default(EntityRef<tblClass>);
 			this._teacher1 = default(EntityRef<tblTeacher>);
 			this._subject1 = default(EntityRef<tblSubject>);
@@ -950,16 +644,16 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_tblExam", Storage="_exams", ThisKey="id", OtherKey="lecture")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_exam", Storage="_tblExams", ThisKey="id", OtherKey="lecture")]
 		public EntitySet<tblExam> tblExams
 		{
 			get
 			{
-				return this._exams;
+				return this._tblExams;
 			}
 			set
 			{
-				this._exams.Assign(value);
+				this._tblExams.Assign(value);
 			}
 		}
 		
@@ -1085,223 +779,16 @@ namespace PetjeOp
 			}
 		}
 		
-		private void attach_exams(tblExam entity)
+		private void attach_tblExams(tblExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblLecture = this;
 		}
 		
-		private void detach_exams(tblExam entity)
+		private void detach_tblExams(tblExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblLecture = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.questionnaire")]
-	public partial class tblQuestionnaire : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _author;
-		
-		private string _description;
-		
-		private EntitySet<tblExam> _exams;
-		
-		private EntitySet<tblQuestion> _tblQuestions;
-		
-		private EntityRef<tblTeacher> _teacher;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnauthorChanging(string value);
-    partial void OnauthorChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    #endregion
-		
-		public tblQuestionnaire()
-		{
-			this._exams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_exams), new Action<tblExam>(this.detach_exams));
-			this._tblQuestions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_tblQuestions), new Action<tblQuestion>(this.detach_tblQuestions));
-			this._teacher = default(EntityRef<tblTeacher>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_author", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string author
-		{
-			get
-			{
-				return this._author;
-			}
-			set
-			{
-				if ((this._author != value))
-				{
-					if (this._teacher.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnauthorChanging(value);
-					this.SendPropertyChanging();
-					this._author = value;
-					this.SendPropertyChanged("author");
-					this.OnauthorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this.OndescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._description = value;
-					this.SendPropertyChanged("description");
-					this.OndescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblExam", Storage="_exams", ThisKey="id", OtherKey="questionnaire")]
-		public EntitySet<tblExam> tblExams
-		{
-			get
-			{
-				return this._exams;
-			}
-			set
-			{
-				this._exams.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_question", Storage="_tblQuestions", ThisKey="id", OtherKey="questionnaire")]
-		public EntitySet<tblQuestion> tblQuestions
-		{
-			get
-			{
-				return this._tblQuestions;
-			}
-			set
-			{
-				this._tblQuestions.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_tblQuestionnaire", Storage="_teacher", ThisKey="author", OtherKey="nr", IsForeignKey=true)]
-		public tblTeacher tblTeacher
-		{
-			get
-			{
-				return this._teacher.Entity;
-			}
-			set
-			{
-				tblTeacher previousValue = this._teacher.Entity;
-				if (((previousValue != value) 
-							|| (this._teacher.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._teacher.Entity = null;
-						previousValue.tblQuestionnaires.Remove(this);
-					}
-					this._teacher.Entity = value;
-					if ((value != null))
-					{
-						value.tblQuestionnaires.Add(this);
-						this._author = value.nr;
-					}
-					else
-					{
-						this._author = default(string);
-					}
-					this.SendPropertyChanged("tblTeacher");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_exams(tblExam entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblQuestionnaire = this;
-		}
-		
-		private void detach_exams(tblExam entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblQuestionnaire = null;
-		}
-		
-		private void attach_tblQuestions(tblQuestion entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblQuestionnaire = this;
-		}
-		
-		private void detach_tblQuestions(tblQuestion entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblQuestionnaire = null;
 		}
 	}
 	
@@ -1573,6 +1060,8 @@ namespace PetjeOp
 		
 		private EntitySet<tblLecture> _lectures;
 		
+		private EntitySet<tblQuestionnaire> _tblQuestionnaires;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1586,6 +1075,7 @@ namespace PetjeOp
 		public tblSubject()
 		{
 			this._lectures = new EntitySet<tblLecture>(new Action<tblLecture>(this.attach_lectures), new Action<tblLecture>(this.detach_lectures));
+			this._tblQuestionnaires = new EntitySet<tblQuestionnaire>(new Action<tblQuestionnaire>(this.attach_tblQuestionnaires), new Action<tblQuestionnaire>(this.detach_tblQuestionnaires));
 			OnCreated();
 		}
 		
@@ -1642,6 +1132,19 @@ namespace PetjeOp
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubject_questionnaire", Storage="_tblQuestionnaires", ThisKey="id", OtherKey="subject")]
+		public EntitySet<tblQuestionnaire> tblQuestionnaires
+		{
+			get
+			{
+				return this._tblQuestionnaires;
+			}
+			set
+			{
+				this._tblQuestionnaires.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1673,6 +1176,596 @@ namespace PetjeOp
 			this.SendPropertyChanging();
 			entity.tblSubject = null;
 		}
+		
+		private void attach_tblQuestionnaires(tblQuestionnaire entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblSubject = this;
+		}
+		
+		private void detach_tblQuestionnaires(tblQuestionnaire entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblSubject = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.exam")]
+	public partial class tblExam : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _questionnaire;
+		
+		private int _lecture;
+		
+		private EntityRef<tblLecture> _tblLecture;
+		
+		private EntityRef<tblQuestionnaire> _tblQuestionnaire;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnquestionnaireChanging(int value);
+    partial void OnquestionnaireChanged();
+    partial void OnlectureChanging(int value);
+    partial void OnlectureChanged();
+    #endregion
+		
+		public tblExam()
+		{
+			this._tblLecture = default(EntityRef<tblLecture>);
+			this._tblQuestionnaire = default(EntityRef<tblQuestionnaire>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_questionnaire", DbType="Int NOT NULL")]
+		public int questionnaire
+		{
+			get
+			{
+				return this._questionnaire;
+			}
+			set
+			{
+				if ((this._questionnaire != value))
+				{
+					if (this._tblQuestionnaire.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnquestionnaireChanging(value);
+					this.SendPropertyChanging();
+					this._questionnaire = value;
+					this.SendPropertyChanged("questionnaire");
+					this.OnquestionnaireChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lecture", DbType="Int NOT NULL")]
+		public int lecture
+		{
+			get
+			{
+				return this._lecture;
+			}
+			set
+			{
+				if ((this._lecture != value))
+				{
+					if (this._tblLecture.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnlectureChanging(value);
+					this.SendPropertyChanging();
+					this._lecture = value;
+					this.SendPropertyChanged("lecture");
+					this.OnlectureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_exam", Storage="_tblLecture", ThisKey="lecture", OtherKey="id", IsForeignKey=true)]
+		public tblLecture tblLecture
+		{
+			get
+			{
+				return this._tblLecture.Entity;
+			}
+			set
+			{
+				tblLecture previousValue = this._tblLecture.Entity;
+				if (((previousValue != value) 
+							|| (this._tblLecture.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblLecture.Entity = null;
+						previousValue.tblExams.Remove(this);
+					}
+					this._tblLecture.Entity = value;
+					if ((value != null))
+					{
+						value.tblExams.Add(this);
+						this._lecture = value.id;
+					}
+					else
+					{
+						this._lecture = default(int);
+					}
+					this.SendPropertyChanged("tblLecture");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="questionnaire_tblExam", Storage="_tblQuestionnaire", ThisKey="questionnaire", OtherKey="id", IsForeignKey=true)]
+		public tblQuestionnaire tblQuestionnaire
+		{
+			get
+			{
+				return this._tblQuestionnaire.Entity;
+			}
+			set
+			{
+				tblQuestionnaire previousValue = this._tblQuestionnaire.Entity;
+				if (((previousValue != value) 
+							|| (this._tblQuestionnaire.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblQuestionnaire.Entity = null;
+						previousValue.tblExams.Remove(this);
+					}
+					this._tblQuestionnaire.Entity = value;
+					if ((value != null))
+					{
+						value.tblExams.Add(this);
+						this._questionnaire = value.id;
+					}
+					else
+					{
+						this._questionnaire = default(int);
+					}
+					this.SendPropertyChanged("tblQuestionnaire");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.questionnaire")]
+	public partial class tblQuestionnaire : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _author;
+		
+		private string _description;
+		
+		private int _subject;
+		
+		private EntitySet<tblExam> _tblExams;
+		
+		private EntitySet<tblQuestion> _tblQuestions;
+		
+		private EntityRef<tblTeacher> _tblTeacher;
+		
+		private EntityRef<tblSubject> _tblSubject;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnauthorChanging(string value);
+    partial void OnauthorChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void OnsubjectChanging(int value);
+    partial void OnsubjectChanged();
+    #endregion
+		
+		public tblQuestionnaire()
+		{
+			this._tblExams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_tblExams), new Action<tblExam>(this.detach_tblExams));
+			this._tblQuestions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_tblQuestions), new Action<tblQuestion>(this.detach_tblQuestions));
+			this._tblTeacher = default(EntityRef<tblTeacher>);
+			this._tblSubject = default(EntityRef<tblSubject>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_author", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string author
+		{
+			get
+			{
+				return this._author;
+			}
+			set
+			{
+				if ((this._author != value))
+				{
+					if (this._tblTeacher.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnauthorChanging(value);
+					this.SendPropertyChanging();
+					this._author = value;
+					this.SendPropertyChanged("author");
+					this.OnauthorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_subject", DbType="Int NOT NULL")]
+		public int subject
+		{
+			get
+			{
+				return this._subject;
+			}
+			set
+			{
+				if ((this._subject != value))
+				{
+					if (this._tblSubject.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnsubjectChanging(value);
+					this.SendPropertyChanging();
+					this._subject = value;
+					this.SendPropertyChanged("subject");
+					this.OnsubjectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="questionnaire_tblExam", Storage="_tblExams", ThisKey="id", OtherKey="questionnaire")]
+		public EntitySet<tblExam> tblExams
+		{
+			get
+			{
+				return this._tblExams;
+			}
+			set
+			{
+				this._tblExams.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_question", Storage="_tblQuestions", ThisKey="id", OtherKey="questionnaire")]
+		public EntitySet<tblQuestion> tblQuestions
+		{
+			get
+			{
+				return this._tblQuestions;
+			}
+			set
+			{
+				this._tblQuestions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_questionnaire", Storage="_tblTeacher", ThisKey="author", OtherKey="nr", IsForeignKey=true)]
+		public tblTeacher tblTeacher
+		{
+			get
+			{
+				return this._tblTeacher.Entity;
+			}
+			set
+			{
+				tblTeacher previousValue = this._tblTeacher.Entity;
+				if (((previousValue != value) 
+							|| (this._tblTeacher.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblTeacher.Entity = null;
+						previousValue.tblQuestionnaires.Remove(this);
+					}
+					this._tblTeacher.Entity = value;
+					if ((value != null))
+					{
+						value.tblQuestionnaires.Add(this);
+						this._author = value.nr;
+					}
+					else
+					{
+						this._author = default(string);
+					}
+					this.SendPropertyChanged("tblTeacher");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubject_questionnaire", Storage="_tblSubject", ThisKey="subject", OtherKey="id", IsForeignKey=true)]
+		public tblSubject tblSubject
+		{
+			get
+			{
+				return this._tblSubject.Entity;
+			}
+			set
+			{
+				tblSubject previousValue = this._tblSubject.Entity;
+				if (((previousValue != value) 
+							|| (this._tblSubject.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblSubject.Entity = null;
+						previousValue.tblQuestionnaires.Remove(this);
+					}
+					this._tblSubject.Entity = value;
+					if ((value != null))
+					{
+						value.tblQuestionnaires.Add(this);
+						this._subject = value.id;
+					}
+					else
+					{
+						this._subject = default(int);
+					}
+					this.SendPropertyChanged("tblSubject");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblExams(tblExam entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblQuestionnaire = this;
+		}
+		
+		private void detach_tblExams(tblExam entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblQuestionnaire = null;
+		}
+		
+		private void attach_tblQuestions(tblQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblQuestionnaire = this;
+		}
+		
+		private void detach_tblQuestions(tblQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblQuestionnaire = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.answer")]
+	public partial class tblAnswer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _description;
+		
+		private EntitySet<tblQuestion> _tblQuestions;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    #endregion
+		
+		public tblAnswer()
+		{
+			this._tblQuestions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_tblQuestions), new Action<tblQuestion>(this.detach_tblQuestions));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_question", Storage="_tblQuestions", ThisKey="id", OtherKey="correctanswer")]
+		public EntitySet<tblQuestion> tblQuestions
+		{
+			get
+			{
+				return this._tblQuestions;
+			}
+			set
+			{
+				this._tblQuestions.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblQuestions(tblQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblAnswer = this;
+		}
+		
+		private void detach_tblQuestions(tblQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblAnswer = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.question")]
@@ -1690,6 +1783,8 @@ namespace PetjeOp
 		private int _questionnaire;
 		
 		private int _questionindex;
+		
+		private System.Nullable<long> _timerestriction;
 		
 		private EntityRef<tblAnswer> _tblAnswer;
 		
@@ -1709,6 +1804,8 @@ namespace PetjeOp
     partial void OnquestionnaireChanged();
     partial void OnquestionindexChanging(int value);
     partial void OnquestionindexChanged();
+    partial void OntimerestrictionChanging(System.Nullable<long> value);
+    partial void OntimerestrictionChanged();
     #endregion
 		
 		public tblQuestion()
@@ -1718,7 +1815,7 @@ namespace PetjeOp
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -1822,6 +1919,26 @@ namespace PetjeOp
 					this._questionindex = value;
 					this.SendPropertyChanged("questionindex");
 					this.OnquestionindexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_timerestriction", DbType="BigInt")]
+		public System.Nullable<long> timerestriction
+		{
+			get
+			{
+				return this._timerestriction;
+			}
+			set
+			{
+				if ((this._timerestriction != value))
+				{
+					this.OntimerestrictionChanging(value);
+					this.SendPropertyChanging();
+					this._timerestriction = value;
+					this.SendPropertyChanged("timerestriction");
+					this.OntimerestrictionChanged();
 				}
 			}
 		}
