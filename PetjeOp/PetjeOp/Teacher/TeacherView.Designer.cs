@@ -232,7 +232,6 @@
             this.btnDebugGetQuestionnaires.TabIndex = 1;
             this.btnDebugGetQuestionnaires.Text = "kevin\'s q debug";
             this.btnDebugGetQuestionnaires.UseVisualStyleBackColor = true;
-            this.btnDebugGetQuestionnaires.Click += new System.EventHandler(this.btnDebugGetQuestionnaires_Click);
             // 
             // pnlMenu
             // 

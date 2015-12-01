@@ -233,6 +233,16 @@ namespace PetjeOp.AddQuestionnaire
                 View.lblNoQuestionsInQuestionaire.Text = "";
                 View.btnSaveQuestionnaire.Enabled = true;
             }
+
+            if (View.cbSubjects.SelectedItem == null)
+            {
+                View.lblErrorSubject.Text = "Selecteer een vak!";
+                View.btnSaveQuestionnaire.Enabled = false;
+            } else
+            {
+                View.lblErrorSubject.Text = "";
+                View.btnSaveQuestionnaire.Enabled = true;
+            }
         }
 
         public void AddSubjects()
