@@ -258,13 +258,6 @@ namespace PetjeOp
         }
 
         public List<Questionnaire> GetAllQuestionnaires() {
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblAnsweroptions);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblAnswers);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblClasses);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblExams);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblLectures);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblQuestionnaires);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblQuestions);
 
             List<Questionnaire> questionnaires = new List<Questionnaire>();
 
