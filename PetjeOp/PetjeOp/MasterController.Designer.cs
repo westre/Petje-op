@@ -28,7 +28,7 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.mainPanel.BackColor = System.Drawing.SystemColors.Window;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -43,9 +43,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 548);
             this.Controls.Add(this.mainPanel);
-            this.MinimumSize = new System.Drawing.Size(690, 420);
+            this.MinimumSize = new System.Drawing.Size(685, 405);
             this.Name = "MasterController";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "WinQ";
+            this.Resize += new System.EventHandler(this.MasterController_Resize);
             this.ResumeLayout(false);
 
         }

@@ -9,7 +9,7 @@ namespace PetjeOp
         // Een lijst, die alle antwoord-opties bevat. Deze antwoord-opties
         // bevatten een "Description en een "RightAnswer" veld.
         // ******************************************************************** // 
-        public List<Answer> AnswerOptions { get; }
+        public List<Answer> AnswerOptions { get; set; }
 
         // MultipleChoiceQuestion Constructor
         public MultipleChoiceQuestion(String description) : base(description)
@@ -47,5 +47,12 @@ namespace PetjeOp
                 System.Console.WriteLine(Option.ID + ", " + Option.Description);
             }
         }
+        public override string ToString()
+        {
+            return Description;
+        }
+        
+
+        }
     }
-}
+    

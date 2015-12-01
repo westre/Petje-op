@@ -19,13 +19,6 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller = controller;
             InitializeComponent();
-
-            Controller = controller;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -33,18 +26,32 @@ namespace PetjeOp.AddQuestionnaire
             Controller.ShowQuestionDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tvQuestions_AfterSelect(object sender, TreeViewEventArgs e)
         {
             Controller.ControlEditDeleteButtons();
         }
 
-        private void AddQuestionnaireView_Load(object sender, EventArgs e) {
+        private void btnEditQuestion_Click(object sender, EventArgs e)
+        {
+            Controller.editQuestion();
+        }
 
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            Controller.DeleteQuestion();
+        }
+
+        private void tbQuestionnaireName_TextChanged(object sender, EventArgs e)
+        {
+            Controller.CheckButtons();
+        }
+
+        private void btnAddQuestionnaire_Click(object sender, EventArgs e) {
+            
+        }
+
+        private void btnSaveQuestionnaire_Click(object sender, EventArgs e) {
+            Controller.SaveQuestionnaire();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace PetjeOp
 {
     public class Questionnaire
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public List<Question> Questions { get; private set; }
 
@@ -37,6 +38,10 @@ namespace PetjeOp
             {
                 Console.WriteLine(q);
             }
+        }
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

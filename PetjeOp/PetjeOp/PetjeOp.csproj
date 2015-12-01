@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +80,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DebugDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugDialog.Designer.cs">
+      <DependentUpon>DebugDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exam.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
     <Compile Include="ExampleTwo\ExampleTwoView.cs">
@@ -97,7 +105,7 @@
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\LoginController.cs" />
-    <Compile Include="Login\LoginModel.cs" />
+    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\LoginModel.cs" />
     <Compile Include="Login\LoginView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +120,24 @@
     </Compile>
     <Compile Include="Media.cs" />
     <Compile Include="MultipleChoiceQuestion.cs" />
+    <Compile Include="Questionnaires\LoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Questionnaires\LoadingDialog.Designer.cs">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Questionnaires\QuestionnaireOverviewController.cs" />
+    <Compile Include="Questionnaires\QuestionnaireOverviewModel.cs" />
+    <Compile Include="Questionnaires\QuestionnaireOverviewView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Questionnaires\QuestionnaireOverviewView.Designer.cs">
+      <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Result.cs" />
+    <Compile Include="Teacher.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
@@ -140,6 +166,12 @@
     <Compile Include="Teacher\TeacherView.Designer.cs">
       <DependentUpon>TeacherView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewResults\ChooseExam\ChooseExamDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewResults\ChooseExam\ChooseExamDialog.Designer.cs">
+      <DependentUpon>ChooseExamDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewResults\ViewResultsController.cs" />
     <Compile Include="ViewResults\ViewResultsModel.cs" />
     <Compile Include="ViewResults\ViewResultsView.cs">
@@ -160,6 +192,21 @@
     <None Include="Database.dbml.layout">
       <DependentUpon>Database.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="DebugDialog.resx">
+      <DependentUpon>DebugDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Questionnaires\QuestionnaireOverviewView.resx">
+      <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewResults\ChooseExam\ChooseExamDialog.resx">
+      <DependentUpon>ChooseExamDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewResults\ViewResultsView.resx">
+      <DependentUpon>ViewResultsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExampleTwo\ExampleTwoView.resx">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,6 +258,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
+    <None Include="Resources\Menu_Background1.png" />
+    <None Include="Resources\Menu_Background.png" />
+    <None Include="Resources\Button_Background.png" />
+    <None Include="Resources\Button_Results_Icon.png" />
+    <None Include="Resources\Button_QuestionnaireOverview_Icon.png" />
+    <None Include="Resources\Button_Logout_Icon.png" />
+    <None Include="Resources\Button_Agenda_Icon.png" />
+    <None Include="Resources\WinQ_Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
