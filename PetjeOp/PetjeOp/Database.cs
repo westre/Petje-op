@@ -249,5 +249,21 @@ namespace PetjeOp
 
             return questionnaires;
         }
+
+        public List<Exam> GetExams()
+        {
+            List<Exam> exams = new List<Exam>();
+
+            foreach(tblExam tblExam in db.tblExams)
+            {
+                Exam exam = new Exam();
+                exam.Examnr = tblExam.id;
+
+                exams.Add(exam);
+                Console.WriteLine(exams);
+                }
+                return exams;
+            
+        }
     }
 }

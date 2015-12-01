@@ -44,10 +44,10 @@ namespace PetjeOp {
         public void ShowChart()
         {
             Question chosen = (Question)View.listQuestions.SelectedItem;
-            // View.label1.Text = chosen.ToString();
-            // View.chart1.Series.
-            Console.WriteLine("iets");
+            View.label1.Text = chosen.ToString();
+           
             View.series1.Points.Clear();
+            
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 500D);
             dataPoint1.AxisLabel = "ssss";
             View.series1.Points.Add(dataPoint1);
