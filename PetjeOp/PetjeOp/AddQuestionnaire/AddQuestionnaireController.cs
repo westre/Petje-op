@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire.AddQuestion;
+using PetjeOp.Questionnaires;
 
 namespace PetjeOp.AddQuestionnaire
 {
@@ -78,8 +79,8 @@ namespace PetjeOp.AddQuestionnaire
                 } 
             }
 
-            View.btnSaveQuestionnaire.Text = "Vragenlijst opgeslagen";
-            View.btnSaveQuestionnaire.Enabled = false;
+            QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
+            MasterController.SetController(qoc);
         }
 
         //Functie om 'Wijzig' en 'Verwijder' aan en uit te zetten wanneer er al dan niet een vraag is geselecteerd

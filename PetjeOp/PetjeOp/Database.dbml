@@ -101,6 +101,7 @@
       <Column Name="correctanswer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="questionnaire" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="questionindex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timerestriction" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Association Name="question_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="question" Type="tblAnsweroption" />
       <Association Name="question_tblResult" Member="tblResults" ThisKey="id" OtherKey="question" Type="tblResult" />
       <Association Name="tblAnswer_question" Member="tblAnswer" ThisKey="correctanswer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
