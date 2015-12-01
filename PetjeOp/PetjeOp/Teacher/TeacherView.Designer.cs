@@ -74,6 +74,7 @@
             // 
             this.pnlButton_Logout_Background.BackColor = System.Drawing.Color.Transparent;
             this.pnlButton_Logout_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
+            this.pnlButton_Logout_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Logout_Background.Controls.Add(this.lblTitle_Logout_Title);
             this.pnlButton_Logout_Background.Controls.Add(this.pbIcon_Logout_Icon);
             this.pnlButton_Logout_Background.Location = new System.Drawing.Point(2212, 23);
@@ -99,6 +100,7 @@
             // 
             this.pbIcon_Logout_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_Logout_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Logout_Icon;
+            this.pbIcon_Logout_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(60, 17);
             this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbIcon_Logout_Icon.Name = "pbIcon_Logout_Icon";
