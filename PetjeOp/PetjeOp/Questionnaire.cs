@@ -20,6 +20,12 @@ namespace PetjeOp
             Questions = new List<Question>();
         }
 
+        public Questionnaire(int id) {
+            ID = id;
+            Name = "undef";
+            Questions = new List<Question>();
+        }
+
         // Voeg een vraag aan de vragenlijst toe
         public void addQuestion(Question q)
         {
