@@ -54,7 +54,6 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller.setSubject();
             Controller.SaveQuestionnaire();
-
         }
 
         private void AddQuestionnaireView_Load(object sender, EventArgs e)

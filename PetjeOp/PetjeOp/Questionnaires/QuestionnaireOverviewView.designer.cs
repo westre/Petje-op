@@ -30,7 +30,7 @@
         {
             this.lblAddQuestionnaire = new System.Windows.Forms.Label();
             this.tvQuestionnaires = new System.Windows.Forms.TreeView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddQuestionnaire = new System.Windows.Forms.Button();
             this.lblSubject = new System.Windows.Forms.Label();
             this.cbSubjects = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -45,7 +45,6 @@
             this.lblAddQuestionnaire.Size = new System.Drawing.Size(301, 55);
             this.lblAddQuestionnaire.TabIndex = 1;
             this.lblAddQuestionnaire.Text = "Vragenlijsten";
-            this.lblAddQuestionnaire.Click += new System.EventHandler(this.lblAddQuestionnaire_Click);
             // 
             // tvQuestionnaires
             // 
@@ -53,18 +52,16 @@
             this.tvQuestionnaires.Name = "tvQuestionnaires";
             this.tvQuestionnaires.Size = new System.Drawing.Size(1123, 581);
             this.tvQuestionnaires.TabIndex = 2;
-            this.tvQuestionnaires.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvQuestionnaires_AfterSelect);
-            this.tvQuestionnaires.VisibleChanged += new System.EventHandler(this.tvQuestionnaires_VisibleChanged);
             // 
-            // button1
+            // btnAddQuestionnaire
             // 
-            this.button1.Location = new System.Drawing.Point(12, 780);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(291, 76);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "+ Vragenlijst Toevoegen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAddQuestionnaire.Location = new System.Drawing.Point(12, 780);
+            this.btnAddQuestionnaire.Name = "btnAddQuestionnaire";
+            this.btnAddQuestionnaire.Size = new System.Drawing.Size(291, 76);
+            this.btnAddQuestionnaire.TabIndex = 3;
+            this.btnAddQuestionnaire.Text = "+ Vragenlijst Toevoegen";
+            this.btnAddQuestionnaire.UseVisualStyleBackColor = true;
+            this.btnAddQuestionnaire.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblSubject
             // 
@@ -92,7 +89,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cbSubjects);
             this.Controls.Add(this.lblSubject);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddQuestionnaire);
             this.Controls.Add(this.tvQuestionnaires);
             this.Controls.Add(this.lblAddQuestionnaire);
             this.Name = "QuestionnaireOverviewView";
@@ -107,7 +104,7 @@
 
         private System.Windows.Forms.Label lblAddQuestionnaire;
         public System.Windows.Forms.TreeView tvQuestionnaires;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddQuestionnaire;
         private System.Windows.Forms.Label lblSubject;
         public System.Windows.Forms.ComboBox cbSubjects;
     }

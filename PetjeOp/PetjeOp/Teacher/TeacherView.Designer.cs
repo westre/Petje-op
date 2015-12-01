@@ -224,16 +224,6 @@
             this.lblTitle_QuestionnaireOverview_Title.TabIndex = 12;
             this.lblTitle_QuestionnaireOverview_Title.Text = "Vragenlijsten";
             // 
-            // btnDebugGetQuestionnaires
-            // 
-            this.btnDebugGetQuestionnaires.Location = new System.Drawing.Point(580, 29);
-            this.btnDebugGetQuestionnaires.Name = "btnDebugGetQuestionnaires";
-            this.btnDebugGetQuestionnaires.Size = new System.Drawing.Size(102, 27);
-            this.btnDebugGetQuestionnaires.TabIndex = 1;
-            this.btnDebugGetQuestionnaires.Text = "kevin\'s q debug";
-            this.btnDebugGetQuestionnaires.UseVisualStyleBackColor = true;
-            this.btnDebugGetQuestionnaires.Click += new System.EventHandler(this.btnDebugGetQuestionnaires_Click);
-            // 
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.SystemColors.Menu;
