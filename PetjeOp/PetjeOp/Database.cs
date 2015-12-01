@@ -258,14 +258,6 @@ namespace PetjeOp
         }
 
         public List<Questionnaire> GetAllQuestionnaires() {
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblAnsweroptions);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblAnswers);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblClasses);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblExams);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblLectures);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblQuestionnaires);
-            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblQuestions);
-
             List<Questionnaire> questionnaires = new List<Questionnaire>();
 
             // Loop door alle questionnaires
@@ -273,8 +265,6 @@ namespace PetjeOp
                 Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
                 questionnaire.ID = tblQuestionnaire.id;
                 questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);
-
-                Console.WriteLine("Questionnaire: " + questionnaire.Name + ", LINQDB count: " + tblQuestionnaire.tblQuestions.Count + ", subjectId : " + questionnaire.Subject.Id);
                 
                 // Loop door alle questions binnen die questionnaire
                 foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
@@ -286,20 +276,13 @@ namespace PetjeOp
 
                     question.CorrectAnswer = correctAnswer;
                     question.ID = tblQuestion.id;
-                    question.QuestionIndex = tblQuestion.questionindex;
-
-                    // Haal alle answeroptions op die bij deze vraag horen
-                    List<tblAnsweroption> tblAnswerOption = (from answer in db.tblAnsweroptions
-                                               where answer.question == question.ID
-                                               select answer).ToList();
+                    question.QuestionIndex = tblQuestion.questionindex;                    
 
                     List<Answer> answerOptions = new List<Answer>();
 
-                    foreach(tblAnsweroption answerOption in tblAnswerOption) {
+                    foreach(tblAnsweroption answerOption in tblQuestion.tblAnsweroptions) {
                         // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                        tblAnswer tblAnswer = (from foundAnswer in db.tblAnswers
-                                               where foundAnswer.id == answerOption.answer
-                                               select foundAnswer).FirstOrDefault();
+                        tblAnswer tblAnswer = answerOption.tblAnswer;
 
                         Answer answer = new Answer(tblAnswer.description);
                         answer.ID = tblAnswer.id;
