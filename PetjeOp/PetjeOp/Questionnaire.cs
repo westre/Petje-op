@@ -10,7 +10,7 @@ namespace PetjeOp
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<Question> Questions { get; private set; }
+        public List<Question> Questions { get; set; }
         public Subject Subject { get; set; }
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
@@ -42,7 +42,7 @@ namespace PetjeOp
         }
         public override string ToString()
         {
-            return Name;
+            return Convert.ToString(ID);
         }
     }
 }

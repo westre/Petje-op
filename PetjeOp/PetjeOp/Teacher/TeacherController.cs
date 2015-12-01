@@ -22,6 +22,7 @@ namespace PetjeOp
             View = new TeacherView(this);
             x = null;
         }
+      
 
         public override UserControl GetView()
         {
@@ -46,7 +47,13 @@ namespace PetjeOp
             MasterController.SetController(vrc);
             vrc.ex = x;
 
-            vrc.ShowResults();
+
+            foreach(Question question in vrc.ex.questionnaire.Questions)
+            {
+                Console.WriteLine("question gevonden: " + question.Description);
+            }
+
+            vrc.ShowResults(vrc.ex);
         }
 
         public void GoToQuestionnaireOverview()
@@ -62,5 +69,6 @@ namespace PetjeOp
 
 
         }
+        
     }
 }

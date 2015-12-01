@@ -255,20 +255,119 @@ namespace PetjeOp
             return questionnaires;
         }
 
+        public List<Exam> GetExam()
+        {
+            List<Exam> exams = new List<Exam>();
+
+            foreach (tblExam tblExam in db.tblExams)
+            {
+                Questionnaire questionnaire = FindQuestionnaireByID(tblExam.questionnaire);
+
+                Exam exam = new Exam(tblExam.id, questionnaire);
+
+                exams.Add(exam);
+                
+
+            }
+
+            return exams;
+
+        }
+
+        public Questionnaire FindQuestionnaireByID(int id)
+        {
+            tblQuestionnaire tblQuestionnaire = (from questionnaire1 in db.tblQuestionnaires
+                                                 where questionnaire1.id == id
+                                                 select questionnaire1).FirstOrDefault();
+
+            Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
+            questionnaire.ID = tblQuestionnaire.id;
+            questionnaire.Questions = FindQuestionsByQuestionnaireID(questionnaire.ID);
+
+            return questionnaire;
+        }
+
+        public List<Question> FindQuestionsByQuestionnaireID(int id)
+        {
+            List<tblQuestion> tblQuestion = (from questions in db.tblQuestions
+                                             where questions.questionnaire == id
+                                             select questions).ToList();
+
+            List<Question> listQuestions = new List<Question>();
+            foreach(tblQuestion question in tblQuestion)
+            {
+                Question newQuestion = new MultipleChoiceQuestion(question.description);
+                newQuestion.ID = question.id;
+
+                listQuestions.Add(newQuestion);
+            }
+
+            return listQuestions;
+        }
+
         public List<Answer> GetAnswers()
         {
             List<Answer> answers = new List<Answer>();
 
-            foreach (tblAnswer tblAnswer in db.tblAnswer)
+            foreach (tblAnswer tblAnswer in db.tblAnswers)
             {
                 Answer answer = new Answer(tblAnswer.description);
 
-
                 answers.Add(answer);
-                Console.WriteLine(answers);
             }
+
             return answers;
+        }
+
+        public List<Question> GetQuestions()
+        {
+            List<Question> questions = new List<Question>();
+           
+                foreach (tblQuestion tblQuestion in db.tblQuestions)
+                {
+                    Question question = new MultipleChoiceQuestion(tblQuestion.description);
+
+                    questions.Add(question);
+                }
+            
+            return questions;
 
         }
-    }
+
+        public List<Answer> FindAnswerByQuestionID(int id)
+        {
+            List<tblAnsweroption> tblAnsweroption = (from answeroption in db.tblAnsweroptions
+                                             where answeroption.question == id
+                                             select answeroption).ToList();
+
+            List<Answer> answeroptions = new List<Answer>();
+            foreach (tblAnsweroption answeroption in tblAnsweroption)
+            {
+                Answer newAnswerOption = new Answer(answeroption.answer);
+                newAnswerOption.ID = answeroption.answer;
+
+                answeroptions.Add(newAnswerOption);
+            }
+
+            return answeroptions;
+        }
+
+        public List<Result> FindResultByAnswerID(int questionid, int answerid, int examnr)
+        {
+            List<tblResult> tblResult = (from result in db.tblResults
+                                                     where (result.question == questionid && result.answer == answerid && result.exam == examnr)
+                                                     select result).ToList();
+
+            List<Result> results = new List<Result>();
+            foreach (tblResult result in tblResult)
+            {
+                Result newResult = new Result(result.exam, result.answer, result.question);
+                
+
+                results.Add(newResult);
+            }
+
+            return results;
+        }
+    }       
 }
