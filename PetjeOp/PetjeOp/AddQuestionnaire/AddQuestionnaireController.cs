@@ -49,7 +49,7 @@ namespace PetjeOp.AddQuestionnaire
         }
 
         public void SaveQuestionnaire() {
-            string questionnaireName = View.tbQuestionnaireName.Text;           
+            Model.Questionnaire.Name = View.tbQuestionnaireName.Text;           
 
             if(Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
