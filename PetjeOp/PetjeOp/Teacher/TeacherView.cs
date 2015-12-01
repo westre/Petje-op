@@ -29,9 +29,9 @@ namespace PetjeOp {
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-           Controller.ShowExamDialog();
-           
+
+            Controller.ShowExamDialog();
+
         }
 
         private void TeacherView_Load(object sender, EventArgs e) {
@@ -41,5 +41,9 @@ namespace PetjeOp {
         private void btnDebugGetQuestionnaires_Click(object sender, EventArgs e) {
             Controller.ShowDebugDialog();
         }
+     
+
+     
+        
     }
 }

@@ -36,6 +36,8 @@
             this.lblQuestionaireNameError = new System.Windows.Forms.Label();
             this.lblNoNodeSelectedError = new System.Windows.Forms.Label();
             this.lblNoQuestionsInQuestionaire = new System.Windows.Forms.Label();
+            this.lblSubject = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -45,13 +47,13 @@
             this.lblAddQuestionnaire.Location = new System.Drawing.Point(2, 8);
             this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2);
             this.lblAddQuestionnaire.Name = "lblAddQuestionnaire";
-            this.lblAddQuestionnaire.Size = new System.Drawing.Size(256, 29);
+            this.lblAddQuestionnaire.Size = new System.Drawing.Size(502, 55);
             this.lblAddQuestionnaire.TabIndex = 0;
             this.lblAddQuestionnaire.Text = "Vragenlijst Toevoegen";
             // 
             // btnAddQuestion
             // 
-            this.btnAddQuestion.Location = new System.Drawing.Point(21, 600);
+            this.btnAddQuestion.Location = new System.Drawing.Point(21, 644);
             this.btnAddQuestion.Name = "btnAddQuestion";
             this.btnAddQuestion.Size = new System.Drawing.Size(480, 50);
             this.btnAddQuestion.TabIndex = 11;
@@ -63,9 +65,9 @@
             // 
             this.lblQuestions.AutoSize = true;
             this.lblQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestions.Location = new System.Drawing.Point(16, 194);
+            this.lblQuestions.Location = new System.Drawing.Point(16, 238);
             this.lblQuestions.Name = "lblQuestions";
-            this.lblQuestions.Size = new System.Drawing.Size(47, 13);
+            this.lblQuestions.Size = new System.Drawing.Size(87, 25);
             this.lblQuestions.TabIndex = 9;
             this.lblQuestions.Text = "Vragen";
             // 
@@ -73,7 +75,7 @@
             // 
             this.tbQuestionnaireName.Location = new System.Drawing.Point(89, 109);
             this.tbQuestionnaireName.Name = "tbQuestionnaireName";
-            this.tbQuestionnaireName.Size = new System.Drawing.Size(391, 20);
+            this.tbQuestionnaireName.Size = new System.Drawing.Size(391, 31);
             this.tbQuestionnaireName.TabIndex = 8;
             this.tbQuestionnaireName.TextChanged += new System.EventHandler(this.tbQuestionnaireName_TextChanged);
             // 
@@ -82,14 +84,14 @@
             this.lblQuestionnaireName.AutoSize = true;
             this.lblQuestionnaireName.Location = new System.Drawing.Point(8, 109);
             this.lblQuestionnaireName.Name = "lblQuestionnaireName";
-            this.lblQuestionnaireName.Size = new System.Drawing.Size(38, 13);
+            this.lblQuestionnaireName.Size = new System.Drawing.Size(74, 25);
             this.lblQuestionnaireName.TabIndex = 7;
             this.lblQuestionnaireName.Text = "Naam:";
             // 
             // btnSaveQuestionnaire
             // 
             this.btnSaveQuestionnaire.Enabled = false;
-            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(21, 677);
+            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(21, 721);
             this.btnSaveQuestionnaire.Name = "btnSaveQuestionnaire";
             this.btnSaveQuestionnaire.Size = new System.Drawing.Size(267, 49);
             this.btnSaveQuestionnaire.TabIndex = 13;
@@ -100,7 +102,7 @@
             // tvQuestions
             // 
             this.tvQuestions.HideSelection = false;
-            this.tvQuestions.Location = new System.Drawing.Point(21, 233);
+            this.tvQuestions.Location = new System.Drawing.Point(21, 277);
             this.tvQuestions.Name = "tvQuestions";
             this.tvQuestions.Size = new System.Drawing.Size(907, 361);
             this.tvQuestions.TabIndex = 14;
@@ -109,7 +111,7 @@
             // btnEditQuestion
             // 
             this.btnEditQuestion.Enabled = false;
-            this.btnEditQuestion.Location = new System.Drawing.Point(945, 233);
+            this.btnEditQuestion.Location = new System.Drawing.Point(945, 277);
             this.btnEditQuestion.Name = "btnEditQuestion";
             this.btnEditQuestion.Size = new System.Drawing.Size(153, 49);
             this.btnEditQuestion.TabIndex = 15;
@@ -120,7 +122,7 @@
             // btnDeleteQuestion
             // 
             this.btnDeleteQuestion.Enabled = false;
-            this.btnDeleteQuestion.Location = new System.Drawing.Point(945, 303);
+            this.btnDeleteQuestion.Location = new System.Drawing.Point(945, 347);
             this.btnDeleteQuestion.Name = "btnDeleteQuestion";
             this.btnDeleteQuestion.Size = new System.Drawing.Size(153, 49);
             this.btnDeleteQuestion.TabIndex = 16;
@@ -134,31 +136,50 @@
             this.lblQuestionaireNameError.ForeColor = System.Drawing.Color.Red;
             this.lblQuestionaireNameError.Location = new System.Drawing.Point(486, 112);
             this.lblQuestionaireNameError.Name = "lblQuestionaireNameError";
-            this.lblQuestionaireNameError.Size = new System.Drawing.Size(0, 13);
+            this.lblQuestionaireNameError.Size = new System.Drawing.Size(0, 25);
             this.lblQuestionaireNameError.TabIndex = 17;
             // 
             // lblNoNodeSelectedError
             // 
             this.lblNoNodeSelectedError.AutoSize = true;
             this.lblNoNodeSelectedError.ForeColor = System.Drawing.Color.Red;
-            this.lblNoNodeSelectedError.Location = new System.Drawing.Point(852, 211);
+            this.lblNoNodeSelectedError.Location = new System.Drawing.Point(852, 255);
             this.lblNoNodeSelectedError.Name = "lblNoNodeSelectedError";
-            this.lblNoNodeSelectedError.Size = new System.Drawing.Size(0, 13);
+            this.lblNoNodeSelectedError.Size = new System.Drawing.Size(0, 25);
             this.lblNoNodeSelectedError.TabIndex = 18;
             // 
             // lblNoQuestionsInQuestionaire
             // 
             this.lblNoQuestionsInQuestionaire.AutoSize = true;
             this.lblNoQuestionsInQuestionaire.ForeColor = System.Drawing.Color.Red;
-            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(525, 613);
+            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(525, 657);
             this.lblNoQuestionsInQuestionaire.Name = "lblNoQuestionsInQuestionaire";
-            this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 13);
+            this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 25);
             this.lblNoQuestionsInQuestionaire.TabIndex = 19;
+            // 
+            // lblSubject
+            // 
+            this.lblSubject.AutoSize = true;
+            this.lblSubject.Location = new System.Drawing.Point(13, 183);
+            this.lblSubject.Name = "lblSubject";
+            this.lblSubject.Size = new System.Drawing.Size(55, 25);
+            this.lblSubject.TabIndex = 20;
+            this.lblSubject.Text = "Vak:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(89, 174);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(391, 33);
+            this.comboBox1.TabIndex = 21;
             // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.lblNoQuestionsInQuestionaire);
             this.Controls.Add(this.lblNoNodeSelectedError);
             this.Controls.Add(this.lblQuestionaireNameError);
@@ -193,5 +214,7 @@
         public System.Windows.Forms.Label lblNoNodeSelectedError;
         public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
         public System.Windows.Forms.Button btnAddQuestion;
+        private System.Windows.Forms.Label lblSubject;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

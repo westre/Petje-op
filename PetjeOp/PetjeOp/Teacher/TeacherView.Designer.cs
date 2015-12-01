@@ -29,20 +29,19 @@
             this.pbIcon_Logout_Icon = new System.Windows.Forms.PictureBox();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.pnlButton_Agenda_Background = new System.Windows.Forms.Panel();
-            this.lblTitle_Agenda_Title = new System.Windows.Forms.Label();
             this.pbIcon_Agenda_Icon = new System.Windows.Forms.PictureBox();
+            this.lblTitle_Agenda_Title = new System.Windows.Forms.Label();
             this.pnlButton_Result_Background = new System.Windows.Forms.Panel();
-            this.lblTitle_Results_Title = new System.Windows.Forms.Label();
             this.pbIcon_Results_Icon = new System.Windows.Forms.PictureBox();
+            this.lblTitle_Results_Title = new System.Windows.Forms.Label();
             this.pnlButton_QuestionnaireOverview_Background = new System.Windows.Forms.Panel();
-            this.lblTitle_QuestionnaireOverview_Title = new System.Windows.Forms.Label();
             this.pbIcon_QuestionnaireOverview_Icon = new System.Windows.Forms.PictureBox();
+            this.lblTitle_QuestionnaireOverview_Title = new System.Windows.Forms.Label();
             this.btnDebugGetQuestionnaires = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnResults = new System.Windows.Forms.Button();
             this.viewPanel = new System.Windows.Forms.Panel();
-            this.btnDebugGetQuestionnaires = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlButton_Logout_Background.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).BeginInit();
@@ -129,6 +128,17 @@
             this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Agenda_Background.TabIndex = 15;
             // 
+            // pbIcon_Agenda_Icon
+            // 
+            this.pbIcon_Agenda_Icon.BackColor = System.Drawing.Color.Transparent;
+            this.pbIcon_Agenda_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Agenda_Icon;
+            this.pbIcon_Agenda_Icon.Location = new System.Drawing.Point(38, 9);
+            this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(2);
+            this.pbIcon_Agenda_Icon.Name = "pbIcon_Agenda_Icon";
+            this.pbIcon_Agenda_Icon.Size = new System.Drawing.Size(25, 22);
+            this.pbIcon_Agenda_Icon.TabIndex = 5;
+            this.pbIcon_Agenda_Icon.TabStop = false;
+            // 
             // lblTitle_Agenda_Title
             // 
             this.lblTitle_Agenda_Title.AutoSize = true;
@@ -142,17 +152,6 @@
             this.lblTitle_Agenda_Title.TabIndex = 13;
             this.lblTitle_Agenda_Title.Text = "Agenda";
             // 
-            // pbIcon_Agenda_Icon
-            // 
-            this.pbIcon_Agenda_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_Agenda_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Agenda_Icon;
-            this.pbIcon_Agenda_Icon.Location = new System.Drawing.Point(38, 9);
-            this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(2);
-            this.pbIcon_Agenda_Icon.Name = "pbIcon_Agenda_Icon";
-            this.pbIcon_Agenda_Icon.Size = new System.Drawing.Size(25, 22);
-            this.pbIcon_Agenda_Icon.TabIndex = 5;
-            this.pbIcon_Agenda_Icon.TabStop = false;
-            // 
             // pnlButton_Result_Background
             // 
             this.pnlButton_Result_Background.BackColor = System.Drawing.Color.Transparent;
@@ -164,6 +163,17 @@
             this.pnlButton_Result_Background.Name = "pnlButton_Result_Background";
             this.pnlButton_Result_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Result_Background.TabIndex = 14;
+            // 
+            // pbIcon_Results_Icon
+            // 
+            this.pbIcon_Results_Icon.BackColor = System.Drawing.Color.Transparent;
+            this.pbIcon_Results_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Results_Icon;
+            this.pbIcon_Results_Icon.Location = new System.Drawing.Point(22, 10);
+            this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(2);
+            this.pbIcon_Results_Icon.Name = "pbIcon_Results_Icon";
+            this.pbIcon_Results_Icon.Size = new System.Drawing.Size(18, 20);
+            this.pbIcon_Results_Icon.TabIndex = 7;
+            this.pbIcon_Results_Icon.TabStop = false;
             // 
             // lblTitle_Results_Title
             // 
@@ -178,17 +188,6 @@
             this.lblTitle_Results_Title.TabIndex = 4;
             this.lblTitle_Results_Title.Text = "Resultaten";
             // 
-            // pbIcon_Results_Icon
-            // 
-            this.pbIcon_Results_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_Results_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Results_Icon;
-            this.pbIcon_Results_Icon.Location = new System.Drawing.Point(22, 10);
-            this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(2);
-            this.pbIcon_Results_Icon.Name = "pbIcon_Results_Icon";
-            this.pbIcon_Results_Icon.Size = new System.Drawing.Size(18, 20);
-            this.pbIcon_Results_Icon.TabIndex = 7;
-            this.pbIcon_Results_Icon.TabStop = false;
-            // 
             // pnlButton_QuestionnaireOverview_Background
             // 
             this.pnlButton_QuestionnaireOverview_Background.BackColor = System.Drawing.Color.Transparent;
@@ -200,6 +199,17 @@
             this.pnlButton_QuestionnaireOverview_Background.Name = "pnlButton_QuestionnaireOverview_Background";
             this.pnlButton_QuestionnaireOverview_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_QuestionnaireOverview_Background.TabIndex = 15;
+            // 
+            // pbIcon_QuestionnaireOverview_Icon
+            // 
+            this.pbIcon_QuestionnaireOverview_Icon.BackColor = System.Drawing.Color.Transparent;
+            this.pbIcon_QuestionnaireOverview_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_QuestionnaireOverview_Icon;
+            this.pbIcon_QuestionnaireOverview_Icon.Location = new System.Drawing.Point(17, 10);
+            this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(2);
+            this.pbIcon_QuestionnaireOverview_Icon.Name = "pbIcon_QuestionnaireOverview_Icon";
+            this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(21, 21);
+            this.pbIcon_QuestionnaireOverview_Icon.TabIndex = 6;
+            this.pbIcon_QuestionnaireOverview_Icon.TabStop = false;
             // 
             // lblTitle_QuestionnaireOverview_Title
             // 
@@ -214,21 +224,9 @@
             this.lblTitle_QuestionnaireOverview_Title.TabIndex = 12;
             this.lblTitle_QuestionnaireOverview_Title.Text = "Vragenlijsten";
             // 
-            // pbIcon_QuestionnaireOverview_Icon
-            // 
-            this.pbIcon_QuestionnaireOverview_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_QuestionnaireOverview_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_QuestionnaireOverview_Icon;
-            this.pbIcon_QuestionnaireOverview_Icon.Location = new System.Drawing.Point(17, 10);
-            this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(2);
-            this.pbIcon_QuestionnaireOverview_Icon.Name = "pbIcon_QuestionnaireOverview_Icon";
-            this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(21, 21);
-            this.pbIcon_QuestionnaireOverview_Icon.TabIndex = 6;
-            this.pbIcon_QuestionnaireOverview_Icon.TabStop = false;
-            // 
             // btnDebugGetQuestionnaires
             // 
             this.btnDebugGetQuestionnaires.Location = new System.Drawing.Point(580, 29);
-            this.btnDebugGetQuestionnaires.Margin = new System.Windows.Forms.Padding(2);
             this.btnDebugGetQuestionnaires.Name = "btnDebugGetQuestionnaires";
             this.btnDebugGetQuestionnaires.Size = new System.Drawing.Size(102, 27);
             this.btnDebugGetQuestionnaires.TabIndex = 1;
@@ -279,16 +277,6 @@
             this.viewPanel.Name = "viewPanel";
             this.viewPanel.Size = new System.Drawing.Size(1149, 514);
             this.viewPanel.TabIndex = 4;
-            // 
-            // btnDebugGetQuestionnaires
-            // 
-            this.btnDebugGetQuestionnaires.Location = new System.Drawing.Point(580, 29);
-            this.btnDebugGetQuestionnaires.Name = "btnDebugGetQuestionnaires";
-            this.btnDebugGetQuestionnaires.Size = new System.Drawing.Size(102, 27);
-            this.btnDebugGetQuestionnaires.TabIndex = 1;
-            this.btnDebugGetQuestionnaires.Text = "kevin\'s q debug";
-            this.btnDebugGetQuestionnaires.UseVisualStyleBackColor = true;
-            this.btnDebugGetQuestionnaires.Click += new System.EventHandler(this.btnDebugGetQuestionnaires_Click);
             // 
             // TeacherView
             // 

@@ -135,6 +135,7 @@
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
     </Compile>
     <Compile Include="Result.cs" />
+    <Compile Include="Subject.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Person.cs" />

@@ -176,6 +176,11 @@ namespace PetjeOp
             question.questionnaire = questionnaireId;
             question.questionindex = createdQuestion.QuestionIndex;
 
+            if (createdQuestion.TimeRestriction != TimeSpan.Zero)
+            {
+                question.timerestriction = createdQuestion.TimeRestriction.Ticks;
+            }
+
             db.tblQuestions.InsertOnSubmit(question);
             db.SubmitChanges();
 
@@ -248,6 +253,22 @@ namespace PetjeOp
             }
 
             return questionnaires;
+        }
+
+        public List<Exam> GetExams()
+        {
+            List<Exam> exams = new List<Exam>();
+
+            foreach(tblExam tblExam in db.tblExams)
+            {
+                Exam exam = new Exam();
+                exam.Examnr = tblExam.id;
+
+                exams.Add(exam);
+                Console.WriteLine(exams);
+                }
+                return exams;
+            
         }
     }
 }

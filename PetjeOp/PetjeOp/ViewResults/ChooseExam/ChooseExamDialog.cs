@@ -11,7 +11,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 {
     public partial class ChooseExamDialog : Form
     {
-
+        
         private TeacherController Controller;
         public ChooseExamDialog(TeacherController Controller)
         {
@@ -21,11 +21,14 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
+
+            
+        
             // DUMMY DATA //
             Questionnaire test = new Questionnaire("Databaseontwerp");
             Question q1 = new MultipleChoiceQuestion("Wat is 1+1?");
             test.addQuestion(q1);
-           // Result q1result = new Result();
+            Result q1result = new Result(1,35);
             List<Exam> exams = new List<Exam>();
             exams.Add(new Exam(1, test, DateTime.Now, DateTime.Now, "ICTSE1b"));
 
