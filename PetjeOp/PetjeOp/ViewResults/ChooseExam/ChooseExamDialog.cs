@@ -22,6 +22,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
 
+            Controller.MasterController.DB.GetAnswers();
             
         
             // DUMMY DATA //
@@ -77,5 +78,6 @@ namespace PetjeOp.ViewResults.ChooseExam
 
 
         }
+
     }
 }

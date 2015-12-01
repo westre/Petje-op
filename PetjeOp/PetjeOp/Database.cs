@@ -255,20 +255,20 @@ namespace PetjeOp
             return questionnaires;
         }
 
-        public List<Exam> GetExams()
+        public List<Answer> GetAnswers()
         {
-            List<Exam> exams = new List<Exam>();
+            List<Answer> answers = new List<Answer>();
 
-            foreach(tblExam tblExam in db.tblExams)
+            foreach (tblAnswer tblAnswer in db.tblAnswer)
             {
-                Exam exam = new Exam();
-                exam.Examnr = tblExam.id;
+                Answer answer = new Answer(tblAnswer.description);
 
-                exams.Add(exam);
-                Console.WriteLine(exams);
-                }
-                return exams;
-            
+
+                answers.Add(answer);
+                Console.WriteLine(answers);
+            }
+            return answers;
+
         }
     }
 }

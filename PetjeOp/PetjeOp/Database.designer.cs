@@ -121,7 +121,7 @@ namespace PetjeOp
 			}
 		}
 		
-		public System.Data.Linq.Table<tblExam> tblExams
+		public System.Data.Linq.Table<tblExam> tblAnswer
 		{
 			get
 			{
