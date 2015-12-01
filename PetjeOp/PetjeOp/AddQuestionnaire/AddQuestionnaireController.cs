@@ -55,7 +55,8 @@ namespace PetjeOp.AddQuestionnaire
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
                 Console.WriteLine("Nog geen DB");
             }
-            else {
+            else {                
+                MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
                 Console.WriteLine("het bestaat, dus updaten maar");
             }
 
