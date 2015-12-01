@@ -3,7 +3,7 @@
     partial class QuestionnaireOverviewView
     {
         /// <summary> 
-        /// Required designer variable. // CI pls fix :(
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
