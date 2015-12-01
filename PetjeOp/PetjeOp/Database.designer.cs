@@ -1691,6 +1691,8 @@ namespace PetjeOp
 		
 		private int _questionindex;
 		
+		private System.Nullable<long> _timerestriction;
+		
 		private EntityRef<tblAnswer> _tblAnswer;
 		
 		private EntityRef<tblQuestionnaire> _tblQuestionnaire;
@@ -1709,6 +1711,8 @@ namespace PetjeOp
     partial void OnquestionnaireChanged();
     partial void OnquestionindexChanging(int value);
     partial void OnquestionindexChanged();
+    partial void OntimerestrictionChanging(System.Nullable<long> value);
+    partial void OntimerestrictionChanged();
     #endregion
 		
 		public tblQuestion()
@@ -1822,6 +1826,26 @@ namespace PetjeOp
 					this._questionindex = value;
 					this.SendPropertyChanged("questionindex");
 					this.OnquestionindexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_timerestriction", DbType="BigInt")]
+		public System.Nullable<long> timerestriction
+		{
+			get
+			{
+				return this._timerestriction;
+			}
+			set
+			{
+				if ((this._timerestriction != value))
+				{
+					this.OntimerestrictionChanging(value);
+					this.SendPropertyChanging();
+					this._timerestriction = value;
+					this.SendPropertyChanged("timerestriction");
+					this.OntimerestrictionChanged();
 				}
 			}
 		}

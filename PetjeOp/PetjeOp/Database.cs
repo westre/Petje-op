@@ -176,6 +176,11 @@ namespace PetjeOp
             question.questionnaire = questionnaireId;
             question.questionindex = createdQuestion.QuestionIndex;
 
+            if (createdQuestion.TimeRestriction != TimeSpan.Zero)
+            {
+                question.timerestriction = createdQuestion.TimeRestriction.Ticks;
+            }
+
             db.tblQuestions.InsertOnSubmit(question);
             db.SubmitChanges();
 
