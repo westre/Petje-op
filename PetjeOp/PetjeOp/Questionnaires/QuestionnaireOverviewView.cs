@@ -27,7 +27,8 @@ namespace PetjeOp.Questionnaires
 
         private void QuestionnaireOverviewView_Load(object sender, EventArgs e)
         {
-            Controller.UpdateTreeView();
+            Controller.GetAllQuestionnairesAndSubjects();
+            Controller.FillSubjects();
         }
 
         private void tvQuestionnaires_VisibleChanged(object sender, EventArgs e)
@@ -43,6 +44,25 @@ namespace PetjeOp.Questionnaires
         private void button1_Click(object sender, EventArgs e)
         {
            Controller.GoToAddQuestionnaire();
+        }
+
+        private void cbSubjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            object selectedItem = cbSubjects.SelectedItem;
+
+            if (selectedItem is Subject)
+            {
+                Subject selectedSubject = (Subject) cbSubjects.SelectedItem;
+
+                Controller.FilterQuestionnaires(selectedSubject);
+                Controller.FillTreeView();
+            }
+            else
+            {
+                Controller.GetAllQuestionnairesAndSubjects();
+                Controller.FillTreeView();
+                //Controller.FillSubjects();
+            }
         }
     }
 }

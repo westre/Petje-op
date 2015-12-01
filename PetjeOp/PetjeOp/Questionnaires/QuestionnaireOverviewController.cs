@@ -29,31 +29,31 @@ namespace PetjeOp.Questionnaires
             MasterController.SetController(aqc);
         }
 
-        public void UpdateTreeView()
+        public void GetAllQuestionnairesAndSubjects()
         {
             LoadingDialog l = new LoadingDialog();
             l.Show();
             Application.DoEvents();
 
+            Model.Questionnaires = MasterController.DB.GetAllQuestionnaires();
             Model.Subjects = MasterController.DB.GetSubjects();
 
-            foreach (Subject s in Model.Subjects)
-            {
-                View.cbSubjects.Items.Add(s.Name);
-            }
+            l.Hide();
+        }
 
+        public void FillTreeView()
+        {
             View.tvQuestionnaires.Nodes.Clear();
-
-            Model.Questionnaires = MasterController.DB.GetAllQuestionnaires();
 
             foreach (Questionnaire questionnaire in Model.Questionnaires)
             {
-                TreeNode questionnaireTreeNode = View.tvQuestionnaires.Nodes.Add(questionnaire.Name);
+                TreeNode questionnaireTreeNode = View.tvQuestionnaires.Nodes.Add(questionnaire.Name + " (" + questionnaire.Subject + ")");
                 questionnaireTreeNode.Tag = questionnaire;
 
                 foreach (MultipleChoiceQuestion question in questionnaire.Questions)
                 {
-                    TreeNode questionTreeNode = questionnaireTreeNode.Nodes.Add(question.QuestionIndex + ": " + question.Description);
+                    TreeNode questionTreeNode =
+                        questionnaireTreeNode.Nodes.Add(question.QuestionIndex + ": " + question.Description);
                     questionTreeNode.Tag = question;
 
                     foreach (Answer answer in question.AnswerOptions)
@@ -63,7 +63,8 @@ namespace PetjeOp.Questionnaires
                             TreeNode addedAnswer = questionTreeNode.Nodes.Add(question.CorrectAnswer.Description);
                             addedAnswer.Tag = answer;
                             addedAnswer.ForeColor = Color.Green;
-                        } else
+                        }
+                        else
                         {
                             TreeNode addedAnswer = questionTreeNode.Nodes.Add(answer.Description);
                             addedAnswer.Tag = answer;
@@ -74,8 +75,33 @@ namespace PetjeOp.Questionnaires
             }
 
             View.tvQuestionnaires.Sort();
+        }
 
-            l.Hide();
+        public void FillSubjects()
+        {
+            View.cbSubjects.Items.Clear();
+
+            View.cbSubjects.Items.Add("Alle Vakken");
+
+            foreach (Subject s in Model.Subjects)
+            {
+                View.cbSubjects.Items.Add(s);
+            }
+
+            View.cbSubjects.SelectedIndex = 0;
+        }
+
+        public void FilterQuestionnaires(Subject s)
+        {
+            List<Questionnaire> newList = new List<Questionnaire>();
+
+            foreach (Questionnaire q in Model.Questionnaires)
+            {
+                if (q.Subject.Id == s.Id)
+                    newList.Add(q);
+            }
+
+            Model.Questionnaires = newList;
         }
     }
 }

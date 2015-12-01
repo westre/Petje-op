@@ -286,7 +286,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_questionnaire", Storage="_tblQuestionnaires", ThisKey="nr", OtherKey="author")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_tblQuestionnaire", Storage="_tblQuestionnaires", ThisKey="nr", OtherKey="author")]
 		public EntitySet<tblQuestionnaire> tblQuestionnaires
 		{
 			get
@@ -644,7 +644,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_exam", Storage="_tblExams", ThisKey="id", OtherKey="lecture")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_tblExam", Storage="_tblExams", ThisKey="id", OtherKey="lecture")]
 		public EntitySet<tblExam> tblExams
 		{
 			get
@@ -1132,7 +1132,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubject_questionnaire", Storage="_tblQuestionnaires", ThisKey="id", OtherKey="subject")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubject_tblQuestionnaire", Storage="_tblQuestionnaires", ThisKey="id", OtherKey="subject")]
 		public EntitySet<tblQuestionnaire> tblQuestionnaires
 		{
 			get
@@ -1293,7 +1293,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_exam", Storage="_tblLecture", ThisKey="lecture", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_tblExam", Storage="_tblLecture", ThisKey="lecture", OtherKey="id", IsForeignKey=true)]
 		public tblLecture tblLecture
 		{
 			get
@@ -1327,7 +1327,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="questionnaire_tblExam", Storage="_tblQuestionnaire", ThisKey="questionnaire", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblExam", Storage="_tblQuestionnaire", ThisKey="questionnaire", OtherKey="id", IsForeignKey=true)]
 		public tblQuestionnaire tblQuestionnaire
 		{
 			get
@@ -1515,7 +1515,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="questionnaire_tblExam", Storage="_tblExams", ThisKey="id", OtherKey="questionnaire")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblExam", Storage="_tblExams", ThisKey="id", OtherKey="questionnaire")]
 		public EntitySet<tblExam> tblExams
 		{
 			get
@@ -1541,7 +1541,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_questionnaire", Storage="_tblTeacher", ThisKey="author", OtherKey="nr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTeacher_tblQuestionnaire", Storage="_tblTeacher", ThisKey="author", OtherKey="nr", IsForeignKey=true)]
 		public tblTeacher tblTeacher
 		{
 			get
@@ -1575,7 +1575,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubject_questionnaire", Storage="_tblSubject", ThisKey="subject", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSubject_tblQuestionnaire", Storage="_tblSubject", ThisKey="subject", OtherKey="id", IsForeignKey=true)]
 		public tblSubject tblSubject
 		{
 			get
