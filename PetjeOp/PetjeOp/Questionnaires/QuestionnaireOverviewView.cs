@@ -54,6 +54,7 @@ namespace PetjeOp.Questionnaires
             {
                 Subject selectedSubject = (Subject) cbSubjects.SelectedItem;
 
+                Controller.GetAllQuestionnairesAndSubjects();
                 Controller.FilterQuestionnaires(selectedSubject);
                 Controller.FillTreeView();
             }
@@ -61,7 +62,6 @@ namespace PetjeOp.Questionnaires
             {
                 Controller.GetAllQuestionnairesAndSubjects();
                 Controller.FillTreeView();
-                //Controller.FillSubjects();
             }
         }
     }
