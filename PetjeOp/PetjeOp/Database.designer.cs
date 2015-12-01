@@ -1528,7 +1528,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_question", Storage="_tblQuestions", ThisKey="id", OtherKey="questionnaire")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblQuestion", Storage="_tblQuestions", ThisKey="id", OtherKey="questionnaire")]
 		public EntitySet<tblQuestion> tblQuestions
 		{
 			get
@@ -1722,7 +1722,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_question", Storage="_tblQuestions", ThisKey="id", OtherKey="correctanswer")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblQuestion", Storage="_tblQuestions", ThisKey="id", OtherKey="correctanswer")]
 		public EntitySet<tblQuestion> tblQuestions
 		{
 			get
@@ -1943,7 +1943,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_question", Storage="_tblAnswer", ThisKey="correctanswer", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblQuestion", Storage="_tblAnswer", ThisKey="correctanswer", OtherKey="id", IsForeignKey=true)]
 		public tblAnswer tblAnswer
 		{
 			get
@@ -1977,7 +1977,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_question", Storage="_tblQuestionnaire", ThisKey="questionnaire", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_tblQuestion", Storage="_tblQuestionnaire", ThisKey="questionnaire", OtherKey="id", IsForeignKey=true)]
 		public tblQuestionnaire tblQuestionnaire
 		{
 			get

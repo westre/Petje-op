@@ -164,7 +164,6 @@ namespace PetjeOp
                 db.SubmitChanges();
             }
             else {
-                Console.WriteLine("wtf, null record?");
             }
         }
 
