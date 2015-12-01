@@ -53,6 +53,7 @@ namespace PetjeOp.AddQuestionnaire
 
             if(Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
+                Console.WriteLine("SUBJECT: " + Model.Questionnaire.Subject.Name);
                 Console.WriteLine("Nog geen DB");
             }
             else {
