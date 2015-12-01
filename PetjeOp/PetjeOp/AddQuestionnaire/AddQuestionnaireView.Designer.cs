@@ -169,6 +169,7 @@
             // 
             // cbSubjects
             // 
+            this.cbSubjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSubjects.FormattingEnabled = true;
             this.cbSubjects.Location = new System.Drawing.Point(89, 174);
             this.cbSubjects.Name = "cbSubjects";

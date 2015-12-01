@@ -74,6 +74,7 @@
             // 
             // cbSubjects
             // 
+            this.cbSubjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSubjects.FormattingEnabled = true;
             this.cbSubjects.Items.AddRange(new object[] {
             "Alle vakken"});
