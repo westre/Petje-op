@@ -149,6 +149,7 @@ namespace PetjeOp.AddQuestionnaire
             //Klap alle vragen uit
             View.tvQuestions.ExpandAll();
             CheckButtons();
+            AddSubjects();
         }
 
         public override UserControl GetView()
@@ -251,6 +252,15 @@ namespace PetjeOp.AddQuestionnaire
             {
                 View.lblNoQuestionsInQuestionaire.Text = "";
                 View.btnSaveQuestionnaire.Enabled = true;
+            }
+        }
+
+        public void AddSubjects()
+        {
+            Model.Subjects = MasterController.DB.GetSubjects();
+            foreach (Subject subject in Model.Subjects)
+            {
+                View.cbSubjects.Items.Add(subject);
             }
         }
     }

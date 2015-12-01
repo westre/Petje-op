@@ -32,7 +32,7 @@
             this.tvQuestionnaires = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
             this.lblSubject = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSubjects = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -75,19 +75,19 @@
             this.lblSubject.TabIndex = 4;
             this.lblSubject.Text = "Vak:";
             // 
-            // comboBox1
+            // cbSubjects
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(74, 118);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(327, 33);
-            this.comboBox1.TabIndex = 5;
+            this.cbSubjects.FormattingEnabled = true;
+            this.cbSubjects.Location = new System.Drawing.Point(74, 118);
+            this.cbSubjects.Name = "cbSubjects";
+            this.cbSubjects.Size = new System.Drawing.Size(327, 33);
+            this.cbSubjects.TabIndex = 5;
             // 
             // QuestionnaireOverviewView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbSubjects);
             this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tvQuestionnaires);
@@ -106,6 +106,6 @@
         public System.Windows.Forms.TreeView tvQuestionnaires;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblSubject;
-        private System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox cbSubjects;
     }
 }

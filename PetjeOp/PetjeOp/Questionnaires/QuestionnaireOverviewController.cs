@@ -35,6 +35,13 @@ namespace PetjeOp.Questionnaires
             l.Show();
             Application.DoEvents();
 
+            Model.Subjects = MasterController.DB.GetSubjects();
+
+            foreach (Subject s in Model.Subjects)
+            {
+                View.cbSubjects.Items.Add(s.Name);
+            }
+
             View.tvQuestionnaires.Nodes.Clear();
 
             Model.Questionnaires = MasterController.DB.GetAllQuestionnaires();

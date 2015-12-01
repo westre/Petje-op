@@ -9,5 +9,6 @@ namespace PetjeOp.Questionnaires
     {
         public string Name { get; set; }
         public List<Questionnaire> Questionnaires { get; set; }
+        public List<Subject> Subjects { get; set; } 
     }
 }

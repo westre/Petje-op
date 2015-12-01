@@ -269,5 +269,19 @@ namespace PetjeOp
                 return exams;
             
         }
+
+        public List<Subject> GetSubjects()
+        {
+            List<Subject> subjects = new List<Subject>();
+
+            foreach (tblSubject tblSubject in db.tblSubjects)
+            {
+                Subject subject = new Subject(tblSubject.id, tblSubject.name);
+
+                subjects.Add(subject);
+            }
+
+            return subjects;
+        } 
     }
 }
