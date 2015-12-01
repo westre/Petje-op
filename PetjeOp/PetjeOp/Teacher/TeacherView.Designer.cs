@@ -58,6 +58,7 @@
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.Transparent;
             this.pnlHeader.BackgroundImage = global::PetjeOp.Properties.Resources.Menu_Background2;
+            this.pnlHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlHeader.Controls.Add(this.pnlButton_Logout_Background);
             this.pnlHeader.Controls.Add(this.pbLogo);
             this.pnlHeader.Controls.Add(this.pnlButton_Agenda_Background);
@@ -109,6 +110,7 @@
             // 
             this.pbLogo.BackColor = System.Drawing.Color.Transparent;
             this.pbLogo.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
+            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbLogo.Location = new System.Drawing.Point(16, 13);
             this.pbLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbLogo.Name = "pbLogo";
@@ -120,6 +122,7 @@
             // 
             this.pnlButton_Agenda_Background.BackColor = System.Drawing.Color.Transparent;
             this.pnlButton_Agenda_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
+            this.pnlButton_Agenda_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Agenda_Background.Controls.Add(this.pbIcon_Agenda_Icon);
             this.pnlButton_Agenda_Background.Controls.Add(this.lblTitle_Agenda_Title);
             this.pnlButton_Agenda_Background.Location = new System.Drawing.Point(1142, 23);
@@ -132,6 +135,7 @@
             // 
             this.pbIcon_Agenda_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_Agenda_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Agenda_Icon;
+            this.pbIcon_Agenda_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_Agenda_Icon.Location = new System.Drawing.Point(76, 17);
             this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbIcon_Agenda_Icon.Name = "pbIcon_Agenda_Icon";
@@ -156,6 +160,7 @@
             // 
             this.pnlButton_Result_Background.BackColor = System.Drawing.Color.Transparent;
             this.pnlButton_Result_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
+            this.pnlButton_Result_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Result_Background.Controls.Add(this.pbIcon_Results_Icon);
             this.pnlButton_Result_Background.Controls.Add(this.lblTitle_Results_Title);
             this.pnlButton_Result_Background.Location = new System.Drawing.Point(466, 23);
@@ -168,6 +173,7 @@
             // 
             this.pbIcon_Results_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_Results_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Results_Icon;
+            this.pbIcon_Results_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_Results_Icon.Location = new System.Drawing.Point(44, 19);
             this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbIcon_Results_Icon.Name = "pbIcon_Results_Icon";
@@ -192,6 +198,7 @@
             // 
             this.pnlButton_QuestionnaireOverview_Background.BackColor = System.Drawing.Color.Transparent;
             this.pnlButton_QuestionnaireOverview_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
+            this.pnlButton_QuestionnaireOverview_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.pbIcon_QuestionnaireOverview_Icon);
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.lblTitle_QuestionnaireOverview_Title);
             this.pnlButton_QuestionnaireOverview_Background.Location = new System.Drawing.Point(804, 23);
@@ -204,6 +211,7 @@
             // 
             this.pbIcon_QuestionnaireOverview_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_QuestionnaireOverview_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_QuestionnaireOverview_Icon;
+            this.pbIcon_QuestionnaireOverview_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_QuestionnaireOverview_Icon.Location = new System.Drawing.Point(34, 19);
             this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbIcon_QuestionnaireOverview_Icon.Name = "pbIcon_QuestionnaireOverview_Icon";
