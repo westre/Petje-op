@@ -37,7 +37,8 @@ namespace PetjeOp.Questionnaires
             Application.DoEvents();
 
             //Vraag Questionnaires op
-            Model.Questionnaires = MasterController.DB.GetAllQuestionnaires();
+            Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
+            ResetList();
 
             //Vraag Subjects op
             Model.Subjects = MasterController.DB.GetSubjects();
@@ -53,7 +54,7 @@ namespace PetjeOp.Questionnaires
             View.tvQuestionnaires.Nodes.Clear();
 
             //Loop over Questionnaires
-            foreach (Questionnaire questionnaire in Model.Questionnaires)
+            foreach (Questionnaire questionnaire in Model.ListQuestionnaires)
             {
                 //Voeg Node toe
                 TreeNode questionnaireTreeNode = View.tvQuestionnaires.Nodes.Add(questionnaire.Name + " (" + questionnaire.Subject + ")");
@@ -118,7 +119,7 @@ namespace PetjeOp.Questionnaires
             List<Questionnaire> newList = new List<Questionnaire>();
 
             //Loop over Questionnaires
-            foreach (Questionnaire q in Model.Questionnaires)
+            foreach (Questionnaire q in Model.AllQuestionnaires)
             {
                 //Als SubjectID van Questonnair gelijk is aan ID van gekozen Subject
                 if (q.Subject.Id == s.Id)
@@ -127,7 +128,12 @@ namespace PetjeOp.Questionnaires
             }
 
             //Vervang oude list door nieuwe List
-            Model.Questionnaires = newList;
+            Model.ListQuestionnaires = newList;
+        }
+
+        public void ResetList()
+        {
+            Model.ListQuestionnaires = Model.AllQuestionnaires;
         }
     }
 }
