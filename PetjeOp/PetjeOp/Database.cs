@@ -41,12 +41,12 @@ namespace PetjeOp
             return null;     
         }*/
 
-        /*public void UpdateQuestionnaire(Questionnaire questionnaire)
+        public void UpdateQuestionnaire(Questionnaire questionnaire)
         {
-            tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.questionnairenr == questionnaire.ID);         // Haalt questionnaire op uit DB
-            updateQuestionnaire.questionnairename = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
+            tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID);         // Haalt questionnaire op uit DB
+            updateQuestionnaire.description = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
 
-            foreach (tblLinkQuestion dbQuestion in updateQuestionnaire.tblLinkQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
+            /*foreach (tblLinkQuestion dbQuestion in updateQuestionnaire.tblLinkQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
             {
                 MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Select(q => q.ID == dbQuestion.questionnr);// Haalt Question op uit Questionnaire                 
                 dbQuestion.tblQuestion.question = question.Description;                                                                      // Wijzigt de vraag in DB
@@ -57,9 +57,9 @@ namespace PetjeOp
                     dbLinkAnwser.tblAnswer.answer = answer.Description;                                                                      // Wijzigt het antwoord in DB
                 }
                 dbQuestion.tblQuestion.correctanswernr = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
-            }
+            }*/
             db.SubmitChanges();                                                                                                              // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB            
-        }*/
+        }
 
         public Student GetStudent(String code)
         {
