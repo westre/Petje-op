@@ -49,17 +49,19 @@ namespace PetjeOp.AddQuestionnaire
         }
 
         public void SaveQuestionnaire() {
-            Model.Questionnaire.Name = View.tbQuestionnaireName.Text;           
-
-            if(Model.Questionnaire.ID == -1) {
+            Model.Questionnaire.Name = View.tbQuestionnaireName.Text;
+            
+            if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
                 Console.WriteLine("Nog geen DB");
             }
             else {
                 Console.WriteLine("het bestaat, dus updaten maar");
             }
-
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
+            qoc.GetAllQuestionnairesAndSubjects();
+
+            qoc.FillTreeView();
             MasterController.SetController(qoc);
         }
 
