@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 
 namespace PetjeOp
@@ -137,7 +138,7 @@ namespace PetjeOp
                     answer.ID = ans.ID;
                 }
 
-                MultipleChoiceQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID);
+                MultipleChoiceQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID, tblQuestionnaire);
                 // Synchroniseer onze offline dbQuestion met primary key van DB
                 q.ID = dbQuestion.ID;
 
@@ -204,7 +205,7 @@ namespace PetjeOp
             }
         }
 
-        public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
+        public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId, tblQuestionnaire tblQuestionnaire) {
             tblQuestion question = new tblQuestion();
             //question.id = new Random().Next(100, 1000); // AI maken!!
             question.description = createdQuestion.Description;
@@ -219,6 +220,8 @@ namespace PetjeOp
 
             db.tblQuestions.InsertOnSubmit(question);
             db.SubmitChanges();
+
+            tblQuestionnaire.tblQuestions.Add(question);
 
             return new MultipleChoiceQuestion(question.description) {
                 ID = question.id,
@@ -255,6 +258,14 @@ namespace PetjeOp
         }
 
         public List<Questionnaire> GetAllQuestionnaires() {
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblAnsweroptions);
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblAnswers);
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblClasses);
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblExams);
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblLectures);
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblQuestionnaires);
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblQuestions);
+
             List<Questionnaire> questionnaires = new List<Questionnaire>();
 
             // Loop door alle questionnaires
@@ -263,6 +274,8 @@ namespace PetjeOp
                 questionnaire.ID = tblQuestionnaire.id;
                 questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);
 
+                Console.WriteLine("Questionnaire: " + questionnaire.Name + ", LINQDB count: " + tblQuestionnaire.tblQuestions.Count + ", subjectId : " + questionnaire.Subject.Id);
+                
                 // Loop door alle questions binnen die questionnaire
                 foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
                     MultipleChoiceQuestion question = new MultipleChoiceQuestion(tblQuestion.description);
