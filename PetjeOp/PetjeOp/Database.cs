@@ -98,20 +98,55 @@ namespace PetjeOp
             return null;
         }
 
-        public Questionnaire AddQuestionnaire(string name) { 
-            tblQuestionnaire questionnaire = new tblQuestionnaire();
-            //questionnaire.id = new Random().Next(100, 1000); // Dit moet echt even een AI worden
-            questionnaire.author = "eltjo1";
-            questionnaire.description = name;
-            db.tblQuestionnaires.InsertOnSubmit(questionnaire);
+        public bool QuestionnaireExists(string name) {
+            tblQuestionnaire foundQuestionnaire = (from questionnaire in db.tblQuestionnaires
+                                                    where questionnaire.description.ToString().Equals(name)
+                                                    select questionnaire).FirstOrDefault();
+
+            if(foundQuestionnaire != null) {
+                return true;
+            }
+            return false;
+        }
+
+        public Questionnaire AddQuestionnaire(Questionnaire questionnaire) { 
+            tblQuestionnaire tblQuestionnaire = new tblQuestionnaire();
+            tblQuestionnaire.author = "eltjo1";
+            tblQuestionnaire.description = questionnaire.Name;
+            tblQuestionnaire.subject = 1; // test data
+            db.tblQuestionnaires.InsertOnSubmit(tblQuestionnaire);
             db.SubmitChanges();
 
-            //return questionnaire.id;
+            questionnaire.ID = tblQuestionnaire.id;
 
-            return new Questionnaire(name) {
-                ID = questionnaire.id,
-                Name = name
-            };
+            //Loop door alle vragen heen
+            foreach (MultipleChoiceQuestion q in questionnaire.Questions) {
+                //Loop door alle antwoorden heen
+                foreach (Answer answer in q.AnswerOptions) {
+                    Answer ans = GetAnswer(answer.Description);
+                    if (ans == null) {
+                        ans = AddAnswer(answer.Description.ToString());
+                    }
+
+                    if (q.CorrectAnswer == answer) {
+                        q.CorrectAnswer = ans;
+                    }
+
+                    // Synchroniseer onze offline answer met primary key van DB
+                    answer.ID = ans.ID;
+                }
+
+                MultipleChoiceQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID);
+                // Synchroniseer onze offline dbQuestion met primary key van DB
+                q.ID = dbQuestion.ID;
+
+                // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+                foreach (Answer answer in q.AnswerOptions) {
+                    LinkAnswerToQuestion(q, answer);
+                }
+            }
+
+            return questionnaire;
         }
 
         public Answer GetAnswer(string answer) {
