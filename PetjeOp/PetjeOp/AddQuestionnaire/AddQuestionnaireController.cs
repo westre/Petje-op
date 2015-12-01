@@ -49,18 +49,21 @@ namespace PetjeOp.AddQuestionnaire
         }
 
         public void SaveQuestionnaire() {
-            string questionnaireName = View.tbQuestionnaireName.Text;           
-
-            if(Model.Questionnaire.ID == -1) {
+            Model.Questionnaire.Name = View.tbQuestionnaireName.Text;
+            
+            if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
+                Console.WriteLine("SUBJECT: " + Model.Questionnaire.Subject.Name);
                 Console.WriteLine("Nog geen DB");
             }
             else {                
                 MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
                 Console.WriteLine("het bestaat, dus updaten maar");
             }
-
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
+            qoc.GetAllQuestionnairesAndSubjects();
+
+            qoc.FillTreeView();
             MasterController.SetController(qoc);
         }
 
@@ -234,14 +237,35 @@ namespace PetjeOp.AddQuestionnaire
                 View.lblNoQuestionsInQuestionaire.Text = "";
                 View.btnSaveQuestionnaire.Enabled = true;
             }
+
+            if (View.cbSubjects.SelectedItem == null)
+            {
+                View.lblErrorSubject.Text = "Selecteer een vak!";
+                View.btnSaveQuestionnaire.Enabled = false;
+            } else
+            {
+                View.lblErrorSubject.Text = "";
+                View.btnSaveQuestionnaire.Enabled = true;
+            }
         }
 
         public void AddSubjects()
         {
+
             Model.Subjects = MasterController.DB.GetSubjects();
             foreach (Subject subject in Model.Subjects)
             {
                 View.cbSubjects.Items.Add(subject);
+
+            }
+
+        }
+
+        public void setSubject()
+        {
+            if (View.cbSubjects.SelectedItem != null)
+            {
+                Model.Questionnaire.Subject = (Subject)View.cbSubjects.SelectedItem;
             }
         }
     }

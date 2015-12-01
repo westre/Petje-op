@@ -22,7 +22,7 @@ namespace PetjeOp
 
         public Questionnaire(int id) {
             ID = id;
-            Name = "undef";
+            Name = "";
             Questions = new List<Question>();
         }
 
