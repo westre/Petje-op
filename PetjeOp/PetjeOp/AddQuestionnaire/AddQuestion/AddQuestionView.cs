@@ -103,6 +103,7 @@ namespace PetjeOp.AddQuestionnaire
             bool checkQuestion;
             bool checkCorrectAnswer;
             bool checkMaxAnswers;
+            bool checkSeconds = true;
 
             //Check of er minimaal 2 antwoorden ingevuld zijn
             if (clbAnswers.Items.Count <= 1)
@@ -150,8 +151,49 @@ namespace PetjeOp.AddQuestionnaire
                 checkMaxAnswers = true;
             }
 
+            if (rbLimit.Checked)
+            {
+
+                if (tbSeconds.Text.Any())
+                {
+                    bool validValue = false;
+
+                    try
+                    {
+                        int seconds = int.Parse(tbSeconds.Text);
+                        validValue = true;
+                    }
+                    catch (FormatException)
+                    {
+                        tbSeconds.Clear();
+                        validValue = false;
+                    }
+                    catch (OverflowException)
+                    {
+                        tbSeconds.Clear();
+                        validValue = false;
+                    }
+
+                    if (validValue)
+                    {
+                        lblErrorSeconds.Hide();
+                    }
+                    else
+                    {
+                        lblErrorSeconds.Show();
+                        checkSeconds = false;
+                    }
+
+                }
+            }
+            else
+            {
+                checkSeconds = true;
+            }
+
             //Zet knop 'Vraag Toevoegen' aan of uit
-            if (checkTwoAnswers && checkQuestion && checkCorrectAnswer && checkMaxAnswers)
+            if (checkTwoAnswers && checkQuestion && 
+                checkCorrectAnswer && checkMaxAnswers && checkSeconds)
             {
                 AddQuestionDialog.btnAddQuestion.Enabled = true;
             } else
@@ -164,6 +206,38 @@ namespace PetjeOp.AddQuestionnaire
         private void tbQuestion_TextChanged(object sender, EventArgs e)
         {
             checkQuestionView();
+        }
+
+        private void gbQuestion_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddQuestionView_Load(object sender, EventArgs e)
+        {
+            lblErrorSeconds.Hide();
+        }
+
+        private void tbSeconds_TextChanged(object sender, EventArgs e)
+        {
+            checkQuestionView();
+            rbLimit.Checked = true;
+        }
+
+        private void rbNoLimit_CheckedChanged(object sender, EventArgs e)
+        {
+            checkQuestionView();
+
+            if(rbNoLimit.Checked)
+                lblErrorSeconds.Hide();
+        }
+
+        private void tbAnswer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAddAnswer_Click(this, new EventArgs());
+            }
         }
     }
 }

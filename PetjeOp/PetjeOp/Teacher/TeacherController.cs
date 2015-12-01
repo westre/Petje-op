@@ -44,5 +44,12 @@ namespace PetjeOp {
             
             
         }
+
+        public void ShowDebugDialog() {
+            DebugDialog dd = new DebugDialog(MasterController.DB.GetAllQuestionnaires());
+            dd.ShowDialog();
+
+
+        }
     }
 }

@@ -117,32 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Button_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Button_Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Logout_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Button_Logout_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Menu_Background1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Menu_Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Menu_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Menu_Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Agenda_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Button_Agenda_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_QuestionnaireOverview_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Button_QuestionnaireOverview_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WinQ_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WinQ_Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Results_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Button_Results_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Menu_Background2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Menu_Background1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

@@ -95,6 +95,7 @@
             this.btnSaveQuestionnaire.TabIndex = 13;
             this.btnSaveQuestionnaire.Text = "Vragenlijst Opslaan";
             this.btnSaveQuestionnaire.UseVisualStyleBackColor = true;
+            this.btnSaveQuestionnaire.Click += new System.EventHandler(this.btnSaveQuestionnaire_Click);
             // 
             // tvQuestions
             // 
@@ -149,7 +150,7 @@
             // 
             this.lblNoQuestionsInQuestionaire.AutoSize = true;
             this.lblNoQuestionsInQuestionaire.ForeColor = System.Drawing.Color.Red;
-            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(21, 657);
+            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(525, 613);
             this.lblNoQuestionsInQuestionaire.Name = "lblNoQuestionsInQuestionaire";
             this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 13);
             this.lblNoQuestionsInQuestionaire.TabIndex = 19;
@@ -181,7 +182,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblAddQuestionnaire;
-        private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.Label lblQuestions;
         public System.Windows.Forms.TextBox tbQuestionnaireName;
         private System.Windows.Forms.Label lblQuestionnaireName;
@@ -192,5 +192,6 @@
         public System.Windows.Forms.Label lblQuestionaireNameError;
         public System.Windows.Forms.Label lblNoNodeSelectedError;
         public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
+        public System.Windows.Forms.Button btnAddQuestion;
     }
 }

@@ -33,20 +33,20 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1554, 1054);
+            this.mainPanel.Size = new System.Drawing.Size(777, 548);
             this.mainPanel.TabIndex = 0;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
             // MasterController
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1554, 1054);
+            this.ClientSize = new System.Drawing.Size(777, 548);
             this.Controls.Add(this.mainPanel);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.MinimumSize = new System.Drawing.Size(1354, 742);
+            this.MinimumSize = new System.Drawing.Size(685, 405);
             this.Name = "MasterController";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "WinQ";
             this.Resize += new System.EventHandler(this.MasterController_Resize);
             this.ResumeLayout(false);
 

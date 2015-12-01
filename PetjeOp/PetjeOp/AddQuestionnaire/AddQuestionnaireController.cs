@@ -47,6 +47,41 @@ namespace PetjeOp.AddQuestionnaire
             View.btnDeleteQuestion.Enabled = false;
         }
 
+        public void SaveQuestionnaire() {
+            string questionnaireName = View.tbQuestionnaireName.Text;
+            Model.Questionnaire = MasterController.DB.AddQuestionnaire(questionnaireName);
+
+            //Loop door alle vragen heen
+            foreach (MultipleChoiceQuestion q in Model.Questions) {
+                //Loop door alle antwoorden heen
+                foreach (Answer answer in q.AnswerOptions) {
+                    Answer ans = MasterController.DB.GetAnswer(answer.Description);
+                    if (ans == null) {
+                        ans = MasterController.DB.AddAnswer(answer.Description.ToString());
+                    }
+
+                    if (q.CorrectAnswer == answer) {
+                        q.CorrectAnswer = ans;
+                    }
+
+                    // Synchroniseer onze offline answer met primary key van DB
+                    answer.ID = ans.ID;
+                }
+
+                MultipleChoiceQuestion dbQuestion = MasterController.DB.AddMultipleChoiceQuestion(q, Model.Questionnaire.ID);
+                // Synchroniseer onze offline dbQuestion met primary key van DB
+                q.ID = dbQuestion.ID;
+
+                // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+                foreach (Answer answer in q.AnswerOptions) {
+                    MasterController.DB.LinkAnswerToQuestion(q, answer);
+                } 
+            }
+
+            View.btnSaveQuestionnaire.Text = "Vragenlijst opgeslagen";
+            View.btnSaveQuestionnaire.Enabled = false;
+        }
+
         //Functie om 'Wijzig' en 'Verwijder' aan en uit te zetten wanneer er al dan niet een vraag is geselecteerd
         public void ControlEditDeleteButtons()
         {
@@ -156,6 +191,8 @@ namespace PetjeOp.AddQuestionnaire
             //Nieuwe vraag is toegevoegd bij het sluiten van het dialoog
             if (dr == DialogResult.OK)
             {
+                // Database actie
+                MasterController.DB.DeleteMultipleChoiceQuestion(currentQuestion);
                 Model.Questions.RemoveAt(currentQuestionIndex);
             }
                 
@@ -175,6 +212,9 @@ namespace PetjeOp.AddQuestionnaire
 
                 int index = Model.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
                 Model.Questions.RemoveAt(index);
+
+                // Verwijder van DB
+                MasterController.DB.DeleteMultipleChoiceQuestion(q);
 
                 int newQuestionIndex = 1;
                 foreach (Question question in Model.Questions)

@@ -19,8 +19,6 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller = controller;
             InitializeComponent();
-
-            Controller = controller;
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -46,6 +44,14 @@ namespace PetjeOp.AddQuestionnaire
         private void tbQuestionnaireName_TextChanged(object sender, EventArgs e)
         {
             Controller.CheckButtons();
+        }
+
+        private void btnAddQuestionnaire_Click(object sender, EventArgs e) {
+            
+        }
+
+        private void btnSaveQuestionnaire_Click(object sender, EventArgs e) {
+            Controller.SaveQuestionnaire();
         }
     }
 }

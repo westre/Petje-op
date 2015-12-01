@@ -39,12 +39,19 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         //Functie voor afhandeling van klik op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
-                    //Maak het vraagobject aan
-                    Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
+            //Maak het vraagobject aan
+            Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
 
-                    //Loop voor alle ingevoerde antwoorden
+            //Loop voor alle ingevoerde antwoorden
             foreach (var item in addQuestionView1.clbAnswers.Items)
             {
+                // Check of het antwoord al in de database bestaat
+                /*Answer ans = Controller.MasterController.DB.GetAnswer(item.ToString());
+                if(ans == null) {
+                    // Het bestaat niet :(, dus maken we een nieuwe record aan!
+                    ans = Controller.MasterController.DB.AddAnswer(item.ToString());
+                }*/
+
                 //Maak een antwoordobject aan
                 Answer ans = new Answer(item.ToString());
 
@@ -60,26 +67,47 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             }
 
             //Voeg antwoorden toe aan het vraagobject
-                    Question.AddAnswerOptions(answers);
+            Question.AddAnswerOptions(answers);
 
-                    //Voeg correct antwoord toe aan het vraagobject
-                    Question.CorrectAnswer = correct;
+            //Voeg correct antwoord toe aan het vraagobject
+            Question.CorrectAnswer = correct;
 
-                    //Controleer of QuestionIndex 0 is
-                    if (QuestionIndex != 0)
-                    {
-                        //Nee, de Question index moet gelijk zijn aan de meegegeven index
-                        Question.QuestionIndex = QuestionIndex;
-                    }
-                    else
-                    {
-                        //Ja, er wordt een nieuwe index gegenereerd
-                        Question.QuestionIndex = Controller.Model.Questions.Count + 1;
-                    }
+            //Voeg tijdsrestrictie toe aan vraag
+            if (addQuestionView1.rbNoLimit.Checked)
+            {
+                //int seconds = int.Parse(addQuestionView1.tbSeconds.Text); // FormatException, kan niet van string naar int converten
+                int seconds = 30; // ben lui, sorry ;)
+                
+                Question.TimeRestriction = new TimeSpan(0,0,seconds);
+            }
 
-                    //Sluit het dialoog
-                    Close();
-                }
+            //Controleer of QuestionIndex 0 is
+            if (QuestionIndex != 0)
+            {
+                //Nee, de Question index moet gelijk zijn aan de meegegeven index
+                Question.QuestionIndex = QuestionIndex;
+            }
+            else
+            {
+                //Ja, er wordt een nieuwe index gegenereerd
+                Question.QuestionIndex = Controller.Model.Questions.Count + 1;
+            }
+
+            // Maak nieuwe question record aan in tabel
+            //MultipleChoiceQuestion dbQuestion = Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
+
+            // Update lokale Question variabel met ID van DBQuestion
+            //Question.ID = dbQuestion.ID;
+
+            // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+            //foreach(Answer answer in answers) {
+                // DB link
+            //    Controller.MasterController.DB.LinkAnswerToQuestion(dbQuestion, answer);
+            //}
+
+            //Sluit het dialoog
+            Close();
+        }
 
         //Afhandeling annuleerknop
         private void btnCancel_Click(object sender, EventArgs e)

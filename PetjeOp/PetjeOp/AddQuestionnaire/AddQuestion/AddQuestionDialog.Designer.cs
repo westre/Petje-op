@@ -69,7 +69,6 @@
             // 
             // AddQuestionDialog
             // 
-            this.AcceptButton = this.btnAddQuestion;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
@@ -83,6 +82,7 @@
             this.MinimizeBox = false;
             this.Name = "AddQuestionDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Vraag Toevoegen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddQuestionDialog_FormClosing);
             this.Load += new System.EventHandler(this.AddQuestionDialog_Load);
