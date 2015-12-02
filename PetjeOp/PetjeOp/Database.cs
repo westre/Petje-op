@@ -28,19 +28,54 @@ namespace PetjeOp
             return null;
         }
 
-        /*public Questionnaire GetQuestionnaire(int id)
-        {           
-            tblQuestionnaire query = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
-            if (query!=null){
-                Questionnaire questionnaire = new Questionnaire(query.description);
-                foreach(tblLinkQuestion question in query.tblLinkQuestions.ToList())
+        public Questionnaire GetQuestionnaire(int id)
+        {  
+            tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
+
+            Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description);
+            questionnaire.ID = dbQuestionnaire.id;
+            questionnaire.Subject = GetSubjectByID(dbQuestionnaire.subject);
+
+            // Loop door alle questions binnen die questionnaire
+            foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
+            {
+                MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
+
+                // Maak een nieuwe answer object aan voor onze correct answer
+                Answer correctAnswer = new Answer(dbQuestion.tblAnswer.description);
+                correctAnswer.ID = dbQuestion.tblAnswer.id;
+
+                question.CorrectAnswer = correctAnswer;
+                question.ID = dbQuestion.id;
+                question.QuestionIndex = dbQuestion.questionindex;
+
+                List<Answer> answerOptions = new List<Answer>();
+
+                foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
                 {
-                    questionnaire.addQuestion(new MultipleChoiceQuestion(question.tblQuestion.question));
+                    // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
+                    tblAnswer tblAnswer = dbAnswerOption.tblAnswer;
+
+                    Answer answer = new Answer(tblAnswer.description);
+                    answer.ID = tblAnswer.id;
+                    answerOptions.Add(answer);
                 }
+
+                // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
+                question.AnswerOptions = answerOptions;
+
+                // Voeg vragen toe aan onze questionnaire
+                questionnaire.Questions.Add(question);
+            }
+            if (questionnaire != null)
+            {
                 return questionnaire;
             }
-            return null;     
-        }*/
+            else
+            {
+                return null;
+            }
+        }
 
         public void UpdateQuestionnaire(Questionnaire questionnaire)
         {
@@ -286,43 +321,9 @@ namespace PetjeOp
             // Loop door alle questionnaires
             foreach (tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires)
             {
-                Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
-                questionnaire.ID = tblQuestionnaire.id;
-                questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);
-
-                // Loop door alle questions binnen die questionnaire
-                foreach (tblQuestion tblQuestion in tblQuestionnaire.tblQuestions)
-                {
-                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(tblQuestion.description);
-
-                    // Maak een nieuwe answer object aan voor onze correct answer
-                    Answer correctAnswer = new Answer(tblQuestion.tblAnswer.description);
-                    correctAnswer.ID = tblQuestion.tblAnswer.id;
-
-                    question.CorrectAnswer = correctAnswer;
-                    question.ID = tblQuestion.id;
-                    question.QuestionIndex = tblQuestion.questionindex;
-
-                    List<Answer> answerOptions = new List<Answer>();
-
-                    foreach (tblAnsweroption answerOption in tblQuestion.tblAnsweroptions)
-                    {
-                        // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                        tblAnswer tblAnswer = answerOption.tblAnswer;
-
-                        Answer answer = new Answer(tblAnswer.description);
-                        answer.ID = tblAnswer.id;
-                        answerOptions.Add(answer);
-                    }
-
-                    // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
-                    question.AnswerOptions = answerOptions;
-
-                    // Voeg vragen toe aan onze questionnaire
-                    questionnaire.Questions.Add(question);
-                }
+                
                 // Voeg questionnaire toe aan onze lijst met questionnaire
-                questionnaires.Add(questionnaire);
+                questionnaires.Add(GetQuestionnaire(tblQuestionnaire.id));
             }
 
             return questionnaires;
@@ -376,18 +377,18 @@ namespace PetjeOp
             return found;
         }
 
-        public Questionnaire GetQuestionnaire(int id)
-        {
-            tblQuestionnaire tblQuestionnaire = (from questionnaire1 in db.tblQuestionnaires
-                                                 where questionnaire1.id == id
-                                                 select questionnaire1).FirstOrDefault();
+        //public Questionnaire GetQuestionnaire(int id)
+        //{
+        //    tblQuestionnaire tblQuestionnaire = (from questionnaire1 in db.tblQuestionnaires
+        //                                         where questionnaire1.id == id
+        //                                         select questionnaire1).FirstOrDefault();
 
-            Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
-            questionnaire.ID = tblQuestionnaire.id;
-            questionnaire.Questions = GetQuestionsByQuestionnaire(questionnaire.ID);
+        //    Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
+        //    questionnaire.ID = tblQuestionnaire.id;
+        //    questionnaire.Questions = GetQuestionsByQuestionnaire(questionnaire.ID);
 
-            return questionnaire;
-        }
+        //    return questionnaire;
+        //}
 
         public List<Question> GetQuestionsByQuestionnaire(int id)
         {
@@ -464,8 +465,6 @@ namespace PetjeOp
             foreach (tblResult result in tblResult)
             {
                 Result newResult = new Result(result.exam, result.answer, result.question);
-
-
                 results.Add(newResult);
             }
 
