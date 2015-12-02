@@ -38,14 +38,13 @@ namespace PetjeOp.Questionnaires
             if (selectedItem is Subject)
             {
                 Subject selectedSubject = (Subject) cbSubjects.SelectedItem;
-
-                Controller.GetAllQuestionnairesAndSubjects();
+                
                 Controller.FilterQuestionnaires(selectedSubject);
                 Controller.FillTreeView();
             }
             else
             {
-                Controller.GetAllQuestionnairesAndSubjects();
+                Controller.ResetList();
                 Controller.FillTreeView();
             }
         }
