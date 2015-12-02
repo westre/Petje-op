@@ -54,11 +54,11 @@ namespace PetjeOp {
 
             View.series1.Points.Clear();
 
-            List<Answer> answers = this.MasterController.DB.FindAnswerByQuestionID(chosen.ID);
+            List<Answer> answers = this.MasterController.DB.GetAnswerByQuestion(chosen.ID);
 
             foreach (Answer answer in answers)
             {
-                List<Result> results = this.MasterController.DB.FindResultByAnswerID(chosen.ID, answer.ID, ex.Examnr);
+                List<Result> results = this.MasterController.DB.GetResultByAnswer(chosen.ID, answer.ID, ex.Examnr);
                 double amount = results.Count();
                 System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
                 dataPoint1.AxisLabel = Convert.ToString(answer.ID);
