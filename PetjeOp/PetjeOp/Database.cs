@@ -337,7 +337,7 @@ namespace PetjeOp
             {
                 Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
-                Exam exam = new Exam(tblExam.id, questionnaire);
+                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime , tblExam.endtime, tblExam.lecture);
 
                 exams.Add(exam);
 

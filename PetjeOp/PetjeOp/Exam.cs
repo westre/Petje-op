@@ -9,15 +9,15 @@ namespace PetjeOp {
         public int Examnr { get; set; }
         public Questionnaire questionnaire;
         public int qstnn;
-        public DateTime starttime;
-        public DateTime endtime;
-        public string Groupnr { get; set; }
+        public DateTime? starttime;
+        public DateTime? endtime;
+        public int Groupnr { get; set; }
         public List<Result> results;
 
-        public Exam(int ex, int qu, DateTime st, DateTime et, string gnr)
+        public Exam(int ex, Questionnaire qu, DateTime? st, DateTime? et, int gnr)
         {
             Examnr = ex;
-            qstnn = qu;
+            questionnaire = qu;
             starttime = st;
             endtime = et;
             Groupnr = gnr;
@@ -40,7 +40,7 @@ namespace PetjeOp {
 
         public override string ToString()
         {
-            return "Examennummer : " + Examnr + ", vragenlijstnummer: " + questionnaire;
+            return "VRAGENLIJST : " + questionnaire.Name + ", VAK : "  + questionnaire.Subject + ", BEGIN : " + starttime + ", EIND : " + endtime;
         }
     }
 
