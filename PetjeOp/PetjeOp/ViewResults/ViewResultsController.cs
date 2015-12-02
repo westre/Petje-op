@@ -51,6 +51,7 @@ namespace PetjeOp {
         }
         public void ClearChart()
         {
+          
             View.series1.Points.Clear();
             View.label1.Text = "";
             View.chartArea1.BackColor = System.Drawing.SystemColors.Control;
