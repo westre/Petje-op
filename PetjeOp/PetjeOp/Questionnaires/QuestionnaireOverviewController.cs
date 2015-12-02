@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
-using System.Collections.Generic;
 
 namespace PetjeOp.Questionnaires
 {
