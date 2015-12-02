@@ -215,39 +215,51 @@ namespace PetjeOp.AddQuestionnaire
         //Kijk of de buttons enabled kunnen worden.
         public void CheckButtons()
         {
+            bool nameCheck = false;
+            bool nodesCheck = false;
+            bool subjectCheck = false;
             //Kijk of er een vragenlijstnaam is ingevuld.
             if (!View.tbQuestionnaireName.Text.Any())
             {
                 View.lblQuestionaireNameError.Text = "Vul een vraagnaam in!";
-                View.btnSaveQuestionnaire.Enabled = false;
+                nameCheck = false;
             }
             else
             {
                 View.lblQuestionaireNameError.Text = "";
-                View.btnSaveQuestionnaire.Enabled = true;
+                nameCheck = true;
             }
 
             //Kijk of er nodes in de treeview zitten.
             if (View.tvQuestions.Nodes.Count == 0)
             {
                 View.lblNoQuestionsInQuestionaire.Text = "Voeg vragen toe!";
-                View.btnSaveQuestionnaire.Enabled = false;
+                nodesCheck = false;
             }
             else
             {
                 View.lblNoQuestionsInQuestionaire.Text = "";
-                View.btnSaveQuestionnaire.Enabled = true;
+                nodesCheck = true;
             }
 
             //Kijk of er een vak geselecteerd is.
             if (View.cbSubjects.SelectedItem == null)
             {
                 View.lblErrorSubject.Text = "Selecteer een vak!";
-                View.btnSaveQuestionnaire.Enabled = false;
+                subjectCheck = false;
             } else
             {
                 View.lblErrorSubject.Text = "";
+                subjectCheck = true;
+            }
+
+            if (nameCheck && nodesCheck && subjectCheck)
+            {
                 View.btnSaveQuestionnaire.Enabled = true;
+            }
+            else
+            {
+                View.btnSaveQuestionnaire.Enabled = false;
             }
         }
 
@@ -270,6 +282,21 @@ namespace PetjeOp.AddQuestionnaire
             {
                 Model.Questionnaire.Subject = (Subject)View.cbSubjects.SelectedItem;
             }
+        }
+
+        //Verander scherm naar QuestionnaireOverview
+        public void GoToQuestionnaireOverview()
+        {
+            ClearControls();
+            QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
+            MasterController.SetController(qoc);
+        }
+
+        public void ClearControls()
+        {
+            View.tbQuestionnaireName.Clear();
+            View.cbSubjects.SelectedIndex = -1;
+            View.tvQuestions.Nodes.Clear();
         }
     }
 }
