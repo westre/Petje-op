@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseExamDialog));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -36,7 +37,6 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            
             this.listBox1.Location = new System.Drawing.Point(50, 30);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(489, 251);
@@ -71,8 +71,9 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.listBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChooseExamDialog";
-            this.Text = "ChooseExam";
+            this.Text = "Kies een afnamemoment";
             this.Load += new System.EventHandler(this.ChooseExamDialog_Load);
             this.ResumeLayout(false);
 
