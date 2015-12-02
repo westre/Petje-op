@@ -113,6 +113,7 @@ namespace PetjeOp
                     // Resize controller specifieke controls
                     TeacherController teacherController = (TeacherController)ActiveParentContainer;
                     teacherController.View.pnlHeader.Width = Width;
+                    teacherController.View.pnlButton_Logout_Background.Location = new Point(Width - teacherController.View.pnlButton_Logout_Background.Size.Width - 25, teacherController.View.pnlButton_Logout_Background.Location.Y);
                 }
             }
         }
