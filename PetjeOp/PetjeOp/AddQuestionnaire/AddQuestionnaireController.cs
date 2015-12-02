@@ -48,20 +48,18 @@ namespace PetjeOp.AddQuestionnaire
             View.btnDeleteQuestion.Enabled = false;
         }
 
+        //Slaat Questionnaire op in de database.
         public void SaveQuestionnaire() {
             Model.Questionnaire.Name = View.tbQuestionnaireName.Text;
             
+            //Als de questionnaire geen ID heeft staat hij nog niet in de database dus maken we hem aan.
             if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
-                Console.WriteLine("SUBJECT: " + Model.Questionnaire.Subject.Name);
-                Console.WriteLine("Nog geen DB");
             }
-            else {
-                Console.WriteLine("het bestaat, dus updaten maar");
-            }
+
+            //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             qoc.GetAllQuestionnairesAndSubjects();
-
             qoc.FillTreeView();
             MasterController.SetController(qoc);
         }
@@ -208,13 +206,14 @@ namespace PetjeOp.AddQuestionnaire
                 }
 
                 UpdateTreeView();
-
                 DisableEditDeleteButtons();
             }
         }
 
+        //Kijk of de buttons enabled kunnen worden.
         public void CheckButtons()
         {
+            //Kijk of er een vragenlijstnaam is ingevuld.
             if (!View.tbQuestionnaireName.Text.Any())
             {
                 View.lblQuestionaireNameError.Text = "Vul een vraagnaam in!";
@@ -226,6 +225,7 @@ namespace PetjeOp.AddQuestionnaire
                 View.btnSaveQuestionnaire.Enabled = true;
             }
 
+            //Kijk of er nodes in de treeview zitten.
             if (View.tvQuestions.Nodes.Count == 0)
             {
                 View.lblNoQuestionsInQuestionaire.Text = "Voeg vragen toe!";
@@ -237,6 +237,7 @@ namespace PetjeOp.AddQuestionnaire
                 View.btnSaveQuestionnaire.Enabled = true;
             }
 
+            //Kijk of er een vak geselecteerd is.
             if (View.cbSubjects.SelectedItem == null)
             {
                 View.lblErrorSubject.Text = "Selecteer een vak!";
@@ -248,18 +249,19 @@ namespace PetjeOp.AddQuestionnaire
             }
         }
 
+        //Haal de vakken uit de database en voeg ze toe aan de huidige model, voeg ze ook toe aan de combobox.
         public void AddSubjects()
         {
-
+            
             Model.Subjects = MasterController.DB.GetSubjects();
             foreach (Subject subject in Model.Subjects)
             {
                 View.cbSubjects.Items.Add(subject);
 
             }
-
         }
 
+        //Zet het vak naar het geselecteerde vak in de combobox.
         public void setSubject()
         {
             if (View.cbSubjects.SelectedItem != null)
