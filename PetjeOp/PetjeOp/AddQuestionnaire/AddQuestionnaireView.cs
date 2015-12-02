@@ -67,5 +67,10 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller.CheckButtons();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireOverview();
+        }
     }
 }
