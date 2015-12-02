@@ -43,7 +43,7 @@
             this.listQuestions.FormattingEnabled = true;
             this.listQuestions.Location = new System.Drawing.Point(37, 54);
             this.listQuestions.Name = "listQuestions";
-            this.listQuestions.Size = new System.Drawing.Size(152, 368);
+            this.listQuestions.Size = new System.Drawing.Size(290, 368);
             this.listQuestions.TabIndex = 0;
             this.listQuestions.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -56,14 +56,14 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(254, 85);
+            this.chart1.Location = new System.Drawing.Point(333, 71);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(375, 320);
+            this.chart1.Size = new System.Drawing.Size(415, 351);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
@@ -71,16 +71,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(251, 54);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label1.Location = new System.Drawing.Point(333, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.Size = new System.Drawing.Size(29, 31);
             this.label1.TabIndex = 2;
+            
             // 
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(37, 25);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(152, 23);
+            this.btnBack.Size = new System.Drawing.Size(290, 23);
             this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Terug naar hoofdmenu";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -95,7 +97,7 @@
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.listQuestions);
             this.Name = "ViewResultsView";
-            this.Size = new System.Drawing.Size(654, 499);
+            this.Size = new System.Drawing.Size(885, 530);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
