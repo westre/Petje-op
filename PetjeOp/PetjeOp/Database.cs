@@ -400,6 +400,7 @@ namespace PetjeOp
             {
                 Question newQuestion = new MultipleChoiceQuestion(question.description);
                 newQuestion.ID = question.id;
+                newQuestion.CorrectAnswer = new Answer(question.correctanswer);
 
                 listQuestions.Add(newQuestion);
             }
