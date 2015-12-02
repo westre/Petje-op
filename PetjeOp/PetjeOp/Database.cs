@@ -323,7 +323,7 @@ namespace PetjeOp
 
             return questionnaires;
         }
-
+        // hier worden de afnamemomenten uit de database gehaald
         public List<Exam> GetExam()
         {
             List<Exam> exams = new List<Exam>();
@@ -342,7 +342,7 @@ namespace PetjeOp
             return exams;
 
         }
-
+        
         public List<Subject> GetSubjects()
         {
             List<Subject> subjects = new List<Subject>();
@@ -371,7 +371,7 @@ namespace PetjeOp
 
             return found;
         }
-
+        // hier worden de vragen die bij een specifieke vragenlijst horen opgehaald
         public List<Question> GetQuestionsByQuestionnaire(int id)
         {
             List<tblQuestion> tblQuestion = (from questions in db.tblQuestions
@@ -390,7 +390,7 @@ namespace PetjeOp
 
             return listQuestions;
         }
-
+        // hier worden de antwoorden opgehaald uit de database
         public List<Answer> GetAnswers()
         {
             List<Answer> answers = new List<Answer>();
@@ -404,7 +404,7 @@ namespace PetjeOp
 
             return answers;
         }
-
+        // hier worden de vragen opgehaald uit de database
         public List<Question> GetQuestions()
         {
             List<Question> questions = new List<Question>();
@@ -419,7 +419,7 @@ namespace PetjeOp
             return questions;
 
         }
-
+        // hier worden de antwoorden opgehaald die bij een specifieke vraag horen
         public List<Answer> GetAnswerByQuestion(int id)
         {
             List<tblAnsweroption> tblAnsweroption = (from answeroption in db.tblAnsweroptions
@@ -437,7 +437,8 @@ namespace PetjeOp
 
             return answeroptions;
         }
-
+        // Hier worden de resultaten opgehaald voor elk specifieke antwoord.
+        
         public List<Result> GetResultByAnswer(int questionid, int answerid, int examnr)
         {
             List<tblResult> tblResult = (from result in db.tblResults
@@ -453,7 +454,7 @@ namespace PetjeOp
 
             return results;
         }
-
+        // hier wordt het antwoord opgehaald bij een antwoord ID (de beschrijving van het antwoord)
       public String GetDescriptionByAnswer(int id)
         {
             tblAnswer tblAnswers =                    (from answer in db.tblAnswers
