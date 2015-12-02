@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -61,6 +63,15 @@ namespace PetjeOp.Questionnaires
 
             //Vul de TreeView met gegevens
             Controller.FillTreeView();
+        }
+
+        private void tvQuestionnaires_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            //Als de node geen parent heeft, mag deze worden geselecteerd
+            if (e.Node.Parent != null)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

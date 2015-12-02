@@ -41,7 +41,7 @@
             this.lblAddQuestionnaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddQuestionnaire.ForeColor = System.Drawing.Color.Black;
             this.lblAddQuestionnaire.Location = new System.Drawing.Point(2, 8);
-            this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2);
             this.lblAddQuestionnaire.Name = "lblAddQuestionnaire";
             this.lblAddQuestionnaire.Size = new System.Drawing.Size(301, 55);
             this.lblAddQuestionnaire.TabIndex = 1;
@@ -50,15 +50,16 @@
             // tvQuestionnaires
             // 
             this.tvQuestionnaires.Location = new System.Drawing.Point(12, 183);
-            this.tvQuestionnaires.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tvQuestionnaires.Margin = new System.Windows.Forms.Padding(4);
             this.tvQuestionnaires.Name = "tvQuestionnaires";
             this.tvQuestionnaires.Size = new System.Drawing.Size(1124, 581);
             this.tvQuestionnaires.TabIndex = 2;
+            this.tvQuestionnaires.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvQuestionnaires_BeforeSelect);
             // 
             // btnAddQuestionnaire
             // 
             this.btnAddQuestionnaire.Location = new System.Drawing.Point(12, 781);
-            this.btnAddQuestionnaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddQuestionnaire.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddQuestionnaire.Name = "btnAddQuestionnaire";
             this.btnAddQuestionnaire.Size = new System.Drawing.Size(292, 77);
             this.btnAddQuestionnaire.TabIndex = 3;
@@ -83,7 +84,7 @@
             this.cbSubjects.Items.AddRange(new object[] {
             "Alle vakken"});
             this.cbSubjects.Location = new System.Drawing.Point(74, 117);
-            this.cbSubjects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSubjects.Margin = new System.Windows.Forms.Padding(4);
             this.cbSubjects.Name = "cbSubjects";
             this.cbSubjects.Size = new System.Drawing.Size(328, 33);
             this.cbSubjects.TabIndex = 5;
@@ -99,7 +100,7 @@
             this.Controls.Add(this.btnAddQuestionnaire);
             this.Controls.Add(this.tvQuestionnaires);
             this.Controls.Add(this.lblAddQuestionnaire);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "QuestionnaireOverviewView";
             this.Size = new System.Drawing.Size(1160, 888);
             this.Load += new System.EventHandler(this.QuestionnaireOverviewView_Load);
