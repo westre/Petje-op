@@ -56,6 +56,9 @@ namespace PetjeOp.AddQuestionnaire
             if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
             }
+            else {                
+                MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
+            }
 
             //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
@@ -91,6 +94,8 @@ namespace PetjeOp.AddQuestionnaire
             //Loop door alle vragen heen
             foreach (MultipleChoiceQuestion q in Model.Questionnaire.Questions)
             {
+                View.cbSubjects.Items.Clear();
+
                 //Voeg Node toe met vraag
                 TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
 
@@ -252,7 +257,7 @@ namespace PetjeOp.AddQuestionnaire
         //Haal de vakken uit de database en voeg ze toe aan de huidige model, voeg ze ook toe aan de combobox.
         public void AddSubjects()
         {
-            
+
             Model.Subjects = MasterController.DB.GetSubjects();
             foreach (Subject subject in Model.Subjects)
             {

@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
-using System.Collections.Generic;
 
 namespace PetjeOp.Questionnaires
 {
@@ -31,13 +30,14 @@ namespace PetjeOp.Questionnaires
         //Vraag alle Questionnaires en Subjects op
         public void GetAllQuestionnairesAndSubjects()
         {
-            //Toon LoadingDialog
+            //Toon LoadingDialog tijdens ophalen gegevens
             LoadingDialog l = new LoadingDialog();
             l.Show();
             Application.DoEvents();
 
             //Vraag Questionnaires op
-            Model.Questionnaires = MasterController.DB.GetAllQuestionnaires();
+            Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
+            ResetList();
 
             //Vraag Subjects op
             Model.Subjects = MasterController.DB.GetSubjects();
@@ -53,7 +53,7 @@ namespace PetjeOp.Questionnaires
             View.tvQuestionnaires.Nodes.Clear();
 
             //Loop over Questionnaires
-            foreach (Questionnaire questionnaire in Model.Questionnaires)
+            foreach (Questionnaire questionnaire in Model.ListQuestionnaires)
             {
                 //Voeg Node toe
                 TreeNode questionnaireTreeNode = View.tvQuestionnaires.Nodes.Add(questionnaire.Name + " (" + questionnaire.Subject + ")");
@@ -73,12 +73,14 @@ namespace PetjeOp.Questionnaires
                         //Check of antwoord correct antwoord is
                         if (answer.ID == question.CorrectAnswer.ID)
                         {
+                            //Voeg antwoord toe en zet de kleur naar groen
                             TreeNode addedAnswer = questionTreeNode.Nodes.Add(question.CorrectAnswer.Description);
                             addedAnswer.Tag = answer;
                             addedAnswer.ForeColor = Color.Green;
                         }
                         else
                         {
+                            //Voeg antwoord toe en zet de kleur naar rood
                             TreeNode addedAnswer = questionTreeNode.Nodes.Add(answer.Description);
                             addedAnswer.Tag = answer;
                             addedAnswer.ForeColor = Color.Red;
@@ -118,7 +120,7 @@ namespace PetjeOp.Questionnaires
             List<Questionnaire> newList = new List<Questionnaire>();
 
             //Loop over Questionnaires
-            foreach (Questionnaire q in Model.Questionnaires)
+            foreach (Questionnaire q in Model.AllQuestionnaires)
             {
                 //Als SubjectID van Questonnair gelijk is aan ID van gekozen Subject
                 if (q.Subject.Id == s.Id)
@@ -127,7 +129,13 @@ namespace PetjeOp.Questionnaires
             }
 
             //Vervang oude list door nieuwe List
-            Model.Questionnaires = newList;
+            Model.ListQuestionnaires = newList;
+        }
+
+        //Reset de lijst zodat alle Questionnaires er weer in staan
+        public void ResetList()
+        {
+            Model.ListQuestionnaires = Model.AllQuestionnaires;
         }
     }
 }

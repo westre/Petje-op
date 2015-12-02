@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PetjeOp
+﻿namespace PetjeOp
 {
     public class Result
     {
-        public int Index { get; set; }
-        private double Percentage { get; set; }
+        public int examID;
+        public int answerID;
+        public int questionID;
 
-        public Result(int i, double p)
+        public Result(int examID, int answerID, int questionID)
         {
-            Index = i;
-            Percentage = p;
+            this.examID = examID;
+            this.answerID = answerID;
+            this.questionID = questionID;
         }
-
         public override string ToString()
         {
-            return Index + " - " + Percentage;
+            return "";
         }
     }
 
