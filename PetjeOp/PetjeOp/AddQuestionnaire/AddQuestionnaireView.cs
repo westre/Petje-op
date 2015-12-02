@@ -58,10 +58,14 @@ namespace PetjeOp.AddQuestionnaire
             Controller.SaveQuestionnaire();
         }
 
-        //Wanneer de QuestionnaireView is geladen, voeg vakken toe.
         private void AddQuestionnaireView_Load(object sender, EventArgs e)
         {
             Controller.AddSubjects();
+        }
+
+        private void cbSubjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Controller.CheckButtons();
         }
     }
 }
