@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 
 namespace PetjeOp
@@ -46,18 +47,19 @@ namespace PetjeOp
             tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID);         // Haalt questionnaire op uit DB
             updateQuestionnaire.description = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
 
-            /*foreach (tblLinkQuestion dbQuestion in updateQuestionnaire.tblLinkQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
+            foreach (tblQuestion dbQuestion in updateQuestionnaire.tblQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
             {
-                MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Select(q => q.ID == dbQuestion.questionnr);// Haalt Question op uit Questionnaire                 
-                dbQuestion.tblQuestion.question = question.Description;                                                                      // Wijzigt de vraag in DB
+                MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Select(q => q.ID == dbQuestion.id);// Haalt Question op uit Questionnaire                 
+                dbQuestion.description = question.Description;                                                                      // Wijzigt de vraag in DB
                 
-                foreach(tblLinkAnswer dbLinkAnwser in dbQuestion.tblQuestion.tblLinkAnswers.ToList())                                        // Doorloopt lijst van bijbehorende answers uit DB
+                foreach(tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList())                                        // Doorloopt lijst van bijbehorende answers uit DB
                 {                                                                       
-                    Answer answer = (Answer)question.AnswerOptions.Select(a => a.ID == dbLinkAnwser.answernr);                               // Haalt Answer op uit Question
-                    dbLinkAnwser.tblAnswer.answer = answer.Description;                                                                      // Wijzigt het antwoord in DB
+                    tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
+                    Answer answer = (Answer)question.AnswerOptions.Select(a => a.ID == dbLinkAnwser.answer);                               // Haalt Answer op uit Question
+                    dbAnswer.description = answer.Description;                                                                  // Wijzigt het antwoord in DB
                 }
-                dbQuestion.tblQuestion.correctanswernr = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
-            }*/
+                dbQuestion.correctanswer = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
+            }
             db.SubmitChanges();                                                                                                              // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB            
         }
 
@@ -136,7 +138,7 @@ namespace PetjeOp
                     answer.ID = ans.ID;
                 }
 
-                MultipleChoiceQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID);
+                MultipleChoiceQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID, tblQuestionnaire);
                 // Synchroniseer onze offline dbQuestion met primary key van DB
                 q.ID = dbQuestion.ID;
 
@@ -203,7 +205,7 @@ namespace PetjeOp
             }
         }
 
-        public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
+        public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId, tblQuestionnaire tblQuestionnaire) {
             tblQuestion question = new tblQuestion();
             //question.id = new Random().Next(100, 1000); // AI maken!!
             question.description = createdQuestion.Description;
@@ -219,6 +221,8 @@ namespace PetjeOp
             db.tblQuestions.InsertOnSubmit(question);
             db.SubmitChanges();
 
+            tblQuestionnaire.tblQuestions.Add(question);
+
             return new MultipleChoiceQuestion(question.description) {
                 ID = question.id,
                 Description = question.description,
@@ -231,12 +235,26 @@ namespace PetjeOp
 
         public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer) {
             // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
+            //db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
+
+            //Of dus zo:
+            tblAnsweroption answerOption = new tblAnsweroption // Maak item aan om toe te voegen
+            {
+                question = refQuestion.ID,
+                answer = refAnswer.ID
+            };
+            db.tblAnsweroptions.InsertOnSubmit(answerOption); // Geef opdracht om bovenstaande item toe te voegen
+            db.SubmitChanges(); // Voer veranderingen door
         }
 
         private void DeleteLinkAnswerToQuestion(int questionId) {
             // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            db.ExecuteCommand("DELETE FROM [answeroption] WHERE question = {0}", questionId);
+            //db.ExecuteCommand("DELETE FROM [answeroption] WHERE question = {0}", questionId);
+
+            //Of dus zo:
+            tblAnsweroption answerOption = db.tblAnsweroptions.Single(q => q.question == questionId); // Selecteer item op id
+            db.tblAnsweroptions.DeleteOnSubmit(answerOption); // Geef opdracht om bovenstaande item te verwijderen
+            db.SubmitChanges(); // Voer veranderingen door
         }
 
         public List<Questionnaire> GetAllQuestionnaires() {
@@ -262,18 +280,11 @@ namespace PetjeOp
                     question.ID = tblQuestion.id;
                     question.QuestionIndex = tblQuestion.questionindex;
 
-                    // Haal alle answeroptions op die bij deze vraag horen
-                    List<tblAnsweroption> tblAnswerOption = (from answer in db.tblAnsweroptions
-                                               where answer.question == question.ID
-                                               select answer).ToList();
-
                     List<Answer> answerOptions = new List<Answer>();
 
-                    foreach(tblAnsweroption answerOption in tblAnswerOption) {
+                    foreach(tblAnsweroption answerOption in tblQuestion.tblAnsweroptions) {
                         // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                        tblAnswer tblAnswer = (from foundAnswer in db.tblAnswers
-                                               where foundAnswer.id == answerOption.answer
-                                               select foundAnswer).FirstOrDefault();
+                        tblAnswer tblAnswer = answerOption.tblAnswer;
 
                         Answer answer = new Answer(tblAnswer.description);
                         answer.ID = tblAnswer.id;
@@ -293,49 +304,119 @@ namespace PetjeOp
             return questionnaires;
         }
 
-        public List<Exam> GetExams()
+        public List<Exam> GetExam()
         {
             List<Exam> exams = new List<Exam>();
 
-            foreach(tblExam tblExam in db.tblExams)
+            foreach (tblExam tblExam in db.tblExams)
             {
-                Exam exam = new Exam();
-                exam.Examnr = tblExam.id;
+                Questionnaire questionnaire = FindQuestionnaireByID(tblExam.questionnaire);
+
+                Exam exam = new Exam(tblExam.id, questionnaire);
 
                 exams.Add(exam);
-                Console.WriteLine(exams);
+                
+
                 }
+
                 return exams;
             
         }
 
-        public List<Subject> GetSubjects()
+        public Questionnaire FindQuestionnaireByID(int id)
         {
-            List<Subject> subjects = new List<Subject>();
+            tblQuestionnaire tblQuestionnaire = (from questionnaire1 in db.tblQuestionnaires
+                                                 where questionnaire1.id == id
+                                                 select questionnaire1).FirstOrDefault();
 
-            foreach (tblSubject tblSubject in db.tblSubjects)
-            {
-                Subject subject = new Subject(tblSubject.id, tblSubject.name);
+            Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
+            questionnaire.ID = tblQuestionnaire.id;
+            questionnaire.Questions = FindQuestionsByQuestionnaireID(questionnaire.ID);
 
-                subjects.Add(subject);
-            }
-
-            return subjects;
+            return questionnaire;
         }
 
-        public Subject GetSubjectByID(int id)
-        {
-            Subject found = new Subject(0,"");
-
-            foreach (tblSubject tblSubject in db.tblSubjects)
+        public List<Question> FindQuestionsByQuestionnaireID(int id)
             {
-                if (tblSubject.id == id)
-                {
-                    found = new Subject(tblSubject.id, tblSubject.name);
-                }
+            List<tblQuestion> tblQuestion = (from questions in db.tblQuestions
+                                             where questions.questionnaire == id
+                                             select questions).ToList();
+
+            List<Question> listQuestions = new List<Question>();
+            foreach(tblQuestion question in tblQuestion)
+            {
+                Question newQuestion = new MultipleChoiceQuestion(question.description);
+                newQuestion.ID = question.id;
+
+                listQuestions.Add(newQuestion);
             }
 
-            return found;
+            return listQuestions;
+        }
+
+        public List<Answer> GetAnswers()
+        {
+            List<Answer> answers = new List<Answer>();
+
+            foreach (tblAnswer tblAnswer in db.tblAnswers)
+            {
+                Answer answer = new Answer(tblAnswer.description);
+
+                answers.Add(answer);
+            }
+
+            return answers;
+        }
+
+        public List<Question> GetQuestions()
+        {
+            List<Question> questions = new List<Question>();
+           
+                foreach (tblQuestion tblQuestion in db.tblQuestions)
+        {
+                    Question question = new MultipleChoiceQuestion(tblQuestion.description);
+
+                    questions.Add(question);
+                }
+            
+            return questions;
+
+        }
+
+        public List<Answer> FindAnswerByQuestionID(int id)
+            {
+            List<tblAnsweroption> tblAnsweroption = (from answeroption in db.tblAnsweroptions
+                                             where answeroption.question == id
+                                             select answeroption).ToList();
+
+            List<Answer> answeroptions = new List<Answer>();
+            foreach (tblAnsweroption answeroption in tblAnsweroption)
+                {
+                Answer newAnswerOption = new Answer(answeroption.answer);
+                newAnswerOption.ID = answeroption.answer;
+
+                answeroptions.Add(newAnswerOption);
+            }
+
+            return answeroptions;
+                }
+
+        public List<Result> FindResultByAnswerID(int questionid, int answerid, int examnr)
+        {
+            List<tblResult> tblResult = (from result in db.tblResults
+                                                     where (result.question == questionid && result.answer == answerid && result.exam == examnr)
+                                                     select result).ToList();
+
+            List<Result> results = new List<Result>();
+            foreach (tblResult result in tblResult)
+            {
+                Result newResult = new Result(result.exam, result.answer, result.question);
+                
+
+                results.Add(newResult);
+            }
+
+            return results;
         }
 
     }

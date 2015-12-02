@@ -10,5 +10,10 @@ namespace PetjeOp
         {
             this.Description = Description;
         }
+
+        public Answer(int ID)
+        {
+            this.ID = ID;
+        }
     }
 }
