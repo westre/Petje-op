@@ -26,7 +26,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherView));
             this.viewPanel = new System.Windows.Forms.Panel();
             this.pnlHeader = new System.Windows.Forms.Panel();
-            this.btnResults = new System.Windows.Forms.Button();
             this.pnlButton_Logout_Background = new System.Windows.Forms.Panel();
             this.lblTitle_Logout_Title = new System.Windows.Forms.Label();
             this.pbIcon_Logout_Icon = new System.Windows.Forms.PictureBox();
@@ -69,7 +68,6 @@
             this.pnlHeader.BackColor = System.Drawing.Color.Transparent;
             this.pnlHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlHeader.BackgroundImage")));
             this.pnlHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlHeader.Controls.Add(this.btnResults);
             this.pnlHeader.Controls.Add(this.pnlButton_Logout_Background);
             this.pnlHeader.Controls.Add(this.pbLogo);
             this.pnlHeader.Controls.Add(this.pnlButton_Agenda_Background);
@@ -79,16 +77,6 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1273, 64);
             this.pnlHeader.TabIndex = 2;
-            // 
-            // btnResults
-            // 
-            this.btnResults.Location = new System.Drawing.Point(785, 18);
-            this.btnResults.Name = "btnResults";
-            this.btnResults.Size = new System.Drawing.Size(75, 23);
-            this.btnResults.TabIndex = 16;
-            this.btnResults.Text = "Resultaten";
-            this.btnResults.UseVisualStyleBackColor = true;
-            this.btnResults.Click += new System.EventHandler(this.btnResults_Click);
             // 
             // pnlButton_Logout_Background
             // 
@@ -190,6 +178,7 @@
             this.pnlButton_Result_Background.Name = "pnlButton_Result_Background";
             this.pnlButton_Result_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Result_Background.TabIndex = 14;
+            this.pnlButton_Result_Background.Click += new System.EventHandler(this.ResultClick);
             // 
             // pbIcon_Results_Icon
             // 
@@ -202,6 +191,7 @@
             this.pbIcon_Results_Icon.Size = new System.Drawing.Size(18, 20);
             this.pbIcon_Results_Icon.TabIndex = 7;
             this.pbIcon_Results_Icon.TabStop = false;
+            this.pbIcon_Results_Icon.Click += new System.EventHandler(this.ResultClick);
             // 
             // lblTitle_Results_Title
             // 
@@ -215,6 +205,7 @@
             this.lblTitle_Results_Title.Size = new System.Drawing.Size(91, 23);
             this.lblTitle_Results_Title.TabIndex = 4;
             this.lblTitle_Results_Title.Text = "Resultaten";
+            this.lblTitle_Results_Title.Click += new System.EventHandler(this.ResultClick);
             // 
             // pnlButton_QuestionnaireOverview_Background
             // 
@@ -298,6 +289,5 @@
         private System.Windows.Forms.Label lblTitle_Agenda_Title;
         private System.Windows.Forms.Label lblTitle_Logout_Title;
         public System.Windows.Forms.Panel pnlButton_Logout_Background;
-        private System.Windows.Forms.Button btnResults;
     }
 }
