@@ -31,7 +31,6 @@ namespace PetjeOp
         /*public Questionnaire GetQuestionnaire(int id)
         {           
             tblQuestionnaire query = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
-
             if (query!=null){
                 Questionnaire questionnaire = new Questionnaire(query.description);
                 foreach(tblLinkQuestion question in query.tblLinkQuestions.ToList())
@@ -335,7 +334,7 @@ namespace PetjeOp
 
             foreach (tblExam tblExam in db.tblExams)
             {
-                Questionnaire questionnaire = FindQuestionnaireByID(tblExam.questionnaire);
+                Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
                 Exam exam = new Exam(tblExam.id, questionnaire);
 
@@ -377,7 +376,7 @@ namespace PetjeOp
             return found;
         }
 
-        public Questionnaire FindQuestionnaireByID(int id)
+        public Questionnaire GetQuestionnaire(int id)
         {
             tblQuestionnaire tblQuestionnaire = (from questionnaire1 in db.tblQuestionnaires
                                                  where questionnaire1.id == id
@@ -385,12 +384,12 @@ namespace PetjeOp
 
             Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
             questionnaire.ID = tblQuestionnaire.id;
-            questionnaire.Questions = FindQuestionsByQuestionnaireID(questionnaire.ID);
+            questionnaire.Questions = GetQuestionsByQuestionnaire(questionnaire.ID);
 
             return questionnaire;
         }
 
-        public List<Question> FindQuestionsByQuestionnaireID(int id)
+        public List<Question> GetQuestionsByQuestionnaire(int id)
         {
             List<tblQuestion> tblQuestion = (from questions in db.tblQuestions
                                              where questions.questionnaire == id
@@ -437,7 +436,7 @@ namespace PetjeOp
 
         }
 
-        public List<Answer> FindAnswerByQuestionID(int id)
+        public List<Answer> GetAnswerByQuestion(int id)
         {
             List<tblAnsweroption> tblAnsweroption = (from answeroption in db.tblAnsweroptions
                                                      where answeroption.question == id
@@ -455,7 +454,7 @@ namespace PetjeOp
             return answeroptions;
         }
 
-        public List<Result> FindResultByAnswerID(int questionid, int answerid, int examnr)
+        public List<Result> GetResultByAnswer(int questionid, int answerid, int examnr)
         {
             List<tblResult> tblResult = (from result in db.tblResults
                                          where (result.question == questionid && result.answer == answerid && result.exam == examnr)
