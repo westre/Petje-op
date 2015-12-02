@@ -35,6 +35,7 @@ namespace PetjeOp {
                 Console.WriteLine(question.Description);
             }
             View.listQuestions.Items.Clear();
+            ClearChart();
             AddQuestionsToList(ex.questionnaire.Questions);
 
         }
@@ -48,13 +49,21 @@ namespace PetjeOp {
             }
 
         }
+        public void ClearChart()
+        {
+            View.series1.Points.Clear();
+            View.label1.Text = "";
+            View.chart1.BackColor = System.Drawing.SystemColors.Control;
+            
+        }
 
         public void ShowChart()
         {
+            ClearChart();
             Question chosen = (Question)View.listQuestions.SelectedItem;
             View.label1.Text = chosen.Description;
+            
 
-            View.series1.Points.Clear();
 
             List<Answer> answers = this.MasterController.DB.GetAnswerByQuestion(chosen.ID);
 
