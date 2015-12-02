@@ -59,18 +59,23 @@ namespace PetjeOp {
 
             foreach (Answer answer in answers)
             {
+                
                 List<Result> results = this.MasterController.DB.GetResultByAnswer(chosen.ID, answer.ID, ex.Examnr);
                 double amount = results.Count();
                 System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
-                dataPoint1.AxisLabel = Convert.ToString(answer.ID);
+                dataPoint1.AxisLabel = Convert.ToString(this.MasterController.DB.GetDescriptionByAnswer(answer.ID));
+                if(answer.ID == chosen.CorrectAnswer.ID)
+                {
+                    dataPoint1.Color = Color.Green;
+                } else
+                {
+                    dataPoint1.Color = Color.Red;
+                }
+                
+
                 View.series1.Points.Add(dataPoint1);
 
             }
-            //System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel1 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            //customLabel1.Text = "a";
-            //customLabel1.ToPosition = 1D;
-            //chartArea1.AxisX.CustomLabels.Add(customLabel1);
-            //this.chart1.ChartAreas.Add(chartArea1);
         }
         public void GoToMainMenu()
         {

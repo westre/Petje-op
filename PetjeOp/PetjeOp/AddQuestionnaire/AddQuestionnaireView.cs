@@ -62,5 +62,10 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller.AddSubjects();
         }
+
+        private void cbSubjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Controller.CheckButtons();
+        }
     }
 }
