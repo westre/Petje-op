@@ -11,11 +11,6 @@ namespace PetjeOp
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
 
-        public void Query()
-        {
-            Console.WriteLine(GetQuestion(0).Description);
-        }
-
         public MultipleChoiceQuestion GetQuestion(int id)
         {
             tblQuestion query = db.tblQuestions.SingleOrDefault(q => q.id == id);
@@ -216,7 +211,6 @@ namespace PetjeOp
         public Answer AddAnswer(string receivedAnswer)
         {
             tblAnswer answer = new tblAnswer();
-            //answer.id = new Random().Next(100, 1000); // AI maken!!
             answer.description = receivedAnswer;
 
             db.tblAnswers.InsertOnSubmit(answer);

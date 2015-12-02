@@ -53,5 +53,10 @@ namespace PetjeOp {
         private void ResultClick(object sender, EventArgs e) {
             Controller.ShowExamDialog();
         }
+
+        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
