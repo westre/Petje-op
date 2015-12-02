@@ -20,29 +20,47 @@ namespace PetjeOp.Questionnaires
             Controller = controller;
         }
 
-        private void lblAddQuestionnaire_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //Bij laden van UserControl
         private void QuestionnaireOverviewView_Load(object sender, EventArgs e)
         {
-            Controller.UpdateTreeView();
+            //Vraag gegevens op uit database
+            Controller.GetAllQuestionnairesAndSubjects();
+
+            //Vul ComboBox met vakken
+            Controller.FillSubjects();
         }
 
-        private void tvQuestionnaires_VisibleChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void tvQuestionnaires_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
+        //Als op knop 'Vragenlijst Toevoegen' is geklikt
         private void button1_Click(object sender, EventArgs e)
         {
+            //Zet scherm naar AddQuestionnaire
            Controller.GoToAddQuestionnaire();
+        }
+
+        //Als er een ander vak is geselecteerd
+        private void cbSubjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Vraag geselecteerd object op
+            object selectedItem = cbSubjects.SelectedItem;
+
+            //Check of selectedItem een vak is
+            if (selectedItem is Subject)
+            {
+                //Cast het object naar een Subjectobject
+                Subject selectedSubject = (Subject) cbSubjects.SelectedItem;
+                
+                //Filter de lijst met Questionnaires, zodat alleen de questionnaires van het
+                //geselecteerde vak wordt getoond
+                Controller.FilterQuestionnaires(selectedSubject);
+            }
+            else
+            {
+                //Toon alle vakken
+                Controller.ResetList();
+            }
+
+            //Vul de TreeView met gegevens
+            Controller.FillTreeView();
         }
     }
 }
