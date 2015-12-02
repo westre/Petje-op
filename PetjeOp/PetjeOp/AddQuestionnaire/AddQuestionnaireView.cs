@@ -50,8 +50,15 @@ namespace PetjeOp.AddQuestionnaire
             
         }
 
-        private void btnSaveQuestionnaire_Click(object sender, EventArgs e) {
+        private void btnSaveQuestionnaire_Click(object sender, EventArgs e)
+        {
+            Controller.setSubject();
             Controller.SaveQuestionnaire();
+        }
+
+        private void AddQuestionnaireView_Load(object sender, EventArgs e)
+        {
+            Controller.AddSubjects();
         }
     }
 }

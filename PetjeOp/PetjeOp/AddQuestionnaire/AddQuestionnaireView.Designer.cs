@@ -37,7 +37,8 @@
             this.lblNoNodeSelectedError = new System.Windows.Forms.Label();
             this.lblNoQuestionsInQuestionaire = new System.Windows.Forms.Label();
             this.lblSubject = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSubjects = new System.Windows.Forms.ComboBox();
+            this.lblErrorSubject = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -166,19 +167,30 @@
             this.lblSubject.TabIndex = 20;
             this.lblSubject.Text = "Vak:";
             // 
-            // comboBox1
+            // cbSubjects
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(89, 174);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(391, 33);
-            this.comboBox1.TabIndex = 21;
+            this.cbSubjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSubjects.FormattingEnabled = true;
+            this.cbSubjects.Location = new System.Drawing.Point(89, 174);
+            this.cbSubjects.Name = "cbSubjects";
+            this.cbSubjects.Size = new System.Drawing.Size(391, 33);
+            this.cbSubjects.TabIndex = 21;
+            // 
+            // lblErrorSubject
+            // 
+            this.lblErrorSubject.AutoSize = true;
+            this.lblErrorSubject.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorSubject.Location = new System.Drawing.Point(486, 177);
+            this.lblErrorSubject.Name = "lblErrorSubject";
+            this.lblErrorSubject.Size = new System.Drawing.Size(0, 25);
+            this.lblErrorSubject.TabIndex = 22;
             // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lblErrorSubject);
+            this.Controls.Add(this.cbSubjects);
             this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.lblNoQuestionsInQuestionaire);
             this.Controls.Add(this.lblNoNodeSelectedError);
@@ -195,6 +207,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AddQuestionnaireView";
             this.Size = new System.Drawing.Size(1140, 800);
+            this.Load += new System.EventHandler(this.AddQuestionnaireView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,6 +228,7 @@
         public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
         public System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.Label lblSubject;
-        private System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox cbSubjects;
+        public System.Windows.Forms.Label lblErrorSubject;
     }
 }

@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterController));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
@@ -43,7 +44,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(2858, 1733);
             this.Controls.Add(this.mainPanel);
-            this.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(12);
             this.MinimumSize = new System.Drawing.Size(2662, 1306);
             this.Name = "MasterController";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

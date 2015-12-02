@@ -41,12 +41,12 @@ namespace PetjeOp
             return null;     
         }*/
 
-        /*public void UpdateQuestionnaire(Questionnaire questionnaire)
+        public void UpdateQuestionnaire(Questionnaire questionnaire)
         {
-            tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.questionnairenr == questionnaire.ID);         // Haalt questionnaire op uit DB
-            updateQuestionnaire.questionnairename = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
+            tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID);         // Haalt questionnaire op uit DB
+            updateQuestionnaire.description = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
 
-            foreach (tblLinkQuestion dbQuestion in updateQuestionnaire.tblLinkQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
+            /*foreach (tblLinkQuestion dbQuestion in updateQuestionnaire.tblLinkQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
             {
                 MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Select(q => q.ID == dbQuestion.questionnr);// Haalt Question op uit Questionnaire                 
                 dbQuestion.tblQuestion.question = question.Description;                                                                      // Wijzigt de vraag in DB
@@ -57,9 +57,9 @@ namespace PetjeOp
                     dbLinkAnwser.tblAnswer.answer = answer.Description;                                                                      // Wijzigt het antwoord in DB
                 }
                 dbQuestion.tblQuestion.correctanswernr = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
-            }
-            db.SubmitChanges();                                                                                                              // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB            
         }*/
+            db.SubmitChanges();                                                                                                              // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB            
+        }
 
         public Student GetStudent(String code)
         {
@@ -98,20 +98,55 @@ namespace PetjeOp
             return null;
         }
 
-        public Questionnaire AddQuestionnaire(string name) { 
-            tblQuestionnaire questionnaire = new tblQuestionnaire();
-            questionnaire.id = new Random().Next(100, 1000); // Dit moet echt even een AI worden
-            questionnaire.author = "eltjo1";
-            questionnaire.description = name;
-            db.tblQuestionnaires.InsertOnSubmit(questionnaire);
+        public bool QuestionnaireExists(string name) {
+            tblQuestionnaire foundQuestionnaire = (from questionnaire in db.tblQuestionnaires
+                                                    where questionnaire.description.ToString().Equals(name)
+                                                    select questionnaire).FirstOrDefault();
+
+            if(foundQuestionnaire != null) {
+                return true;
+            }
+            return false;
+        }
+
+        public Questionnaire AddQuestionnaire(Questionnaire questionnaire) { 
+            tblQuestionnaire tblQuestionnaire = new tblQuestionnaire();
+            tblQuestionnaire.author = "eltjo1"; // test data
+            tblQuestionnaire.description = questionnaire.Name;
+            tblQuestionnaire.subject = questionnaire.Subject.Id;
+            db.tblQuestionnaires.InsertOnSubmit(tblQuestionnaire);
             db.SubmitChanges();
 
-            //return questionnaire.id;
+            questionnaire.ID = tblQuestionnaire.id;
 
-            return new Questionnaire(name) {
-                ID = questionnaire.id,
-                Name = name
-            };
+            //Loop door alle vragen heen
+            foreach (MultipleChoiceQuestion q in questionnaire.Questions) {
+                //Loop door alle antwoorden heen
+                foreach (Answer answer in q.AnswerOptions) {
+                    Answer ans = GetAnswer(answer.Description);
+                    if (ans == null) {
+                        ans = AddAnswer(answer.Description.ToString());
+                    }
+
+                    if (q.CorrectAnswer == answer) {
+                        q.CorrectAnswer = ans;
+                    }
+
+                    // Synchroniseer onze offline answer met primary key van DB
+                    answer.ID = ans.ID;
+                }
+
+                MultipleChoiceQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID);
+                // Synchroniseer onze offline dbQuestion met primary key van DB
+                q.ID = dbQuestion.ID;
+
+                // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+                foreach (Answer answer in q.AnswerOptions) {
+                    LinkAnswerToQuestion(q, answer);
+                }
+            }
+
+            return questionnaire;
         }
 
         public Answer GetAnswer(string answer) {
@@ -132,7 +167,7 @@ namespace PetjeOp
 
         public Answer AddAnswer(string receivedAnswer) {
             tblAnswer answer = new tblAnswer();
-            answer.id = new Random().Next(100, 1000); // AI maken!!
+            //answer.id = new Random().Next(100, 1000); // AI maken!!
             answer.description = receivedAnswer;
 
             db.tblAnswers.InsertOnSubmit(answer);
@@ -170,7 +205,7 @@ namespace PetjeOp
 
         public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId) {
             tblQuestion question = new tblQuestion();
-            question.id = new Random().Next(100, 1000); // AI maken!!
+            //question.id = new Random().Next(100, 1000); // AI maken!!
             question.description = createdQuestion.Description;
             question.correctanswer = createdQuestion.CorrectAnswer.ID;
             question.questionnaire = questionnaireId;
@@ -211,6 +246,7 @@ namespace PetjeOp
             foreach(tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires) {
                 Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
                 questionnaire.ID = tblQuestionnaire.id;
+                questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);
 
                 // Loop door alle questions binnen die questionnaire
                 foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
@@ -268,10 +304,10 @@ namespace PetjeOp
                 exams.Add(exam);
                 
 
-            }
+                }
 
-            return exams;
-
+                return exams;
+            
         }
 
         public Questionnaire FindQuestionnaireByID(int id)
@@ -369,5 +405,6 @@ namespace PetjeOp
 
             return results;
         }
-    }       
+
+    }
 }

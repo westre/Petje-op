@@ -12,12 +12,14 @@ namespace PetjeOp.AddQuestionnaire
         public string Name { get; set; }
         public AddQuestionDialog Dialog { get; set; }
         public Questionnaire Questionnaire { get; set; }
+        public List<Subject> Subjects { get; set; }
 
-        public List<Question> Questions { get; set; } 
+        //public List<Question> Questions { get; set; } 
 
         public AddQuestionnaireModel()
         {
-            Questions = new List<Question>();
+            Questionnaire = new Questionnaire(-1);
+            //Questions = new List<Question>();
         }
     }
 }
