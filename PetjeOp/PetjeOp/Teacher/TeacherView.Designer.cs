@@ -57,12 +57,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.viewPanel.AutoScroll = true;
+            this.viewPanel.BackColor = System.Drawing.SystemColors.Control;
             this.viewPanel.Location = new System.Drawing.Point(0, 63);
             this.viewPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.viewPanel.Name = "viewPanel";
             this.viewPanel.Size = new System.Drawing.Size(1283, 521);
             this.viewPanel.TabIndex = 4;
-            this.viewPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.viewPanel_Paint);
             // 
             // pnlHeader
             // 

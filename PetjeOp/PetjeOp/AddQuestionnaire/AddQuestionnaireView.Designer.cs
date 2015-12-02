@@ -39,6 +39,7 @@
             this.lblSubject = new System.Windows.Forms.Label();
             this.cbSubjects = new System.Windows.Forms.ComboBox();
             this.lblErrorSubject = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -186,10 +187,21 @@
             this.lblErrorSubject.Size = new System.Drawing.Size(0, 13);
             this.lblErrorSubject.TabIndex = 22;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(294, 721);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(210, 49);
+            this.btnCancel.TabIndex = 24;
+            this.btnCancel.Text = "Annuleer";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblErrorSubject);
             this.Controls.Add(this.cbSubjects);
             this.Controls.Add(this.lblSubject);
@@ -231,5 +243,6 @@
         private System.Windows.Forms.Label lblSubject;
         public System.Windows.Forms.ComboBox cbSubjects;
         public System.Windows.Forms.Label lblErrorSubject;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

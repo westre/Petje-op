@@ -27,7 +27,7 @@ namespace PetjeOp {
         {
             return View;
         }
-
+        // hier worden de resultaten weergegeven
         public void ShowResults(Exam ex)
         {
             foreach (Question question in ex.questionnaire.Questions)
@@ -35,10 +35,11 @@ namespace PetjeOp {
                 Console.WriteLine(question.Description);
             }
             View.listQuestions.Items.Clear();
+            ClearChart();
             AddQuestionsToList(ex.questionnaire.Questions);
 
         }
-
+        // hier worden de vragen die uit de database worden gehaald, toegevoegd aan de lijst met vragen per vragenlijst
         public void AddQuestionsToList(List<Question> questions)
         {
             foreach (Question q in questions)
@@ -48,13 +49,26 @@ namespace PetjeOp {
             }
 
         }
-
+        // hier wordt de grafiek leeggemaakt
+        public void ClearChart()
+        {
+          
+            View.series1.Points.Clear();
+            View.label1.Text = "";
+            View.chartArea1.BackColor = System.Drawing.SystemColors.Control;
+            View.chart1.BackColor = System.Drawing.SystemColors.Control;
+            
+        }
+        // hier wordt de grafiek gevuld met data
         public void ShowChart()
         {
-            Question chosen = (Question)View.listQuestions.SelectedItem;
-            View.label1.Text = chosen.Description;
+            ClearChart();
 
-            View.series1.Points.Clear();
+            Question chosen = (Question)View.listQuestions.SelectedItem;
+            View.chartArea1.BackColor = System.Drawing.SystemColors.Window;
+            View.label1.Text = chosen.Description;
+            
+
 
             List<Answer> answers = this.MasterController.DB.GetAnswerByQuestion(chosen.ID);
 
@@ -78,6 +92,7 @@ namespace PetjeOp {
 
             }
         }
+        // hier ga je terug naar het toevoegen en inzien van vragenlijsten
         public void GoToMainMenu()
         {
             Controller controller = MasterController.GetController(typeof(QuestionnaireOverviewController));

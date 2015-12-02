@@ -27,13 +27,13 @@ namespace PetjeOp {
         public Panel GetViewPanel() {
             return View.viewPanel;
         }
-
+        // Deze functie laat de Dialog zien waarin de docent een afnamemoment kan kiezen
         public void ShowExamDialog() {
             Model.Dialog = new ChooseExamDialog(this);
 
             Model.Dialog.ShowDialog();
         }
-
+        // Deze functie zorgt er voor dat er naar de results toe gegaan wordt, na het kiezen van een afnamemoment
         public void GoToResults() {
             ViewResultsController vrc = (ViewResultsController)MasterController.GetController(typeof(ViewResultsController));
             MasterController.SetController(vrc);
