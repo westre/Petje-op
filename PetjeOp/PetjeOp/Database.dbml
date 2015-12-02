@@ -9,14 +9,6 @@
       <Association Name="tblTeacher_tblQuestionnaire" Member="tblQuestionnaires" ThisKey="nr" OtherKey="author" Type="tblQuestionnaire" />
     </Type>
   </Table>
-  <Table Name="dbo.answeroption" Member="tblAnsweroptions">
-    <Type Name="tblAnsweroption">
-      <Column Name="question" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="answer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="tblAnswer_tblAnsweroption" Member="tblAnswer" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
-      <Association Name="tblQuestion_tblAnsweroption" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.class" Member="tblClasses">
     <Type Name="tblClass">
       <Column Name="code" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -92,9 +84,9 @@
     <Type Name="tblAnswer">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Association Name="tblAnswer_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="answer" Type="tblAnsweroption" />
       <Association Name="tblAnswer_tblResult" Member="tblResults" ThisKey="id" OtherKey="answer" Type="tblResult" />
       <Association Name="tblAnswer_tblQuestion" Member="tblQuestions" ThisKey="id" OtherKey="correctanswer" Type="tblQuestion" />
+      <Association Name="tblAnswer_answeroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="answer" Type="tblAnsweroption" />
     </Type>
   </Table>
   <Table Name="dbo.question" Member="tblQuestions">
@@ -105,10 +97,18 @@
       <Column Name="questionnaire" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="questionindex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="timerestriction" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Association Name="tblQuestion_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="question" Type="tblAnsweroption" />
       <Association Name="tblQuestion_tblResult" Member="tblResults" ThisKey="id" OtherKey="question" Type="tblResult" />
+      <Association Name="tblQuestion_answeroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="question" Type="tblAnsweroption" />
       <Association Name="tblAnswer_tblQuestion" Member="tblAnswer" ThisKey="correctanswer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
       <Association Name="tblQuestionnaire_tblQuestion" Member="tblQuestionnaire" ThisKey="questionnaire" OtherKey="id" Type="tblQuestionnaire" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.answeroption" Member="tblAnsweroptions">
+    <Type Name="tblAnsweroption">
+      <Column Name="question" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="answer" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tblAnswer_answeroption" Member="tblAnswer" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
+      <Association Name="tblQuestion_answeroption" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>
