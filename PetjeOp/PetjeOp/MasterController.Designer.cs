@@ -32,7 +32,7 @@
             this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainPanel.Name = "mainPanel";

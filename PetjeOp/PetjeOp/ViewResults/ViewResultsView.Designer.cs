@@ -49,6 +49,7 @@
             // 
             // chart1
             // 
+            this.chart1.BackColor = System.Drawing.SystemColors.Control;
             chartArea1.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
             chartArea1.AxisY.Interval = 1D;
             chartArea1.Name = "ChartArea1";

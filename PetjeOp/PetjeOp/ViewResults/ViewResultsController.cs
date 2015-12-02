@@ -20,6 +20,7 @@ namespace PetjeOp {
         {
             Model = new ViewResultsModel();
             View = new ViewResultsView(this);
+            
         }
 
         public override UserControl GetView()
