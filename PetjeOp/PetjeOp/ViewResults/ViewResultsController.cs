@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetjeOp.Questionnaires;
 
 namespace PetjeOp {
     public class ViewResultsController : Controller
@@ -73,7 +74,7 @@ namespace PetjeOp {
         }
         public void GoToMainMenu()
         {
-            Controller controller = MasterController.GetController(typeof(AddQuestionnaireController));
+            Controller controller = MasterController.GetController(typeof(QuestionnaireOverviewController));
             MasterController.SetController(controller);
         }
 
