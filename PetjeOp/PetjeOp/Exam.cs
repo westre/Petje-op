@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 
 namespace PetjeOp {
-    public class Exam {
+    public class Exam
+    {
         public int Examnr { get; set; }
         public Questionnaire questionnaire;
+        public int qstnn;
         public DateTime starttime;
         public DateTime endtime;
         public string Groupnr { get; set; }
         public List<Result> results;
 
-        public Exam(int ex, Questionnaire qu, DateTime st, DateTime et, string gnr) {
+        public Exam(int ex, int qu, DateTime st, DateTime et, string gnr)
+        {
             Examnr = ex;
-            questionnaire = qu;
+            qstnn = qu;
             starttime = st;
             endtime = et;
             Groupnr = gnr;
@@ -22,11 +25,22 @@ namespace PetjeOp {
 
         }
 
-        public Exam() {
+        public Exam(int ex, int qu)
+        {
+            Examnr = ex;
+            qstnn = qu;
 
         }
-        public override string ToString() {
-            return "Afnamemoment " + Examnr + " : " + questionnaire + " - " + starttime + " - " + endtime + " " + Groupnr;
+
+        public Exam(int id, Questionnaire questionnaire)
+        {
+            Examnr = id;
+            this.questionnaire = questionnaire;
+        }
+
+        public override string ToString()
+        {
+            return "Examennummer : " + Examnr + ", vragenlijstnummer: " + questionnaire;
         }
     }
 
