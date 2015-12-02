@@ -27,7 +27,7 @@ namespace PetjeOp
             return null;          
         }
 
-        /*public Questionnaire GetQuestionnaire(int id)
+        /*ypublic Questionnaire GetQuestionnaire(int id)
         {           
             tblQuestionnaire query = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
 
@@ -234,10 +234,6 @@ namespace PetjeOp
         }
 
         public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer) {
-            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            //db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
-
-            //Of dus zo:
             tblAnsweroption answerOption = new tblAnsweroption // Maak item aan om toe te voegen
             {
                 question = refQuestion.ID,
@@ -248,10 +244,6 @@ namespace PetjeOp
         }
 
         private void DeleteLinkAnswerToQuestion(int questionId) {
-            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            //db.ExecuteCommand("DELETE FROM [answeroption] WHERE question = {0}", questionId);
-
-            //Of dus zo:
             tblAnsweroption answerOption = db.tblAnsweroptions.Single(q => q.question == questionId); // Selecteer item op id
             db.tblAnsweroptions.DeleteOnSubmit(answerOption); // Geef opdracht om bovenstaande item te verwijderen
             db.SubmitChanges(); // Voer veranderingen door
@@ -265,7 +257,7 @@ namespace PetjeOp
             foreach(tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires) {
                 Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
                 questionnaire.ID = tblQuestionnaire.id;
-                questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);
+                questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);               
 
                 // Loop door alle questions binnen die questionnaire
                 foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
@@ -310,16 +302,10 @@ namespace PetjeOp
             foreach (tblExam tblExam in db.tblExams)
             {
                 Questionnaire questionnaire = FindQuestionnaireByID(tblExam.questionnaire);
-
                 Exam exam = new Exam(tblExam.id, questionnaire);
-
                 exams.Add(exam);
-                
-
-                }
-
-                return exams;
-            
+            }
+            return exams;            
         }
 
         public Questionnaire FindQuestionnaireByID(int id)
@@ -409,8 +395,7 @@ namespace PetjeOp
             List<Result> results = new List<Result>();
             foreach (tblResult result in tblResult)
             {
-                Result newResult = new Result(result.exam, result.answer, result.question);
-                
+                Result newResult = new Result(result.exam, result.answer, result.question);               
 
                 results.Add(newResult);
             }
