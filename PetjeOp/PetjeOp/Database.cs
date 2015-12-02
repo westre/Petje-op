@@ -251,10 +251,6 @@ namespace PetjeOp
                 db.tblQuestions.DeleteOnSubmit(selectedQuestion);
                 db.SubmitChanges();
             }
-            else
-            {
-                Console.WriteLine("wtf, null record?");
-            }
         }
 
         public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId, tblQuestionnaire tblQuestionnaire)
@@ -320,8 +316,7 @@ namespace PetjeOp
 
             // Loop door alle questionnaires
             foreach (tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires)
-            {
-                
+            {                
                 // Voeg questionnaire toe aan onze lijst met questionnaire
                 questionnaires.Add(GetQuestionnaire(tblQuestionnaire.id));
             }
@@ -337,7 +332,7 @@ namespace PetjeOp
             {
                 Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
-                Exam exam = new Exam(tblExam.id, questionnaire);
+                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime , tblExam.endtime, tblExam.lecture);
 
                 exams.Add(exam);
 
@@ -376,19 +371,6 @@ namespace PetjeOp
 
             return found;
         }
-
-        //public Questionnaire GetQuestionnaire(int id)
-        //{
-        //    tblQuestionnaire tblQuestionnaire = (from questionnaire1 in db.tblQuestionnaires
-        //                                         where questionnaire1.id == id
-        //                                         select questionnaire1).FirstOrDefault();
-
-        //    Questionnaire questionnaire = new Questionnaire(tblQuestionnaire.description);
-        //    questionnaire.ID = tblQuestionnaire.id;
-        //    questionnaire.Questions = GetQuestionsByQuestionnaire(questionnaire.ID);
-
-        //    return questionnaire;
-        //}
 
         public List<Question> GetQuestionsByQuestionnaire(int id)
         {

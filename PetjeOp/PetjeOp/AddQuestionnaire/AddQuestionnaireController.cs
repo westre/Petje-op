@@ -283,5 +283,20 @@ namespace PetjeOp.AddQuestionnaire
                 Model.Questionnaire.Subject = (Subject)View.cbSubjects.SelectedItem;
             }
         }
+
+        //Verander scherm naar QuestionnaireOverview
+        public void GoToQuestionnaireOverview()
+        {
+            ClearControls();
+            QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
+            MasterController.SetController(qoc);
+        }
+
+        public void ClearControls()
+        {
+            View.tbQuestionnaireName.Clear();
+            View.cbSubjects.SelectedIndex = -1;
+            View.tvQuestions.Nodes.Clear();
+        }
     }
 }
