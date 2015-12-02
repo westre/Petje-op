@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            this.chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.listQuestions = new System.Windows.Forms.ListBox();
@@ -50,6 +50,7 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.SystemColors.Control;
+            chartArea1.BackColor = System.Drawing.SystemColors.Control;
             chartArea1.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
             chartArea1.AxisY.Interval = 1D;
             chartArea1.Name = "ChartArea1";
@@ -107,6 +108,7 @@
         #endregion
 
         public System.Windows.Forms.ListBox listQuestions;
+        public System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1;
         public System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataVisualization.Charting.Series series1;

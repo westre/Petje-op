@@ -53,6 +53,7 @@ namespace PetjeOp {
         {
             View.series1.Points.Clear();
             View.label1.Text = "";
+            View.chartArea1.BackColor = System.Drawing.SystemColors.Control;
             View.chart1.BackColor = System.Drawing.SystemColors.Control;
             
         }
@@ -60,7 +61,9 @@ namespace PetjeOp {
         public void ShowChart()
         {
             ClearChart();
+
             Question chosen = (Question)View.listQuestions.SelectedItem;
+            View.chartArea1.BackColor = System.Drawing.SystemColors.Window;
             View.label1.Text = chosen.Description;
             
 
