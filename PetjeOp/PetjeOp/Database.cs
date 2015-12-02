@@ -471,5 +471,15 @@ namespace PetjeOp
 
             return results;
         }
+
+      public String GetDescriptionByAnswer(int id)
+        {
+            tblAnswer tblAnswers =                    (from answer in db.tblAnswers
+                                                   where answer.id == id
+                                                   select answer).FirstOrDefault();
+            return tblAnswers.description; 
+        }     
+        
+
     }
 }
