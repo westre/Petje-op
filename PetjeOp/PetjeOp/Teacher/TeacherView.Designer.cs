@@ -57,8 +57,10 @@
             // 
             // pnlHeader
             // 
+            this.pnlHeader.AutoSize = true;
             this.pnlHeader.BackColor = System.Drawing.Color.Transparent;
             this.pnlHeader.BackgroundImage = global::PetjeOp.Properties.Resources.Menu_Background2;
+            this.pnlHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlHeader.Controls.Add(this.pnlButton_Logout_Background);
             this.pnlHeader.Controls.Add(this.pbLogo);
             this.pnlHeader.Controls.Add(this.pnlButton_Agenda_Background);
@@ -66,7 +68,7 @@
             this.pnlHeader.Controls.Add(this.pnlButton_QuestionnaireOverview_Background);
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1282, 63);
+            this.pnlHeader.Size = new System.Drawing.Size(1273, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // pnlButton_Logout_Background
@@ -305,6 +307,7 @@
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
