@@ -63,6 +63,16 @@ namespace PetjeOp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bannerBackground {
+            get {
+                object obj = ResourceManager.GetObject("bannerBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Button_Agenda_Icon {
             get {
                 object obj = ResourceManager.GetObject("Button_Agenda_Icon", resourceCulture);
