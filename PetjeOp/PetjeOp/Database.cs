@@ -248,6 +248,8 @@ namespace PetjeOp
                 questionnaire.ID = tblQuestionnaire.id;
                 questionnaire.Subject = GetSubjectByID(tblQuestionnaire.subject);
 
+                Console.WriteLine("Questionnaire name: " + questionnaire.Name + ", count of questions: " + tblQuestionnaire.tblQuestions.Count);
+
                 // Loop door alle questions binnen die questionnaire
                 foreach(tblQuestion tblQuestion in tblQuestionnaire.tblQuestions) {
                     MultipleChoiceQuestion question = new MultipleChoiceQuestion(tblQuestion.description);
