@@ -31,7 +31,7 @@ namespace PetjeOp.Questionnaires
         //Vraag alle Questionnaires en Subjects op
         public void GetAllQuestionnairesAndSubjects()
         {
-            //Toon LoadingDialog
+            //Toon LoadingDialog tijdens ophalen gegevens
             LoadingDialog l = new LoadingDialog();
             l.Show();
             Application.DoEvents();
@@ -74,12 +74,14 @@ namespace PetjeOp.Questionnaires
                         //Check of antwoord correct antwoord is
                         if (answer.ID == question.CorrectAnswer.ID)
                         {
+                            //Voeg antwoord toe en zet de kleur naar groen
                             TreeNode addedAnswer = questionTreeNode.Nodes.Add(question.CorrectAnswer.Description);
                             addedAnswer.Tag = answer;
                             addedAnswer.ForeColor = Color.Green;
                         }
                         else
                         {
+                            //Voeg antwoord toe en zet de kleur naar rood
                             TreeNode addedAnswer = questionTreeNode.Nodes.Add(answer.Description);
                             addedAnswer.Tag = answer;
                             addedAnswer.ForeColor = Color.Red;
@@ -131,6 +133,7 @@ namespace PetjeOp.Questionnaires
             Model.ListQuestionnaires = newList;
         }
 
+        //Reset de lijst zodat alle Questionnaires er weer in staan
         public void ResetList()
         {
             Model.ListQuestionnaires = Model.AllQuestionnaires;
