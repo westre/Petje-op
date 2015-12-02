@@ -7,28 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PetjeOp.ViewResults.ChooseExam
-{
-    public partial class ChooseExamDialog : Form
-    {
-        
+namespace PetjeOp.ViewResults.ChooseExam {
+    public partial class ChooseExamDialog : Form {
+
         private TeacherController Controller;
-        public ChooseExamDialog(TeacherController Controller)
-        {
+        public ChooseExamDialog(TeacherController Controller) {
             this.Controller = Controller;
             InitializeComponent();
         }
 
-        private void ChooseExamDialog_Load(object sender, EventArgs e)
-        {
+        private void ChooseExamDialog_Load(object sender, EventArgs e) {
 
-            List<Exam> exams = Controller.MasterController.DB.GetExam();
 
-            foreach (Exam ex in exams)
-            {
-                listBox1.Items.AddRange(new object[] { ex});
-            }
-        
+
             //// DUMMY DATA //
             //Questionnaire test = new Questionnaire("Databaseontwerp");
             //Question q1 = new MultipleChoiceQuestion("Wat is 1+1?");
@@ -51,37 +42,32 @@ namespace PetjeOp.ViewResults.ChooseExam
             //    listBox1.Items.AddRange(new object[] {
             //ex});
             //}
-           
 
-           
 
-           
+
+
+
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
-        {
+        private void btnOk_Click(object sender, EventArgs e) {
 
             Controller.x = (Exam)listBox1.SelectedItem;
-            if(Controller.x != null)
-            {
+            if (Controller.x != null) {
                 this.Close();
                 Controller.GoToResults();
             }
-            
-            
+
+
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        { 
+        private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
+
 
 
         }
-
     }
 }

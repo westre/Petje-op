@@ -94,6 +94,8 @@ namespace PetjeOp.AddQuestionnaire
             //Loop door alle vragen heen
             foreach (MultipleChoiceQuestion q in Model.Questionnaire.Questions)
             {
+                View.cbSubjects.Items.Clear();
+
                 //Voeg Node toe met vraag
                 TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
 
