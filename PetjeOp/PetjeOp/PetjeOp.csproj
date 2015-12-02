@@ -250,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
+    <None Include="Resources\bannerBackground.png" />
     <None Include="Resources\Menu_Background1.png" />
     <None Include="Resources\Menu_Background.png" />
     <None Include="Resources\Button_Background.png" />
