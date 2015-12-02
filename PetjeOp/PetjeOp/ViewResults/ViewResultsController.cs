@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetjeOp.Questionnaires;
 
 namespace PetjeOp {
     public class ViewResultsController : Controller
@@ -58,10 +59,12 @@ namespace PetjeOp {
 
             foreach (Answer answer in answers)
             {
+                
                 List<Result> results = this.MasterController.DB.GetResultByAnswer(chosen.ID, answer.ID, ex.Examnr);
                 double amount = results.Count();
                 System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
-                dataPoint1.AxisLabel = Convert.ToString(answer.ID);
+                dataPoint1.AxisLabel = Convert.ToString(this.MasterController.DB.GetDescriptionByAnswer(answer.ID));
+                
                 View.series1.Points.Add(dataPoint1);
 
             }
@@ -73,7 +76,7 @@ namespace PetjeOp {
         }
         public void GoToMainMenu()
         {
-            Controller controller = MasterController.GetController(typeof(AddQuestionnaireController));
+            Controller controller = MasterController.GetController(typeof(QuestionnaireOverviewController));
             MasterController.SetController(controller);
         }
 
