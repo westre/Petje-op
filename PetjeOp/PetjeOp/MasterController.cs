@@ -113,7 +113,6 @@ namespace PetjeOp
                     // Resize controller specifieke controls
                     TeacherController teacherController = (TeacherController)ActiveParentContainer;
                     teacherController.View.pnlHeader.Width = Width;
-                    teacherController.View.pnlMenu.Height = Height;
                 }
             }
         }
