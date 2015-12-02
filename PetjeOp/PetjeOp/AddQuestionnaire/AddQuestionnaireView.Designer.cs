@@ -175,6 +175,7 @@
             this.cbSubjects.Name = "cbSubjects";
             this.cbSubjects.Size = new System.Drawing.Size(391, 33);
             this.cbSubjects.TabIndex = 21;
+            this.cbSubjects.SelectedIndexChanged += new System.EventHandler(this.cbSubjects_SelectedIndexChanged);
             // 
             // lblErrorSubject
             // 
