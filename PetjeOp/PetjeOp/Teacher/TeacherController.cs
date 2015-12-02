@@ -5,24 +5,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetjeOp.AddQuestionnaire;
+using PetjeOp.Questionnaires;
 
-namespace PetjeOp {
-    public class TeacherController : Controller, IEnvironment {
+namespace PetjeOp
+{
+    public class TeacherController : Controller, IEnvironment
+    {
         public TeacherView View { get; set; }
         public TeacherModel Model { get; set; }
         public Exam x { get; set; }
 
-        public TeacherController(MasterController masterController) : base(masterController) {
+        public TeacherController(MasterController masterController) : base(masterController)
+        {
             Model = new TeacherModel();
             View = new TeacherView(this);
             x = null;
         }
 
-        public override UserControl GetView() {
+        public override UserControl GetView()
+        {
             return View;
         }
 
-        public Panel GetViewPanel() {
+        public Panel GetViewPanel()
+        {
             return View.viewPanel;
         }
 
@@ -38,18 +45,14 @@ namespace PetjeOp {
             ViewResultsController vrc = (ViewResultsController)MasterController.GetController(typeof(ViewResultsController));
             MasterController.SetController(vrc);
             vrc.ex = x;
-            
-                vrc.ShowResults();
-            
-            
-            
+
+            vrc.ShowResults();
         }
 
-        public void ShowDebugDialog() {
-            DebugDialog dd = new DebugDialog(MasterController.DB.GetAllQuestionnaires());
-            dd.ShowDialog();
-
-
+        public void GoToQuestionnaireOverview()
+        {
+            QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
+            MasterController.SetController(qoc);
         }
     }
 }

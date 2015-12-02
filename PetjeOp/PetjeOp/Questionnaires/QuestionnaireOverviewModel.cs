@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace PetjeOp.Questionnaires
 {
@@ -9,5 +6,6 @@ namespace PetjeOp.Questionnaires
     {
         public string Name { get; set; }
         public List<Questionnaire> Questionnaires { get; set; }
+        public List<Subject> Subjects { get; set; } 
     }
 }

@@ -24,6 +24,11 @@ namespace PetjeOp
             results = new List<Result>();
 
         }
+
+        public Exam()
+        {
+
+        }
         public override string ToString()
         {
             return "Afnamemoment " + Examnr + " : " + questionnaire + " - " + starttime + " - " + endtime + " " + Groupnr;
