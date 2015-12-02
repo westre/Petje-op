@@ -72,6 +72,7 @@ namespace PetjeOp {
                     dataPoint1.Color = Color.Red;
                 }
                 
+
                 View.series1.Points.Add(dataPoint1);
 
             }
