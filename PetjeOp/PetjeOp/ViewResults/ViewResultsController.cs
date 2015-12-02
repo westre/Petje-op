@@ -28,7 +28,6 @@ namespace PetjeOp {
             View.listQuestions.Items.Clear();
             AddQuestionsToList();
 
-            
         }
 
         public void AddQuestionsToList()
