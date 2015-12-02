@@ -65,6 +65,7 @@ namespace PetjeOp {
                 System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
                 dataPoint1.AxisLabel = Convert.ToString(this.MasterController.DB.GetDescriptionByAnswer(answer.ID));
                 
+
                 View.series1.Points.Add(dataPoint1);
 
             }
