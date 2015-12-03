@@ -33,5 +33,11 @@ namespace PetjeOp {
             Controller controller = MasterController.GetController(typeof(TeacherController));
             MasterController.SetController(controller);
         }
+
+        internal void AnswerQuestion(int QuestionnaireID)
+        {
+            Controller controller = MasterController.GetController(typeof(AnswerQuestionnaireController));
+            MasterController.SetController(controller);
+        }
     }
 }

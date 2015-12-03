@@ -38,6 +38,7 @@ namespace PetjeOp
             Controllers.Add(new AddQuestionnaireController(this));
             Controllers.Add(new ViewResultsController(this));
             Controllers.Add(new QuestionnaireOverviewController(this));
+            Controllers.Add(new AnswerQuestionnaireController(this));
 
             // We beginnen met deze view, verander dit niet!
             mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
@@ -94,6 +95,13 @@ namespace PetjeOp
                 mainPanel.Controls.Clear();
 
                 ActiveParentContainer = (QuestionnaireDetailController)controller;
+                mainPanel.Controls.Add(ActiveParentContainer.GetView());
+            }
+            else if (controller is AnswerQuestionnaireController)
+            {
+                mainPanel.Controls.Clear();
+
+                ActiveParentContainer = (AnswerQuestionnaireController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
             }
         }

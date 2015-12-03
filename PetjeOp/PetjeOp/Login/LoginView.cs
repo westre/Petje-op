@@ -30,6 +30,11 @@ namespace PetjeOp {
             Controller.TeacherLogin();
         }
 
+        private void btnAnswerQuestion_Click(object sender, EventArgs e)
+        {
+            Controller.AnswerQuestion(1);
+        }
+
         private void LoginBtn_Click(object sender, EventArgs e)
         {
             

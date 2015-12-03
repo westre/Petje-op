@@ -114,6 +114,14 @@
     </Compile>
     <Compile Include="Media.cs" />
     <Compile Include="MultipleChoiceQuestion.cs" />
+    <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireController.cs" />
+    <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireModel.cs" />
+    <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireView.Designer.cs">
+      <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Questionnaires\LoadingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +203,9 @@
     <None Include="Database.dbml.layout">
       <DependentUpon>Database.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="AnswerQuestionnaire\AnswerQuestionnaireView.resx">
+      <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>

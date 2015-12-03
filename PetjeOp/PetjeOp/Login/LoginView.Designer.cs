@@ -27,6 +27,7 @@ namespace PetjeOp {
         private void InitializeComponent()
         {
             this.btnVraagOverzicht = new System.Windows.Forms.Button();
+            this.btnAnswerQuestion = new System.Windows.Forms.Button();
             this.btnStudentLogin = new System.Windows.Forms.Button();
             this.btnLoginTeacher = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -87,6 +88,16 @@ namespace PetjeOp {
             this.btnLoginTeacher.Text = "Inloggen als teacher";
             this.btnLoginTeacher.UseVisualStyleBackColor = true;
             this.btnLoginTeacher.Click += new System.EventHandler(this.btnLoginTeacher_Click);
+            // 
+            // btnAnswerQuestion
+            // 
+            this.btnAnswerQuestion.Location = new System.Drawing.Point(41, 300);
+            this.btnAnswerQuestion.Name = "btnLoginTeacher";
+            this.btnAnswerQuestion.Size = new System.Drawing.Size(115, 39);
+            this.btnAnswerQuestion.TabIndex = 1;
+            this.btnAnswerQuestion.Text = "Answer Questionnaire";
+            this.btnAnswerQuestion.UseVisualStyleBackColor = true;
+            this.btnAnswerQuestion.Click += new System.EventHandler(this.btnAnswerQuestion_Click);
             // 
             // textBox1
             // 
@@ -240,6 +251,7 @@ namespace PetjeOp {
             this.viewPanel.Controls.Add(this.btnLoginTeacher);
             this.viewPanel.Controls.Add(this.btnVraagOverzicht);
             this.viewPanel.Controls.Add(this.btnStudentLogin);
+            this.viewPanel.Controls.Add(this.btnAnswerQuestion);
             this.viewPanel.TabIndex = 4;
             this.viewPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.viewPanel_Paint);
             // 
@@ -306,6 +318,7 @@ namespace PetjeOp {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button LoginBtn;
         private System.Windows.Forms.Label Error;
+        private Button btnAnswerQuestion;
         private Panel PnlLogin;
     }
 }
