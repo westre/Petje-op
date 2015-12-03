@@ -43,7 +43,7 @@ namespace PetjeOp {
             this.pbIcon_QuestionnaireOverview_Icon = new System.Windows.Forms.PictureBox();
             this.lblTitle_QuestionnaireOverview_Title = new System.Windows.Forms.Label();
             this.viewPanel = new System.Windows.Forms.Panel();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.vraagbox = new System.Windows.Forms.CheckedListBox();
             this.pnlHeader.SuspendLayout();
             this.pnlButton_Logout_Background.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).BeginInit();
@@ -72,7 +72,7 @@ namespace PetjeOp {
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1184, 59);
+            this.pnlHeader.Size = new System.Drawing.Size(1334, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // btnResults
@@ -250,31 +250,34 @@ namespace PetjeOp {
             // 
             // viewPanel
             // 
+            this.viewPanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.viewPanel.AutoSize = true;
-            this.viewPanel.Dock = DockStyle.Fill;
-            this.viewPanel.Controls.Add(this.checkedListBox1);
+            this.viewPanel.Controls.Add(this.vraagbox);
+            this.viewPanel.Location = new System.Drawing.Point(-1, 59);
             this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
             this.viewPanel.Name = "viewPanel";
+            this.viewPanel.Size = new System.Drawing.Size(1334, 603);
             this.viewPanel.TabIndex = 4;
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(325, 127);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(379, 184);
-            this.checkedListBox1.TabIndex = 0;
+            this.vraagbox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.vraagbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vraagbox.FormattingEnabled = true;
+            this.vraagbox.Location = new System.Drawing.Point(-(this.vraagbox.Width / 2), 200);
+            this.vraagbox.Name = "checkedListBox1";
+            this.vraagbox.Size = new System.Drawing.Size(448, 148);
+            this.vraagbox.TabIndex = 0;
             // 
             // AnswerQuestionnaireView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Dock = DockStyle.Fill;
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
             this.Name = "AnswerQuestionnaireView";
+            this.Size = new System.Drawing.Size(1334, 664);
             this.Resize += new System.EventHandler(this.logOutBtn);
             this.pnlHeader.ResumeLayout(false);
             this.pnlButton_Logout_Background.ResumeLayout(false);
@@ -330,6 +333,6 @@ namespace PetjeOp {
             pnlButton_Logout_Background.Location = new System.Drawing.Point((pnlHeader.Size.Width - pnlButton_Logout_Background.Size.Width - 10), 12);
         }
 
-        private CheckedListBox checkedListBox1;
+        private CheckedListBox vraagbox;
     }
 }
