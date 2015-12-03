@@ -50,7 +50,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WinQ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Resize += new System.EventHandler(this.MasterController_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

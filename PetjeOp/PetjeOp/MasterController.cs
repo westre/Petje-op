@@ -34,6 +34,7 @@ namespace PetjeOp
             Controllers.Add(new LoginController(this));
             Controllers.Add(new TeacherController(this));
             Controllers.Add(new StudentController(this));
+            Controllers.Add(new QuestionnaireDetailController(this));
             Controllers.Add(new AddQuestionnaireController(this));
             Controllers.Add(new ViewResultsController(this));
             Controllers.Add(new QuestionnaireOverviewController(this));
@@ -88,6 +89,13 @@ namespace PetjeOp
                 ActiveParentContainer = (StudentController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
             }
+            else if (controller is QuestionnaireDetailController)
+            {
+                mainPanel.Controls.Clear();
+
+                ActiveParentContainer = (QuestionnaireDetailController)controller;
+                mainPanel.Controls.Add(ActiveParentContainer.GetView());
+            }
         }
 
         private void mainPanel_Paint(object sender, PaintEventArgs e)
@@ -98,26 +106,6 @@ namespace PetjeOp
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void MasterController_Resize(object sender, EventArgs e)
-        {
-            if (ActiveParentContainer != null)
-            {
-                // Resize de parent container met de form
-                ActiveParentContainer.GetView().Width = mainPanel.Width;
-                ActiveParentContainer.GetView().Height = mainPanel.Height;
-
-                if (ActiveParentContainer is TeacherController)
-                {
-                    // Resize controller specifieke controls
-                    TeacherController teacherController = (TeacherController)ActiveParentContainer;
-                    teacherController.View.pnlHeader.Width = Width;
-
-                    if(Width > 930)
-                        teacherController.View.pnlButton_Logout_Background.Location = new Point(Width - teacherController.View.pnlButton_Logout_Background.Size.Width - 25, teacherController.View.pnlButton_Logout_Background.Location.Y);
-                }
-            }
         }
     }
 }

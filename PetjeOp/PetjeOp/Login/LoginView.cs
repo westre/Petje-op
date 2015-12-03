@@ -21,6 +21,10 @@ namespace PetjeOp {
         private void btnStudentLogin_Click(object sender, EventArgs e) {
             Controller.StudentLogin();
         }
+        private void btnVraagOverzicht_Click(object sender, EventArgs e)
+        {
+            Controller.QuestionnaireDetail();
+        }
 
         private void btnLoginTeacher_Click(object sender, EventArgs e) {
             Controller.TeacherLogin();
@@ -53,6 +57,11 @@ namespace PetjeOp {
                 }
             }
             
+        }
+
+        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

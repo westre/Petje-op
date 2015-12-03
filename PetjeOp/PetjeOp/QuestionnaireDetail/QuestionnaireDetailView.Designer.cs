@@ -1,5 +1,8 @@
-﻿namespace PetjeOp {
-    partial class TeacherView {
+﻿using System;
+using System.Windows.Forms;
+
+namespace PetjeOp {
+    partial class QuestionnaireDetailView {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -23,9 +26,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherView));
-            this.viewPanel = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionnaireDetailView));
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.btnResults = new System.Windows.Forms.Button();
             this.pnlButton_Logout_Background = new System.Windows.Forms.Panel();
             this.lblTitle_Logout_Title = new System.Windows.Forms.Label();
             this.pbIcon_Logout_Icon = new System.Windows.Forms.PictureBox();
@@ -39,6 +42,7 @@
             this.pnlButton_QuestionnaireOverview_Background = new System.Windows.Forms.Panel();
             this.pbIcon_QuestionnaireOverview_Icon = new System.Windows.Forms.PictureBox();
             this.lblTitle_QuestionnaireOverview_Title = new System.Windows.Forms.Label();
+            this.viewPanel = new System.Windows.Forms.Panel();
             this.pnlHeader.SuspendLayout();
             this.pnlButton_Logout_Background.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).BeginInit();
@@ -51,35 +55,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_QuestionnaireOverview_Icon)).BeginInit();
             this.SuspendLayout();
             // 
-            // viewPanel
-            // 
-            this.viewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewPanel.AutoScroll = true;
-            this.viewPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.viewPanel.Location = new System.Drawing.Point(0, 63);
-            this.viewPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.viewPanel.Name = "viewPanel";
-            this.viewPanel.Size = new System.Drawing.Size(1283, 521);
-            this.viewPanel.TabIndex = 4;
-            // 
             // pnlHeader
             // 
             this.pnlHeader.AutoSize = true;
             this.pnlHeader.BackColor = System.Drawing.Color.Transparent;
             this.pnlHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlHeader.BackgroundImage")));
             this.pnlHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Controls.Add(this.btnResults);
             this.pnlHeader.Controls.Add(this.pnlButton_Logout_Background);
             this.pnlHeader.Controls.Add(this.pbLogo);
             this.pnlHeader.Controls.Add(this.pnlButton_Agenda_Background);
             this.pnlHeader.Controls.Add(this.pnlButton_Result_Background);
             this.pnlHeader.Controls.Add(this.pnlButton_QuestionnaireOverview_Background);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1273, 64);
+            this.pnlHeader.Size = new System.Drawing.Size(1184, 64);
             this.pnlHeader.TabIndex = 2;
+            // 
+            // btnResults
+            // 
+            this.btnResults.Location = new System.Drawing.Point(785, 18);
+            this.btnResults.Name = "btnResults";
+            this.btnResults.Size = new System.Drawing.Size(75, 23);
+            this.btnResults.TabIndex = 16;
+            this.btnResults.Text = "Resultaten";
+            this.btnResults.UseVisualStyleBackColor = true;
             // 
             // pnlButton_Logout_Background
             // 
@@ -88,8 +89,8 @@
             this.pnlButton_Logout_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Logout_Background.Controls.Add(this.lblTitle_Logout_Title);
             this.pnlButton_Logout_Background.Controls.Add(this.pbIcon_Logout_Icon);
-            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(1106, 12);
-            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(0, 0);
+            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
             this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Logout_Background.TabIndex = 15;
@@ -113,7 +114,7 @@
             this.pbIcon_Logout_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Logout_Icon;
             this.pbIcon_Logout_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(30, 9);
-            this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Logout_Icon.Name = "pbIcon_Logout_Icon";
             this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(21, 25);
             this.pbIcon_Logout_Icon.TabIndex = 4;
@@ -125,7 +126,7 @@
             this.pbLogo.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
             this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbLogo.Location = new System.Drawing.Point(8, 7);
-            this.pbLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbLogo.Margin = new System.Windows.Forms.Padding(2);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(150, 50);
             this.pbLogo.TabIndex = 0;
@@ -139,7 +140,7 @@
             this.pnlButton_Agenda_Background.Controls.Add(this.pbIcon_Agenda_Icon);
             this.pnlButton_Agenda_Background.Controls.Add(this.lblTitle_Agenda_Title);
             this.pnlButton_Agenda_Background.Location = new System.Drawing.Point(571, 12);
-            this.pnlButton_Agenda_Background.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlButton_Agenda_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Agenda_Background.Name = "pnlButton_Agenda_Background";
             this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Agenda_Background.TabIndex = 15;
@@ -150,7 +151,7 @@
             this.pbIcon_Agenda_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Agenda_Icon;
             this.pbIcon_Agenda_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_Agenda_Icon.Location = new System.Drawing.Point(36, 10);
-            this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Agenda_Icon.Name = "pbIcon_Agenda_Icon";
             this.pbIcon_Agenda_Icon.Size = new System.Drawing.Size(25, 22);
             this.pbIcon_Agenda_Icon.TabIndex = 5;
@@ -177,11 +178,10 @@
             this.pnlButton_Result_Background.Controls.Add(this.pbIcon_Results_Icon);
             this.pnlButton_Result_Background.Controls.Add(this.lblTitle_Results_Title);
             this.pnlButton_Result_Background.Location = new System.Drawing.Point(233, 12);
-            this.pnlButton_Result_Background.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlButton_Result_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Result_Background.Name = "pnlButton_Result_Background";
             this.pnlButton_Result_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Result_Background.TabIndex = 14;
-            this.pnlButton_Result_Background.Click += new System.EventHandler(this.ResultClick);
             // 
             // pbIcon_Results_Icon
             // 
@@ -189,12 +189,11 @@
             this.pbIcon_Results_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Results_Icon;
             this.pbIcon_Results_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_Results_Icon.Location = new System.Drawing.Point(22, 10);
-            this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Results_Icon.Name = "pbIcon_Results_Icon";
             this.pbIcon_Results_Icon.Size = new System.Drawing.Size(18, 20);
             this.pbIcon_Results_Icon.TabIndex = 7;
             this.pbIcon_Results_Icon.TabStop = false;
-            this.pbIcon_Results_Icon.Click += new System.EventHandler(this.ResultClick);
             // 
             // lblTitle_Results_Title
             // 
@@ -208,7 +207,6 @@
             this.lblTitle_Results_Title.Size = new System.Drawing.Size(91, 23);
             this.lblTitle_Results_Title.TabIndex = 4;
             this.lblTitle_Results_Title.Text = "Resultaten";
-            this.lblTitle_Results_Title.Click += new System.EventHandler(this.ResultClick);
             // 
             // pnlButton_QuestionnaireOverview_Background
             // 
@@ -218,7 +216,7 @@
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.pbIcon_QuestionnaireOverview_Icon);
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.lblTitle_QuestionnaireOverview_Title);
             this.pnlButton_QuestionnaireOverview_Background.Location = new System.Drawing.Point(402, 12);
-            this.pnlButton_QuestionnaireOverview_Background.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlButton_QuestionnaireOverview_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_QuestionnaireOverview_Background.Name = "pnlButton_QuestionnaireOverview_Background";
             this.pnlButton_QuestionnaireOverview_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_QuestionnaireOverview_Background.TabIndex = 15;
@@ -229,7 +227,7 @@
             this.pbIcon_QuestionnaireOverview_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_QuestionnaireOverview_Icon;
             this.pbIcon_QuestionnaireOverview_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_QuestionnaireOverview_Icon.Location = new System.Drawing.Point(17, 10);
-            this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_QuestionnaireOverview_Icon.Name = "pbIcon_QuestionnaireOverview_Icon";
             this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(21, 21);
             this.pbIcon_QuestionnaireOverview_Icon.TabIndex = 6;
@@ -248,18 +246,28 @@
             this.lblTitle_QuestionnaireOverview_Title.TabIndex = 12;
             this.lblTitle_QuestionnaireOverview_Title.Text = "Vragenlijsten";
             // 
-            // TeacherView
+            // viewPanel
+            // 
+            this.viewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewPanel.AutoSize = true;
+            this.viewPanel.Location = new System.Drawing.Point(2, 68);
+            this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.viewPanel.Name = "viewPanel";
+            this.viewPanel.Size = new System.Drawing.Size(4942, 2044);
+            this.viewPanel.TabIndex = 4;
+            // 
+            // StudentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
-            this.Name = "TeacherView";
-            this.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AutoSize = true;
-            this.Size = new System.Drawing.Size(1283, 584);
+            this.Dock = DockStyle.Fill;
+            this.Name = "StudentView";
+            this.Size = new System.Drawing.Size(1184, 486);
             this.Resize += new System.EventHandler(this.logOutBtn);
-            this.Load += new System.EventHandler(this.TeacherView_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlButton_Logout_Background.ResumeLayout(false);
             this.pnlButton_Logout_Background.PerformLayout();
@@ -279,8 +287,18 @@
 
         }
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+        }
+
+        private void scaleBanner()
+        {
+            pnlHeader.Size = new System.Drawing.Size(Controller.MasterController.Size.Width, pnlHeader.Size.Height);
+        }
+
         #endregion
-        public System.Windows.Forms.Panel viewPanel;
         public System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.PictureBox pbIcon_Results_Icon;
@@ -295,8 +313,10 @@
         private System.Windows.Forms.Label lblTitle_Agenda_Title;
         private System.Windows.Forms.Label lblTitle_Logout_Title;
         public System.Windows.Forms.Panel pnlButton_Logout_Background;
+        private System.Windows.Forms.Button btnResults;
+        public Panel viewPanel;
 
-        private void logOutBtn(object sender, System.EventArgs e)
+        private void logOutBtn(object sender, EventArgs e)
         {
             pnlButton_Logout_Background.Location = new System.Drawing.Point((pnlHeader.Size.Width - pnlButton_Logout_Background.Size.Width - 10), 12);
         }

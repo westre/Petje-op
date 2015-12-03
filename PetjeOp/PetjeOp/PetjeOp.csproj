@@ -129,6 +129,14 @@
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
     </Compile>
     <Compile Include="Result.cs" />
+    <Compile Include="QuestionnaireDetail\QuestionnaireDetailController.cs" />
+    <Compile Include="QuestionnaireDetail\QuestionnaireDetailModel.cs" />
+    <Compile Include="QuestionnaireDetail\QuestionnaireDetailView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestionnaireDetail\QuestionnaireDetailView.Designer.cs">
+      <DependentUpon>QuestionnaireDetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Subject.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="Student.cs" />
@@ -192,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\QuestionnaireOverviewView.resx">
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuestionnaireDetail\QuestionnaireDetailView.resx">
+      <DependentUpon>QuestionnaireDetailView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewResults\ChooseExam\ChooseExamDialog.resx">
       <DependentUpon>ChooseExamDialog.cs</DependentUpon>
