@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetjeOp.Questionnaires;
 
 namespace PetjeOp {
     public class ViewResultsController : Controller
@@ -19,13 +20,14 @@ namespace PetjeOp {
         {
             Model = new ViewResultsModel();
             View = new ViewResultsView(this);
+            
         }
 
         public override UserControl GetView()
         {
             return View;
         }
-
+        // hier worden de resultaten weergegeven
         public void ShowResults(Exam ex)
         {
             foreach (Question question in ex.questionnaire.Questions)
@@ -33,10 +35,11 @@ namespace PetjeOp {
                 Console.WriteLine(question.Description);
             }
             View.listQuestions.Items.Clear();
+            ClearChart();
             AddQuestionsToList(ex.questionnaire.Questions);
 
         }
-
+        // hier worden de vragen die uit de database worden gehaald, toegevoegd aan de lijst met vragen per vragenlijst
         public void AddQuestionsToList(List<Question> questions)
         {
             foreach (Question q in questions)
@@ -46,34 +49,53 @@ namespace PetjeOp {
             }
 
         }
-
+        // hier wordt de grafiek leeggemaakt
+        public void ClearChart()
+        {
+          
+            View.series1.Points.Clear();
+            View.label1.Text = "";
+            View.chartArea1.BackColor = System.Drawing.SystemColors.Control;
+            View.chart1.BackColor = System.Drawing.SystemColors.Control;
+            
+        }
+        // hier wordt de grafiek gevuld met data
         public void ShowChart()
         {
+            ClearChart();
+
             Question chosen = (Question)View.listQuestions.SelectedItem;
+            View.chartArea1.BackColor = System.Drawing.SystemColors.Window;
             View.label1.Text = chosen.Description;
+            
 
-            View.series1.Points.Clear();
 
-            List<Answer> answers = this.MasterController.DB.FindAnswerByQuestionID(chosen.ID);
+            List<Answer> answers = this.MasterController.DB.GetAnswerByQuestion(chosen.ID);
 
             foreach (Answer answer in answers)
             {
-                List<Result> results = this.MasterController.DB.FindResultByAnswerID(chosen.ID, answer.ID, ex.Examnr);
+                
+                List<Result> results = this.MasterController.DB.GetResultByAnswer(chosen.ID, answer.ID, ex.Examnr);
                 double amount = results.Count();
                 System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
-                dataPoint1.AxisLabel = Convert.ToString(answer.ID);
+                dataPoint1.AxisLabel = Convert.ToString(this.MasterController.DB.GetDescriptionByAnswer(answer.ID));
+                if(answer.ID == chosen.CorrectAnswer.ID)
+                {
+                    dataPoint1.Color = Color.Green;
+                } else
+                {
+                    dataPoint1.Color = Color.Red;
+                }
+                
+
                 View.series1.Points.Add(dataPoint1);
 
             }
-            //System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel1 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            //customLabel1.Text = "a";
-            //customLabel1.ToPosition = 1D;
-            //chartArea1.AxisX.CustomLabels.Add(customLabel1);
-            //this.chart1.ChartAreas.Add(chartArea1);
         }
+        // hier ga je terug naar het toevoegen en inzien van vragenlijsten
         public void GoToMainMenu()
         {
-            Controller controller = MasterController.GetController(typeof(AddQuestionnaireController));
+            Controller controller = MasterController.GetController(typeof(QuestionnaireOverviewController));
             MasterController.SetController(controller);
         }
 

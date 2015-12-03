@@ -48,21 +48,21 @@ namespace PetjeOp.AddQuestionnaire
             View.btnDeleteQuestion.Enabled = false;
         }
 
+        //Slaat Questionnaire op in de database.
         public void SaveQuestionnaire() {
             Model.Questionnaire.Name = View.tbQuestionnaireName.Text;
             
+            //Als de questionnaire geen ID heeft staat hij nog niet in de database dus maken we hem aan.
             if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
-                Console.WriteLine("SUBJECT: " + Model.Questionnaire.Subject.Name);
-                Console.WriteLine("Nog geen DB");
             }
             else {                
                 MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
-                Console.WriteLine("het bestaat, dus updaten maar");
             }
+
+            //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             qoc.GetAllQuestionnairesAndSubjects();
-
             qoc.FillTreeView();
             MasterController.SetController(qoc);
         }
@@ -94,8 +94,6 @@ namespace PetjeOp.AddQuestionnaire
             //Loop door alle vragen heen
             foreach (MultipleChoiceQuestion q in Model.Questionnaire.Questions)
             {
-                View.cbSubjects.Items.Clear();
-
                 //Voeg Node toe met vraag
                 TreeNode addedNode = View.tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
 
@@ -135,7 +133,6 @@ namespace PetjeOp.AddQuestionnaire
             //Klap alle vragen uit
             View.tvQuestions.ExpandAll();
             CheckButtons();
-            AddSubjects();
         }
 
         public override UserControl GetView()
@@ -211,46 +208,62 @@ namespace PetjeOp.AddQuestionnaire
                 }
 
                 UpdateTreeView();
-
                 DisableEditDeleteButtons();
             }
         }
 
+        //Kijk of de buttons enabled kunnen worden.
         public void CheckButtons()
         {
+            bool nameCheck = false;
+            bool nodesCheck = false;
+            bool subjectCheck = false;
+            //Kijk of er een vragenlijstnaam is ingevuld.
             if (!View.tbQuestionnaireName.Text.Any())
             {
                 View.lblQuestionaireNameError.Text = "Vul een vraagnaam in!";
-                View.btnSaveQuestionnaire.Enabled = false;
+                nameCheck = false;
             }
             else
             {
                 View.lblQuestionaireNameError.Text = "";
-                View.btnSaveQuestionnaire.Enabled = true;
+                nameCheck = true;
             }
 
+            //Kijk of er nodes in de treeview zitten.
             if (View.tvQuestions.Nodes.Count == 0)
             {
                 View.lblNoQuestionsInQuestionaire.Text = "Voeg vragen toe!";
-                View.btnSaveQuestionnaire.Enabled = false;
+                nodesCheck = false;
             }
             else
             {
                 View.lblNoQuestionsInQuestionaire.Text = "";
-                View.btnSaveQuestionnaire.Enabled = true;
+                nodesCheck = true;
             }
 
+            //Kijk of er een vak geselecteerd is.
             if (View.cbSubjects.SelectedItem == null)
             {
                 View.lblErrorSubject.Text = "Selecteer een vak!";
-                View.btnSaveQuestionnaire.Enabled = false;
+                subjectCheck = false;
             } else
             {
                 View.lblErrorSubject.Text = "";
+                subjectCheck = true;
+            }
+
+            if (nameCheck && nodesCheck && subjectCheck)
+            {
                 View.btnSaveQuestionnaire.Enabled = true;
+            }
+            else
+            {
+                View.btnSaveQuestionnaire.Enabled = false;
             }
         }
 
+        //Haal de vakken uit de database en voeg ze toe aan de huidige model, voeg ze ook toe aan de combobox.
         public void AddSubjects()
         {
 
@@ -260,15 +273,30 @@ namespace PetjeOp.AddQuestionnaire
                 View.cbSubjects.Items.Add(subject);
 
             }
-
         }
 
+        //Zet het vak naar het geselecteerde vak in de combobox.
         public void setSubject()
         {
             if (View.cbSubjects.SelectedItem != null)
             {
                 Model.Questionnaire.Subject = (Subject)View.cbSubjects.SelectedItem;
             }
+        }
+
+        //Verander scherm naar QuestionnaireOverview
+        public void GoToQuestionnaireOverview()
+        {
+            ClearControls();
+            QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
+            MasterController.SetController(qoc);
+        }
+
+        public void ClearControls()
+        {
+            View.tbQuestionnaireName.Clear();
+            View.cbSubjects.SelectedIndex = -1;
+            View.tvQuestions.Nodes.Clear();
         }
     }
 }

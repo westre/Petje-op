@@ -70,7 +70,7 @@ namespace PetjeOp {
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1186, 59);
+            this.pnlHeader.Size = new System.Drawing.Size(1211, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // btnResults
@@ -89,11 +89,11 @@ namespace PetjeOp {
             this.pnlButton_Logout_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Logout_Background.Controls.Add(this.lblTitle_Logout_Title);
             this.pnlButton_Logout_Background.Controls.Add(this.pbIcon_Logout_Icon);
+            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(0, 0);
             this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
             this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Logout_Background.TabIndex = 15;
-            this.Resize += new System.EventHandler(logOutBtn);
             // 
             // lblTitle_Logout_Title
             // 
@@ -255,7 +255,7 @@ namespace PetjeOp {
             this.viewPanel.Location = new System.Drawing.Point(2, 68);
             this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
             this.viewPanel.Name = "viewPanel";
-            this.viewPanel.Size = new System.Drawing.Size(2572, 1072);
+            this.viewPanel.Size = new System.Drawing.Size(3783, 1558);
             this.viewPanel.TabIndex = 4;
             // 
             // StudentView
@@ -265,7 +265,8 @@ namespace PetjeOp {
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
             this.Name = "StudentView";
-            this.Dock = DockStyle.Fill;
+            this.Size = new System.Drawing.Size(1211, 486);
+            this.Resize += new System.EventHandler(this.logOutBtn);
             this.pnlHeader.ResumeLayout(false);
             this.pnlButton_Logout_Background.ResumeLayout(false);
             this.pnlButton_Logout_Background.PerformLayout();

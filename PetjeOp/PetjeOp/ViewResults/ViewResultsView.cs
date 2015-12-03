@@ -17,12 +17,14 @@ namespace PetjeOp
         {
             Controller = controller;
             InitializeComponent();
+            
           
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Controller.ShowChart();
+            
         }
 
         private void chart1_Click(object sender, EventArgs e)

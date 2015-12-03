@@ -29,8 +29,8 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.mainPanel.AutoSize = true;
-            this.mainPanel.BackColor = System.Drawing.SystemColors.Window;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";

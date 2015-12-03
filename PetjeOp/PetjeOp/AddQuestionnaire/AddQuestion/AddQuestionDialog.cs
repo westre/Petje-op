@@ -127,6 +127,8 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
             if(Question != null && this.DialogResult == DialogResult.OK)
                 Controller.AddDialogInformation(Question, update);
+
+
         }
         
         //Wanneer dialoog laadt

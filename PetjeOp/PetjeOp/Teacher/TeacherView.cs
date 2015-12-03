@@ -41,5 +41,22 @@ namespace PetjeOp {
         private void btnResults_Click(object sender, EventArgs e) {
             Controller.ShowExamDialog();
         }
+
+        private void pnlButton_Result_Background_Paint(object sender, PaintEventArgs e) {
+            Console.WriteLine("resultaten");
+        }
+
+        private void pnlButton_Result_Background_Click_1(object sender, EventArgs e) {
+            Console.WriteLine("test");
+        }
+
+        private void ResultClick(object sender, EventArgs e) {
+            Controller.ShowExamDialog();
+        }
+
+        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

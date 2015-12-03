@@ -39,7 +39,8 @@
             // 
             this.lblAddQuestionnaire.AutoSize = true;
             this.lblAddQuestionnaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddQuestionnaire.Location = new System.Drawing.Point(1, 1);
+            this.lblAddQuestionnaire.ForeColor = System.Drawing.Color.Black;
+            this.lblAddQuestionnaire.Location = new System.Drawing.Point(1, 4);
             this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.lblAddQuestionnaire.Name = "lblAddQuestionnaire";
             this.lblAddQuestionnaire.Size = new System.Drawing.Size(153, 29);
@@ -53,6 +54,7 @@
             this.tvQuestionnaires.Name = "tvQuestionnaires";
             this.tvQuestionnaires.Size = new System.Drawing.Size(564, 304);
             this.tvQuestionnaires.TabIndex = 2;
+            this.tvQuestionnaires.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvQuestionnaires_BeforeSelect);
             // 
             // btnAddQuestionnaire
             // 
@@ -92,6 +94,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.cbSubjects);
             this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.btnAddQuestionnaire);
