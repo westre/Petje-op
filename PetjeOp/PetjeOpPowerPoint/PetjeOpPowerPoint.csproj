@@ -210,13 +210,19 @@
   <PropertyGroup>
   </PropertyGroup>
   <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>PetjeOpPowerPoint_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>82FC1383CE10D0643AB294C00D862537A0E37F4E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>103238801A39104A006B0FF4B159709FADDD25D0</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
