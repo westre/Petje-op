@@ -8,13 +8,21 @@ namespace PetjeOp
 {
     public class Questionnaire
     {
+        public int ID { get; set; }
         public string Name { get; set; }
-        public List<Question> Questions { get; private set; }
+        public List<Question> Questions { get; set; }
+        public Subject Subject { get; set; }
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
         public Questionnaire(string n)
         {
             Name = n;
+            Questions = new List<Question>();
+        }
+
+        public Questionnaire(int id) {
+            ID = id;
+            Name = "";
             Questions = new List<Question>();
         }
 
@@ -37,6 +45,10 @@ namespace PetjeOp
             {
                 Console.WriteLine(q);
             }
+        }
+        public override string ToString()
+        {
+            return Convert.ToString(ID);
         }
     }
 }

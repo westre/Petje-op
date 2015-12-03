@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PetjeOp {
-    public class StudentModel {
+    public class QuestionnaireOverviewModel {
         public string Name { get; set; }
     }
 }

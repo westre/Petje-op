@@ -9,13 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
+using PetjeOp.Questionnaires;
 
-namespace PetjeOp {
-    public partial class MasterController : Form {
+namespace PetjeOp
+{
+    public partial class MasterController : Form
+    {
         private List<Controller> Controllers { get; set; }
-        private Controller ActiveParentContainer { get; set; }
+        public IEnvironment ActiveParentContainer { get; set; }
 
-        public MasterController() {
+        //De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
+        //Question q = masterController.DB.GetQuestion(id);
+        public Database DB { get; private set; }
+
+        //De user is het type gebruiker: Student, Teacher.
+        public Person User { get; set; }
+
+        public MasterController()
+        {
             InitializeComponent();
             Controllers = new List<Controller>();
 
@@ -23,14 +34,23 @@ namespace PetjeOp {
             Controllers.Add(new LoginController(this));
             Controllers.Add(new TeacherController(this));
             Controllers.Add(new StudentController(this));
+            Controllers.Add(new QuestionnaireDetailController(this));
             Controllers.Add(new AddQuestionnaireController(this));
+            Controllers.Add(new ViewResultsController(this));
+            Controllers.Add(new QuestionnaireOverviewController(this));
+            Controllers.Add(new AnswerQuestionnaireController(this));
 
             // We beginnen met deze view, verander dit niet!
             mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
+
+            //Creëer database instantie
+            DB = new Database();
         }
 
-        public Controller GetController(Type type) {
-            foreach(Controller controller in Controllers) {
+        public Controller GetController(Type type)
+        {
+            foreach (Controller controller in Controllers)
+            {
                 if (controller.GetType() == type)
                     return controller;
             }
@@ -38,35 +58,50 @@ namespace PetjeOp {
         }
 
         // Dit wordt bijvoorbeeld aangeroepen wanneer we op een knop klikken (zie ExampleView.button1_Click)
-        public void SetController(Controller controller) {
-            if (ActiveParentContainer is TeacherController) {
-                TeacherController teacherController = (TeacherController)ActiveParentContainer;
-                teacherController.GetViewPanel().Controls.Clear();
-                teacherController.GetViewPanel().Controls.Add(controller.GetView());
-            }
-            else if (ActiveParentContainer is StudentController) {
-                StudentController studentController = (StudentController)ActiveParentContainer;
-                studentController.GetViewPanel().Controls.Clear();
-                studentController.GetViewPanel().Controls.Add(controller.GetView());
+        public void SetController(Controller controller)
+        {
+            if (ActiveParentContainer != null)
+            {
+                ActiveParentContainer.GetViewPanel().Controls.Clear();
+
+                // Initialize view met anchors en hoogte en breedte van de parent container
+                controller.InitializeView();
+                ActiveParentContainer.GetViewPanel().Controls.Add(controller.GetView());
+
+                // call event
+                OnResize(EventArgs.Empty);
             }
 
-            if (controller is TeacherController) {
+            if (controller is TeacherController)
+            {
                 mainPanel.Controls.Clear();
 
-                ActiveParentContainer = (TeacherController)controller;           
+                ActiveParentContainer = (TeacherController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
 
-                // Initialisatie van AddQuestionnaireController wanneer we in TeacherController zitten
-                AddQuestionnaireController addQuestionnaireController = (AddQuestionnaireController)GetController(typeof(AddQuestionnaireController));
-                addQuestionnaireController.View.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                addQuestionnaireController.View.Width = ((TeacherController)ActiveParentContainer).GetViewPanel().Width;
-                addQuestionnaireController.View.Height = ((TeacherController)ActiveParentContainer).GetViewPanel().Height;
-                SetController(GetController(typeof(AddQuestionnaireController)));
-            }
-            else if(controller is StudentController) {
+                // Initialisatie van QuestionnaireOverviewController wanneer we in TeacherController zitten
+                QuestionnaireOverviewController questionnaireOverviewController = (QuestionnaireOverviewController)GetController(typeof(QuestionnaireOverviewController));
+                questionnaireOverviewController.InitializeView();
+                SetController(questionnaireOverviewController);
+            } else if (controller is StudentController)
+            {
                 mainPanel.Controls.Clear();
 
-                ActiveParentContainer = (StudentController)controller;               
+                ActiveParentContainer = (StudentController)controller;
+                mainPanel.Controls.Add(ActiveParentContainer.GetView());
+            }
+            else if (controller is QuestionnaireDetailController)
+            {
+                mainPanel.Controls.Clear();
+
+                ActiveParentContainer = (QuestionnaireDetailController)controller;
+                mainPanel.Controls.Add(ActiveParentContainer.GetView());
+            }
+            else if (controller is AnswerQuestionnaireController)
+            {
+                mainPanel.Controls.Clear();
+
+                ActiveParentContainer = (AnswerQuestionnaireController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
             }
         }

@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PetjeOp
 {
-    public abstract class Question
+    public abstract class Question : IComparable<Question>
     {
-        public String ID { get; set; }
+        public int ID { get; set; }
+        public int QuestionIndex { get; set; } // :D
         public String Description { get; set; }
 
         // "Answer" is het goede antwoord op de vraag.           
-        public Answer Answer { get; set; }
+        public Answer CorrectAnswer { get; set; }
 
         // De lijst bevat de media, die bij de vraag hoord.
         private List<Media> Media;
@@ -23,8 +20,8 @@ namespace PetjeOp
         // "RemainingTimeRestriction" wordt gebruikt om de nog
         // beschikbare tijd in op te slaan.
         // ******************************************************************** //
-        private DateTime TimeRestriction;
-        private DateTime RemainingTimeRestriction;
+        public TimeSpan TimeRestriction { get; set; }
+        private TimeSpan RemainingTimeRestriction;
 
         // Constructor van "Question". Als parameter alleen de beschrijving.
         public Question(String description)
@@ -32,14 +29,8 @@ namespace PetjeOp
             this.Description = description;
         }
 
-        //Voegt correct antwoord toe
-        public void AddCorrectAnswer(Answer ans)
-        {
-            Answer = ans;
-        }
-
         // Zet een "TimeRestriction" voor de "Question."              
-        public void TimeRestrictionSet(DateTime TimeRestricton)
+        public void TimeRestrictionSet(TimeSpan TimeRestricton)
         {
             this.TimeRestriction = TimeRestricton;
             this.RemainingTimeRestriction = TimeRestricton;
@@ -48,8 +39,8 @@ namespace PetjeOp
         // Verwijdert de "TimeRestriction" van de "Question."          
         public void TimeRestrictionClear()
         {
-            this.TimeRestriction = new DateTime();
-            this.RemainingTimeRestriction = new DateTime();
+            this.TimeRestriction = new TimeSpan();
+            this.RemainingTimeRestriction = new TimeSpan();
         }
 
         // Voegt een "Media" object toe aan de "Question."            
@@ -70,6 +61,11 @@ namespace PetjeOp
             {
                 System.Console.WriteLine(Media.Name + ", " + Media.Url + ", " + Media.Type);
             }
+        }
+
+        public int CompareTo(Question q)
+        {
+            return QuestionIndex.CompareTo(q.QuestionIndex);
         }
     }
 }

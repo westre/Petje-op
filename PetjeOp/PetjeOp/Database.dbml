@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="kbs2" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=176.31.253.42,119;Initial Catalog=kbs2;Persist Security Info=True;User ID=jonaham" SettingsObjectName="PetjeOp.Properties.Settings" SettingsPropertyName="kbs2ConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.teacher" Member="tblTeachers">
+    <Type Name="tblTeacher">
+      <Column Name="nr" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="firstname" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Association Name="tblTeacher_tblLecture" Member="tblLectures" Storage="_lectures" ThisKey="nr" OtherKey="teacher" Type="tblLecture" />
+      <Association Name="tblTeacher_tblQuestionnaire" Member="tblQuestionnaires" ThisKey="nr" OtherKey="author" Type="tblQuestionnaire" />
+    </Type>
+  </Table>
+  <Table Name="dbo.class" Member="tblClasses">
+    <Type Name="tblClass">
+      <Column Name="code" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tblClass_tblLecture" Member="tblLectures" Storage="_lectures" ThisKey="code" OtherKey="class" Type="tblLecture" />
+      <Association Name="tblClass_tblStudent" Member="tblStudents" Storage="_students" ThisKey="code" OtherKey="class" Type="tblStudent" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lecture" Member="tblLectures">
+    <Type Name="tblLecture">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="teacher" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="class" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="subject" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblLecture_exam" Member="tblExams" ThisKey="id" OtherKey="lecture" Type="tblExam" />
+      <Association Name="tblClass_tblLecture" Member="tblClass" Storage="_class1" ThisKey="class" OtherKey="code" Type="tblClass" IsForeignKey="true" />
+      <Association Name="tblTeacher_tblLecture" Member="tblTeacher" Storage="_teacher1" ThisKey="teacher" OtherKey="nr" Type="tblTeacher" IsForeignKey="true" />
+      <Association Name="tblSubject_tblLecture" Member="tblSubject" Storage="_subject1" ThisKey="subject" OtherKey="id" Type="tblSubject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.result" Member="tblResults">
+    <Type Name="tblResult">
+      <Column Name="student" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="exam" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="answer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="question" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblStudent_tblResult" Member="tblStudent" Storage="_student1" ThisKey="student" OtherKey="nr" Type="tblStudent" IsForeignKey="true" />
+      <Association Name="tblAnswer_tblResult" Member="tblAnswer" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
+      <Association Name="tblQuestion_tblResult" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
+      <Association Name="exam_tblResult" Member="tblExam" ThisKey="exam" OtherKey="id" Type="tblExam" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.student" Member="tblStudents">
+    <Type Name="tblStudent">
+      <Column Name="nr" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="firstname" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="class" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="tblStudent_tblResult" Member="tblResults" Storage="_results" ThisKey="nr" OtherKey="student" Type="tblResult" />
+      <Association Name="tblClass_tblStudent" Member="tblClass" Storage="_class1" ThisKey="class" OtherKey="code" Type="tblClass" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.subject" Member="tblSubjects">
+    <Type Name="tblSubject">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Association Name="tblSubject_tblLecture" Member="tblLectures" Storage="_lectures" ThisKey="id" OtherKey="subject" Type="tblLecture" />
+      <Association Name="tblSubject_tblQuestionnaire" Member="tblQuestionnaires" ThisKey="id" OtherKey="subject" Type="tblQuestionnaire" />
+    </Type>
+  </Table>
+  <Table Name="dbo.questionnaire" Member="tblQuestionnaires">
+    <Type Name="tblQuestionnaire">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="author" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="subject" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblQuestionnaire_tblQuestion" Member="tblQuestions" ThisKey="id" OtherKey="questionnaire" Type="tblQuestion" />
+      <Association Name="tblQuestionnaire_exam" Member="tblExams" ThisKey="id" OtherKey="questionnaire" Type="tblExam" />
+      <Association Name="tblTeacher_tblQuestionnaire" Member="tblTeacher" ThisKey="author" OtherKey="nr" Type="tblTeacher" IsForeignKey="true" />
+      <Association Name="tblSubject_tblQuestionnaire" Member="tblSubject" ThisKey="subject" OtherKey="id" Type="tblSubject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.answer" Member="tblAnswers">
+    <Type Name="tblAnswer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="tblAnswer_tblResult" Member="tblResults" ThisKey="id" OtherKey="answer" Type="tblResult" />
+      <Association Name="tblAnswer_tblQuestion" Member="tblQuestions" ThisKey="id" OtherKey="correctanswer" Type="tblQuestion" />
+      <Association Name="tblAnswer_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="answer" Type="tblAnsweroption" />
+    </Type>
+  </Table>
+  <Table Name="dbo.question" Member="tblQuestions">
+    <Type Name="tblQuestion">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="correctanswer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="questionnaire" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="questionindex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timerestriction" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="tblQuestion_tblResult" Member="tblResults" ThisKey="id" OtherKey="question" Type="tblResult" />
+      <Association Name="tblQuestion_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="question" Type="tblAnsweroption" />
+      <Association Name="tblAnswer_tblQuestion" Member="tblAnswer" ThisKey="correctanswer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
+      <Association Name="tblQuestionnaire_tblQuestion" Member="tblQuestionnaire" ThisKey="questionnaire" OtherKey="id" Type="tblQuestionnaire" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.answeroption" Member="tblAnsweroptions">
+    <Type Name="tblAnsweroption">
+      <Column Name="question" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="answer" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tblAnswer_tblAnsweroption" Member="tblAnswer" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
+      <Association Name="tblQuestion_tblAnsweroption" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.exam" Member="tblExams">
+    <Type Name="tblExam">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="questionnaire" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="lecture" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="starttime" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="endtime" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="exam_tblResult" Member="tblResults" ThisKey="id" OtherKey="exam" Type="tblResult" />
+      <Association Name="tblLecture_exam" Member="tblLecture" ThisKey="lecture" OtherKey="id" Type="tblLecture" IsForeignKey="true" />
+      <Association Name="tblQuestionnaire_exam" Member="tblQuestionnaire" ThisKey="questionnaire" OtherKey="id" Type="tblQuestionnaire" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
