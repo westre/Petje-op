@@ -47,7 +47,7 @@
             this.ClientSize = new System.Drawing.Size(958, 526);
             this.Controls.Add(this.mainPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(967, 539);
             this.Name = "MasterController";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
