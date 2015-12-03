@@ -29,7 +29,7 @@
             // 
             // btnStudentLogin
             // 
-            this.btnStudentLogin.Location = new System.Drawing.Point(135, 158);
+            this.btnStudentLogin.Location = new System.Drawing.Point(399, 255);
             this.btnStudentLogin.Name = "btnStudentLogin";
             this.btnStudentLogin.Size = new System.Drawing.Size(115, 31);
             this.btnStudentLogin.TabIndex = 0;
@@ -39,7 +39,7 @@
             // 
             // btnLoginTeacher
             // 
-            this.btnLoginTeacher.Location = new System.Drawing.Point(135, 219);
+            this.btnLoginTeacher.Location = new System.Drawing.Point(399, 315);
             this.btnLoginTeacher.Name = "btnLoginTeacher";
             this.btnLoginTeacher.Size = new System.Drawing.Size(115, 39);
             this.btnLoginTeacher.TabIndex = 1;
@@ -54,7 +54,7 @@
             this.Controls.Add(this.btnLoginTeacher);
             this.Controls.Add(this.btnStudentLogin);
             this.Name = "LoginView";
-            this.Size = new System.Drawing.Size(390, 294);
+            this.Size = new System.Drawing.Size(1148, 482);
             this.ResumeLayout(false);
 
         }
