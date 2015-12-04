@@ -26,7 +26,7 @@ namespace PetjeOp
         public Questionnaire GetQuestionnaire(int id)
         {  
             tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
-
+            
             Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description);
             questionnaire.ID = dbQuestionnaire.id;
             questionnaire.Subject = GetSubjectByID(dbQuestionnaire.subject);
