@@ -72,6 +72,12 @@
     <Compile Include="AddQuestionnaire\AddQuestion\AddQuestionView.Designer.cs">
       <DependentUpon>AddQuestionView.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddQuestionnaire\QuestionsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddQuestionnaire\QuestionsView.Designer.cs">
+      <DependentUpon>QuestionsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Answer.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
@@ -89,6 +95,7 @@
     <Compile Include="ExampleTwo\ExampleTwoView.Designer.cs">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="IContainsModel.cs" />
     <Compile Include="IEnvironment.cs" />
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEController.cs" />
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEModel.cs" />
@@ -203,6 +210,9 @@
     <None Include="Database.dbml.layout">
       <DependentUpon>Database.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="AddQuestionnaire\QuestionsView.resx">
+      <DependentUpon>QuestionsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnswerQuestionnaire\AnswerQuestionnaireView.resx">
       <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>

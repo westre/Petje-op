@@ -15,21 +15,39 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         public MultipleChoiceQuestion Question { get; set; }
         public List<Answer> answers = new List<Answer>();
         public Answer correct;
-        public AddQuestionnaireController Controller { get; set; }
+        //public AddQuestionnaireController Controller { get; set; }
         private int QuestionIndex { get; }
+        public QuestionsView QuestionsView { get; set; }
 
-        //Constructor voor het toevoegen van een vraag
+        /*Constructor voor het toevoegen van een vraag
         public AddQuestionDialog(AddQuestionnaireController controller)
         {
             InitializeComponent();
             addQuestionView1.SetQuestionDialog(this);
             Controller = controller;
             QuestionIndex = 0;
+        } */
+
+        public AddQuestionDialog(QuestionsView qv)
+        {
+            InitializeComponent();
+            addQuestionView1.SetQuestionDialog(this);
+            QuestionsView = qv;
+            QuestionIndex = 0;
         }
 
-        //Constructor voor het wijzigen van een vraag
+        /*Constructor voor het wijzigen van een vraag
         public AddQuestionDialog(AddQuestionnaireController controller, MultipleChoiceQuestion question,
             int questionIndex) : this(controller)
+        {
+            QuestionIndex = questionIndex;
+            Question = question;
+            Text = btnAddQuestion.Text = "Vraag Wijzigen";
+        } */
+
+        //Constructor voor het wijzigen van een vraag
+        public AddQuestionDialog(QuestionsView qv, MultipleChoiceQuestion question,
+            int questionIndex) : this(qv)
         {
             QuestionIndex = questionIndex;
             Question = question;
@@ -93,7 +111,19 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             else
             {
                 //Ja, er wordt een nieuwe index gegenereerd
-                Question.QuestionIndex = Controller.Model.Questionnaire.Questions.Count + 1;
+                //Question.QuestionIndex = QuestionsView.Questionnaire.Questions.Count + 1;
+                if (QuestionsView.ParentController is AddQuestionnaireController)
+                {
+                    Question.QuestionIndex =
+                        ((AddQuestionnaireController) QuestionsView.ParentController).Model.Questionnaire.Questions
+                            .Count + 1;
+                }
+                else
+                {
+                    /* Question.QuestionIndex =
+                        ((QuestionnaireDetailController)QuestionsView.ParentController).Model.Questionnaire.Questions
+                            .Count + 1; */
+                }
             }
 
             // Maak nieuwe question record aan in tabel
@@ -126,7 +156,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             bool update = !(QuestionIndex != 0);
 
             if(Question != null && this.DialogResult == DialogResult.OK)
-                Controller.AddDialogInformation(Question, update);
+                QuestionsView.AddDialogInformation(Question, update);
 
 
         }
