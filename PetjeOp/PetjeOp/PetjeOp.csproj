@@ -86,6 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseListener.cs" />
     <Compile Include="Exam.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="ViewResults\ViewResultsView.Designer.cs">
       <DependentUpon>ViewResultsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="YoranHierKijken.cs" />
     <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>
