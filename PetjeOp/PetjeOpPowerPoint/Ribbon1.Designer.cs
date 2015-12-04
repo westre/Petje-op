@@ -34,14 +34,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            
             this.WinQ = this.Factory.CreateRibbonTab();
             this.GrpQuestionnaire = this.Factory.CreateRibbonGroup();
             this.button2 = this.Factory.CreateRibbonButton();
+            this.dropDown2 = this.Factory.CreateRibbonDropDown();
             this.dropDown1 = this.Factory.CreateRibbonDropDown();
             this.GrpResults = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
-            this.dropDown2 = this.Factory.CreateRibbonDropDown();
+            this.menu1 = this.Factory.CreateRibbonMenu();
             this.WinQ.SuspendLayout();
             this.GrpQuestionnaire.SuspendLayout();
             this.GrpResults.SuspendLayout();
@@ -68,10 +68,14 @@
             this.button2.Name = "button2";
             this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button2_Click);
             // 
+            // dropDown2
+            // 
+            this.dropDown2.Label = "Afnamemomenten";
+            this.dropDown2.Name = "dropDown2";
+            this.dropDown2.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.dropDown2_SelectionChanged);
+            // 
             // dropDown1
             // 
-            
-            
             this.dropDown1.Label = "Vragen";
             this.dropDown1.Name = "dropDown1";
             this.dropDown1.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.dropDown1_SelectionChanged);
@@ -79,6 +83,7 @@
             // GrpResults
             // 
             this.GrpResults.Items.Add(this.button1);
+            this.GrpResults.Items.Add(this.menu1);
             this.GrpResults.Label = "Resultaten";
             this.GrpResults.Name = "GrpResults";
             // 
@@ -88,10 +93,10 @@
             this.button1.Name = "button1";
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
-            // dropDown2
+            // menu1
             // 
-            this.dropDown2.Label = "Afnamemomenten";
-            this.dropDown2.Name = "dropDown2";
+            this.menu1.Label = "menu1";
+            this.menu1.Name = "menu1";
             // 
             // Ribbon1
             // 
@@ -118,6 +123,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup GrpQuestionnaire;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDown1;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDown2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonMenu menu1;
     }
 
     partial class ThisRibbonCollection
