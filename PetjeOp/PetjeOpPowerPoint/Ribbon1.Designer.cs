@@ -34,26 +34,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.WInteractie = this.Factory.CreateRibbonTab();
+            this.WinQ = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
+            this.btnLogo = this.Factory.CreateRibbonButton();
             this.button1 = this.Factory.CreateRibbonButton();
             this.button2 = this.Factory.CreateRibbonButton();
-            this.WInteractie.SuspendLayout();
+            this.WinQ.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // WInteractie
+            // WinQ
             // 
-            this.WInteractie.Groups.Add(this.group1);
-            this.WInteractie.Label = "WInteractie";
-            this.WInteractie.Name = "WInteractie";
+            this.WinQ.Groups.Add(this.group1);
+            this.WinQ.Label = "WinQ";
+            this.WinQ.Name = "WinQ";
             // 
             // group1
             // 
+            this.group1.Items.Add(this.btnLogo);
             this.group1.Items.Add(this.button1);
             this.group1.Items.Add(this.button2);
-            this.group1.Label = "group1";
+            this.group1.Label = " ";
             this.group1.Name = "group1";
+            // 
+            // btnLogo
+            // 
+            this.btnLogo.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btnLogo.Enabled = false;
+            this.btnLogo.Image = global::PetjeOpPowerPoint.Properties.Resources.WinQ_Logo;
+            this.btnLogo.Label = " ";
+            this.btnLogo.Name = "btnLogo";
+            this.btnLogo.ShowImage = true;
+            this.btnLogo.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnLogo_Click);
             // 
             // button1
             // 
@@ -71,10 +83,10 @@
             // 
             this.Name = "Ribbon1";
             this.RibbonType = "Microsoft.PowerPoint.Presentation";
-            this.Tabs.Add(this.WInteractie);
+            this.Tabs.Add(this.WinQ);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon1_Load);
-            this.WInteractie.ResumeLayout(false);
-            this.WInteractie.PerformLayout();
+            this.WinQ.ResumeLayout(false);
+            this.WinQ.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
             this.ResumeLayout(false);
@@ -83,10 +95,11 @@
 
         #endregion
 
-        internal Microsoft.Office.Tools.Ribbon.RibbonTab WInteractie;
+        internal Microsoft.Office.Tools.Ribbon.RibbonTab WinQ;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnLogo;
     }
 
     partial class ThisRibbonCollection
