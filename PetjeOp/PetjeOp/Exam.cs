@@ -14,6 +14,8 @@ namespace PetjeOp {
         public int Groupnr { get; set; }
         public List<Result> results;
 
+        public int? CurrenQuestion { get; set; }
+
         public Exam(int ex, Questionnaire qu, DateTime? st, DateTime? et, int gnr)
         {
             Examnr = ex;

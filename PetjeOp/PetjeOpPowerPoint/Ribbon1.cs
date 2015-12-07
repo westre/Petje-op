@@ -15,6 +15,23 @@ namespace PetjeOpPowerPoint
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             DB = new Database();
+
+            // functie voor vullen listbox afnamemomenten
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem empty = this.Factory.CreateRibbonDropDownItem();
+            empty.Label = "";
+            dropDown2.Items.Add(empty);
+
+            List<Exam> exams = DB.GetExams();
+
+            foreach (Exam x in exams)
+            {
+                Microsoft.Office.Tools.Ribbon.RibbonDropDownItem exam = this.Factory.CreateRibbonDropDownItem();
+                exam.Label = Convert.ToString(x.Examnr) + "+" + Convert.ToString(x.starttime);
+                dropDown2.Items.Add(exam);
+            }
+
+           
+
         }
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
@@ -42,6 +59,7 @@ namespace PetjeOpPowerPoint
 
         private void button2_Click(object sender, RibbonControlEventArgs e)
         {
+
             Questionnaire testquest = DB.GetQuestionnaire(5);
            
             foreach (Question q in testquest.Questions)
@@ -51,12 +69,45 @@ namespace PetjeOpPowerPoint
                 Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
                 textBox.TextFrame.TextRange.InsertAfter(q.Description);
                 textBox.TextFrame.TextRange.Font.Size = 30;
+                
             }
         }
 
         private void btnLogo_Click(object sender, RibbonControlEventArgs e)
         {
 
+        }
+
+        private void comboBox1_TextChanged(object sender, RibbonControlEventArgs e)
+        {
+            
+        }
+
+        private void dropDown1_SelectionChanged(object sender, RibbonControlEventArgs e)
+        {
+
+        }
+
+        private void dropDown2_SelectionChanged(object sender, RibbonControlEventArgs e)
+        {
+            // functie voor vullen listbox vragen
+
+            string chosen = dropDown2.SelectedItem.Label;
+            
+            int index = chosen.LastIndexOf("+");
+            if (index > 0)
+            {
+                chosen = chosen.Substring(0, index);
+            }
+
+            Questionnaire testquest = DB.GetQuestionnaire(Convert.ToInt32(chosen));
+
+            foreach (Question q in testquest.Questions)
+            {
+                Microsoft.Office.Tools.Ribbon.RibbonDropDownItem question = this.Factory.CreateRibbonDropDownItem();
+                question.Label = q.Description;
+                dropDown1.Items.Add(question);
+            }
         }
     }
 }

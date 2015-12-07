@@ -479,7 +479,7 @@ namespace PetjeOp
 		
 		private int _subject;
 		
-		private EntitySet<tblExam> _tblExams;
+		private EntitySet<tblExam> _exams;
 		
 		private EntityRef<tblClass> _class1;
 		
@@ -503,7 +503,7 @@ namespace PetjeOp
 		
 		public tblLecture()
 		{
-			this._tblExams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_tblExams), new Action<tblExam>(this.detach_tblExams));
+			this._exams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_exams), new Action<tblExam>(this.detach_exams));
 			this._class1 = default(EntityRef<tblClass>);
 			this._teacher1 = default(EntityRef<tblTeacher>);
 			this._subject1 = default(EntityRef<tblSubject>);
@@ -602,16 +602,16 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_exam", Storage="_tblExams", ThisKey="id", OtherKey="lecture")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLecture_exam", Storage="_exams", ThisKey="id", OtherKey="lecture")]
 		public EntitySet<tblExam> tblExams
 		{
 			get
 			{
-				return this._tblExams;
+				return this._exams;
 			}
 			set
 			{
-				this._tblExams.Assign(value);
+				this._exams.Assign(value);
 			}
 		}
 		
@@ -737,13 +737,13 @@ namespace PetjeOp
 			}
 		}
 		
-		private void attach_tblExams(tblExam entity)
+		private void attach_exams(tblExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblLecture = this;
 		}
 		
-		private void detach_tblExams(tblExam entity)
+		private void detach_exams(tblExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblLecture = null;
@@ -1164,7 +1164,7 @@ namespace PetjeOp
 		
 		private EntitySet<tblQuestion> _tblQuestions;
 		
-		private EntitySet<tblExam> _tblExams;
+		private EntitySet<tblExam> _exams;
 		
 		private EntityRef<tblTeacher> _tblTeacher;
 		
@@ -1187,7 +1187,7 @@ namespace PetjeOp
 		public tblQuestionnaire()
 		{
 			this._tblQuestions = new EntitySet<tblQuestion>(new Action<tblQuestion>(this.attach_tblQuestions), new Action<tblQuestion>(this.detach_tblQuestions));
-			this._tblExams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_tblExams), new Action<tblExam>(this.detach_tblExams));
+			this._exams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_exams), new Action<tblExam>(this.detach_exams));
 			this._tblTeacher = default(EntityRef<tblTeacher>);
 			this._tblSubject = default(EntityRef<tblSubject>);
 			OnCreated();
@@ -1294,16 +1294,16 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_exam", Storage="_tblExams", ThisKey="id", OtherKey="questionnaire")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestionnaire_exam", Storage="_exams", ThisKey="id", OtherKey="questionnaire")]
 		public EntitySet<tblExam> tblExams
 		{
 			get
 			{
-				return this._tblExams;
+				return this._exams;
 			}
 			set
 			{
-				this._tblExams.Assign(value);
+				this._exams.Assign(value);
 			}
 		}
 		
@@ -1407,13 +1407,13 @@ namespace PetjeOp
 			entity.tblQuestionnaire = null;
 		}
 		
-		private void attach_tblExams(tblExam entity)
+		private void attach_exams(tblExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblQuestionnaire = this;
 		}
 		
-		private void detach_tblExams(tblExam entity)
+		private void detach_exams(tblExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblQuestionnaire = null;
@@ -1582,6 +1582,8 @@ namespace PetjeOp
 		
 		private EntitySet<tblAnsweroption> _tblAnsweroptions;
 		
+		private EntitySet<tblExam> _exams;
+		
 		private EntityRef<tblAnswer> _tblAnswer;
 		
 		private EntityRef<tblQuestionnaire> _tblQuestionnaire;
@@ -1607,6 +1609,7 @@ namespace PetjeOp
 		public tblQuestion()
 		{
 			this._tblAnsweroptions = new EntitySet<tblAnsweroption>(new Action<tblAnsweroption>(this.attach_tblAnsweroptions), new Action<tblAnsweroption>(this.detach_tblAnsweroptions));
+			this._exams = new EntitySet<tblExam>(new Action<tblExam>(this.attach_exams), new Action<tblExam>(this.detach_exams));
 			this._tblAnswer = default(EntityRef<tblAnswer>);
 			this._tblQuestionnaire = default(EntityRef<tblQuestionnaire>);
 			OnCreated();
@@ -1753,6 +1756,19 @@ namespace PetjeOp
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_exam", Storage="_exams", ThisKey="id", OtherKey="currentquestion")]
+		public EntitySet<tblExam> tblExams
+		{
+			get
+			{
+				return this._exams;
+			}
+			set
+			{
+				this._exams.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblQuestion", Storage="_tblAnswer", ThisKey="correctanswer", OtherKey="id", IsForeignKey=true)]
 		public tblAnswer tblAnswer
 		{
@@ -1848,6 +1864,18 @@ namespace PetjeOp
 		}
 		
 		private void detach_tblAnsweroptions(tblAnsweroption entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblQuestion = null;
+		}
+		
+		private void attach_exams(tblExam entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblQuestion = this;
+		}
+		
+		private void detach_exams(tblExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblQuestion = null;
@@ -2038,6 +2066,10 @@ namespace PetjeOp
 		
 		private System.Nullable<System.DateTime> _endtime;
 		
+		private System.Nullable<int> _currentquestion;
+		
+		private EntityRef<tblQuestion> _tblQuestion;
+		
 		private EntityRef<tblLecture> _tblLecture;
 		
 		private EntityRef<tblQuestionnaire> _tblQuestionnaire;
@@ -2056,10 +2088,13 @@ namespace PetjeOp
     partial void OnstarttimeChanged();
     partial void OnendtimeChanging(System.Nullable<System.DateTime> value);
     partial void OnendtimeChanged();
+    partial void OncurrentquestionChanging(System.Nullable<int> value);
+    partial void OncurrentquestionChanged();
     #endregion
 		
 		public tblExam()
 		{
+			this._tblQuestion = default(EntityRef<tblQuestion>);
 			this._tblLecture = default(EntityRef<tblLecture>);
 			this._tblQuestionnaire = default(EntityRef<tblQuestionnaire>);
 			OnCreated();
@@ -2169,6 +2204,64 @@ namespace PetjeOp
 					this._endtime = value;
 					this.SendPropertyChanged("endtime");
 					this.OnendtimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_currentquestion", DbType="Int")]
+		public System.Nullable<int> currentquestion
+		{
+			get
+			{
+				return this._currentquestion;
+			}
+			set
+			{
+				if ((this._currentquestion != value))
+				{
+					if (this._tblQuestion.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncurrentquestionChanging(value);
+					this.SendPropertyChanging();
+					this._currentquestion = value;
+					this.SendPropertyChanged("currentquestion");
+					this.OncurrentquestionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_exam", Storage="_tblQuestion", ThisKey="currentquestion", OtherKey="id", IsForeignKey=true)]
+		public tblQuestion tblQuestion
+		{
+			get
+			{
+				return this._tblQuestion.Entity;
+			}
+			set
+			{
+				tblQuestion previousValue = this._tblQuestion.Entity;
+				if (((previousValue != value) 
+							|| (this._tblQuestion.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblQuestion.Entity = null;
+						previousValue.tblExams.Remove(this);
+					}
+					this._tblQuestion.Entity = value;
+					if ((value != null))
+					{
+						value.tblExams.Add(this);
+						this._currentquestion = value.id;
+					}
+					else
+					{
+						this._currentquestion = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblQuestion");
 				}
 			}
 		}

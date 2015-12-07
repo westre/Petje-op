@@ -18,15 +18,39 @@ namespace PetjeOp
             if (query != null)
             {
                 MultipleChoiceQuestion question = new MultipleChoiceQuestion(query.description);
+                question.ID = id;
+
+                List<Answer> answerOptions = new List<Answer>();
+                List<tblAnsweroption> dbAnsweroption = query.tblAnsweroptions.ToList();
+
+                foreach (tblAnsweroption dbAnswerOption in dbAnsweroption)
+                {
+                    if (true) {
+                        // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
+                        tblAnswer tblAnswer = dbAnswerOption.tblAnswer;
+
+                        Answer answer = new Answer(tblAnswer.description);
+                        answer.ID = tblAnswer.id;
+                        answerOptions.Add(answer);
+                    }
+                }
+
+                // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
+                question.AnswerOptions = answerOptions;
+
+
+
+
+
                 return question;
             }
             return null;
         }
 
         public Questionnaire GetQuestionnaire(int id)
-        {  
+        {
             tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
-            
+
             Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description);
             questionnaire.ID = dbQuestionnaire.id;
             questionnaire.Subject = GetSubjectByID(dbQuestionnaire.subject);
@@ -310,7 +334,7 @@ namespace PetjeOp
 
             // Loop door alle questionnaires
             foreach (tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires)
-            {                
+            {
                 // Voeg questionnaire toe aan onze lijst met questionnaire
                 questionnaires.Add(GetQuestionnaire(tblQuestionnaire.id));
             }
@@ -318,7 +342,7 @@ namespace PetjeOp
             return questionnaires;
         }
         // hier worden de afnamemomenten uit de database gehaald
-        public List<Exam> GetExam()
+        public List<Exam> GetAllExams()
         {
             List<Exam> exams = new List<Exam>();
 
@@ -326,7 +350,7 @@ namespace PetjeOp
             {
                 Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
-                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime , tblExam.endtime, tblExam.lecture);
+                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
 
                 exams.Add(exam);
 
@@ -336,6 +360,43 @@ namespace PetjeOp
             return exams;
 
         }
+
+        public Exam GetExam(int examID) // Return een Exam van het opgegeven ID
+        {
+            Exam exam = (from tblExam in db.tblExams
+                         where tblExam.id == examID
+                         select new Exam(tblExam.id, tblExam.questionnaire)
+                         {
+                             CurrenQuestion = tblExam.currentquestion
+                         }).FirstOrDefault();
+
+            exam.questionnaire = this.GetQuestionnaire(exam.qstnn);
+            if (exam != null)
+            {
+                return exam; // Returnt, uit database opgehaalde, Exam
+            }
+            return null;
+        }
+
+        public List<Exam> GetExams()
+        {
+            List<Exam> exams = new List<Exam>();
+
+            foreach (tblExam tblExam in db.tblExams)
+            {
+                Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+
+                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
+
+                exams.Add(exam);
+
+
+            }
+
+            return exams;
+
+        }
+    
         
         public List<Subject> GetSubjects()
         {

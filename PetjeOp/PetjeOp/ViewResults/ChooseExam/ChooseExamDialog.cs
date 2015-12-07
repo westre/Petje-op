@@ -21,7 +21,7 @@ namespace PetjeOp.ViewResults.ChooseExam {
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
-            List<Exam> exams = Controller.MasterController.DB.GetExam();
+            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
 
             foreach (Exam ex in exams)
             {
