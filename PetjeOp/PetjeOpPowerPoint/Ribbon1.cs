@@ -122,6 +122,10 @@ namespace PetjeOpPowerPoint
                 answerString.Append(alphabet[index] + ": " + answer.Description + (char)13);
                 index++;
             }
+
+            if (answerString.Length == 0)
+                answerString.Append("Error: geen antwoorden gevonden");
+
             return answerString.ToString();
         }
 
