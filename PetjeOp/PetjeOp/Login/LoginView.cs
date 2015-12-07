@@ -63,10 +63,5 @@ namespace PetjeOp {
             }
             
         }
-
-        private void viewPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
