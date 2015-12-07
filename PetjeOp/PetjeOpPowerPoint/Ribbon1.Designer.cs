@@ -58,7 +58,7 @@
             this.GrpQuestionnaire.Items.Add(this.ddExams);
             this.GrpQuestionnaire.Items.Add(this.ddQuestions);
             this.GrpQuestionnaire.Items.Add(this.btnAllQuestions);
-            this.GrpQuestionnaire.Label = "Vragenlijst";
+            this.GrpQuestionnaire.Label = "Vragen toevoegen";
             this.GrpQuestionnaire.Name = "GrpQuestionnaire";
             // 
             // ddExams
