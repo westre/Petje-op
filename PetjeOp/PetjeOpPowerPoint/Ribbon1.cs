@@ -19,14 +19,13 @@ namespace PetjeOpPowerPoint
 
             // functie voor initialiseren dropdown Questions
 
-            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyQuestions = this.Factory.CreateRibbonDropDownItem();
-            emptyQuestions.Label = "";
-            ddQuestions.Items.Add(emptyQuestions);
+            
 
             // functie voor vullen dropdown afnamemomenten
             
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExams = this.Factory.CreateRibbonDropDownItem();
-            emptyExams.Label = "";
+            
+            emptyExams.Label = null;
             ddExams.Items.Add(emptyExams);
 
             List<Exam> exams = DB.GetExams();
@@ -48,7 +47,7 @@ namespace PetjeOpPowerPoint
 
         }
 
-        private void button1_Click(object sender, RibbonControlEventArgs e)
+        private void btnViewResultsPPT_Click(object sender, RibbonControlEventArgs e)
         {
             double barHeight = 300;
 
@@ -97,6 +96,9 @@ namespace PetjeOpPowerPoint
 
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
+
+            if (ddExams.SelectedItemIndex != 0)
+            { 
             // Dit wordt geroepen wanneer er op een question wordt geklikt
             Question question = (Question)ddQuestions.SelectedItem.Tag;
             PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
@@ -110,6 +112,7 @@ namespace PetjeOpPowerPoint
             string answers = GetFormattedAnswers(question.ID);
 
             textBox.TextFrame.TextRange.InsertAfter(answers);
+        }
         }
 
         public string GetFormattedAnswers(int questionId) {
@@ -131,22 +134,32 @@ namespace PetjeOpPowerPoint
 
         private void ddExams_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
-            // functie voor vullen dropdown vragen
+            btnAllQuestions.Visible = false;
             ddQuestions.Items.Clear();
-            btnAllQuestions.Visible = true;
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyQuestions = this.Factory.CreateRibbonDropDownItem();
 
-            Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-            
+            emptyQuestions.Label = null;
+            ddQuestions.Items.Add(emptyQuestions);
 
-            Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
-
-            foreach (Question q in testquest.Questions)
+            if (ddExams.SelectedItemIndex != 0)
             {
-                Microsoft.Office.Tools.Ribbon.RibbonDropDownItem question = this.Factory.CreateRibbonDropDownItem();
-                question.Label = q.Description;
-                ddQuestions.Items.Add(question);
-                int index = ddQuestions.Items.IndexOf(question);
-                ddQuestions.Items[index].Tag = q;
+                // functie voor vullen dropdown vragen
+                
+                btnAllQuestions.Visible = true;
+
+                Exam chosen = (Exam)ddExams.SelectedItem.Tag;
+
+
+                Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
+
+                foreach (Question q in testquest.Questions)
+                {
+                    Microsoft.Office.Tools.Ribbon.RibbonDropDownItem question = this.Factory.CreateRibbonDropDownItem();
+                    question.Label = q.Description;
+                    ddQuestions.Items.Add(question);
+                    int index = ddQuestions.Items.IndexOf(question);
+                    ddQuestions.Items[index].Tag = q;
+                }
             }
         }
 

@@ -172,6 +172,7 @@
     <None Include="PetjeOpPowerPoint_2_TemporaryKey.pfx" />
     <None Include="PetjeOpPowerPoint_3_TemporaryKey.pfx" />
     <None Include="PetjeOpPowerPoint_4_TemporaryKey.pfx" />
+    <None Include="PetjeOpPowerPoint_5_TemporaryKey.pfx" />
     <None Include="PetjeOpPowerPoint_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -231,10 +232,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PetjeOpPowerPoint_4_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>PetjeOpPowerPoint_5_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>DF341040F88FF291D8C6A673DF66EBF15BC5DBA0</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>1E5039C6C84773C7E4F4892138D063BF6DC89A78</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
