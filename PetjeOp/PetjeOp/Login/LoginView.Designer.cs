@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace PetjeOp {
     partial class LoginView {
@@ -140,7 +141,7 @@ namespace PetjeOp {
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1019, 59);
+            this.pnlHeader.Size = new System.Drawing.Size(1302, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // pbLogo
@@ -248,6 +249,7 @@ namespace PetjeOp {
             this.viewPanel.Location = new System.Drawing.Point(0, 59);
             this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
             this.viewPanel.Name = "viewPanel";
+            this.viewPanel.Size = new System.Drawing.Size(1302, 518);
             this.viewPanel.TabIndex = 4;
             // 
             // PnlLogin
@@ -258,7 +260,7 @@ namespace PetjeOp {
             this.PnlLogin.Controls.Add(this.Error);
             this.PnlLogin.Controls.Add(this.label1);
             this.PnlLogin.Controls.Add(this.textBox1);
-            this.PnlLogin.Location = new System.Drawing.Point(409, 0);
+            this.PnlLogin.Location = new System.Drawing.Point(581, 0);
             this.PnlLogin.Name = "PnlLogin";
             this.PnlLogin.Size = new System.Drawing.Size(298, 105);
             this.PnlLogin.TabIndex = 0;
@@ -309,11 +311,10 @@ namespace PetjeOp {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Dock = DockStyle.Fill;
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
             this.Name = "LoginView";
-            this.Size = new System.Drawing.Size(1019, 575);
+            this.Size = new System.Drawing.Size(1302, 577);
             this.pnlHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).EndInit();
@@ -335,6 +336,7 @@ namespace PetjeOp {
         private void scaleBanner()
         {
             pnlHeader.Size = new System.Drawing.Size(Controller.MasterController.Size.Width, pnlHeader.Size.Height);
+            
         }
 
         #endregion
