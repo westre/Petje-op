@@ -10,7 +10,7 @@ namespace PetjeOp
     public class Database
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-        
+
         public MultipleChoiceQuestion GetQuestion(int id)
         {
             tblQuestion query = db.tblQuestions.SingleOrDefault(q => q.id == id);
@@ -48,9 +48,9 @@ namespace PetjeOp
         }
 
         public Questionnaire GetQuestionnaire(int id)
-        {  
+        {
             tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
-            
+
             Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description);
             questionnaire.ID = dbQuestionnaire.id;
             questionnaire.Subject = GetSubjectByID(dbQuestionnaire.subject);
@@ -334,7 +334,7 @@ namespace PetjeOp
 
             // Loop door alle questionnaires
             foreach (tblQuestionnaire tblQuestionnaire in db.tblQuestionnaires)
-            {                
+            {
                 // Voeg questionnaire toe aan onze lijst met questionnaire
                 questionnaires.Add(GetQuestionnaire(tblQuestionnaire.id));
             }
@@ -350,7 +350,7 @@ namespace PetjeOp
             {
                 Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
-                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime , tblExam.endtime, tblExam.lecture);
+                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
 
                 exams.Add(exam);
 
@@ -377,6 +377,26 @@ namespace PetjeOp
             }
             return null;
         }
+
+        public List<Exam> GetExams()
+        {
+            List<Exam> exams = new List<Exam>();
+
+            foreach (tblExam tblExam in db.tblExams)
+            {
+                Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+
+                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
+
+                exams.Add(exam);
+
+
+            }
+
+            return exams;
+
+        }
+    
         
         public List<Subject> GetSubjects()
         {

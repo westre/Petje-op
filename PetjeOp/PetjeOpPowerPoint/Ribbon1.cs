@@ -21,7 +21,7 @@ namespace PetjeOpPowerPoint
             empty.Label = "";
             dropDown2.Items.Add(empty);
 
-            List<Exam> exams = DB.GetExam();
+            List<Exam> exams = DB.GetExams();
 
             foreach (Exam x in exams)
             {
