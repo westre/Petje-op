@@ -33,8 +33,9 @@ namespace PetjeOpPowerPoint
             foreach (Exam x in exams)
             {
                 Microsoft.Office.Tools.Ribbon.RibbonDropDownItem exam = this.Factory.CreateRibbonDropDownItem();
-                exam.Label = Convert.ToString(x.Examnr) + "+" + Convert.ToString(x.starttime);
+                exam.Label = "AFNAMEMOMENT: " + x.questionnaire.Name + ", VAK: " + x.questionnaire.Subject +  ", STARTTIJD: " +  Convert.ToString(x.starttime) + ", EINDTIJD: " + Convert.ToString(x.endtime);
                 ddExams.Items.Add(exam);
+                
                 int index = ddExams.Items.IndexOf(exam);
                 ddExams.Items[index].Tag = x;
                 
@@ -130,7 +131,16 @@ namespace PetjeOpPowerPoint
 
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
         {
-           
+            Exam chosen = (Exam)ddExams.SelectedItem.Tag;
+            Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
+            foreach (Question q in testquest.Questions)
+            {
+                PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+                PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
+                Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
+                textBox.TextFrame.TextRange.InsertAfter(q.Description);
+                textBox.TextFrame.TextRange.Font.Size = 30;
+            }
         }
     }
 }

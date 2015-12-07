@@ -69,7 +69,7 @@
             // 
             // ddQuestions
             // 
-            this.ddQuestions.Label = "Vragen";
+            this.ddQuestions.Label = "Dia per vraag";
             this.ddQuestions.Name = "ddQuestions";
             this.ddQuestions.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ddQuestions_SelectionChanged);
             // 
