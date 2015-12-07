@@ -6,6 +6,8 @@ using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
 using Office = Microsoft.Office.Core;
 using PetjeOp;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace PetjeOpPowerPoint
 {
@@ -179,12 +181,12 @@ namespace PetjeOpPowerPoint
 
                 string answers = GetFormattedAnswers(q.ID);
                 textBox.TextFrame.TextRange.InsertAfter(answers);
+                
+                
+                
             }
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-
-        }
+       
     }
 }
