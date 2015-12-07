@@ -42,7 +42,7 @@ namespace PetjeOpPowerPoint
                 
             }
 
-
+           
 
            
 
@@ -97,14 +97,32 @@ namespace PetjeOpPowerPoint
 
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
-            
+            // Dit wordt geroepen wanneer er op een question wordt geklikt
             Question question = (Question)ddQuestions.SelectedItem.Tag;
             PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-            PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
-            Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
+            PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
+
             textBox.TextFrame.TextRange.InsertAfter(question.Description);
             textBox.TextFrame.TextRange.Font.Size = 30;
 
+            textBox.TextFrame.TextRange.InsertAfter("\n\n");
+
+            string answers = GetFormattedAnswers(question.ID);
+
+            textBox.TextFrame.TextRange.InsertAfter(answers);
+        }
+
+        public string GetFormattedAnswers(int questionId) {
+            List<Answer> listAnswers = DB.GetAnswersByQuestion(questionId);
+
+            StringBuilder answerString = new StringBuilder();
+            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
+            int index = 0;
+            foreach (Answer answer in listAnswers) {
+                answerString.Append(alphabet[index] + ": " + answer.Description + (char)13);
+                index++;
+            }
+            return answerString.ToString();
         }
 
         private void ddExams_SelectionChanged(object sender, RibbonControlEventArgs e)
@@ -115,7 +133,6 @@ namespace PetjeOpPowerPoint
 
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
             
-      
 
             Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
 
@@ -140,6 +157,11 @@ namespace PetjeOpPowerPoint
                 Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
                 textBox.TextFrame.TextRange.InsertAfter(q.Description);
                 textBox.TextFrame.TextRange.Font.Size = 30;
+
+                textBox.TextFrame.TextRange.InsertAfter("\n\n");
+
+                string answers = GetFormattedAnswers(q.ID);
+                textBox.TextFrame.TextRange.InsertAfter(answers);
             }
         }
 
