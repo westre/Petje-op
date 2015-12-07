@@ -85,11 +85,13 @@
             this.GrpResults.Items.Add(this.btnViewResultsPPT);
             this.GrpResults.Label = "Resultaten";
             this.GrpResults.Name = "GrpResults";
+            this.GrpResults.Visible = false;
             // 
             // btnViewResultsPPT
             // 
             this.btnViewResultsPPT.Label = "Resulaten weergeven";
             this.btnViewResultsPPT.Name = "btnViewResultsPPT";
+            this.btnViewResultsPPT.Visible = false;
             this.btnViewResultsPPT.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnViewResultsPPT_Click);
             // 
             // Ribbon1

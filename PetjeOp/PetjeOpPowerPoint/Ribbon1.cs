@@ -97,7 +97,7 @@ namespace PetjeOpPowerPoint
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
 
-            if (ddExams.SelectedItemIndex != 0)
+            if (ddQuestions.SelectedItemIndex != 0)
             { 
             // Dit wordt geroepen wanneer er op een question wordt geklikt
             Question question = (Question)ddQuestions.SelectedItem.Tag;
