@@ -16,10 +16,17 @@ namespace PetjeOpPowerPoint
         {
             DB = new Database();
 
-            // functie voor vullen listbox afnamemomenten
-            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem empty = this.Factory.CreateRibbonDropDownItem();
-            empty.Label = "";
-            dropDown2.Items.Add(empty);
+
+            // functie voor initialiseren dropdown Questions
+
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyQuestions = this.Factory.CreateRibbonDropDownItem();
+            emptyQuestions.Label = "";
+            ddQuestions.Items.Add(emptyQuestions);
+
+            // functie voor vullen dropdown afnamemomenten
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExams = this.Factory.CreateRibbonDropDownItem();
+            emptyExams.Label = "";
+            ddExams.Items.Add(emptyExams);
 
             List<Exam> exams = DB.GetExams();
 
@@ -27,7 +34,9 @@ namespace PetjeOpPowerPoint
             {
                 Microsoft.Office.Tools.Ribbon.RibbonDropDownItem exam = this.Factory.CreateRibbonDropDownItem();
                 exam.Label = Convert.ToString(x.Examnr) + "+" + Convert.ToString(x.starttime);
-                dropDown2.Items.Add(exam);
+                ddExams.Items.Add(exam);
+                int index = ddExams.Items.IndexOf(exam);
+                ddExams.Items[index].Tag = x;
             }
 
            
@@ -83,30 +92,35 @@ namespace PetjeOpPowerPoint
             
         }
 
-        private void dropDown1_SelectionChanged(object sender, RibbonControlEventArgs e)
+        private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
+            Question question = (Question)ddQuestions.SelectedItem.Tag;
+            PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+            PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
+            Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
+            textBox.TextFrame.TextRange.InsertAfter(question.Description);
+            textBox.TextFrame.TextRange.Font.Size = 30;
 
         }
 
-        private void dropDown2_SelectionChanged(object sender, RibbonControlEventArgs e)
+        private void ddExams_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
-            // functie voor vullen listbox vragen
+            // functie voor vullen dropdown vragen
 
-            string chosen = dropDown2.SelectedItem.Label;
+           
+            Exam chosen = (Exam)ddExams.SelectedItem.Tag;
             
-            int index = chosen.LastIndexOf("+");
-            if (index > 0)
-            {
-                chosen = chosen.Substring(0, index);
-            }
+      
 
-            Questionnaire testquest = DB.GetQuestionnaire(Convert.ToInt32(chosen));
+            Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
 
             foreach (Question q in testquest.Questions)
             {
                 Microsoft.Office.Tools.Ribbon.RibbonDropDownItem question = this.Factory.CreateRibbonDropDownItem();
                 question.Label = q.Description;
-                dropDown1.Items.Add(question);
+                ddQuestions.Items.Add(question);
+                int index = ddQuestions.Items.IndexOf(question);
+                ddQuestions.Items[index].Tag = q;
             }
         }
     }
