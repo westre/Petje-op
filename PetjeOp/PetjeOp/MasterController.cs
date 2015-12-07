@@ -25,6 +25,9 @@ namespace PetjeOp
         //De user is het type gebruiker: Student, Teacher.
         public Person User { get; set; }
 
+        // Voor Yoran, verwijder dit hierna
+        public YoranHierKijken Yoran { get; set; }
+
         public MasterController()
         {
             InitializeComponent();
@@ -45,6 +48,9 @@ namespace PetjeOp
 
             //Creëer database instantie
             DB = new Database();
+
+            // verwijder
+            Yoran = new YoranHierKijken();
         }
 
         public Controller GetController(Type type)
