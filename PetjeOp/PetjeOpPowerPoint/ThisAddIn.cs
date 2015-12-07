@@ -12,10 +12,19 @@ namespace PetjeOpPowerPoint
     {
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            Application.SlideSelectionChanged += Application_SlideSelectionChanged;
+        }
+
+        private void Application_SlideSelectionChanged(PowerPoint.SlideRange SldRange) {
+            PowerPoint.Slide slide = Application.ActivePresentation.Slides.FindBySlideID(SldRange.SlideID);
+
+            if(slide.Tags["questionId"] != null && slide.Tags["questionId"].Length > 0)
+                System.Windows.Forms.MessageBox.Show(slide.Tags["questionId"]);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            Application.SlideSelectionChanged -= Application_SlideSelectionChanged;
         }
 
         void Application_PresentationNewSlide(PowerPoint.Slide Sld)
@@ -32,9 +41,7 @@ namespace PetjeOpPowerPoint
         {
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
-            this.Application.PresentationNewSlide +=
-    new PowerPoint.EApplication_PresentationNewSlideEventHandler(
-    Application_PresentationNewSlide);
+            this.Application.PresentationNewSlide += new PowerPoint.EApplication_PresentationNewSlideEventHandler(Application_PresentationNewSlide);
         }
 
         #endregion

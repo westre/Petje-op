@@ -41,11 +41,6 @@ namespace PetjeOpPowerPoint
                 ddExams.Items[index].Tag = x;
                 
             }
-
-           
-
-           
-
         }
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
@@ -99,7 +94,7 @@ namespace PetjeOpPowerPoint
         {
             // Dit wordt geroepen wanneer er op een question wordt geklikt
             Question question = (Question)ddQuestions.SelectedItem.Tag;
-            PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+            PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank); 
             PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
 
             textBox.TextFrame.TextRange.InsertAfter(question.Description);
@@ -107,6 +102,7 @@ namespace PetjeOpPowerPoint
 
             textBox.TextFrame.TextRange.InsertAfter("\n\n");
 
+            currentSld.Tags.Add("questionId", question.ID.ToString());
             string answers = GetFormattedAnswers(question.ID);
 
             textBox.TextFrame.TextRange.InsertAfter(answers);
@@ -137,7 +133,6 @@ namespace PetjeOpPowerPoint
 
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
             
-
             Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
 
             foreach (Question q in testquest.Questions)
@@ -164,6 +159,7 @@ namespace PetjeOpPowerPoint
 
                 textBox.TextFrame.TextRange.InsertAfter("\n\n");
 
+                currentSld.Tags.Add("questionId", q.ID.ToString());
                 string answers = GetFormattedAnswers(q.ID);
                 textBox.TextFrame.TextRange.InsertAfter(answers);
             }
