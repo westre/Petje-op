@@ -142,5 +142,10 @@ namespace PetjeOpPowerPoint
                 textBox.TextFrame.TextRange.Font.Size = 30;
             }
         }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+
+        }
     }
 }
