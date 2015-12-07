@@ -70,7 +70,7 @@ namespace PetjeOp {
             
 
 
-            List<Answer> answers = this.MasterController.DB.GetAnswerByQuestion(chosen.ID);
+            List<Answer> answers = this.MasterController.DB.GetAnswersByQuestion(chosen.ID);
 
             foreach (Answer answer in answers)
             {

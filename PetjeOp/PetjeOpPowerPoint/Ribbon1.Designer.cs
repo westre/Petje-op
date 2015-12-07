@@ -58,7 +58,7 @@
             this.GrpQuestionnaire.Items.Add(this.ddExams);
             this.GrpQuestionnaire.Items.Add(this.ddQuestions);
             this.GrpQuestionnaire.Items.Add(this.btnAllQuestions);
-            this.GrpQuestionnaire.Label = "Vragenlijst";
+            this.GrpQuestionnaire.Label = "Vragen toevoegen";
             this.GrpQuestionnaire.Name = "GrpQuestionnaire";
             // 
             // ddExams
@@ -69,7 +69,7 @@
             // 
             // ddQuestions
             // 
-            this.ddQuestions.Label = "Vragen";
+            this.ddQuestions.Label = "Dia per vraag";
             this.ddQuestions.Name = "ddQuestions";
             this.ddQuestions.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ddQuestions_SelectionChanged);
             // 
