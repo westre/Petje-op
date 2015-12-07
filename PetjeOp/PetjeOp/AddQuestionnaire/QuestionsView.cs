@@ -53,9 +53,9 @@ namespace PetjeOp.AddQuestionnaire
                 if (ParentController is AddQuestionnaireController)
                 {
                     currentQuestionIndex = ((AddQuestionnaireController) ParentController).Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
-                } else
+                } else if (ParentController is QuestionnaireDetailController)
                 {
-                    
+                    currentQuestionIndex = ((QuestionnaireDetailController)ParentController).Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
                 }
 
                 //currentQuestionIndex = Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
@@ -77,11 +77,11 @@ namespace PetjeOp.AddQuestionnaire
                     ((AddQuestionnaireController) ParentController).Model.Questionnaire.Questions.RemoveAt(
                         currentQuestionIndex);
                 }
-                else
+                else if(ParentController is QuestionnaireDetailController)
                 {
-                    
+                    ((QuestionnaireDetailController)ParentController).Model.Questionnaire.Questions.RemoveAt(
+                        currentQuestionIndex);
                 }
-                //Questionnaire.Questions.RemoveAt(currentQuestionIndex);
             }
 
             //Update de TreeView
@@ -95,6 +95,9 @@ namespace PetjeOp.AddQuestionnaire
             if (ParentController is AddQuestionnaireController)
             {
                tempQuestionnaire = ((AddQuestionnaireController) ParentController).Model.Questionnaire;
+            } else if (ParentController is QuestionnaireDetailController)
+            {
+                tempQuestionnaire = ((QuestionnaireDetailController)ParentController).Model.Questionnaire;
             }
 
             //Dialoog voor bevestiging
@@ -124,6 +127,9 @@ namespace PetjeOp.AddQuestionnaire
                 if (ParentController is AddQuestionnaireController)
                 {
                     ((AddQuestionnaireController) ParentController).Model.Questionnaire = tempQuestionnaire;
+                } else if (ParentController is QuestionnaireDetailController)
+                {
+                    ((QuestionnaireDetailController)ParentController).Model.Questionnaire = tempQuestionnaire;
                 }
             }
         }
@@ -151,16 +157,13 @@ namespace PetjeOp.AddQuestionnaire
             if (ParentController is AddQuestionnaireController)
             {
                 tempQuestionnaire = ((AddQuestionnaireController) ParentController).Model.Questionnaire;
-                //((AddQuestionnaireController) ParentController).Model.Questionnaire.Questions.Sort();
             }
-            else
+            else if (ParentController is QuestionnaireDetailController)
             {
-                
+                tempQuestionnaire = ((QuestionnaireDetailController)ParentController).Model.Questionnaire;
             }
 
             tempQuestionnaire.Questions.Sort();
-
-            //Questionnaire.Questions.Sort();
 
             //Maak de TreeView leeg
             tvQuestions.Nodes.Clear();
@@ -217,9 +220,10 @@ namespace PetjeOp.AddQuestionnaire
             if (ParentController is AddQuestionnaireController)
             {
                 ((AddQuestionnaireController)ParentController).Model.Questionnaire.Questions.Add(question);
+            } else if (ParentController is QuestionnaireDetailController)
+            {
+                ((QuestionnaireDetailController)ParentController).Model.Questionnaire.Questions.Add(question);
             }
-
-            //Questionnaire.Questions.Add(question);
 
             //Bepaal of TreeView geupdatet moet worden
             if (updateTV)
