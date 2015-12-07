@@ -37,7 +37,10 @@ namespace PetjeOpPowerPoint
                 ddExams.Items.Add(exam);
                 int index = ddExams.Items.IndexOf(exam);
                 ddExams.Items[index].Tag = x;
+                
             }
+
+
 
            
 
@@ -94,6 +97,7 @@ namespace PetjeOpPowerPoint
 
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
+            
             Question question = (Question)ddQuestions.SelectedItem.Tag;
             PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
             PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
@@ -106,8 +110,8 @@ namespace PetjeOpPowerPoint
         private void ddExams_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
             // functie voor vullen dropdown vragen
+            btnAllQuestions.Visible = true;
 
-           
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
             
       
@@ -122,6 +126,11 @@ namespace PetjeOpPowerPoint
                 int index = ddQuestions.Items.IndexOf(question);
                 ddQuestions.Items[index].Tag = q;
             }
+        }
+
+        private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
+        {
+           
         }
     }
 }
