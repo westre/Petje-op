@@ -284,13 +284,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
+    <None Include="Resources\Button_Login_Icon.png" />
+    <None Include="Resources\Button_Logout_Icon.png" />
+    <None Include="Resources\Inloggen.png" />
+    <None Include="Resources\Uitloggen.png" />
     <None Include="Resources\bannerBackground.png" />
     <None Include="Resources\Menu_Background1.png" />
     <None Include="Resources\Menu_Background.png" />
     <None Include="Resources\Button_Background.png" />
     <None Include="Resources\Button_Results_Icon.png" />
     <None Include="Resources\Button_QuestionnaireOverview_Icon.png" />
-    <None Include="Resources\Button_Logout_Icon.png" />
     <None Include="Resources\Button_Agenda_Icon.png" />
     <None Include="Resources\WinQ_Logo.png" />
   </ItemGroup>
