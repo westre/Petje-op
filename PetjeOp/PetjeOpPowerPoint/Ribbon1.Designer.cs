@@ -40,7 +40,7 @@
             this.ddQuestions = this.Factory.CreateRibbonDropDown();
             this.btnAllQuestions = this.Factory.CreateRibbonButton();
             this.GrpResults = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
+            this.btnViewResultsPPT = this.Factory.CreateRibbonButton();
             this.WinQ.SuspendLayout();
             this.GrpQuestionnaire.SuspendLayout();
             this.GrpResults.SuspendLayout();
@@ -58,7 +58,7 @@
             this.GrpQuestionnaire.Items.Add(this.ddExams);
             this.GrpQuestionnaire.Items.Add(this.ddQuestions);
             this.GrpQuestionnaire.Items.Add(this.btnAllQuestions);
-            this.GrpQuestionnaire.Label = "Vragenlijst";
+            this.GrpQuestionnaire.Label = "Vragen toevoegen";
             this.GrpQuestionnaire.Name = "GrpQuestionnaire";
             // 
             // ddExams
@@ -69,7 +69,7 @@
             // 
             // ddQuestions
             // 
-            this.ddQuestions.Label = "Vragen";
+            this.ddQuestions.Label = "Dia per vraag";
             this.ddQuestions.Name = "ddQuestions";
             this.ddQuestions.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ddQuestions_SelectionChanged);
             // 
@@ -82,15 +82,17 @@
             // 
             // GrpResults
             // 
-            this.GrpResults.Items.Add(this.button1);
+            this.GrpResults.Items.Add(this.btnViewResultsPPT);
             this.GrpResults.Label = "Resultaten";
             this.GrpResults.Name = "GrpResults";
+            this.GrpResults.Visible = false;
             // 
-            // button1
+            // btnViewResultsPPT
             // 
-            this.button1.Label = "Resulaten weergeven";
-            this.button1.Name = "button1";
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            this.btnViewResultsPPT.Label = "Resulaten weergeven";
+            this.btnViewResultsPPT.Name = "btnViewResultsPPT";
+            this.btnViewResultsPPT.Visible = false;
+            this.btnViewResultsPPT.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnViewResultsPPT_Click);
             // 
             // Ribbon1
             // 
@@ -111,7 +113,7 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab WinQ;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnViewResultsPPT;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup GrpResults;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup GrpQuestionnaire;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown ddQuestions;

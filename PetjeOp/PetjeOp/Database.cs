@@ -475,7 +475,7 @@ namespace PetjeOp
 
         }
         // hier worden de antwoorden opgehaald die bij een specifieke vraag horen
-        public List<Answer> GetAnswerByQuestion(int id)
+        public List<Answer> GetAnswersByQuestion(int id)
         {
             List<tblAnsweroption> tblAnsweroption = (from answeroption in db.tblAnsweroptions
                                                      where answeroption.question == id
@@ -486,6 +486,7 @@ namespace PetjeOp
             {
                 Answer newAnswerOption = new Answer(answeroption.answer);
                 newAnswerOption.ID = answeroption.answer;
+                newAnswerOption.Description = answeroption.tblAnswer.description;
 
                 answeroptions.Add(newAnswerOption);
             }
