@@ -14,14 +14,12 @@ namespace PetjeOpPowerPoint
     public partial class Ribbon1
     {
         private Database DB;
+
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             DB = new Database();
 
-
             // functie voor initialiseren dropdown Questions
-
-
 
             // functie voor vullen dropdown afnamemomenten
             
@@ -39,8 +37,7 @@ namespace PetjeOpPowerPoint
                 ddExams.Items.Add(exam);
                 
                 int index = ddExams.Items.IndexOf(exam);
-                ddExams.Items[index].Tag = x;
-                
+                ddExams.Items[index].Tag = x;              
             }
         }
 
@@ -93,24 +90,25 @@ namespace PetjeOpPowerPoint
 
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
-
             if (ddQuestions.SelectedItemIndex != 0)
-            { 
-            // Dit wordt geroepen wanneer er op een question wordt geklikt
-            Question question = (Question)ddQuestions.SelectedItem.Tag;
-            PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-            PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
+            {
+                // Dit wordt geroepen wanneer er op een question wordt geklikt
+                Exam chosen = (Exam)ddExams.SelectedItem.Tag;
+                Question question = (Question)ddQuestions.SelectedItem.Tag;
+                PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+                PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
 
-            textBox.TextFrame.TextRange.InsertAfter(question.Description);
-            textBox.TextFrame.TextRange.Font.Size = 30;
+                textBox.TextFrame.TextRange.InsertAfter(question.Description);
+                textBox.TextFrame.TextRange.Font.Size = 30;
 
-            textBox.TextFrame.TextRange.InsertAfter("\n\n");
+                textBox.TextFrame.TextRange.InsertAfter("\n\n");
 
-            currentSld.Tags.Add("questionId", question.ID.ToString());
-            string answers = GetFormattedAnswers(question.ID);
+                currentSld.Tags.Add("questionId", question.ID.ToString());
+                currentSld.Tags.Add("examId", chosen.Examnr.ToString());
+                string answers = GetFormattedAnswers(question.ID);
 
-            textBox.TextFrame.TextRange.InsertAfter(answers);
-        }
+                textBox.TextFrame.TextRange.InsertAfter(answers);
+            }
         }
 
         public string GetFormattedAnswers(int questionId) {
@@ -130,6 +128,7 @@ namespace PetjeOpPowerPoint
             return answerString.ToString();
         }
 
+        // Dit wordt geroepen wanneer er op een afnamemoment is geklikt
         private void ddExams_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
             btnAllQuestions.Visible = false;
@@ -141,23 +140,23 @@ namespace PetjeOpPowerPoint
 
             if (ddExams.SelectedItemIndex != 0)
             {
-            // functie voor vullen dropdown vragen
+                // functie voor vullen dropdown vragen
                 
-            btnAllQuestions.Visible = true;
+                btnAllQuestions.Visible = true;
 
-            Exam chosen = (Exam)ddExams.SelectedItem.Tag;
+                Exam chosen = (Exam)ddExams.SelectedItem.Tag;
             
-            Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
+                Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
 
-            foreach (Question q in testquest.Questions)
-            {
-                Microsoft.Office.Tools.Ribbon.RibbonDropDownItem question = this.Factory.CreateRibbonDropDownItem();
-                question.Label = q.Description;
-                ddQuestions.Items.Add(question);
-                int index = ddQuestions.Items.IndexOf(question);
-                ddQuestions.Items[index].Tag = q;
+                foreach (Question q in testquest.Questions)
+                {
+                    Microsoft.Office.Tools.Ribbon.RibbonDropDownItem question = this.Factory.CreateRibbonDropDownItem();
+                    question.Label = q.Description;
+                    ddQuestions.Items.Add(question);
+                    int index = ddQuestions.Items.IndexOf(question);
+                    ddQuestions.Items[index].Tag = q;
+                }
             }
-        }
         }
 
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
@@ -175,14 +174,10 @@ namespace PetjeOpPowerPoint
                 textBox.TextFrame.TextRange.InsertAfter("\n\n");
 
                 currentSld.Tags.Add("questionId", q.ID.ToString());
+                currentSld.Tags.Add("examId", chosen.Examnr.ToString());
                 string answers = GetFormattedAnswers(q.ID);
-                textBox.TextFrame.TextRange.InsertAfter(answers);
-                
-                
-                
+                textBox.TextFrame.TextRange.InsertAfter(answers);           
             }
         }
-
-
-        }
     }
+}

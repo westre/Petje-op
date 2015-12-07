@@ -396,6 +396,16 @@ namespace PetjeOp
             return exams;
 
         }
+
+        public void UpdateExamCurrentQuestion(int examId, int questionId) {
+            tblExam tblExam = (from exam in db.tblExams
+                               where exam.id == examId
+                               select exam).FirstOrDefault();
+
+            Console.WriteLine("ExamId: " + examId + ", questionId: " + questionId);
+            tblExam.currentquestion = questionId;
+            db.SubmitChanges();
+        }
     
         
         public List<Subject> GetSubjects()
