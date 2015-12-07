@@ -24,6 +24,7 @@ namespace PetjeOpPowerPoint
             ddQuestions.Items.Add(emptyQuestions);
 
             // functie voor vullen dropdown afnamemomenten
+            
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExams = this.Factory.CreateRibbonDropDownItem();
             emptyExams.Label = "";
             ddExams.Items.Add(emptyExams);
@@ -61,9 +62,7 @@ namespace PetjeOpPowerPoint
             double barHeight3 = barHeight * percentage3;
 
             PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-            //PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
-            //   Office.MsoTextOrientation.msoTextOrientationHorizontal, 250, 250, 500, 50);
-            //textBox.TextFrame.TextRange.InsertAfter("Deze dia is toegevoegd met de knop");
+
             PowerPoint.Shape shape = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 10, 10, 100, Convert.ToInt32(barHeight1));
             PowerPoint.Shape shape1 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 120, 10 + 300 - (int)barHeight2, 100, Convert.ToInt32(barHeight2));
 
@@ -111,6 +110,7 @@ namespace PetjeOpPowerPoint
         private void ddExams_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
             // functie voor vullen dropdown vragen
+            ddQuestions.Items.Clear();
             btnAllQuestions.Visible = true;
 
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
