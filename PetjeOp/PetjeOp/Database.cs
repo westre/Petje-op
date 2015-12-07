@@ -10,7 +10,7 @@ namespace PetjeOp
     public class Database
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-
+        
         public MultipleChoiceQuestion GetQuestion(int id)
         {
             tblQuestion query = db.tblQuestions.SingleOrDefault(q => q.id == id);
@@ -18,6 +18,30 @@ namespace PetjeOp
             if (query != null)
             {
                 MultipleChoiceQuestion question = new MultipleChoiceQuestion(query.description);
+                question.ID = id;
+
+                List<Answer> answerOptions = new List<Answer>();
+                List<tblAnsweroption> dbAnsweroption = query.tblAnsweroptions.ToList();
+
+                foreach (tblAnsweroption dbAnswerOption in dbAnsweroption)
+                {
+                    if (true) {
+                        // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
+                        tblAnswer tblAnswer = dbAnswerOption.tblAnswer;
+
+                        Answer answer = new Answer(tblAnswer.description);
+                        answer.ID = tblAnswer.id;
+                        answerOptions.Add(answer);
+                    }
+                }
+
+                // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
+                question.AnswerOptions = answerOptions;
+
+
+
+
+
                 return question;
             }
             return null;
@@ -318,7 +342,7 @@ namespace PetjeOp
             return questionnaires;
         }
         // hier worden de afnamemomenten uit de database gehaald
-        public List<Exam> GetExam()
+        public List<Exam> GetAllExams()
         {
             List<Exam> exams = new List<Exam>();
 
@@ -335,6 +359,23 @@ namespace PetjeOp
 
             return exams;
 
+        }
+
+        public Exam GetExam(int examID) // Return een Exam van het opgegeven ID
+        {
+            Exam exam = (from tblExam in db.tblExams
+                         where tblExam.id == examID
+                         select new Exam(tblExam.id, tblExam.questionnaire)
+                         {
+                             CurrenQuestion = tblExam.currentquestion
+                         }).FirstOrDefault();
+
+            exam.questionnaire = this.GetQuestionnaire(exam.qstnn);
+            if (exam != null)
+            {
+                return exam; // Returnt, uit database opgehaalde, Exam
+            }
+            return null;
         }
         
         public List<Subject> GetSubjects()

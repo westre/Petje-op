@@ -25,5 +25,11 @@ namespace PetjeOp {
         private void btnLoginTeacher_Click(object sender, EventArgs e) {
 
         }
+        private void VraagBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Checked)
+                for (int ix = 0; ix < VraagBox.Items.Count; ++ix)
+                    if (e.Index != ix) VraagBox.SetItemChecked(ix, false);
+        }
     }
 }
