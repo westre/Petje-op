@@ -12,15 +12,17 @@ namespace PetjeOp {
         public LoginModel Model { get; set; }
 
         public LoginController(MasterController masterController) : base(masterController) {
-            //Set login model
+            //Set login model, View wordt in de Dialog doorgegeven
             Model = new LoginModel();
         }
 
         public override UserControl GetView() {
-            return null;
+            //GetView wordt niet gebruikt bij login dialog, maar wordt wel verplicht om te implementeren door de Controller klasse
+            return null; 
         }
 
         internal void StudentLogin() {
+             
             Controller controller = MasterController.GetController(typeof(StudentController));
             MasterController.SetController(controller);
             View.DialogResult = DialogResult.OK;
