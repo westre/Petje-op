@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace PetjeOp
 {
@@ -398,13 +399,18 @@ namespace PetjeOp
         }
 
         public void UpdateExamCurrentQuestion(int examId, int questionId) {
-            tblExam tblExam = (from exam in db.tblExams
-                               where exam.id == examId
-                               select exam).FirstOrDefault();
+            if(examId != -1) {
+                tblExam tblExam = (from exam in db.tblExams
+                                   where exam.id == examId
+                                   select exam).FirstOrDefault();
 
-            Console.WriteLine("ExamId: " + examId + ", questionId: " + questionId);
-            tblExam.currentquestion = questionId;
-            db.SubmitChanges();
+                if (questionId == -1)
+                    tblExam.currentquestion = (int?)null;
+                else
+                    tblExam.currentquestion = questionId;
+
+                db.SubmitChanges();
+            }   
         }
     
         
