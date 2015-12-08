@@ -29,6 +29,14 @@ namespace PetjeOp.Login
             Controller.AnswerQuestion(1);
         }
 
+        private void LoginCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                LoginBtn_Click(sender,e);
+            }
+        }
+
         private void LoginBtn_Click(object sender, EventArgs e)
         {
             if (txtLoginCode.Text == "") // Controleert of het text-veld blanco is, en zet het label naar een ERROR.
