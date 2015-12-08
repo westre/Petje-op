@@ -19,18 +19,9 @@ namespace PetjeOp.Login
             this.Controller.View = this;
         }
 
-        private void btnStudentLogin_Click(object sender, EventArgs e)
-        {
-            Controller.StudentLogin();
-        }
         private void btnVraagOverzicht_Click(object sender, EventArgs e)
         {
             Controller.QuestionnaireDetail();
-        }
-
-        private void btnLoginTeacher_Click(object sender, EventArgs e)
-        {
-            Controller.TeacherLogin();
         }
 
         private void btnAnswerQuestion_Click(object sender, EventArgs e)
@@ -40,21 +31,21 @@ namespace PetjeOp.Login
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "") // Controleert of het text-veld blanco is, en zet het label naar een ERROR.
+            if (txtLoginCode.Text == "") // Controleert of het text-veld blanco is, en zet het label naar een ERROR.
             {
                 Error.Text = "U heeft niks ingevuld.";
                 Error.Visible = true;
             }
             else
             {
-                if (Controller.MasterController.DB.GetStudent(textBox1.Text) != null) // Controleer op een code van een Student
+                if (Controller.MasterController.DB.GetStudent(txtLoginCode.Text) != null) // Controleer op een code van een Student
                 {
-                    Controller.MasterController.User = Controller.MasterController.DB.GetStudent(textBox1.Text); // Haal de Student uit de DB.
+                    Controller.MasterController.User = Controller.MasterController.DB.GetStudent(txtLoginCode.Text); // Haal de Student uit de DB.
                     Controller.StudentLogin(); // Zet de client over naar Student omgeving
                 }
-                else if (Controller.MasterController.DB.GetTeacher(textBox1.Text) != null) // Controleer op een code van een Teacher
+                else if (Controller.MasterController.DB.GetTeacher(txtLoginCode.Text) != null) // Controleer op een code van een Teacher
                 {
-                    Controller.MasterController.User = Controller.MasterController.DB.GetTeacher(textBox1.Text); // Haal de Teacher uit de DB.
+                    Controller.MasterController.User = Controller.MasterController.DB.GetTeacher(txtLoginCode.Text); // Haal de Teacher uit de DB.
                     Controller.TeacherLogin(); // Zet de client over naar Teacher omgeving
                 }
                 else // Zet het label naar een ERROR
@@ -65,9 +56,9 @@ namespace PetjeOp.Login
             }
         }
 
-        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        private void LoginView_Load(object sender, EventArgs e)
         {
-
+            this.ActiveControl = txtLoginCode;
         }
     }
 }

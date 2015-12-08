@@ -117,8 +117,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup GrpResults;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup GrpQuestionnaire;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown ddQuestions;
-        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown ddExams;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnAllQuestions;
+        public Microsoft.Office.Tools.Ribbon.RibbonDropDown ddExams;
     }
 
     partial class ThisRibbonCollection
