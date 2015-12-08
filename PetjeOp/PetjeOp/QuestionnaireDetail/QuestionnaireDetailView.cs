@@ -23,5 +23,15 @@ namespace PetjeOp.QuestionnaireDetail
         {
             Controller.GoToQuestionnaireOverview();
         }
+
+        private void QuestionnaireDetailView_Load(object sender, EventArgs e)
+        {
+            Controller.setLabels();
+        }
+
+        private void questionsView1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

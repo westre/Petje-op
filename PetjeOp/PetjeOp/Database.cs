@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Threading;
 
 namespace PetjeOp
 {
@@ -55,16 +56,17 @@ namespace PetjeOp
             questionnaire.ID = dbQuestionnaire.id;
             questionnaire.Subject = GetSubjectByID(dbQuestionnaire.subject);
 
+            Teacher author = new Teacher();
+            author.TeacherNr = dbQuestionnaire.tblTeacher.nr;
+            author.FirstName = dbQuestionnaire.tblTeacher.firstname;
+            author.SurName = dbQuestionnaire.tblTeacher.surname;
+            questionnaire.Author = author;
+
             // Loop door alle questions binnen die questionnaire
             foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
             {
                 MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
 
-                // Maak een nieuwe answer object aan voor onze correct answer
-                Answer correctAnswer = new Answer(dbQuestion.tblAnswer.description);
-                correctAnswer.ID = dbQuestion.tblAnswer.id;
-
-                question.CorrectAnswer = correctAnswer;
                 question.ID = dbQuestion.id;
                 question.QuestionIndex = dbQuestion.questionindex;
 
@@ -78,6 +80,11 @@ namespace PetjeOp
                     Answer answer = new Answer(tblAnswer.description);
                     answer.ID = tblAnswer.id;
                     answerOptions.Add(answer);
+
+                    if (dbQuestion.correctanswer == answer.ID)
+                    {
+                        question.CorrectAnswer = answer;
+                    }
                 }
 
                 // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
@@ -168,16 +175,19 @@ namespace PetjeOp
             return false;
         }
 
-        public Questionnaire AddQuestionnaire(Questionnaire questionnaire)
+        public Questionnaire AddQuestionnaire(Teacher teacher, Questionnaire questionnaire)
         {
             tblQuestionnaire tblQuestionnaire = new tblQuestionnaire();
-            tblQuestionnaire.author = "eltjo1"; // test data
+            
+
+            tblQuestionnaire.author = teacher.TeacherNr; // test data
             tblQuestionnaire.description = questionnaire.Name;
             tblQuestionnaire.subject = questionnaire.Subject.Id;
             db.tblQuestionnaires.InsertOnSubmit(tblQuestionnaire);
             db.SubmitChanges();
 
             questionnaire.ID = tblQuestionnaire.id;
+            questionnaire.Author = teacher;
 
             //Loop door alle vragen heen
             foreach (MultipleChoiceQuestion q in questionnaire.Questions)

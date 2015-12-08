@@ -78,5 +78,10 @@ namespace PetjeOp.Questionnaires
         {
             Controller.GoToQuestionnaireDetails();
         }
+
+        private void tvQuestionnaires_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            Controller.CheckButtons();
+        }
     }
 }

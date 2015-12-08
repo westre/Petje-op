@@ -33,9 +33,9 @@
             this.lblSubject = new System.Windows.Forms.Label();
             this.lblErrorSubject = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.questionsView1 = new PetjeOp.AddQuestionnaire.QuestionsView();
             this.cbSubjects = new System.Windows.Forms.ComboBox();
             this.tbQuestionnaireName = new System.Windows.Forms.TextBox();
+            this.questionsView1 = new PetjeOp.AddQuestionnaire.QuestionsView();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -61,7 +61,7 @@
             // btnSaveQuestionnaire
             // 
             this.btnSaveQuestionnaire.Enabled = false;
-            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(13, 487);
+            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(21, 747);
             this.btnSaveQuestionnaire.Name = "btnSaveQuestionnaire";
             this.btnSaveQuestionnaire.Size = new System.Drawing.Size(267, 49);
             this.btnSaveQuestionnaire.TabIndex = 13;
@@ -91,7 +91,7 @@
             // 
             this.lblNoQuestionsInQuestionaire.AutoSize = true;
             this.lblNoQuestionsInQuestionaire.ForeColor = System.Drawing.Color.Red;
-            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(269, 449);
+            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(531, 666);
             this.lblNoQuestionsInQuestionaire.Name = "lblNoQuestionsInQuestionaire";
             this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 13);
             this.lblNoQuestionsInQuestionaire.TabIndex = 19;
@@ -116,23 +116,13 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(286, 487);
+            this.btnCancel.Location = new System.Drawing.Point(294, 747);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(210, 49);
             this.btnCancel.TabIndex = 24;
             this.btnCancel.Text = "Annuleer";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // questionsView1
-            // 
-            this.questionsView1.Dialog = null;
-            this.questionsView1.Location = new System.Drawing.Point(13, 236);
-            this.questionsView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.questionsView1.Name = "questionsView1";
-            this.questionsView1.ParentController = null;
-            this.questionsView1.Size = new System.Drawing.Size(1092, 246);
-            this.questionsView1.TabIndex = 25;
             // 
             // cbSubjects
             // 
@@ -152,6 +142,16 @@
             this.tbQuestionnaireName.TabIndex = 8;
             this.tbQuestionnaireName.TextChanged += new System.EventHandler(this.tbQuestionnaireName_TextChanged);
             // 
+            // questionsView1
+            // 
+            this.questionsView1.Dialog = null;
+            this.questionsView1.Location = new System.Drawing.Point(13, 236);
+            this.questionsView1.Margin = new System.Windows.Forms.Padding(2);
+            this.questionsView1.Name = "questionsView1";
+            this.questionsView1.ParentController = null;
+            this.questionsView1.Size = new System.Drawing.Size(1446, 475);
+            this.questionsView1.TabIndex = 25;
+            // 
             // AddQuestionnaireView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -170,7 +170,7 @@
             this.Controls.Add(this.questionsView1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AddQuestionnaireView";
-            this.Size = new System.Drawing.Size(1140, 548);
+            this.Size = new System.Drawing.Size(1459, 823);
             this.Load += new System.EventHandler(this.AddQuestionnaireView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

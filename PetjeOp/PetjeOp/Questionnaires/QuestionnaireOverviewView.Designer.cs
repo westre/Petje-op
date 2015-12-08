@@ -56,6 +56,7 @@
             this.tvQuestionnaires.Size = new System.Drawing.Size(564, 304);
             this.tvQuestionnaires.TabIndex = 2;
             this.tvQuestionnaires.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvQuestionnaires_BeforeSelect);
+            this.tvQuestionnaires.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvQuestionnaires_AfterSelect);
             // 
             // btnAddQuestionnaire
             // 
@@ -71,7 +72,7 @@
             // lblSubject
             // 
             this.lblSubject.AutoSize = true;
-            this.lblSubject.Location = new System.Drawing.Point(6, 61);
+            this.lblSubject.Location = new System.Drawing.Point(3, 64);
             this.lblSubject.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSubject.Name = "lblSubject";
             this.lblSubject.Size = new System.Drawing.Size(29, 13);
@@ -93,6 +94,7 @@
             // 
             // btnDetails
             // 
+            this.btnDetails.Enabled = false;
             this.btnDetails.Location = new System.Drawing.Point(575, 95);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(75, 23);
@@ -129,6 +131,6 @@
         private System.Windows.Forms.Button btnAddQuestionnaire;
         private System.Windows.Forms.Label lblSubject;
         public System.Windows.Forms.ComboBox cbSubjects;
-        private System.Windows.Forms.Button btnDetails;
+        public System.Windows.Forms.Button btnDetails;
     }
 }
