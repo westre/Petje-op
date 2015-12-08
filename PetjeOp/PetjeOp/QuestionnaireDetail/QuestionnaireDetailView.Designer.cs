@@ -40,12 +40,12 @@
             this.lblAuthorData = new System.Windows.Forms.Label();
             this.lblNameData = new System.Windows.Forms.Label();
             this.lblSubjectData = new System.Windows.Forms.Label();
-            this.questionsView1 = new PetjeOp.AddQuestionnaire.QuestionsView();
             this.lblNoQuestionsInQuestionaire = new System.Windows.Forms.Label();
             this.btnExams = new System.Windows.Forms.Button();
             this.cbSelectQuestionnaire = new System.Windows.Forms.ComboBox();
             this.lblSelectQuestionnaire = new System.Windows.Forms.Label();
             this.btnConfirmQuestionnaire = new System.Windows.Forms.Button();
+            this.questionsView1 = new PetjeOp.AddQuestionnaire.QuestionsView();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -80,7 +80,7 @@
             // 
             this.lblNoNodeSelectedError.AutoSize = true;
             this.lblNoNodeSelectedError.ForeColor = System.Drawing.Color.Red;
-            this.lblNoNodeSelectedError.Location = new System.Drawing.Point(861, 266);
+            this.lblNoNodeSelectedError.Location = new System.Drawing.Point(770, 267);
             this.lblNoNodeSelectedError.Name = "lblNoNodeSelectedError";
             this.lblNoNodeSelectedError.Size = new System.Drawing.Size(0, 13);
             this.lblNoNodeSelectedError.TabIndex = 31;
@@ -157,16 +157,6 @@
             this.lblSubjectData.Size = new System.Drawing.Size(0, 13);
             this.lblSubjectData.TabIndex = 41;
             // 
-            // questionsView1
-            // 
-            this.questionsView1.Dialog = null;
-            this.questionsView1.Location = new System.Drawing.Point(22, 238);
-            this.questionsView1.Margin = new System.Windows.Forms.Padding(2);
-            this.questionsView1.Name = "questionsView1";
-            this.questionsView1.ParentController = null;
-            this.questionsView1.Size = new System.Drawing.Size(834, 246);
-            this.questionsView1.TabIndex = 37;
-            // 
             // lblNoQuestionsInQuestionaire
             // 
             this.lblNoQuestionsInQuestionaire.AutoSize = true;
@@ -211,10 +201,23 @@
             this.btnConfirmQuestionnaire.Text = "Selecteren";
             this.btnConfirmQuestionnaire.UseVisualStyleBackColor = true;
             // 
+            // questionsView1
+            // 
+            this.questionsView1.Dialog = null;
+            this.questionsView1.Location = new System.Drawing.Point(22, 238);
+            this.questionsView1.Margin = new System.Windows.Forms.Padding(2);
+            this.questionsView1.Name = "questionsView1";
+            this.questionsView1.ParentController = null;
+            this.questionsView1.Size = new System.Drawing.Size(834, 246);
+            this.questionsView1.TabIndex = 37;
+            // 
             // QuestionnaireDetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblErrorSubject);
+            this.Controls.Add(this.lblQuestionaireNameError);
+            this.Controls.Add(this.lblNoNodeSelectedError);
             this.Controls.Add(this.btnConfirmQuestionnaire);
             this.Controls.Add(this.lblSelectQuestionnaire);
             this.Controls.Add(this.cbSelectQuestionnaire);
@@ -224,17 +227,15 @@
             this.Controls.Add(this.lblAuthorData);
             this.Controls.Add(this.lblAuthor);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.lblErrorSubject);
             this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.lblNoQuestionsInQuestionaire);
-            this.Controls.Add(this.lblNoNodeSelectedError);
-            this.Controls.Add(this.lblQuestionaireNameError);
             this.Controls.Add(this.btnSaveQuestionnaire);
             this.Controls.Add(this.lblQuestionnaireName);
             this.Controls.Add(this.lblShowQuestionnaire);
             this.Controls.Add(this.questionsView1);
             this.Name = "QuestionnaireDetailView";
             this.Size = new System.Drawing.Size(909, 583);
+            this.Load += new System.EventHandler(this.QuestionnaireDetailView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,9 +252,9 @@
         private System.Windows.Forms.Label lblQuestionnaireName;
         private System.Windows.Forms.Label lblShowQuestionnaire;
         private System.Windows.Forms.Label lblAuthor;
-        private System.Windows.Forms.Label lblAuthorData;
-        private System.Windows.Forms.Label lblNameData;
-        private System.Windows.Forms.Label lblSubjectData;
+        public System.Windows.Forms.Label lblAuthorData;
+        public System.Windows.Forms.Label lblNameData;
+        public System.Windows.Forms.Label lblSubjectData;
         public AddQuestionnaire.QuestionsView questionsView1;
         public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
         private System.Windows.Forms.Button btnExams;

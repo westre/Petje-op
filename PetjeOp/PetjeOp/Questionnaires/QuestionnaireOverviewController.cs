@@ -146,5 +146,17 @@ namespace PetjeOp.Questionnaires
             qoc.View.questionsView1.ParentController = qoc;
             MasterController.SetController(qoc);
         }
+
+        public void CheckButtons()
+        {
+            if (View.tvQuestionnaires.SelectedNode != null)
+            {
+                View.btnDetails.Enabled = true;
+            }
+            else
+            {
+                View.btnDetails.Enabled = false;
+            }
+        }
     }
 }
