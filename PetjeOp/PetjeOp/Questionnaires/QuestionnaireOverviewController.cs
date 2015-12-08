@@ -137,5 +137,14 @@ namespace PetjeOp.Questionnaires
         {
             Model.ListQuestionnaires = Model.AllQuestionnaires;
         }
+
+        public void GoToQuestionnaireDetails()
+        {
+            //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
+            QuestionnaireDetailController qoc = (QuestionnaireDetailController)MasterController.GetController(typeof(QuestionnaireDetailController));
+            qoc.Model.Questionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
+            qoc.View.questionsView1.ParentController = qoc;
+            MasterController.SetController(qoc);
+        }
     }
 }

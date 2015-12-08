@@ -237,5 +237,10 @@ namespace PetjeOp.AddQuestionnaire
 
             return false;
         }
+
+        private void QuestionsView_Load(object sender, EventArgs e)
+        {
+            UpdateTreeView();
+        }
     }
 }
