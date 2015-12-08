@@ -49,7 +49,8 @@ namespace PetjeOp
         }
         public override string ToString()
         {
-            return Convert.ToString(ID);
+            return String.Format("{0}: {1}", Subject, Name);
         }
+
     }
 }

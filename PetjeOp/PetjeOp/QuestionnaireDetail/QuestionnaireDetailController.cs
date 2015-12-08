@@ -33,6 +33,7 @@ namespace PetjeOp {
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             qoc.GetAllQuestionnairesAndSubjects();
             qoc.FillTreeView();
+            Model.Questionnaire = null;
             MasterController.SetController(qoc);
         }
 
@@ -43,5 +44,16 @@ namespace PetjeOp {
             View.lblSubjectData.Text = Model.Questionnaire.Subject.Name;
         }
 
+        public void fillCbSelectQuestionnaire()
+        {
+            View.cbSelectQuestionnaire.Items.Clear();
+            List<Questionnaire> currentQuestionnaires = Model.Questionnaires;
+            foreach (Questionnaire q in currentQuestionnaires)
+            {
+                View.cbSelectQuestionnaire.Items.Add(q);
+
+            }
+                View.cbSelectQuestionnaire.SelectedItem = Model.Questionnaire;
+        }
     }
 }

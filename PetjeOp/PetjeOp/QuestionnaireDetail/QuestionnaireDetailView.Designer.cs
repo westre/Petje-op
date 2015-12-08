@@ -44,7 +44,6 @@
             this.btnExams = new System.Windows.Forms.Button();
             this.cbSelectQuestionnaire = new System.Windows.Forms.ComboBox();
             this.lblSelectQuestionnaire = new System.Windows.Forms.Label();
-            this.btnConfirmQuestionnaire = new System.Windows.Forms.Button();
             this.questionsView1 = new PetjeOp.AddQuestionnaire.QuestionsView();
             this.SuspendLayout();
             // 
@@ -177,29 +176,23 @@
             // 
             // cbSelectQuestionnaire
             // 
+            this.cbSelectQuestionnaire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSelectQuestionnaire.FormattingEnabled = true;
-            this.cbSelectQuestionnaire.Location = new System.Drawing.Point(591, 33);
+            this.cbSelectQuestionnaire.Location = new System.Drawing.Point(517, 33);
             this.cbSelectQuestionnaire.Name = "cbSelectQuestionnaire";
-            this.cbSelectQuestionnaire.Size = new System.Drawing.Size(210, 21);
+            this.cbSelectQuestionnaire.Size = new System.Drawing.Size(365, 21);
+            this.cbSelectQuestionnaire.Sorted = true;
             this.cbSelectQuestionnaire.TabIndex = 43;
+            this.cbSelectQuestionnaire.SelectedIndexChanged += new System.EventHandler(this.cbSelectQuestionnaire_SelectedIndexChanged);
             // 
             // lblSelectQuestionnaire
             // 
             this.lblSelectQuestionnaire.AutoSize = true;
-            this.lblSelectQuestionnaire.Location = new System.Drawing.Point(588, 17);
+            this.lblSelectQuestionnaire.Location = new System.Drawing.Point(514, 17);
             this.lblSelectQuestionnaire.Name = "lblSelectQuestionnaire";
             this.lblSelectQuestionnaire.Size = new System.Drawing.Size(130, 13);
             this.lblSelectQuestionnaire.TabIndex = 44;
             this.lblSelectQuestionnaire.Text = "Snel vragenlijst selecteren";
-            // 
-            // btnConfirmQuestionnaire
-            // 
-            this.btnConfirmQuestionnaire.Location = new System.Drawing.Point(807, 31);
-            this.btnConfirmQuestionnaire.Name = "btnConfirmQuestionnaire";
-            this.btnConfirmQuestionnaire.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirmQuestionnaire.TabIndex = 45;
-            this.btnConfirmQuestionnaire.Text = "Selecteren";
-            this.btnConfirmQuestionnaire.UseVisualStyleBackColor = true;
             // 
             // questionsView1
             // 
@@ -210,7 +203,6 @@
             this.questionsView1.ParentController = null;
             this.questionsView1.Size = new System.Drawing.Size(834, 246);
             this.questionsView1.TabIndex = 37;
-            this.questionsView1.Load += new System.EventHandler(this.questionsView1_Load);
             // 
             // QuestionnaireDetailView
             // 
@@ -219,7 +211,6 @@
             this.Controls.Add(this.lblErrorSubject);
             this.Controls.Add(this.lblQuestionaireNameError);
             this.Controls.Add(this.lblNoNodeSelectedError);
-            this.Controls.Add(this.btnConfirmQuestionnaire);
             this.Controls.Add(this.lblSelectQuestionnaire);
             this.Controls.Add(this.cbSelectQuestionnaire);
             this.Controls.Add(this.btnExams);
@@ -259,8 +250,7 @@
         public AddQuestionnaire.QuestionsView questionsView1;
         public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
         private System.Windows.Forms.Button btnExams;
-        private System.Windows.Forms.ComboBox cbSelectQuestionnaire;
+        public System.Windows.Forms.ComboBox cbSelectQuestionnaire;
         private System.Windows.Forms.Label lblSelectQuestionnaire;
-        private System.Windows.Forms.Button btnConfirmQuestionnaire;
     }
 }

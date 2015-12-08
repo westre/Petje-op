@@ -146,6 +146,8 @@ namespace PetjeOp.Questionnaires
             qoc.Model.Questionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
             qoc.View.questionsView1.ParentController = qoc;
             qoc.View.questionsView1.UpdateTreeView();
+            qoc.Model.Questionnaires = Model.AllQuestionnaires;
+            qoc.fillCbSelectQuestionnaire();
             MasterController.SetController(qoc);
         }
 

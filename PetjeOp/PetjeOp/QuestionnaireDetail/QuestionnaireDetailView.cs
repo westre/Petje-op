@@ -27,11 +27,14 @@ namespace PetjeOp.QuestionnaireDetail
         private void QuestionnaireDetailView_Load(object sender, EventArgs e)
         {
             Controller.setLabels();
+            Controller.fillCbSelectQuestionnaire();
         }
 
-        private void questionsView1_Load(object sender, EventArgs e)
+        private void cbSelectQuestionnaire_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Controller.Model.Questionnaire = (Questionnaire)cbSelectQuestionnaire.SelectedItem;
+            Controller.setLabels();
+            Controller.View.questionsView1.UpdateTreeView();
         }
     }
 }
