@@ -67,11 +67,6 @@ namespace PetjeOp
             {
                 MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
 
-                // Maak een nieuwe answer object aan voor onze correct answer
-                Answer correctAnswer = new Answer(dbQuestion.tblAnswer.description);
-                correctAnswer.ID = dbQuestion.tblAnswer.id;
-
-                question.CorrectAnswer = correctAnswer;
                 question.ID = dbQuestion.id;
                 question.QuestionIndex = dbQuestion.questionindex;
 
@@ -85,6 +80,11 @@ namespace PetjeOp
                     Answer answer = new Answer(tblAnswer.description);
                     answer.ID = tblAnswer.id;
                     answerOptions.Add(answer);
+
+                    if (dbQuestion.correctanswer == answer.ID)
+                    {
+                        question.CorrectAnswer = answer;
+                    }
                 }
 
                 // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe

@@ -19,15 +19,16 @@ namespace PetjeOpPowerPoint
         {
             DB = new Database();
 
-            // functie voor initialiseren dropdown Questions
+         
 
             // functie voor vullen dropdown afnamemomenten
             
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExams = this.Factory.CreateRibbonDropDownItem();
-            
+            // Er wordt een leeg record aangemaakt bovenaan de dropdown lijst
             emptyExams.Label = null;
             ddExams.Items.Add(emptyExams);
 
+            // Vul de rest van de dropdown lijst met afnamemomenten uit de database
             List<Exam> exams = DB.GetExams();
 
             foreach (Exam x in exams)
@@ -39,60 +40,36 @@ namespace PetjeOpPowerPoint
                 int index = ddExams.Items.IndexOf(exam);
                 ddExams.Items[index].Tag = x;              
             }
+            //////
         }
 
-        private void btnViewResultsPPT_Click(object sender, RibbonControlEventArgs e)
-        {
-            double barHeight = 300;
+        //private void btnViewResultsPPT_Click(object sender, RibbonControlEventArgs e)
+        //{
+        //    double barHeight = 300;
 
-            double percentage1 = 1.00;
-            double barHeight1 = barHeight * percentage1;
+        //    double percentage1 = 1.00;
+        //    double barHeight1 = barHeight * percentage1;
 
-            double percentage2 = 0.60;
-            double barHeight2 = barHeight * percentage2;
+        //    double percentage2 = 0.60;
+        //    double barHeight2 = barHeight * percentage2;
 
-            double percentage3 = 0.80;
-            double barHeight3 = barHeight * percentage3;
+        //    double percentage3 = 0.80;
+        //    double barHeight3 = barHeight * percentage3;
 
-            PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+        //    PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
 
-            PowerPoint.Shape shape = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 10, 10, 100, Convert.ToInt32(barHeight1));
-            PowerPoint.Shape shape1 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 120, 10 + 300 - (int)barHeight2, 100, Convert.ToInt32(barHeight2));
+        //    PowerPoint.Shape shape = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 10, 10, 100, Convert.ToInt32(barHeight1));
+        //    PowerPoint.Shape shape1 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 120, 10 + 300 - (int)barHeight2, 100, Convert.ToInt32(barHeight2));
 
-            PowerPoint.Shape shape2 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 230, 10 + 300 - (int)barHeight3, 100, Convert.ToInt32(barHeight3));
-        }
+        //    PowerPoint.Shape shape2 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 230, 10 + 300 - (int)barHeight3, 100, Convert.ToInt32(barHeight3));
+        //}
 
-        private void button2_Click(object sender, RibbonControlEventArgs e)
-        {
-
-            Questionnaire testquest = DB.GetQuestionnaire(5);
-           
-            foreach (Question q in testquest.Questions)
-            {
-                PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-                PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
-                Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
-                textBox.TextFrame.TextRange.InsertAfter(q.Description);
-                textBox.TextFrame.TextRange.Font.Size = 30;
-                
-            }
-        }
-
-        private void btnLogo_Click(object sender, RibbonControlEventArgs e)
-        {
-
-        }
-
-        private void comboBox1_TextChanged(object sender, RibbonControlEventArgs e)
-        {
-            
-        }
-
+       
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
             if (ddQuestions.SelectedItemIndex != 0)
             {
-                // Dit wordt geroepen wanneer er op een question wordt geklikt
+                // Dit wordt aangeroepen wanneer er op een question wordt geklikt
                 Exam chosen = (Exam)ddExams.SelectedItem.Tag;
                 Question question = (Question)ddQuestions.SelectedItem.Tag;
                 PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
@@ -128,9 +105,10 @@ namespace PetjeOpPowerPoint
             return answerString.ToString();
         }
 
-        // Dit wordt geroepen wanneer er op een afnamemoment is geklikt
+        // Dit wordt aangeroepen wanneer er op een afnamemoment is geklikt
         private void ddExams_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
+            // Button 'alle vragen toevoegen' wordt tijdelijk onzichtbaar totdat het programma weet dat er een afnamemoment is gekozen, en niet een leeg record
             btnAllQuestions.Visible = false;
             ddQuestions.Items.Clear();
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyQuestions = this.Factory.CreateRibbonDropDownItem();
@@ -142,6 +120,7 @@ namespace PetjeOpPowerPoint
             {
                 // functie voor vullen dropdown vragen
                 
+                // hier wordt de knop voor het toevoegen van alle vragen pas zichtbaar
                 btnAllQuestions.Visible = true;
 
                 Exam chosen = (Exam)ddExams.SelectedItem.Tag;
@@ -159,6 +138,7 @@ namespace PetjeOpPowerPoint
             }
         }
 
+        // dit is de functionaliteit achter de knop 'Alle vragen toevoegen'
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
         {
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;

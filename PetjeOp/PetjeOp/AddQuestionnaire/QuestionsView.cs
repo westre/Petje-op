@@ -193,8 +193,7 @@ namespace PetjeOp.AddQuestionnaire
 
                     Color childColor = Color.Red;
 
-                    if ((answer.ID == q.CorrectAnswer.ID && ParentController is QuestionnaireDetailController)
-                        || (answer.Equals(q.CorrectAnswer) && ParentController is AddQuestionnaireController))
+                    if (answer.Equals(q.CorrectAnswer))
                     {
                         childColor = Color.Green;
                     }
