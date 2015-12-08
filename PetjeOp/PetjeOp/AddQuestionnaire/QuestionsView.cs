@@ -180,7 +180,7 @@ namespace PetjeOp.AddQuestionnaire
                 //Stel het bold font in voor de Node
                 addedNode.NodeFont = boldFont;
 
-                //Reset de tekst van de Node, zodat het nieuw font toegepast wordt
+                //Reset de tekst van de Node, zodat het nieuwe font toegepast wordt
                 addedNode.Text = addedNode.Text;
 
                 //Koppel vraagobject aan de Node
@@ -193,7 +193,8 @@ namespace PetjeOp.AddQuestionnaire
 
                     Color childColor = Color.Red;
 
-                    if (answer.Equals(q.CorrectAnswer))
+                    if ((answer.ID == q.CorrectAnswer.ID && ParentController is QuestionnaireDetailController)
+                        || (answer.Equals(q.CorrectAnswer) && ParentController is AddQuestionnaireController))
                     {
                         childColor = Color.Green;
                     }
