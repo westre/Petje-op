@@ -24,8 +24,7 @@ namespace PetjeOp {
             Controller controller = MasterController.GetController(typeof(StudentController));
             MasterController.SetController(controller);
             View.DialogResult = DialogResult.OK;
-            View.Close();
-            MasterController.Show();          
+            View.Close();      
         }
         internal void QuestionnaireDetail()
         {
@@ -33,7 +32,6 @@ namespace PetjeOp {
             MasterController.SetController(controller);
             View.DialogResult = DialogResult.OK;
             View.Close();
-            MasterController.Show();
         }
 
         internal void TeacherLogin() {
@@ -41,7 +39,6 @@ namespace PetjeOp {
             MasterController.SetController(controller);
             View.DialogResult = DialogResult.OK;
             View.Close();
-            MasterController.Show();
         }
 
         internal void AnswerQuestion(int ExamID)
@@ -53,7 +50,6 @@ namespace PetjeOp {
             MasterController.SetController(controller);
             View.DialogResult = DialogResult.OK;
             View.Close();
-            MasterController.Show();
         }
     }
 }
