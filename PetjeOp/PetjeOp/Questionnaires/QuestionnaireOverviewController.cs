@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
@@ -144,6 +145,7 @@ namespace PetjeOp.Questionnaires
             QuestionnaireDetailController qoc = (QuestionnaireDetailController)MasterController.GetController(typeof(QuestionnaireDetailController));
             qoc.Model.Questionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
             qoc.View.questionsView1.ParentController = qoc;
+            qoc.View.questionsView1.UpdateTreeView();
             MasterController.SetController(qoc);
         }
 
