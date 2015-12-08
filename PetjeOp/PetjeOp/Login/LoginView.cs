@@ -15,16 +15,16 @@ namespace PetjeOp.Login
         public LoginView(LoginController Controller)
         {
             InitializeComponent();
-            this.Controller = Controller;
-            this.Controller.View = this;
+            this.Controller = Controller; // Stelt de controller in van het Login Dialog
+            this.Controller.View = this; // Stelt verwijzing van de view in de controller naar dit Dialog
         }
 
-        private void btnVraagOverzicht_Click(object sender, EventArgs e)
+        private void btnVraagOverzicht_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
         {
             Controller.QuestionnaireDetail();
         }
 
-        private void btnAnswerQuestion_Click(object sender, EventArgs e)
+        private void btnAnswerQuestion_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
         {
             Controller.AnswerQuestion(1);
         }
@@ -58,7 +58,7 @@ namespace PetjeOp.Login
 
         private void LoginView_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = txtLoginCode;
+            this.ActiveControl = txtLoginCode; //Zorgt ervoor dat je direct bij het starten van de applicatie kan typen in dit textbox
         }
     }
 }
