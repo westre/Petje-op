@@ -210,6 +210,7 @@
             this.questionsView1.ParentController = null;
             this.questionsView1.Size = new System.Drawing.Size(834, 246);
             this.questionsView1.TabIndex = 37;
+            this.questionsView1.Load += new System.EventHandler(this.questionsView1_Load);
             // 
             // QuestionnaireDetailView
             // 

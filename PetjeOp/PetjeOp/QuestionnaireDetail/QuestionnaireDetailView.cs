@@ -28,5 +28,10 @@ namespace PetjeOp.QuestionnaireDetail
         {
             Controller.setLabels();
         }
+
+        private void questionsView1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

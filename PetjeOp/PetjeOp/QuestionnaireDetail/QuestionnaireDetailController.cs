@@ -29,6 +29,7 @@ namespace PetjeOp {
         public void GoToQuestionnaireOverview()
         {
             //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
+            
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             qoc.GetAllQuestionnairesAndSubjects();
             qoc.FillTreeView();
@@ -40,7 +41,6 @@ namespace PetjeOp {
             View.lblAuthorData.Text = "(" + Model.Questionnaire.Author.TeacherNr + ") " + Model.Questionnaire.Author.FirstName + " " + Model.Questionnaire.Author.SurName;
             View.lblNameData.Text = Model.Questionnaire.Name;
             View.lblSubjectData.Text = Model.Questionnaire.Subject.Name;
-
         }
 
     }
