@@ -74,10 +74,9 @@ namespace PetjeOpPowerPoint
                 Question question = (Question)ddQuestions.SelectedItem.Tag;
                 PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
                 PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
-
+                
                 textBox.TextFrame.TextRange.InsertAfter(question.Description);
                 textBox.TextFrame.TextRange.Font.Size = 30;
-
                 textBox.TextFrame.TextRange.InsertAfter("\n\n");
 
                 currentSld.Tags.Add("questionId", question.ID.ToString());
@@ -85,6 +84,10 @@ namespace PetjeOpPowerPoint
                 string answers = GetFormattedAnswers(question.ID);
 
                 textBox.TextFrame.TextRange.InsertAfter(answers);
+
+                PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
+                winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
+                winQWatermark.TextFrame.TextRange.Font.Size = 10;
             }
         }
 
@@ -156,7 +159,11 @@ namespace PetjeOpPowerPoint
                 currentSld.Tags.Add("questionId", q.ID.ToString());
                 currentSld.Tags.Add("examId", chosen.Examnr.ToString());
                 string answers = GetFormattedAnswers(q.ID);
-                textBox.TextFrame.TextRange.InsertAfter(answers);           
+                textBox.TextFrame.TextRange.InsertAfter(answers);
+
+                PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 45, 100, 100);
+                winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
+                winQWatermark.TextFrame.TextRange.Font.Size = 10;
             }
         }
     }
