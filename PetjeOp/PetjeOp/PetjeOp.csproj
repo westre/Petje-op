@@ -106,20 +106,14 @@
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.Designer.cs">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\LoginView2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\LoginView2.Designer.cs">
-      <DependentUpon>LoginView2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\LoginController.cs" />
-    <Compile Include="Login\LoginModel.cs" />
     <Compile Include="Login\LoginView.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\LoginController.cs" />
+    <Compile Include="Login\LoginModel.cs" />
     <Compile Include="MasterController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,8 +218,8 @@
     <EmbeddedResource Include="AnswerQuestionnaire\AnswerQuestionnaireView.resx">
       <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\LoginView2.resx">
-      <DependentUpon>LoginView2.cs</DependentUpon>
+    <EmbeddedResource Include="Login\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
@@ -247,9 +241,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.resx">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\LoginView.resx">
-      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterController.resx">
       <DependentUpon>MasterController.cs</DependentUpon>

@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PetjeOp {
-    public partial class LoginView : UserControl {
-        public LoginController Controller;
-
-        public LoginView(LoginController controller) {
+namespace PetjeOp.Login
+{
+    public partial class LoginView : Form
+    {
+        LoginController Controller;
+        public LoginView(LoginController Controller)
+        {
             InitializeComponent();
-
-            Controller = controller;
+            this.Controller = Controller;
+            this.Controller.View = this;
         }
-        
-        private void btnStudentLogin_Click(object sender, EventArgs e) {
+
+        private void btnStudentLogin_Click(object sender, EventArgs e)
+        {
             Controller.StudentLogin();
         }
         private void btnVraagOverzicht_Click(object sender, EventArgs e)
@@ -26,7 +28,8 @@ namespace PetjeOp {
             Controller.QuestionnaireDetail();
         }
 
-        private void btnLoginTeacher_Click(object sender, EventArgs e) {
+        private void btnLoginTeacher_Click(object sender, EventArgs e)
+        {
             Controller.TeacherLogin();
         }
 
@@ -37,7 +40,6 @@ namespace PetjeOp {
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            
             if (textBox1.Text == "") // Controleert of het text-veld blanco is, en zet het label naar een ERROR.
             {
                 Error.Text = "U heeft niks ingevuld.";
@@ -61,7 +63,11 @@ namespace PetjeOp {
                     Error.Visible = true;
                 }
             }
-            
+        }
+
+        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

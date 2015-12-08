@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetjeOp.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,36 +13,46 @@ namespace PetjeOp {
 
         public LoginController(MasterController masterController) : base(masterController) {
             Model = new LoginModel();
-            View = new LoginView(this);
         }
 
         public override UserControl GetView() {
-            return View;
+            return null;
         }
 
         internal void StudentLogin() {
             Controller controller = MasterController.GetController(typeof(StudentController));
             MasterController.SetController(controller);
+            View.DialogResult = DialogResult.OK;
+            View.Close();
+            MasterController.Show();          
         }
         internal void QuestionnaireDetail()
         {
             Controller controller = MasterController.GetController(typeof(QuestionnaireDetailController));
             MasterController.SetController(controller);
+            View.DialogResult = DialogResult.OK;
+            View.Close();
+            MasterController.Show();
         }
 
         internal void TeacherLogin() {
             Controller controller = MasterController.GetController(typeof(TeacherController));
             MasterController.SetController(controller);
+            View.DialogResult = DialogResult.OK;
+            View.Close();
+            MasterController.Show();
         }
 
         internal void AnswerQuestion(int ExamID)
-        {
-            
+        {           
             Controller controller = MasterController.GetController(typeof(AnswerQuestionnaireController));
             AnswerQuestionnaireController AnswerQuestionnaireController = (AnswerQuestionnaireController)controller;
             AnswerQuestionnaireController.setExam(ExamID);
 
             MasterController.SetController(controller);
+            View.DialogResult = DialogResult.OK;
+            View.Close();
+            MasterController.Show();
         }
     }
 }
