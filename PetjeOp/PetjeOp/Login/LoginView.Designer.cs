@@ -47,19 +47,22 @@
             // pictureBox2
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox2.Image = global::PetjeOp.Properties.Resources.WinQ_Logo;
-            this.pictureBox2.Location = new System.Drawing.Point(46, 6);
+            this.pictureBox2.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(92, 12);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(156, 54);
+            this.pictureBox2.Size = new System.Drawing.Size(312, 108);
             this.pictureBox2.TabIndex = 6;
             this.pictureBox2.TabStop = false;
             // 
             // btnVraagOverzicht
             // 
             this.btnVraagOverzicht.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnVraagOverzicht.Location = new System.Drawing.Point(209, 87);
+            this.btnVraagOverzicht.Location = new System.Drawing.Point(418, 174);
+            this.btnVraagOverzicht.Margin = new System.Windows.Forms.Padding(6);
             this.btnVraagOverzicht.Name = "btnVraagOverzicht";
-            this.btnVraagOverzicht.Size = new System.Drawing.Size(57, 22);
+            this.btnVraagOverzicht.Size = new System.Drawing.Size(114, 44);
             this.btnVraagOverzicht.TabIndex = 3;
             this.btnVraagOverzicht.Text = "vraag";
             this.btnVraagOverzicht.UseVisualStyleBackColor = true;
@@ -68,9 +71,10 @@
             // btnAnswerQuestion
             // 
             this.btnAnswerQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAnswerQuestion.Location = new System.Drawing.Point(209, 104);
+            this.btnAnswerQuestion.Location = new System.Drawing.Point(418, 208);
+            this.btnAnswerQuestion.Margin = new System.Windows.Forms.Padding(6);
             this.btnAnswerQuestion.Name = "btnAnswerQuestion";
-            this.btnAnswerQuestion.Size = new System.Drawing.Size(57, 21);
+            this.btnAnswerQuestion.Size = new System.Drawing.Size(114, 42);
             this.btnAnswerQuestion.TabIndex = 5;
             this.btnAnswerQuestion.Text = "Answer";
             this.btnAnswerQuestion.UseVisualStyleBackColor = true;
@@ -83,18 +87,21 @@
             this.PnlLogin.Controls.Add(this.txtLoginCode);
             this.PnlLogin.Controls.Add(this.pnlButton_Logout_Background);
             this.PnlLogin.Controls.Add(this.Error);
-            this.PnlLogin.Location = new System.Drawing.Point(39, 70);
+            this.PnlLogin.Location = new System.Drawing.Point(78, 140);
+            this.PnlLogin.Margin = new System.Windows.Forms.Padding(6);
             this.PnlLogin.Name = "PnlLogin";
-            this.PnlLogin.Size = new System.Drawing.Size(169, 96);
+            this.PnlLogin.Size = new System.Drawing.Size(338, 192);
             this.PnlLogin.TabIndex = 4;
             // 
             // txtLoginCode
             // 
             this.txtLoginCode.AcceptsReturn = true;
-            this.txtLoginCode.Location = new System.Drawing.Point(26, 19);
+            this.txtLoginCode.Location = new System.Drawing.Point(52, 38);
+            this.txtLoginCode.Margin = new System.Windows.Forms.Padding(6);
             this.txtLoginCode.Name = "txtLoginCode";
-            this.txtLoginCode.Size = new System.Drawing.Size(117, 20);
+            this.txtLoginCode.Size = new System.Drawing.Size(230, 31);
             this.txtLoginCode.TabIndex = 2;
+            this.txtLoginCode.Text = "2222222";
             // 
             // pnlButton_Logout_Background
             // 
@@ -103,10 +110,10 @@
             this.pnlButton_Logout_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Logout_Background.Controls.Add(this.label2);
             this.pnlButton_Logout_Background.Controls.Add(this.pictureBox1);
-            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(2, 44);
-            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(4, 88);
+            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(4);
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
-            this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
+            this.pnlButton_Logout_Background.Size = new System.Drawing.Size(330, 80);
             this.pnlButton_Logout_Background.TabIndex = 16;
             this.pnlButton_Logout_Background.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
@@ -116,10 +123,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Calibri", 14F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.label2.Location = new System.Drawing.Point(61, 9);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(122, 18);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 23);
+            this.label2.Size = new System.Drawing.Size(154, 46);
             this.label2.TabIndex = 14;
             this.label2.Text = "Inloggen";
             this.label2.Click += new System.EventHandler(this.LoginBtn_Click);
@@ -129,10 +136,10 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(30, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(60, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 25);
+            this.pictureBox1.Size = new System.Drawing.Size(42, 50);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.LoginBtn_Click);
@@ -141,28 +148,31 @@
             // 
             this.Error.AutoSize = true;
             this.Error.ForeColor = System.Drawing.Color.DarkRed;
-            this.Error.Location = new System.Drawing.Point(23, 3);
+            this.Error.Location = new System.Drawing.Point(46, 6);
+            this.Error.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.Error.Name = "Error";
-            this.Error.Size = new System.Drawing.Size(120, 13);
+            this.Error.Size = new System.Drawing.Size(244, 25);
             this.Error.TabIndex = 5;
             this.Error.Text = "Woops.. Er ging iets mis";
             this.Error.Visible = false;
             // 
             // LoginView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(255, 193);
+            this.ClientSize = new System.Drawing.Size(490, 322);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnVraagOverzicht);
             this.Controls.Add(this.btnAnswerQuestion);
             this.Controls.Add(this.PnlLogin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(271, 232);
-            this.MinimumSize = new System.Drawing.Size(271, 232);
+            this.MaximumSize = new System.Drawing.Size(516, 393);
+            this.MinimumSize = new System.Drawing.Size(516, 393);
             this.Name = "LoginView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Login - WinQ";
             this.Load += new System.EventHandler(this.LoginView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PnlLogin.ResumeLayout(false);
