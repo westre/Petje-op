@@ -79,6 +79,12 @@
       <DependentUpon>QuestionsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Answer.cs" />
+    <Compile Include="ChooseExamDialogs\ChooseExamDetailsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseExamDialogs\ChooseExamDetailsDialog.Designer.cs">
+      <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Database.designer.cs">
@@ -217,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnswerQuestionnaire\AnswerQuestionnaireView.resx">
       <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseExamDialogs\ChooseExamDetailsDialog.resx">
+      <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>

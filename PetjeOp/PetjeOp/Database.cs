@@ -371,6 +371,22 @@ namespace PetjeOp
 
         }
 
+        public List<Exam> GetExamsByQuestionnaire(Questionnaire q)
+        {
+            List<Exam> exams1 = new List<Exam>();
+            List<tblExam> exams = (from tblExam in db.tblExams
+                         where tblExam.tblQuestionnaire.id == q.ID select tblExam).ToList();
+
+            foreach (tblExam exam in exams)
+            {
+                Exam newExam = new Exam(exam.id, q, exam.starttime, exam.endtime, exam.lecture);
+                exams1.Add(newExam);
+            }
+
+            return exams1;
+        } 
+
+
         public Exam GetExam(int examID) // Return een Exam van het opgegeven ID
         {
             Exam exam = (from tblExam in db.tblExams

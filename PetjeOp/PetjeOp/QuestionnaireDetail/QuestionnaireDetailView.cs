@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using PetjeOp.ChooseExamDialogs;
 
 namespace PetjeOp.QuestionnaireDetail
 {
@@ -35,6 +36,14 @@ namespace PetjeOp.QuestionnaireDetail
             Controller.Model.Questionnaire = (Questionnaire)cbSelectQuestionnaire.SelectedItem;
             Controller.setLabels();
             Controller.View.questionsView1.UpdateTreeView();
+        }
+
+        private void btnExams_Click(object sender, EventArgs e)
+        {
+            
+
+            ChooseExamDetailsDialog ExamsDialog = new ChooseExamDetailsDialog((TeacherController)Controller.MasterController.ActiveParentContainer, Controller);
+            ExamsDialog.ShowDialog();
         }
     }
 }

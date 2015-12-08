@@ -173,6 +173,7 @@
             this.btnExams.TabIndex = 42;
             this.btnExams.Text = "Afnamemomenten";
             this.btnExams.UseVisualStyleBackColor = true;
+            this.btnExams.Click += new System.EventHandler(this.btnExams_Click);
             // 
             // cbSelectQuestionnaire
             // 

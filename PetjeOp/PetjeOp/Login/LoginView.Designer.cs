@@ -33,11 +33,11 @@
             this.btnVraagOverzicht = new System.Windows.Forms.Button();
             this.btnAnswerQuestion = new System.Windows.Forms.Button();
             this.PnlLogin = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pnlButton_Logout_Background = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Error = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PnlLogin.SuspendLayout();
             this.pnlButton_Logout_Background.SuspendLayout();
@@ -87,6 +87,15 @@
             this.PnlLogin.Name = "PnlLogin";
             this.PnlLogin.Size = new System.Drawing.Size(169, 96);
             this.PnlLogin.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            this.textBox1.AcceptsReturn = true;
+            this.textBox1.Location = new System.Drawing.Point(26, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(117, 20);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "2222222";
             // 
             // pnlButton_Logout_Background
             // 
@@ -139,14 +148,6 @@
             this.Error.TabIndex = 5;
             this.Error.Text = "Woops.. Er ging iets mis";
             this.Error.Visible = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.AcceptsReturn = true;
-            this.textBox1.Location = new System.Drawing.Point(26, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 20);
-            this.textBox1.TabIndex = 2;
             // 
             // LoginView
             // 
