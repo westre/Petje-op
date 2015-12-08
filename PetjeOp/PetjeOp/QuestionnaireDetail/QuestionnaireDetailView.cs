@@ -42,7 +42,7 @@ namespace PetjeOp.QuestionnaireDetail
         {
             
 
-            ChooseExamDetailsDialog ExamsDialog = new ChooseExamDetailsDialog((TeacherController)Controller.MasterController.ActiveParentContainer, Controller);
+            ChooseExamDetailsDialog ExamsDialog = new ChooseExamDetailsDialog(Controller);
             ExamsDialog.ShowDialog();
         }
     }

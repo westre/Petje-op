@@ -15,12 +15,12 @@ namespace PetjeOp.ChooseExamDialogs
 
 
         public Questionnaire Questionnaire { get; set; }
-        private TeacherController Controller;
+        private QuestionnaireDetailController Controller { get; }
 
-        public ChooseExamDetailsDialog(TeacherController Controller, QuestionnaireDetailController Controller2)
+        public ChooseExamDetailsDialog(QuestionnaireDetailController Controller)
         {
             this.Controller = Controller;
-            Questionnaire = Controller2.Model.Questionnaire;
+            Questionnaire = Controller.Model.Questionnaire;
             InitializeComponent();
         }
 
@@ -28,10 +28,15 @@ namespace PetjeOp.ChooseExamDialogs
         {
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
             List<Exam> exams = Controller.MasterController.DB.GetExamsByQuestionnaire(Questionnaire);
-
+            int count = 0;
             foreach (Exam ex in exams)
             {
-                listBox1.Items.AddRange(new object[] { ex });
+                //lbExams.Items.AddRange(new object[] { ex });
+                lbExams.Items.Add(string.Empty + ex.Examnr);
+                lbExams.Items[count].SubItems.Add(ex.questionnaire.Name);
+                lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.TimeOfDay);
+                lbExams.Items[count].SubItems.Add(string.Empty + ex.endtime.Value.TimeOfDay);
+                count++;
             }
 
         }
