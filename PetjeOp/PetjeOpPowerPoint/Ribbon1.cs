@@ -161,7 +161,7 @@ namespace PetjeOpPowerPoint
                 string answers = GetFormattedAnswers(q.ID);
                 textBox.TextFrame.TextRange.InsertAfter(answers);
 
-                PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 45, 100, 100);
+                PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
                 winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
                 winQWatermark.TextFrame.TextRange.Font.Size = 10;
             }
