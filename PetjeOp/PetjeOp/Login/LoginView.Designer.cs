@@ -50,7 +50,7 @@
             this.pictureBox2.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(92, 12);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(312, 108);
             this.pictureBox2.TabIndex = 6;
@@ -60,7 +60,7 @@
             // 
             this.btnVraagOverzicht.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnVraagOverzicht.Location = new System.Drawing.Point(418, 174);
-            this.btnVraagOverzicht.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnVraagOverzicht.Margin = new System.Windows.Forms.Padding(6);
             this.btnVraagOverzicht.Name = "btnVraagOverzicht";
             this.btnVraagOverzicht.Size = new System.Drawing.Size(114, 44);
             this.btnVraagOverzicht.TabIndex = 3;
@@ -72,7 +72,7 @@
             // 
             this.btnAnswerQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAnswerQuestion.Location = new System.Drawing.Point(418, 208);
-            this.btnAnswerQuestion.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnAnswerQuestion.Margin = new System.Windows.Forms.Padding(6);
             this.btnAnswerQuestion.Name = "btnAnswerQuestion";
             this.btnAnswerQuestion.Size = new System.Drawing.Size(114, 42);
             this.btnAnswerQuestion.TabIndex = 5;
@@ -88,7 +88,7 @@
             this.PnlLogin.Controls.Add(this.pnlButton_Logout_Background);
             this.PnlLogin.Controls.Add(this.Error);
             this.PnlLogin.Location = new System.Drawing.Point(78, 140);
-            this.PnlLogin.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PnlLogin.Margin = new System.Windows.Forms.Padding(6);
             this.PnlLogin.Name = "PnlLogin";
             this.PnlLogin.Size = new System.Drawing.Size(338, 192);
             this.PnlLogin.TabIndex = 4;
@@ -97,10 +97,11 @@
             // 
             this.txtLoginCode.AcceptsReturn = true;
             this.txtLoginCode.Location = new System.Drawing.Point(52, 38);
-            this.txtLoginCode.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtLoginCode.Margin = new System.Windows.Forms.Padding(6);
             this.txtLoginCode.Name = "txtLoginCode";
             this.txtLoginCode.Size = new System.Drawing.Size(230, 31);
             this.txtLoginCode.TabIndex = 2;
+            this.txtLoginCode.Text = "2222222";
             // 
             // pnlButton_Logout_Background
             // 
@@ -110,7 +111,7 @@
             this.pnlButton_Logout_Background.Controls.Add(this.label2);
             this.pnlButton_Logout_Background.Controls.Add(this.pictureBox1);
             this.pnlButton_Logout_Background.Location = new System.Drawing.Point(4, 88);
-            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(4);
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
             this.pnlButton_Logout_Background.Size = new System.Drawing.Size(330, 80);
             this.pnlButton_Logout_Background.TabIndex = 16;
@@ -136,7 +137,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(60, 18);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(42, 50);
             this.pictureBox1.TabIndex = 4;
@@ -165,7 +166,7 @@
             this.Controls.Add(this.btnAnswerQuestion);
             this.Controls.Add(this.PnlLogin);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(516, 393);
             this.MinimumSize = new System.Drawing.Size(516, 393);
