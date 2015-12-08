@@ -12,6 +12,7 @@ namespace PetjeOp {
         public LoginModel Model { get; set; }
 
         public LoginController(MasterController masterController) : base(masterController) {
+            //Set login model
             Model = new LoginModel();
         }
 

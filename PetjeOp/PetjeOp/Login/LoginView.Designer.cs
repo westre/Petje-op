@@ -48,7 +48,7 @@
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox2.Image = global::PetjeOp.Properties.Resources.WinQ_Logo;
-            this.pictureBox2.Location = new System.Drawing.Point(69, 26);
+            this.pictureBox2.Location = new System.Drawing.Point(46, 26);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(156, 54);
             this.pictureBox2.TabIndex = 6;
@@ -57,7 +57,7 @@
             // btnVraagOverzicht
             // 
             this.btnVraagOverzicht.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnVraagOverzicht.Location = new System.Drawing.Point(232, 113);
+            this.btnVraagOverzicht.Location = new System.Drawing.Point(209, 113);
             this.btnVraagOverzicht.Name = "btnVraagOverzicht";
             this.btnVraagOverzicht.Size = new System.Drawing.Size(57, 22);
             this.btnVraagOverzicht.TabIndex = 3;
@@ -68,7 +68,7 @@
             // btnAnswerQuestion
             // 
             this.btnAnswerQuestion.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAnswerQuestion.Location = new System.Drawing.Point(232, 130);
+            this.btnAnswerQuestion.Location = new System.Drawing.Point(209, 130);
             this.btnAnswerQuestion.Name = "btnAnswerQuestion";
             this.btnAnswerQuestion.Size = new System.Drawing.Size(57, 21);
             this.btnAnswerQuestion.TabIndex = 5;
@@ -83,7 +83,7 @@
             this.PnlLogin.Controls.Add(this.textBox1);
             this.PnlLogin.Controls.Add(this.pnlButton_Logout_Background);
             this.PnlLogin.Controls.Add(this.Error);
-            this.PnlLogin.Location = new System.Drawing.Point(62, 96);
+            this.PnlLogin.Location = new System.Drawing.Point(39, 96);
             this.PnlLogin.Name = "PnlLogin";
             this.PnlLogin.Size = new System.Drawing.Size(169, 96);
             this.PnlLogin.TabIndex = 4;
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 218);
+            this.ClientSize = new System.Drawing.Size(255, 193);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnVraagOverzicht);
             this.Controls.Add(this.btnAnswerQuestion);
