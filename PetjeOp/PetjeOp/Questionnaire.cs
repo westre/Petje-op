@@ -12,6 +12,7 @@ namespace PetjeOp
         public string Name { get; set; }
         public List<Question> Questions { get; set; }
         public Subject Subject { get; set; }
+        public Teacher Author { get; set;  }
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
         public Questionnaire(string n)
@@ -48,7 +49,8 @@ namespace PetjeOp
         }
         public override string ToString()
         {
-            return Convert.ToString(ID);
+            return String.Format("{0}: {1}", Subject, Name);
         }
+
     }
 }

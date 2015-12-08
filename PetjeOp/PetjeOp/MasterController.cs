@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
 using PetjeOp.Questionnaires;
+using PetjeOp.Login;
 
 namespace PetjeOp
 {
@@ -26,7 +27,7 @@ namespace PetjeOp
         public Person User { get; set; }
 
         public MasterController()
-        {
+        {            
             InitializeComponent();
             Controllers = new List<Controller>();
 
@@ -40,11 +41,11 @@ namespace PetjeOp
             Controllers.Add(new QuestionnaireOverviewController(this));
             Controllers.Add(new AnswerQuestionnaireController(this));
 
-            // We beginnen met deze view, verander dit niet!
-            mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());
-
             //Creëer database instantie
             DB = new Database();
+
+            // We beginnen met deze view, verander dit niet!
+            //mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());                
         }
 
         public Controller GetController(Type type)
@@ -90,30 +91,27 @@ namespace PetjeOp
                 ActiveParentContainer = (StudentController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
             }
-            else if (controller is QuestionnaireDetailController)
-            {
-                mainPanel.Controls.Clear();
-
-                ActiveParentContainer = (QuestionnaireDetailController)controller;
-                mainPanel.Controls.Add(ActiveParentContainer.GetView());
-            }
-            else if (controller is AnswerQuestionnaireController)
-            {
-                mainPanel.Controls.Clear();
-
-                ActiveParentContainer = (AnswerQuestionnaireController)controller;
-                mainPanel.Controls.Add(ActiveParentContainer.GetView());
-            }
-        }
-
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
-        {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void MasterController_Resize(object sender, EventArgs e)
         {
+            if (ActiveParentContainer != null)
+            {
+                // Resize de parent container met de form
+                ActiveParentContainer.GetView().Width = mainPanel.Width;
+                ActiveParentContainer.GetView().Height = mainPanel.Height;
 
+                if (ActiveParentContainer is TeacherController)
+                {
+                    // Resize controller specifieke controls
+                    TeacherController teacherController = (TeacherController)ActiveParentContainer;
+                    teacherController.View.pnlHeader.Width = Width;
+
+                    if(Width > 930)
+                        teacherController.View.pnlButton_Logout_Background.Location = new Point(Width - teacherController.View.pnlButton_Logout_Background.Size.Width - 25, teacherController.View.pnlButton_Logout_Background.Location.Y);
+                }
+            }
         }
     }
 }

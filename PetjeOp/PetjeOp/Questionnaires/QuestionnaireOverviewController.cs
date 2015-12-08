@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
@@ -136,6 +137,30 @@ namespace PetjeOp.Questionnaires
         public void ResetList()
         {
             Model.ListQuestionnaires = Model.AllQuestionnaires;
+        }
+
+        public void GoToQuestionnaireDetails()
+        {
+            //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
+            QuestionnaireDetailController qoc = (QuestionnaireDetailController)MasterController.GetController(typeof(QuestionnaireDetailController));
+            qoc.Model.Questionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
+            qoc.View.questionsView1.ParentController = qoc;
+            qoc.View.questionsView1.UpdateTreeView();
+            qoc.Model.Questionnaires = Model.AllQuestionnaires;
+            qoc.fillCbSelectQuestionnaire();
+            MasterController.SetController(qoc);
+        }
+
+        public void CheckButtons()
+        {
+            if (View.tvQuestionnaires.SelectedNode != null)
+            {
+                View.btnDetails.Enabled = true;
+            }
+            else
+            {
+                View.btnDetails.Enabled = false;
+            }
         }
     }
 }
