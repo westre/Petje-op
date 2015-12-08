@@ -178,7 +178,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 {
                     int addedIndex = addQuestionView1.clbAnswers.Items.Add(a.Description);
 
-                    if (a == Question.CorrectAnswer)
+                    if (a.Equals(Question.CorrectAnswer))
                     {
                         //Vink correct antwoord aan
                         addQuestionView1.clbAnswers.SetItemChecked(addedIndex, true);

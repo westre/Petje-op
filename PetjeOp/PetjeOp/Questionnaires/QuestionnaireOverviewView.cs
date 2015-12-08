@@ -73,5 +73,15 @@ namespace PetjeOp.Questionnaires
                 e.Cancel = true;
             }
         }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireDetails();
+        }
+
+        private void tvQuestionnaires_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            Controller.CheckButtons();
+        }
     }
 }

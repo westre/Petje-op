@@ -91,20 +91,7 @@ namespace PetjeOp
                 ActiveParentContainer = (StudentController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
             }
-            else if (controller is QuestionnaireDetailController)
-            {
-                mainPanel.Controls.Clear();
 
-                ActiveParentContainer = (QuestionnaireDetailController)controller;
-                mainPanel.Controls.Add(ActiveParentContainer.GetView());
-            }
-            else if (controller is AnswerQuestionnaireController)
-            {
-                mainPanel.Controls.Clear();
-
-                ActiveParentContainer = (AnswerQuestionnaireController)controller;
-                mainPanel.Controls.Add(ActiveParentContainer.GetView());
-            }
         }
 
         private void MasterController_Resize(object sender, EventArgs e)
