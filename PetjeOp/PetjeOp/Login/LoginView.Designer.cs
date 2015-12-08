@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace PetjeOp {
     partial class LoginView {
@@ -26,13 +27,13 @@ namespace PetjeOp {
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
             this.btnVraagOverzicht = new System.Windows.Forms.Button();
             this.btnAnswerQuestion = new System.Windows.Forms.Button();
             this.btnStudentLogin = new System.Windows.Forms.Button();
             this.btnLoginTeacher = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.LoginBtn = new System.Windows.Forms.Button();
             this.Error = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pbLogo = new System.Windows.Forms.PictureBox();
@@ -49,6 +50,9 @@ namespace PetjeOp {
             this.lblTitle_QuestionnaireOverview_Title = new System.Windows.Forms.Label();
             this.viewPanel = new System.Windows.Forms.Panel();
             this.PnlLogin = new System.Windows.Forms.Panel();
+            this.pnlButton_Logout_Background = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).BeginInit();
@@ -57,17 +61,29 @@ namespace PetjeOp {
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_QuestionnaireOverview_Icon)).BeginInit();
             this.viewPanel.SuspendLayout();
             this.PnlLogin.SuspendLayout();
+            this.pnlButton_Logout_Background.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn
+            // btnVraagOverzicht
             // 
             this.btnVraagOverzicht.Location = new System.Drawing.Point(41, 200);
-            this.btnVraagOverzicht.Name = "btnStudentLogin";
+            this.btnVraagOverzicht.Name = "btnVraagOverzicht";
             this.btnVraagOverzicht.Size = new System.Drawing.Size(115, 31);
             this.btnVraagOverzicht.TabIndex = 0;
             this.btnVraagOverzicht.Text = "vraag";
             this.btnVraagOverzicht.UseVisualStyleBackColor = true;
             this.btnVraagOverzicht.Click += new System.EventHandler(this.btnStudentLogin_Click);
+            // 
+            // btnAnswerQuestion
+            // 
+            this.btnAnswerQuestion.Location = new System.Drawing.Point(41, 300);
+            this.btnAnswerQuestion.Name = "btnAnswerQuestion";
+            this.btnAnswerQuestion.Size = new System.Drawing.Size(115, 39);
+            this.btnAnswerQuestion.TabIndex = 1;
+            this.btnAnswerQuestion.Text = "Answer Questionnaire";
+            this.btnAnswerQuestion.UseVisualStyleBackColor = true;
+            this.btnAnswerQuestion.Click += new System.EventHandler(this.btnAnswerQuestion_Click);
             // 
             // btnStudentLogin
             // 
@@ -89,16 +105,6 @@ namespace PetjeOp {
             this.btnLoginTeacher.UseVisualStyleBackColor = true;
             this.btnLoginTeacher.Click += new System.EventHandler(this.btnLoginTeacher_Click);
             // 
-            // btnAnswerQuestion
-            // 
-            this.btnAnswerQuestion.Location = new System.Drawing.Point(41, 300);
-            this.btnAnswerQuestion.Name = "btnLoginTeacher";
-            this.btnAnswerQuestion.Size = new System.Drawing.Size(115, 39);
-            this.btnAnswerQuestion.TabIndex = 1;
-            this.btnAnswerQuestion.Text = "Answer Questionnaire";
-            this.btnAnswerQuestion.UseVisualStyleBackColor = true;
-            this.btnAnswerQuestion.Click += new System.EventHandler(this.btnAnswerQuestion_Click);
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(65, 38);
@@ -114,16 +120,6 @@ namespace PetjeOp {
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Inlog Code:";
-            // 
-            // LoginBtn
-            // 
-            this.LoginBtn.Location = new System.Drawing.Point(65, 64);
-            this.LoginBtn.Name = "LoginBtn";
-            this.LoginBtn.Size = new System.Drawing.Size(100, 23);
-            this.LoginBtn.TabIndex = 4;
-            this.LoginBtn.Text = "Login";
-            this.LoginBtn.UseVisualStyleBackColor = true;
-            this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
             // Error
             // 
@@ -145,7 +141,7 @@ namespace PetjeOp {
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1184, 59);
+            this.pnlHeader.Size = new System.Drawing.Size(1302, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // pbLogo
@@ -245,27 +241,70 @@ namespace PetjeOp {
             // 
             this.viewPanel.AutoSize = true;
             this.viewPanel.Controls.Add(this.PnlLogin);
-            this.viewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.viewPanel.Name = "viewPanel";
             this.viewPanel.Controls.Add(this.btnLoginTeacher);
             this.viewPanel.Controls.Add(this.btnVraagOverzicht);
             this.viewPanel.Controls.Add(this.btnStudentLogin);
             this.viewPanel.Controls.Add(this.btnAnswerQuestion);
+            this.viewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.viewPanel.Location = new System.Drawing.Point(0, 59);
+            this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.viewPanel.Name = "viewPanel";
+            this.viewPanel.Size = new System.Drawing.Size(1302, 518);
             this.viewPanel.TabIndex = 4;
-            this.viewPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.viewPanel_Paint);
             // 
             // PnlLogin
             // 
             this.PnlLogin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PnlLogin.AutoSize = true;
-            this.PnlLogin.Location = new System.Drawing.Point((-(PnlLogin.Width/2) + Error.Width), 0);
+            this.PnlLogin.Controls.Add(this.pnlButton_Logout_Background);
             this.PnlLogin.Controls.Add(this.Error);
-            this.PnlLogin.Controls.Add(this.LoginBtn);
             this.PnlLogin.Controls.Add(this.label1);
             this.PnlLogin.Controls.Add(this.textBox1);
+            this.PnlLogin.Location = new System.Drawing.Point(581, 0);
             this.PnlLogin.Name = "PnlLogin";
+            this.PnlLogin.Size = new System.Drawing.Size(298, 105);
             this.PnlLogin.TabIndex = 0;
+            // 
+            // pnlButton_Logout_Background
+            // 
+            this.pnlButton_Logout_Background.BackColor = System.Drawing.Color.Transparent;
+            this.pnlButton_Logout_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
+            this.pnlButton_Logout_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlButton_Logout_Background.Controls.Add(this.label2);
+            this.pnlButton_Logout_Background.Controls.Add(this.pictureBox1);
+            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(28, 63);
+            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
+            this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
+            this.pnlButton_Logout_Background.TabIndex = 16;
+            this.pnlButton_Logout_Background.Click += new System.EventHandler(this.LoginBtn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
+            this.label2.Location = new System.Drawing.Point(61, 9);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 23);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Inloggen";
+            this.label2.Click += new System.EventHandler(this.LoginBtn_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(30, 9);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 25);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
             // LoginView
             // 
@@ -275,7 +314,7 @@ namespace PetjeOp {
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
             this.Name = "LoginView";
-            this.Dock = DockStyle.Fill;
+            this.Size = new System.Drawing.Size(1302, 577);
             this.pnlHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).EndInit();
@@ -286,6 +325,9 @@ namespace PetjeOp {
             this.viewPanel.PerformLayout();
             this.PnlLogin.ResumeLayout(false);
             this.PnlLogin.PerformLayout();
+            this.pnlButton_Logout_Background.ResumeLayout(false);
+            this.pnlButton_Logout_Background.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,6 +336,7 @@ namespace PetjeOp {
         private void scaleBanner()
         {
             pnlHeader.Size = new System.Drawing.Size(Controller.MasterController.Size.Width, pnlHeader.Size.Height);
+            
         }
 
         #endregion
@@ -316,9 +359,11 @@ namespace PetjeOp {
         private System.Windows.Forms.Button btnLoginTeacher;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button LoginBtn;
         private System.Windows.Forms.Label Error;
         private Button btnAnswerQuestion;
         private Panel PnlLogin;
+        public Panel pnlButton_Logout_Background;
+        private Label label2;
+        private PictureBox pictureBox1;
     }
 }

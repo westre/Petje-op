@@ -106,8 +106,14 @@
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.Designer.cs">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\LoginView2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\LoginView2.Designer.cs">
+      <DependentUpon>LoginView2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\LoginController.cs" />
-    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\LoginModel.cs" />
+    <Compile Include="Login\LoginModel.cs" />
     <Compile Include="Login\LoginView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,12 +136,6 @@
     <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireView.Designer.cs">
       <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuestionnaireDetail\QuestionnaireDetailView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="QuestionnaireDetail\QuestionnaireDetailView.Designer.cs">
-      <DependentUpon>QuestionnaireDetailView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Questionnaires\LoadingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +153,12 @@
     <Compile Include="Result.cs" />
     <Compile Include="QuestionnaireDetail\QuestionnaireDetailController.cs" />
     <Compile Include="QuestionnaireDetail\QuestionnaireDetailModel.cs" />
+    <Compile Include="QuestionnaireDetail\QuestionnaireDetailView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestionnaireDetail\QuestionnaireDetailView.Designer.cs">
+      <DependentUpon>QuestionnaireDetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Subject.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="Student.cs" />
@@ -218,14 +224,17 @@
     <EmbeddedResource Include="AnswerQuestionnaire\AnswerQuestionnaireView.resx">
       <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuestionnaireDetail\QuestionnaireDetailView.resx">
-      <DependentUpon>QuestionnaireDetailView.cs</DependentUpon>
+    <EmbeddedResource Include="Login\LoginView2.resx">
+      <DependentUpon>LoginView2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\QuestionnaireOverviewView.resx">
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuestionnaireDetail\QuestionnaireDetailView.resx">
+      <DependentUpon>QuestionnaireDetailView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewResults\ChooseExam\ChooseExamDialog.resx">
       <DependentUpon>ChooseExamDialog.cs</DependentUpon>
@@ -284,13 +293,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
+    <None Include="Resources\Button_Login_Icon.png" />
+    <None Include="Resources\Button_Logout_Icon.png" />
+    <None Include="Resources\Inloggen.png" />
+    <None Include="Resources\Uitloggen.png" />
     <None Include="Resources\bannerBackground.png" />
     <None Include="Resources\Menu_Background1.png" />
     <None Include="Resources\Menu_Background.png" />
     <None Include="Resources\Button_Background.png" />
     <None Include="Resources\Button_Results_Icon.png" />
     <None Include="Resources\Button_QuestionnaireOverview_Icon.png" />
-    <None Include="Resources\Button_Logout_Icon.png" />
     <None Include="Resources\Button_Agenda_Icon.png" />
     <None Include="Resources\WinQ_Logo.png" />
   </ItemGroup>
