@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
 using PetjeOp.Questionnaires;
-using PetjeOp.Login;
 
 namespace PetjeOp
 {
@@ -50,6 +43,8 @@ namespace PetjeOp
             //mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());                
         }
 
+        // Deze functie wordt gebruikt om een bepaald type controller uit de lijst van Controllers op te halen
+        // Deze voor aangemaakte controller kan dan vervolgens gebruikt worden om als actieve Controller in te stellen
         public Controller GetController(Type type)
         {
             foreach (Controller controller in Controllers)
@@ -60,7 +55,7 @@ namespace PetjeOp
             return null;
         }
 
-        // Dit wordt bijvoorbeeld aangeroepen wanneer we op een knop klikken (zie ExampleView.button1_Click)
+        // Dez functie wordt gebruikt om de actieve controller te wijzigen, in andere woorden van scherm te wisselen
         public void SetController(Controller controller)
         {
             if (ActiveParentContainer != null)

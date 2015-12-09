@@ -61,7 +61,7 @@
             // btnSaveQuestionnaire
             // 
             this.btnSaveQuestionnaire.Enabled = false;
-            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(13, 500);
+            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(15, 729);
             this.btnSaveQuestionnaire.Name = "btnSaveQuestionnaire";
             this.btnSaveQuestionnaire.Size = new System.Drawing.Size(267, 49);
             this.btnSaveQuestionnaire.TabIndex = 13;
@@ -91,7 +91,7 @@
             // 
             this.lblNoQuestionsInQuestionaire.AutoSize = true;
             this.lblNoQuestionsInQuestionaire.ForeColor = System.Drawing.Color.Red;
-            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(531, 666);
+            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(626, 660);
             this.lblNoQuestionsInQuestionaire.Name = "lblNoQuestionsInQuestionaire";
             this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 13);
             this.lblNoQuestionsInQuestionaire.TabIndex = 19;
@@ -116,7 +116,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(286, 500);
+            this.btnCancel.Location = new System.Drawing.Point(294, 729);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(210, 49);
             this.btnCancel.TabIndex = 24;
@@ -149,7 +149,7 @@
             this.questionsView1.Margin = new System.Windows.Forms.Padding(2);
             this.questionsView1.Name = "questionsView1";
             this.questionsView1.ParentController = null;
-            this.questionsView1.Size = new System.Drawing.Size(1073, 270);
+            this.questionsView1.Size = new System.Drawing.Size(1451, 576);
             this.questionsView1.TabIndex = 25;
             // 
             // AddQuestionnaireView
@@ -170,7 +170,7 @@
             this.Controls.Add(this.questionsView1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AddQuestionnaireView";
-            this.Size = new System.Drawing.Size(1262, 683);
+            this.Size = new System.Drawing.Size(1485, 854);
             this.Load += new System.EventHandler(this.AddQuestionnaireView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

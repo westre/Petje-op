@@ -211,7 +211,20 @@ namespace PetjeOp.AddQuestionnaire
 
             //Klap alle vragen uit
             tvQuestions.ExpandAll();
-            //CheckButtons();
+
+
+            if (ParentController is AddQuestionnaireController)
+            {
+                AddQuestionnaireController tempController = ((AddQuestionnaireController)ParentController);
+                tempController.CheckButtons();
+            }
+            else if (ParentController is QuestionnaireDetailController)
+            {
+                QuestionnaireDetailController tempController = ((QuestionnaireDetailController)ParentController);
+            }
+
+
+
         }
 
         //Geef gegenereerde vraag door aan het model
@@ -263,6 +276,16 @@ namespace PetjeOp.AddQuestionnaire
             {
                 lblNoNodeSelectedError.Hide();
             }
+        }
+
+        private void tvQuestions_ControlAdded(object sender, ControlEventArgs e)
+        {
+            UpdateTreeView();
+        }
+
+        private void tvQuestions_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            UpdateTreeView();
         }
     }
 }
