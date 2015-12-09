@@ -13,6 +13,7 @@ namespace PetjeOp
         public List<Question> Questions { get; set; }
         public Subject Subject { get; set; }
         public Teacher Author { get; set;  }
+        public bool Archived { get; set; }
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
         public Questionnaire(string n)

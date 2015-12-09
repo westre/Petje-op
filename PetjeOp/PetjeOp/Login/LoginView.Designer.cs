@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Error = new System.Windows.Forms.Label();
+            this.pbLogin = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PnlLogin.SuspendLayout();
             this.pnlButton_Logout_Background.SuspendLayout();
@@ -157,11 +158,22 @@
             this.Error.Text = "Woops.. Er ging iets mis";
             this.Error.Visible = false;
             // 
+            // pbLogin
+            // 
+            this.pbLogin.Location = new System.Drawing.Point(78, 325);
+            this.pbLogin.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pbLogin.Name = "pbLogin";
+            this.pbLogin.Size = new System.Drawing.Size(338, 46);
+            this.pbLogin.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.pbLogin.TabIndex = 7;
+            this.pbLogin.Visible = false;
+            // 
             // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(480, 314);
+            this.ClientSize = new System.Drawing.Size(470, 379);
+            this.Controls.Add(this.pbLogin);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnVraagOverzicht);
             this.Controls.Add(this.btnAnswerQuestion);
@@ -169,8 +181,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(506, 385);
-            this.MinimumSize = new System.Drawing.Size(506, 385);
+            this.MaximumSize = new System.Drawing.Size(496, 450);
+            this.MinimumSize = new System.Drawing.Size(496, 450);
             this.Name = "LoginView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login - WinQ";
@@ -195,7 +207,8 @@
         public System.Windows.Forms.Panel pnlButton_Logout_Background;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label Error;
-        private System.Windows.Forms.TextBox txtLoginCode;
+        public System.Windows.Forms.ProgressBar pbLogin;
+        public System.Windows.Forms.Label Error;
+        public System.Windows.Forms.TextBox txtLoginCode;
     }
 }

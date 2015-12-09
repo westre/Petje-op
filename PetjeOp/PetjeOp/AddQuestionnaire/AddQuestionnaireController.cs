@@ -84,7 +84,7 @@ namespace PetjeOp.AddQuestionnaire
             }
             else
             {
-                View.lblErrorSubject.Text = "";
+                View.lblNoQuestionsInQuestionaire.Text = "";
                 questionsCheck = true;
             }
 

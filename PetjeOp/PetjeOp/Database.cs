@@ -67,6 +67,7 @@ namespace PetjeOp
                 author.FirstName = dbQuestionnaire.tblTeacher.firstname;
                 author.SurName = dbQuestionnaire.tblTeacher.surname;
                 questionnaire.Author = author;
+                questionnaire.Archived = dbQuestionnaire.archived;
 
                 // Loop door alle questions binnen die questionnaire
                 foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
@@ -334,7 +335,6 @@ namespace PetjeOp
 
         public List<Questionnaire> GetAllQuestionnaires()
         {
-
             List<Questionnaire> questionnaires = new List<Questionnaire>();
 
             // Loop door alle questionnaires
@@ -345,7 +345,22 @@ namespace PetjeOp
             }
 
             return questionnaires;
+        } 
+
+        public List<Questionnaire> GetAllActiveQuestionnaires()
+        {
+            List<Questionnaire> newQuestionnaires = new List<Questionnaire>();
+            List<Questionnaire> questionnaires = GetAllQuestionnaires();
+
+            foreach (Questionnaire q in questionnaires)
+            {
+                if(!q.Archived)
+                    newQuestionnaires.Add(q);
+            }
+
+            return newQuestionnaires;
         }
+
         // hier worden de afnamemomenten uit de database gehaald
         public List<Exam> GetAllExams()
         {

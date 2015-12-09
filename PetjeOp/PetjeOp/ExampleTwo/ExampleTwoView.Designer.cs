@@ -45,13 +45,14 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // ExampleViewTwo
+            // ExampleTwoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "ExampleViewTwo";
+            this.Name = "ExampleTwoView";
+            this.Size = new System.Drawing.Size(260, 238);
             this.ResumeLayout(false);
 
         }
