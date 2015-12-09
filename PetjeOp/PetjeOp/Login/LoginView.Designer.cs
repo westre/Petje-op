@@ -29,22 +29,33 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnVraagOverzicht = new System.Windows.Forms.Button();
             this.btnAnswerQuestion = new System.Windows.Forms.Button();
             this.PnlLogin = new System.Windows.Forms.Panel();
             this.txtLoginCode = new System.Windows.Forms.TextBox();
-            this.Error = new System.Windows.Forms.Label();
-            this.pbLoading = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlButton_Logout_Background = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.PnlLogin.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
+            this.Error = new System.Windows.Forms.Label();
+            this.pbLoading = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.PnlLogin.SuspendLayout();
             this.pnlButton_Logout_Background.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox2.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(46, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(156, 54);
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
             // 
             // btnVraagOverzicht
             // 
@@ -90,37 +101,6 @@
             this.txtLoginCode.Text = "2222222";
             this.txtLoginCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginCode_KeyDown);
             // 
-            // Error
-            // 
-            this.Error.AutoSize = true;
-            this.Error.ForeColor = System.Drawing.Color.DarkRed;
-            this.Error.Location = new System.Drawing.Point(23, 3);
-            this.Error.Name = "Error";
-            this.Error.Size = new System.Drawing.Size(120, 13);
-            this.Error.TabIndex = 5;
-            this.Error.Text = "Woops.. Er ging iets mis";
-            this.Error.Visible = false;
-            // 
-            // pbLoading
-            // 
-            this.pbLoading.Location = new System.Drawing.Point(96, 172);
-            this.pbLoading.Name = "pbLoading";
-            this.pbLoading.Size = new System.Drawing.Size(44, 40);
-            this.pbLoading.TabIndex = 8;
-            this.pbLoading.TabStop = false;
-            this.pbLoading.Visible = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox2.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(46, 6);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(156, 54);
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
-            // 
             // pnlButton_Logout_Background
             // 
             this.pnlButton_Logout_Background.BackColor = System.Drawing.Color.Transparent;
@@ -129,7 +109,7 @@
             this.pnlButton_Logout_Background.Controls.Add(this.label2);
             this.pnlButton_Logout_Background.Controls.Add(this.pictureBox1);
             this.pnlButton_Logout_Background.Location = new System.Drawing.Point(2, 44);
-            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
             this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Logout_Background.TabIndex = 16;
@@ -155,18 +135,38 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(30, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 25);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
+            // Error
+            // 
+            this.Error.AutoSize = true;
+            this.Error.ForeColor = System.Drawing.Color.DarkRed;
+            this.Error.Location = new System.Drawing.Point(23, 3);
+            this.Error.Name = "Error";
+            this.Error.Size = new System.Drawing.Size(120, 13);
+            this.Error.TabIndex = 5;
+            this.Error.Text = "Woops.. Er ging iets mis";
+            this.Error.Visible = false;
+            // 
+            // pbLoading
+            // 
+            this.pbLoading.Location = new System.Drawing.Point(85, 172);
+            this.pbLoading.Name = "pbLoading";
+            this.pbLoading.Size = new System.Drawing.Size(60, 34);
+            this.pbLoading.TabIndex = 8;
+            this.pbLoading.TabStop = false;
+            this.pbLoading.Visible = false;
+            // 
             // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(245, 219);
+            this.ClientSize = new System.Drawing.Size(240, 206);
             this.Controls.Add(this.pbLoading);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnVraagOverzicht);
@@ -174,18 +174,19 @@
             this.Controls.Add(this.PnlLogin);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(261, 252);
+            this.MaximumSize = new System.Drawing.Size(256, 245);
+            this.MinimumSize = new System.Drawing.Size(256, 245);
             this.Name = "LoginView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login - WinQ";
             this.Load += new System.EventHandler(this.LoginView_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PnlLogin.ResumeLayout(false);
             this.PnlLogin.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnlButton_Logout_Background.ResumeLayout(false);
             this.pnlButton_Logout_Background.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

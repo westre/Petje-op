@@ -98,5 +98,10 @@ namespace PetjeOp.Questionnaires
 
             Controller.CheckButtons();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Controller.DeleteQuestionnaire();
+        }
     }
 }

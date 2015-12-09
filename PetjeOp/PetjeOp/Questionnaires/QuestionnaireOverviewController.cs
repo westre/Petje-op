@@ -205,7 +205,15 @@ namespace PetjeOp.Questionnaires
 
         public void DeleteQuestionnaire()
         {
+            Questionnaire selectedQuestionnaire = (Questionnaire) View.tvQuestionnaires.SelectedNode.Tag;
+
+            selectedQuestionnaire.Archived = true;
             
+            MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
+
+            GetAllQuestionnairesAndSubjects();
+            FillTreeView();
+            CheckButtons();
         }
     }
 }

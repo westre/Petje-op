@@ -109,16 +109,17 @@ namespace PetjeOp
         {
             tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID);         // Haalt questionnaire op uit DB
             updateQuestionnaire.description = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
+            updateQuestionnaire.archived = questionnaire.Archived;
 
             foreach (tblQuestion dbQuestion in updateQuestionnaire.tblQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
             {
-                MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Select(q => q.ID == dbQuestion.id);// Haalt Question op uit Questionnaire                 
+                MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Single(q => q.ID == dbQuestion.id);// Haalt Question op uit Questionnaire                 
                 dbQuestion.description = question.Description;                                                                      // Wijzigt de vraag in DB
 
                 foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList())                                        // Doorloopt lijst van bijbehorende answers uit DB
                 {
                     tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
-                    Answer answer = (Answer)question.AnswerOptions.Select(a => a.ID == dbLinkAnwser.answer);                               // Haalt Answer op uit Question
+                    Answer answer = (Answer)question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer);                               // Haalt Answer op uit Question
                     dbAnswer.description = answer.Description;                                                                  // Wijzigt het antwoord in DB
                 }
                 dbQuestion.correctanswer = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
@@ -315,9 +316,6 @@ namespace PetjeOp
 
         public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer)
         {
-            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            //db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
-
             //Of dus zo:
             tblAnsweroption answerOption = new tblAnsweroption // Maak item aan om toe te voegen
             {
@@ -330,9 +328,6 @@ namespace PetjeOp
 
         private void DeleteLinkAnswerToQuestion(int questionId)
         {
-            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            //db.ExecuteCommand("DELETE FROM [answeroption] WHERE question = {0}", questionId);
-
             //Of dus zo:
             tblAnsweroption answerOption = db.tblAnsweroptions.Single(q => q.question == questionId); // Selecteer item op id
             db.tblAnsweroptions.DeleteOnSubmit(answerOption); // Geef opdracht om bovenstaande item te verwijderen
@@ -441,17 +436,17 @@ namespace PetjeOp
 
         public void UpdateExamCurrentQuestion(int examId, int questionId) {
             if(examId != -1) {
-            tblExam tblExam = (from exam in db.tblExams
-                               where exam.id == examId
-                               select exam).FirstOrDefault();
+                tblExam tblExam = (from exam in db.tblExams
+                                   where exam.id == examId
+                                   select exam).FirstOrDefault();
 
-                if (questionId == -1)
-                    tblExam.currentquestion = (int?)null;
-                else
-            tblExam.currentquestion = questionId;
+                    if (questionId == -1)
+                        tblExam.currentquestion = (int?)null;
+                    else
+                tblExam.currentquestion = questionId;
 
-            db.SubmitChanges();
-        }
+                db.SubmitChanges();
+            }
         }
     
         
