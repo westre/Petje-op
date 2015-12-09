@@ -188,10 +188,12 @@ namespace PetjeOp.Questionnaires
                 if (!selectedQuestionnaire.Archived)
                 {
                     View.btnDelete.Enabled = true;
+                    View.btnRecover.Hide();
                 }
                 else
                 {
                     View.btnDelete.Enabled = false;
+                    View.btnRecover.Show();
                 }
 
                 View.btnDetails.Enabled = true;
@@ -200,20 +202,46 @@ namespace PetjeOp.Questionnaires
             {
                 View.btnDetails.Enabled = false;
                 View.btnDelete.Enabled = false;
+                View.btnRecover.Hide();
             }
         }
 
-        public void DeleteQuestionnaire()
+        public void ArchiveQuestionnaire()
         {
-            Questionnaire selectedQuestionnaire = (Questionnaire) View.tvQuestionnaires.SelectedNode.Tag;
+            DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt archiveren?",
+                "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            selectedQuestionnaire.Archived = true;
-            
-            MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
+            if (dlr == DialogResult.Yes)
+            {
+                Questionnaire selectedQuestionnaire = (Questionnaire) View.tvQuestionnaires.SelectedNode.Tag;
 
-            GetAllQuestionnairesAndSubjects();
-            FillTreeView();
-            CheckButtons();
+                selectedQuestionnaire.Archived = true;
+
+                MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
+
+                GetAllQuestionnairesAndSubjects();
+                FillTreeView();
+                CheckButtons();
+            }
+        }
+
+        public void UnarchiveQuestionnaire()
+        {
+            DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt herstellen?",
+                "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dlr == DialogResult.Yes)
+            {
+                Questionnaire selectedQuestionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
+
+                selectedQuestionnaire.Archived = false;
+
+                MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
+
+                GetAllQuestionnairesAndSubjects();
+                FillTreeView();
+                CheckButtons();
+            }
         }
     }
 }
