@@ -7,101 +7,101 @@ using System.Windows.Forms;
 
 namespace PetjeOp
 {
-    //De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
-    //Question q = masterController.DB.GetQuestion(id);
+    // De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
+    // Question q = masterController.DB.GetQuestion(id);
     public class Database
     {
+        // Initialiseren van de database connectie die vervolgens gebruikt wordt voor LinqtoSQL
         DataClasses1DataContext db = new DataClasses1DataContext();
 
+        // Deze functie wordt gebruikt om een vraag op te halen uit de database, het ID wordt hiervoor meegegeven
         public MultipleChoiceQuestion GetQuestion(int id)
         {
-            tblQuestion query = db.tblQuestions.SingleOrDefault(q => q.id == id);
+            // Eerst wordt de query uitgevoerd welke de vraag selecteerd op basis van het meegegeven ID
+            tblQuestion dbQuestion = db.tblQuestions.SingleOrDefault(q => q.id == id);
 
-            if (query != null)
+            // Hier wordt gecontrolleerd of de query gelukt is, 
+            // null staat immers voor een niet geslaagde query of een query zonder resultaten
+            if (dbQuestion != null)
             {
-                MultipleChoiceQuestion question = new MultipleChoiceQuestion(query.description);
-                question.ID = id;
-
-                List<Answer> answerOptions = new List<Answer>();
-                List<tblAnsweroption> dbAnsweroption = query.tblAnsweroptions.ToList();
+                // Hier wordt een nieuwe vraag aangemaakt via de contstructor van MultipleChoiceQuestion
+                // De description wordt hieraan meegegeven, die met de query is opgehaald
+                MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
+                question.ID = id; // Vervolgens wordt het ID van het Question object toegevoegd, dit is hetzelfde ID dan degene in de database
+                                
+                List<Answer> answerOptions = new List<Answer>(); // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
+                List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList(); // Lijst met tblAnsweropties, welke straks doorlopen wordt
 
                 foreach (tblAnsweroption dbAnswerOption in dbAnsweroption)
+                { // Doorloopt de antwoordopties die een foreign key naar de geselecteerde question in de database hebben
+                    // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
+                    tblAnswer tblAnswer = dbAnswerOption.tblAnswer; // Cast antwoordtabel in variable
+
+                    Answer answer = new Answer(tblAnswer.description); // Maakt een nieuw antwoord aan
+                    answer.ID = tblAnswer.id; // Werkt het id bij naar degene die ook in de database gebruikt wordt
+                    answerOptions.Add(answer); // Voegt het antwoord object toe aan de lijst van antwoordopties die straks toegevoegd wordt aan de vraag
+                }
+
+                // Voegt de lijst met antwoord opties toe aan de vraag
+                question.AnswerOptions = answerOptions;               
+
+                return question;
+            }
+            // Als de query gefaalt is return null, deze wordt later opgevangen
+            return null;
+        }
+
+        // Deze functie wordt gebruikt om een vragenlijst op te halen uit de database, het ID wordt hiervoor meegegeven
+        public Questionnaire GetQuestionnaire(int id)
+        {
+            // Query die questionnaire op id selecteerd en opslaat in het Linq tblQuestionnaire object
+            tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
+            if (dbQuestionnaire != null)
+            {// Als de query gelukt is
+                Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description); // Maak een questionnaire object aan
+                questionnaire.ID = dbQuestionnaire.id; // Geef het id mee vanuit de database
+                questionnaire.Subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name); // Set het subject van de vragenlijst
+
+                Teacher author = new Teacher(); // Set auteur van de vragenlijst
+                author.TeacherNr = dbQuestionnaire.tblTeacher.nr;
+                author.FirstName = dbQuestionnaire.tblTeacher.firstname;
+                author.SurName = dbQuestionnaire.tblTeacher.surname;
+                questionnaire.Author = author;
+
+                // Loop door alle questions binnen die questionnaire
+                foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
                 {
-                    if (true) {
+                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
+
+                    question.ID = dbQuestion.id;
+                    question.QuestionIndex = dbQuestion.questionindex;
+
+                    List<Answer> answerOptions = new List<Answer>();
+
+                    foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
+                    {
                         // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
                         tblAnswer tblAnswer = dbAnswerOption.tblAnswer;
 
                         Answer answer = new Answer(tblAnswer.description);
                         answer.ID = tblAnswer.id;
                         answerOptions.Add(answer);
+
+                        if (dbQuestion.correctanswer == answer.ID)
+                        {
+                            question.CorrectAnswer = answer;
+                        }
                     }
+
+                    // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
+                    question.AnswerOptions = answerOptions;
+
+                    // Voeg vragen toe aan onze questionnaire
+                    questionnaire.Questions.Add(question);
                 }
-
-                // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
-                question.AnswerOptions = answerOptions;
-
-
-
-
-
-                return question;
-            }
-            return null;
-        }
-
-        public Questionnaire GetQuestionnaire(int id)
-        {
-            tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
-
-            Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description);
-            questionnaire.ID = dbQuestionnaire.id;
-            questionnaire.Subject = GetSubjectByID(dbQuestionnaire.subject);
-
-            Teacher author = new Teacher();
-            author.TeacherNr = dbQuestionnaire.tblTeacher.nr;
-            author.FirstName = dbQuestionnaire.tblTeacher.firstname;
-            author.SurName = dbQuestionnaire.tblTeacher.surname;
-            questionnaire.Author = author;
-
-            // Loop door alle questions binnen die questionnaire
-            foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
-            {
-                MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
-
-                question.ID = dbQuestion.id;
-                question.QuestionIndex = dbQuestion.questionindex;
-
-                List<Answer> answerOptions = new List<Answer>();
-
-                foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
-                {
-                    // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                    tblAnswer tblAnswer = dbAnswerOption.tblAnswer;
-
-                    Answer answer = new Answer(tblAnswer.description);
-                    answer.ID = tblAnswer.id;
-                    answerOptions.Add(answer);
-
-                    if (dbQuestion.correctanswer == answer.ID)
-                    {
-                        question.CorrectAnswer = answer;
-                    }
-                }
-
-                // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
-                question.AnswerOptions = answerOptions;
-
-                // Voeg vragen toe aan onze questionnaire
-                questionnaire.Questions.Add(question);
-            }
-            if (questionnaire != null)
-            {
                 return questionnaire;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public void UpdateQuestionnaire(Questionnaire questionnaire)
@@ -454,20 +454,6 @@ namespace PetjeOp
             return subjects;
         }
 
-        public Subject GetSubjectByID(int id)
-        {
-            Subject found = new Subject(0, "");
-
-            foreach (tblSubject tblSubject in db.tblSubjects)
-            {
-                if (tblSubject.id == id)
-                {
-                    found = new Subject(tblSubject.id, tblSubject.name);
-                }
-            }
-
-            return found;
-        }
         // hier worden de vragen die bij een specifieke vragenlijst horen opgehaald
         public List<Question> GetQuestionsByQuestionnaire(int id)
         {
