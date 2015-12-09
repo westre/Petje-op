@@ -18,7 +18,7 @@ namespace PetjeOp.Login
             this.Controller = Controller; // Stelt de controller in van het Login Dialog
             this.Controller.View = this; // Stelt verwijzing van de view in de controller naar dit Dialog
 
-            pbLoading.Image = Properties.Resources.LoadGif;
+            pbLoading.Image = Properties.Resources.loadgif;
             pbLoading.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
