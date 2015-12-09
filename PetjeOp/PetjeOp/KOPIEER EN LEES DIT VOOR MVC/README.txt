@@ -9,13 +9,12 @@ We gaan ervan uit dat we MainMenu willen implementeren
 5. Herhaal dit voor JOUWKLASSEModel en JOUWKLASSEView
 6. Check nadat je dit allemaal hebt gedaan of MainMenuView nog werkt (de designer!) en je geen enkel verwijzing hebt naar JOUWKLASSE
 7. Ga naar MasterController
-8. Declareer: private MainMenuController MainMenuController { get; set; }
-9. Declareer in Controllers enum: MainMenuController
-10. Voeg in SetController functie dit toe:
+8. Voeg dit toe aan de constructor: Controllers.Add(new MainMenuController(this));
+9. :D
 
-else if (controller == Controllers.MainMenuController)
-{
-    mainPanel.Controls.Add(MainMenuController.View);
-}
+Hoe kom je in de MainMenuController?
 
-11. :D
+Vanuit elk willekeurig Controller:
+
+MainMenuController mmc = MasterController.GetController(typeof(MainMenuController));
+MasterController.SetController(mmc);
