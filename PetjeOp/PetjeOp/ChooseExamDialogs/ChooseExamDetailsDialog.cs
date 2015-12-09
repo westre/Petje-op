@@ -34,6 +34,7 @@ namespace PetjeOp.ChooseExamDialogs
                 //lbExams.Items.AddRange(new object[] { ex });
                 lbExams.Items.Add(string.Empty + ex.Examnr);
                 lbExams.Items[count].SubItems.Add(ex.questionnaire.Name);
+                lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.Day + "-" + ex.starttime.Value.Month + "-" + ex.starttime.Value.Year);
                 lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.TimeOfDay);
                 lbExams.Items[count].SubItems.Add(string.Empty + ex.endtime.Value.TimeOfDay);
                 count++;

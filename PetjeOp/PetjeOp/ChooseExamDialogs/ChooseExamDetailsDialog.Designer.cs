@@ -33,9 +33,10 @@
             this.btnTest = new System.Windows.Forms.Button();
             this.lbExams = new System.Windows.Forms.ListView();
             this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chLecture = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chStartTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chEndtime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chLecture = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnCancel
@@ -72,6 +73,7 @@
             this.lbExams.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chId,
             this.chLecture,
+            this.chDate,
             this.chStartTime,
             this.chEndtime});
             this.lbExams.Location = new System.Drawing.Point(12, 12);
@@ -86,20 +88,24 @@
             this.chId.Text = "ID";
             this.chId.Width = 30;
             // 
-            // chStartTime
-            // 
-            this.chStartTime.Text = "Starttijd";
-            this.chStartTime.Width = 100;
-            // 
-            // chEndtime
-            // 
-            this.chEndtime.Text = "Eindtijd";
-            this.chEndtime.Width = 100;
-            // 
             // chLecture
             // 
             this.chLecture.Text = "Vragenlijstnaam";
             this.chLecture.Width = 300;
+            // 
+            // chStartTime
+            // 
+            this.chStartTime.Text = "Starttijd";
+            this.chStartTime.Width = 80;
+            // 
+            // chEndtime
+            // 
+            this.chEndtime.Text = "Eindtijd";
+            this.chEndtime.Width = 80;
+            // 
+            // chDate
+            // 
+            this.chDate.Text = "Datum";
             // 
             // ChooseExamDetailsDialog
             // 
@@ -127,5 +133,6 @@
         private System.Windows.Forms.ColumnHeader chStartTime;
         private System.Windows.Forms.ColumnHeader chEndtime;
         private System.Windows.Forms.ColumnHeader chLecture;
+        private System.Windows.Forms.ColumnHeader chDate;
     }
 }
