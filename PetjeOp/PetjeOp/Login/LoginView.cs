@@ -17,6 +17,9 @@ namespace PetjeOp.Login
             InitializeComponent();
             this.Controller = Controller; // Stelt de controller in van het Login Dialog
             this.Controller.View = this; // Stelt verwijzing van de view in de controller naar dit Dialog
+
+            pbLoading.Image = Properties.Resources.loadgif;
+            pbLoading.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
         private void btnVraagOverzicht_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
@@ -41,8 +44,10 @@ namespace PetjeOp.Login
         {
             Controller.BackgroundWorker.RunWorkerAsync();
 
-            pbLogin.MarqueeAnimationSpeed = 30;
-            pbLogin.Show();
+            //pbLogin.MarqueeAnimationSpeed = 30;
+            //pbLogin.Show();
+
+            pbLoading.Show();
         }
 
         private void LoginView_Load(object sender, EventArgs e)

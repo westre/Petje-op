@@ -52,7 +52,7 @@ namespace PetjeOp {
                 StudentLogin(); // Zet de client over naar Student omgeving
             }
 
-            View.pbLogin.Visible = false;
+            View.pbLoading.Visible = false;
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
