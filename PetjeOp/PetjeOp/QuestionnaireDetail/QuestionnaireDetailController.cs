@@ -50,7 +50,7 @@ namespace PetjeOp {
         }
 
         //Stop gegevens van de database in de combobox.
-        public void fillCbSelectQuestionnaire()
+        public void FillCbSelectQuestionnaire()
         {
             View.cbSelectQuestionnaire.Items.Clear();
             List<Questionnaire> currentQuestionnaires = Model.Questionnaires;
@@ -60,6 +60,44 @@ namespace PetjeOp {
 
             }
                 View.cbSelectQuestionnaire.SelectedItem = Model.Questionnaire;
+        }
+
+        public void FillCbSubjects()
+        {
+            View.cbSubject.Items.Clear();
+
+            Model.Subjects = MasterController.DB.GetSubjects();
+
+            foreach (Subject s in Model.Subjects)
+            {
+                View.cbSubject.Items.Add(s);
+            }
+        }
+
+        public void SelectSubject(Subject subject)
+        {
+            foreach (object item in View.cbSubject.Items)
+            {
+                Subject s = (Subject) item;
+
+                if (subject.Id == s.Id)
+                    View.cbSubject.SelectedItem = s;
+            }
+        }
+
+        public void SaveQuestionnaireDetails()
+        {
+            Model.Questionnaire.Name = View.tbNameEdit.Text;
+            Model.Questionnaire.Subject = (Subject) View.cbSubject.SelectedItem;
+
+            View.tbNameEdit.Hide();
+            View.cbSubject.Hide();
+
+            View.btnSave.Hide();
+            View.btnCancelEdit.Hide();
+            View.btnEdit.Show();
+
+            setLabels();
         }
     }
 }

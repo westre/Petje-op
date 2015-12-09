@@ -157,7 +157,7 @@ namespace PetjeOp.Questionnaires
             qoc.Model.Questionnaires = Model.AllQuestionnaires;
 
             //Vul de ComboBox met alle Questionnaires
-            qoc.fillCbSelectQuestionnaire();
+            qoc.FillCbSelectQuestionnaire();
 
             //Verander scherm naar QuestionnareDetails
             MasterController.SetController(qoc);

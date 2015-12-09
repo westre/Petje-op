@@ -30,7 +30,8 @@ namespace PetjeOp.QuestionnaireDetail
         private void QuestionnaireDetailView_Load(object sender, EventArgs e)
         {
             Controller.setLabels();
-            Controller.fillCbSelectQuestionnaire();
+            Controller.FillCbSelectQuestionnaire();
+            Controller.FillCbSubjects();
         }
 
         //Wanneer de index van de combobox wordt gewijzigd, verander de huidige questionnaire, set de labels opnieuw en update de treeview.
@@ -46,6 +47,34 @@ namespace PetjeOp.QuestionnaireDetail
         {
             ChooseExamDetailsDialog ExamsDialog = new ChooseExamDetailsDialog(Controller);
             ExamsDialog.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+            tbNameEdit.Text = lblNameData.Text;
+            tbNameEdit.Show();
+            
+            Controller.SelectSubject(Controller.Model.Questionnaire.Subject);
+            cbSubject.Show();
+
+            btnSave.Show();
+            btnCancelEdit.Show();
+        }
+
+        private void btnCancelEdit_Click(object sender, EventArgs e)
+        {
+            tbNameEdit.Hide();
+
+            cbSubject.Hide();
+
+            btnSave.Hide();
+            btnCancelEdit.Hide();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Controller.SaveQuestionnaireDetails();
         }
     }
 }
