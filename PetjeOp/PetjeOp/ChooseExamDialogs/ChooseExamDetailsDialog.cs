@@ -31,14 +31,23 @@ namespace PetjeOp.ChooseExamDialogs
             int count = 0;
 
             //Voor elke exam die de vragenlijst heeft, vul de listbox. 
-            foreach (Exam ex in exams)
+            if (exams.Any())
             {
-                lbExams.Items.Add(string.Empty + ex.Examnr);
-                lbExams.Items[count].SubItems.Add(ex.questionnaire.Name);
-                lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.Day + "-" + ex.starttime.Value.Month + "-" + ex.starttime.Value.Year);
-                lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.TimeOfDay);
-                lbExams.Items[count].SubItems.Add(string.Empty + ex.endtime.Value.TimeOfDay);
-                count++;
+                foreach (Exam ex in exams)
+                {
+                    lbExams.Items.Add(string.Empty + ex.Examnr);
+                    lbExams.Items[count].SubItems.Add(ex.questionnaire.Name);
+                    lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.Day + "-" +
+                                                      ex.starttime.Value.Month + "-" + ex.starttime.Value.Year);
+                    lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.TimeOfDay);
+                    lbExams.Items[count].SubItems.Add(string.Empty + ex.endtime.Value.TimeOfDay);
+                    count++;
+                }
+            }
+            else
+            {
+                lbExams.Items.Add("");
+                lbExams.Items[0].SubItems.Add("Geen afnamemomenten om weer te geven");
             }
 
         }
