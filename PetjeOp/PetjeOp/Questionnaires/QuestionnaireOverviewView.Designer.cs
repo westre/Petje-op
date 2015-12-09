@@ -36,6 +36,7 @@
             this.btnDetails = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.cbShowArchive = new System.Windows.Forms.CheckBox();
+            this.btnRecover = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAddQuestionnaire
@@ -114,7 +115,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(150, 44);
             this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "Verwijder";
+            this.btnDelete.Text = "Archiveer";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -129,12 +130,25 @@
             this.cbShowArchive.UseVisualStyleBackColor = true;
             this.cbShowArchive.CheckedChanged += new System.EventHandler(this.cbShowArchive_CheckedChanged);
             // 
+            // btnRecover
+            // 
+            this.btnRecover.Location = new System.Drawing.Point(1146, 310);
+            this.btnRecover.Margin = new System.Windows.Forms.Padding(6);
+            this.btnRecover.Name = "btnRecover";
+            this.btnRecover.Size = new System.Drawing.Size(150, 44);
+            this.btnRecover.TabIndex = 9;
+            this.btnRecover.Text = "Herstel";
+            this.btnRecover.UseVisualStyleBackColor = true;
+            this.btnRecover.Visible = false;
+            this.btnRecover.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // QuestionnaireOverviewView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.btnRecover);
             this.Controls.Add(this.cbShowArchive);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnDetails);
@@ -162,5 +176,6 @@
         public System.Windows.Forms.Button btnDetails;
         public System.Windows.Forms.Button btnDelete;
         public System.Windows.Forms.CheckBox cbShowArchive;
+        public System.Windows.Forms.Button btnRecover;
     }
 }

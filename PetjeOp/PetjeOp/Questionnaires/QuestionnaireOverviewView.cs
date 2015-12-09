@@ -101,7 +101,12 @@ namespace PetjeOp.Questionnaires
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Controller.DeleteQuestionnaire();
+            Controller.ArchiveQuestionnaire();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Controller.UnarchiveQuestionnaire();
         }
     }
 }
