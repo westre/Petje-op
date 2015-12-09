@@ -44,6 +44,8 @@ namespace PetjeOp
             //Creëer database instantie
             DB = new Database();
 
+            Resize += MasterController_Resize;
+
             // We beginnen met deze view, verander dit niet!
             //mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());                
         }
@@ -84,7 +86,8 @@ namespace PetjeOp
                 QuestionnaireOverviewController questionnaireOverviewController = (QuestionnaireOverviewController)GetController(typeof(QuestionnaireOverviewController));
                 questionnaireOverviewController.InitializeView();
                 SetController(questionnaireOverviewController);
-            } else if (controller is StudentController)
+            }
+            else if (controller is StudentController)
             {
                 mainPanel.Controls.Clear();
 
@@ -102,15 +105,9 @@ namespace PetjeOp
                 ActiveParentContainer.GetView().Width = mainPanel.Width;
                 ActiveParentContainer.GetView().Height = mainPanel.Height;
 
-                if (ActiveParentContainer is TeacherController)
-                {
-                    // Resize controller specifieke controls
-                    TeacherController teacherController = (TeacherController)ActiveParentContainer;
-                    teacherController.View.pnlHeader.Width = Width;
-
-                    if(Width > 930)
-                        teacherController.View.pnlButton_Logout_Background.Location = new Point(Width - teacherController.View.pnlButton_Logout_Background.Size.Width - 25, teacherController.View.pnlButton_Logout_Background.Location.Y);
-                }
+                ActiveParentContainer.GetHeaderPanel().Width = Width;
+                if (Width > 930)
+                    ActiveParentContainer.GetLogoutButton().Location = new Point(Width - ActiveParentContainer.GetLogoutButton().Size.Width - 25, ActiveParentContainer.GetLogoutButton().Location.Y);
             }
         }
     }

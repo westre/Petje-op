@@ -8,5 +8,7 @@ namespace PetjeOp {
     public interface IEnvironment {
         Panel GetViewPanel();
         UserControl GetView();
+        Panel GetHeaderPanel();
+        Panel GetLogoutButton();
     }
 }
