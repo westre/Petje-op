@@ -109,6 +109,7 @@ namespace PetjeOp
         {
             tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID);         // Haalt questionnaire op uit DB
             updateQuestionnaire.description = questionnaire.Name;                                                                      // Wijzigt naam van questionnaire in DB
+            updateQuestionnaire.archived = questionnaire.a
 
             foreach (tblQuestion dbQuestion in updateQuestionnaire.tblQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
             {
