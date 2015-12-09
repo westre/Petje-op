@@ -20,24 +20,27 @@ namespace PetjeOp.AddQuestionnaire
             InitializeComponent();
         }
 
+        //Toon dialoog voor vraag toevoegen na klikken op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
             Dialog = new AddQuestionDialog(this);
             Dialog.ShowDialog();
         }
 
+        //Als selectie veranderd in TreeView
         private void tvQuestions_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            //Check of knoppen aangezet mogen worden
             if (tvQuestions.SelectedNode != null && tvQuestions.SelectedNode.Parent == null)
             {
                 EnableEditDeleteButtons();
-                lblNoNodeSelectedError.Text = "";
             } else
             {
                 DisableEditDeleteButtons();
             }
         }
 
+        //Als op de knop 'Wijzig' is geklikt
         private void btnEditQuestion_Click(object sender, EventArgs e)
         {
             MultipleChoiceQuestion currentQuestion = null;
@@ -233,6 +236,7 @@ namespace PetjeOp.AddQuestionnaire
 
         public bool ValidateQuestions()
         {
+            //Check of er vragen zijn toegevoegd aan de vragenlijst
             if (tvQuestions.Nodes.Count > 0)
             {
                 return true;
