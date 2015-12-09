@@ -19,15 +19,11 @@ namespace PetjeOpPowerPoint
         {
             DB = new Database();
 
-         
-
             // functie voor vullen dropdown afnamemomenten
-            
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExams = this.Factory.CreateRibbonDropDownItem();
             // Er wordt een leeg record aangemaakt bovenaan de dropdown lijst
             emptyExams.Label = null;
             ddExams.Items.Add(emptyExams);
-
             // Vul de rest van de dropdown lijst met afnamemomenten uit de database
             List<Exam> exams = DB.GetExams();
 
@@ -63,7 +59,6 @@ namespace PetjeOpPowerPoint
 
         //    PowerPoint.Shape shape2 = currentSld.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 230, 10 + 300 - (int)barHeight3, 100, Convert.ToInt32(barHeight3));
         //}
-
        
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
@@ -115,19 +110,17 @@ namespace PetjeOpPowerPoint
             btnAllQuestions.Visible = false;
             ddQuestions.Items.Clear();
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyQuestions = this.Factory.CreateRibbonDropDownItem();
-
+            // Ook hier wordt een leeg record aangemaakt bovenaan de dropdown lijst
             emptyQuestions.Label = null;
             ddQuestions.Items.Add(emptyQuestions);
 
             if (ddExams.SelectedItemIndex != 0)
             {
                 // functie voor vullen dropdown vragen
-                
                 // hier wordt de knop voor het toevoegen van alle vragen pas zichtbaar
                 btnAllQuestions.Visible = true;
-
+                // Het programma kijkt welk afnamemoment geselecteerd is en vult dan de vragenlijst met vragen in dat afnamemoment
                 Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-            
                 Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
 
                 foreach (Question q in testquest.Questions)
