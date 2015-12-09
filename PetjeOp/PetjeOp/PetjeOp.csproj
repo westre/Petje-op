@@ -293,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
+    <Content Include="Resources\LoadGif.gif" />
     <None Include="Resources\Button_Login_Icon.png" />
     <None Include="Resources\Button_Logout_Icon.png" />
     <None Include="Resources\Inloggen.png" />
