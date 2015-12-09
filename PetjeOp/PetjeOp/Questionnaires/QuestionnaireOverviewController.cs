@@ -143,16 +143,29 @@ namespace PetjeOp.Questionnaires
         {
             //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
             QuestionnaireDetailController qoc = (QuestionnaireDetailController)MasterController.GetController(typeof(QuestionnaireDetailController));
+
+            //Bepaal geselecteerde Questionnaire
             qoc.Model.Questionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
+
+            //Set de ParentController
             qoc.View.questionsView1.ParentController = qoc;
+
+            //Update de TreeView met vragen in QuestionnareDetails
             qoc.View.questionsView1.UpdateTreeView();
+
+            //Set lijst met alle Questionnaires in QuestionnaireDetails
             qoc.Model.Questionnaires = Model.AllQuestionnaires;
+
+            //Vul de ComboBox met alle Questionnaires
             qoc.fillCbSelectQuestionnaire();
+
+            //Verander scherm naar QuestionnareDetails
             MasterController.SetController(qoc);
         }
 
         public void CheckButtons()
         {
+            //Als er een Node geselecteerd is, mag de knop 'Details' aangezet worden
             if (View.tvQuestionnaires.SelectedNode != null)
             {
                 View.btnDetails.Enabled = true;
