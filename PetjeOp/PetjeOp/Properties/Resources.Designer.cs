@@ -133,9 +133,9 @@ namespace PetjeOp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LoadGif {
+        internal static System.Drawing.Bitmap loadgif {
             get {
-                object obj = ResourceManager.GetObject("LoadGif", resourceCulture);
+                object obj = ResourceManager.GetObject("loadgif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
