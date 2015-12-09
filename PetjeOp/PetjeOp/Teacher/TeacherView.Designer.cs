@@ -53,15 +53,14 @@
             // 
             // viewPanel
             // 
-            this.viewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.viewPanel.AutoScroll = true;
+            this.viewPanel.AutoSize = true;
             this.viewPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.viewPanel.Location = new System.Drawing.Point(0, 63);
+            this.viewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.viewPanel.Location = new System.Drawing.Point(0, 59);
             this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
             this.viewPanel.Name = "viewPanel";
-            this.viewPanel.Size = new System.Drawing.Size(2597, 1223);
+            this.viewPanel.Size = new System.Drawing.Size(3732, 1664);
             this.viewPanel.TabIndex = 4;
             // 
             // pnlHeader
@@ -78,7 +77,7 @@
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1314, 59);
+            this.pnlHeader.Size = new System.Drawing.Size(3732, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // pnlButton_Logout_Background
@@ -256,7 +255,7 @@
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
             this.Name = "TeacherView";
-            this.Size = new System.Drawing.Size(1314, 702);
+            this.Size = new System.Drawing.Size(3732, 1723);
             this.Load += new System.EventHandler(this.TeacherView_Load);
             this.Resize += new System.EventHandler(this.logOutBtn);
             this.pnlHeader.ResumeLayout(false);
