@@ -76,11 +76,13 @@ namespace PetjeOp.Questionnaires
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
+            //Zet scherm naar QuestionnaireDetails
             Controller.GoToQuestionnaireDetails();
         }
 
         private void tvQuestionnaires_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            //Controleer of de knoppen aangezet kunnen worden
             Controller.CheckButtons();
         }
     }

@@ -35,7 +35,6 @@ namespace PetjeOp.AddQuestionnaire
             } else
             {
                 DisableEditDeleteButtons();
-                lblNoNodeSelectedError.Text = "Selecteer een vraag om de knoppen te activeren!";
             }
         }
 
@@ -245,6 +244,21 @@ namespace PetjeOp.AddQuestionnaire
         private void QuestionsView_Load(object sender, EventArgs e)
         {
             UpdateTreeView();
+        }
+
+        private void tvQuestions_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            //Als de node geen parent heeft, mag deze worden geselecteerd
+            if (e.Node.Parent != null)
+            {
+                e.Cancel = true;
+
+                lblNoNodeSelectedError.Show();
+            }
+            else
+            {
+                lblNoNodeSelectedError.Hide();
+            }
         }
     }
 }
