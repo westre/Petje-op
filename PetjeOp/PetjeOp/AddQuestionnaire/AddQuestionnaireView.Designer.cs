@@ -91,7 +91,7 @@
             // 
             this.lblNoQuestionsInQuestionaire.AutoSize = true;
             this.lblNoQuestionsInQuestionaire.ForeColor = System.Drawing.Color.Red;
-            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(631, 567);
+            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(626, 660);
             this.lblNoQuestionsInQuestionaire.Name = "lblNoQuestionsInQuestionaire";
             this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 13);
             this.lblNoQuestionsInQuestionaire.TabIndex = 19;
