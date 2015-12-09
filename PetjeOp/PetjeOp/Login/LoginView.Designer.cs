@@ -109,7 +109,7 @@
             this.pnlButton_Logout_Background.Controls.Add(this.label2);
             this.pnlButton_Logout_Background.Controls.Add(this.pictureBox1);
             this.pnlButton_Logout_Background.Location = new System.Drawing.Point(2, 44);
-            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
             this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Logout_Background.TabIndex = 16;
@@ -135,7 +135,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(30, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 25);
             this.pictureBox1.TabIndex = 4;
@@ -155,6 +155,8 @@
             // 
             // pbLoading
             // 
+            this.pbLoading.BackColor = System.Drawing.Color.Transparent;
+            this.pbLoading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pbLoading.Location = new System.Drawing.Point(85, 172);
             this.pbLoading.Name = "pbLoading";
             this.pbLoading.Size = new System.Drawing.Size(60, 34);
