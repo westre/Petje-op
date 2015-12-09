@@ -26,12 +26,13 @@ namespace PetjeOp.ChooseExamDialogs
 
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
-            // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
+            //Hier worden alle exams van een bepaalde vragenlijst opgehaald uit de database.
             List<Exam> exams = Controller.MasterController.DB.GetExamsByQuestionnaire(Questionnaire);
             int count = 0;
+
+            //Voor elke exam die de vragenlijst heeft, vul de listbox. 
             foreach (Exam ex in exams)
             {
-                //lbExams.Items.AddRange(new object[] { ex });
                 lbExams.Items.Add(string.Empty + ex.Examnr);
                 lbExams.Items[count].SubItems.Add(ex.questionnaire.Name);
                 lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.Day + "-" + ex.starttime.Value.Month + "-" + ex.starttime.Value.Year);
