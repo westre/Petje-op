@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PetjeOp {
-    public class AnswerQuestionnaireController : Controller, IEnvironment {
+    public class AnswerQuestionnaireController : Controller {
         public AnswerQuestionnaireView View { get; set; }
         public AnswerQuestionnaireModel Model { get; set; }
         public Exam Exam { get; set; }
