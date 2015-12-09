@@ -22,5 +22,13 @@ namespace PetjeOp {
         public Panel GetViewPanel() {
             return View.viewPanel;
         }
+
+        public Panel GetHeaderPanel() {
+            return View.pnlHeader;
+        }
+
+        public Panel GetLogoutButton() {
+            return View.pnlButton_Logout_Background;
+        }
     }
 }

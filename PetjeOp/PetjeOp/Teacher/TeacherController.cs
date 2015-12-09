@@ -52,5 +52,13 @@ namespace PetjeOp {
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             MasterController.SetController(qoc);
         }
+
+        public Panel GetHeaderPanel() {
+            return View.pnlHeader;
+        }
+
+        public Panel GetLogoutButton() {
+            return View.pnlButton_Logout_Background;
+        }
     }
 }
