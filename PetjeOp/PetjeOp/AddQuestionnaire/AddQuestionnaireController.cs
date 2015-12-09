@@ -30,7 +30,8 @@ namespace PetjeOp.AddQuestionnaire
             if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire((Teacher)MasterController.User, Model.Questionnaire);
             }
-            else {                
+            else
+            {
                 MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
             }
 

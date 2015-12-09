@@ -314,9 +314,6 @@ namespace PetjeOp
 
         public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer)
         {
-            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            //db.ExecuteCommand("INSERT INTO [answeroption] (question, answer) VALUES ({0}, {1})", refQuestion.ID, refAnswer.ID);
-
             //Of dus zo:
             tblAnsweroption answerOption = new tblAnsweroption // Maak item aan om toe te voegen
             {
@@ -329,9 +326,6 @@ namespace PetjeOp
 
         private void DeleteLinkAnswerToQuestion(int questionId)
         {
-            // Dit moet zo, omdat we geen PI hebben in answeroption, LINQ vindt dat niet leuk
-            //db.ExecuteCommand("DELETE FROM [answeroption] WHERE question = {0}", questionId);
-
             //Of dus zo:
             tblAnsweroption answerOption = db.tblAnsweroptions.Single(q => q.question == questionId); // Selecteer item op id
             db.tblAnsweroptions.DeleteOnSubmit(answerOption); // Geef opdracht om bovenstaande item te verwijderen
@@ -426,17 +420,17 @@ namespace PetjeOp
 
         public void UpdateExamCurrentQuestion(int examId, int questionId) {
             if(examId != -1) {
-            tblExam tblExam = (from exam in db.tblExams
-                               where exam.id == examId
-                               select exam).FirstOrDefault();
+                tblExam tblExam = (from exam in db.tblExams
+                                   where exam.id == examId
+                                   select exam).FirstOrDefault();
 
-                if (questionId == -1)
-                    tblExam.currentquestion = (int?)null;
-                else
-            tblExam.currentquestion = questionId;
+                    if (questionId == -1)
+                        tblExam.currentquestion = (int?)null;
+                    else
+                tblExam.currentquestion = questionId;
 
-            db.SubmitChanges();
-        }
+                db.SubmitChanges();
+            }
         }
     
         
