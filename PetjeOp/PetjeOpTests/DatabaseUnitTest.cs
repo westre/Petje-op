@@ -13,7 +13,7 @@ namespace PetjeOpTests {
         [TestMethod]
         public void TestIfQuestionnairesIsFullyFilled()
         {
-            List<Questionnaire> questionnaires = db.GetAllQuestionnaires();
+            List<Questionnaire> questionnaires = db.GetAllActiveQuestionnaires();
 
             Assert.IsNotNull(questionnaires, "Questionnaires is null");
 

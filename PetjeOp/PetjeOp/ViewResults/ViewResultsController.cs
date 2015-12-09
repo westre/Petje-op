@@ -62,35 +62,38 @@ namespace PetjeOp {
         // hier wordt de grafiek gevuld met data
         public void ShowChart()
         {
-            ClearChart();
 
+            ClearChart();
+            if (View.listQuestions.SelectedItem != null) {
             Question chosen = (Question)View.listQuestions.SelectedItem;
             View.chartArea1.BackColor = System.Drawing.SystemColors.Window;
             View.label1.Text = chosen.Description;
-            
+
 
 
             List<Answer> answers = this.MasterController.DB.GetAnswersByQuestion(chosen.ID);
 
             foreach (Answer answer in answers)
             {
-                
+
                 List<Result> results = this.MasterController.DB.GetResultByAnswer(chosen.ID, answer.ID, ex.Examnr);
                 double amount = results.Count();
                 System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
                 dataPoint1.AxisLabel = Convert.ToString(this.MasterController.DB.GetDescriptionByAnswer(answer.ID));
-                if(answer.ID == chosen.CorrectAnswer.ID)
+                if (answer.ID == chosen.CorrectAnswer.ID)
                 {
                     dataPoint1.Color = Color.Green;
-                } else
+                }
+                else
                 {
                     dataPoint1.Color = Color.Red;
                 }
-                
+
 
                 View.series1.Points.Add(dataPoint1);
 
             }
+        }
         }
         // hier ga je terug naar het toevoegen en inzien van vragenlijsten
         public void GoToMainMenu()
