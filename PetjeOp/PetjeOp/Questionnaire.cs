@@ -27,26 +27,6 @@ namespace PetjeOp
             Questions = new List<Question>();
         }
 
-        // Voeg een vraag aan de vragenlijst toe
-        public void addQuestion(Question q)
-        {
-            Questions.Add(q);
-        }
-
-        // Verwijder een vraag uit de vragenlijst
-        public void deleteQuestion(int i)
-        {
-            Questions.RemoveAt(i);
-        }
-
-        // Weergeeft de vragen in de vragenlijst
-        public void listQuestions()
-        {
-            foreach (Question q in Questions)
-            {
-                Console.WriteLine(q);
-            }
-        }
         public override string ToString()
         {
             return String.Format("{0}: {1}", Subject, Name);
