@@ -36,12 +36,20 @@ namespace PetjeOp {
 
         internal void AnswerQuestion(int ExamID)
         {
-            
-            Controller controller = MasterController.GetController(typeof(AnswerQuestionnaireController));
+            Controller controller = MasterController.GetController(typeof(StudentController));
+            MasterController.SetController(controller);
+
+            AnswerQuestionnaireController aqc = (AnswerQuestionnaireController)MasterController.GetController(typeof(AnswerQuestionnaireController));
+            aqc.setExam(ExamID);
+            aqc.Init(ExamID);
+            MasterController.SetController(aqc);
+
+            /*Controller controller = MasterController.GetController(typeof(AnswerQuestionnaireController));
             AnswerQuestionnaireController AnswerQuestionnaireController = (AnswerQuestionnaireController)controller;
             AnswerQuestionnaireController.setExam(ExamID);
+            AnswerQuestionnaireController.Init(ExamID);
+            MasterController.SetController(controller);*/
 
-            MasterController.SetController(controller);
         }
     }
 }

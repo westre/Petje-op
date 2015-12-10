@@ -98,6 +98,9 @@
     </Compile>
     <Compile Include="IContainsModel.cs" />
     <Compile Include="IEnvironment.cs" />
+    <Compile Include="kevineter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEController.cs" />
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEModel.cs" />
     <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.cs">
@@ -199,7 +202,6 @@
     <Compile Include="ViewResults\ViewResultsView.Designer.cs">
       <DependentUpon>ViewResultsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="YoranHierKijken.cs" />
     <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>

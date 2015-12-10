@@ -259,7 +259,7 @@ namespace PetjeOp {
             // 
             this.PnlLogin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PnlLogin.AutoSize = true;
-            this.PnlLogin.Location = new System.Drawing.Point((-(PnlLogin.Width/2) + Error.Width), 0);
+            this.PnlLogin.Location = new System.Drawing.Point((-(PnlLogin.Width / 2) + Error.Width), 0);
             this.PnlLogin.Controls.Add(this.Error);
             this.PnlLogin.Controls.Add(this.LoginBtn);
             this.PnlLogin.Controls.Add(this.label1);

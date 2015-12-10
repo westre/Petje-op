@@ -14,6 +14,7 @@ namespace PetjeOp {
 
         public StudentView(StudentController controller) {
             InitializeComponent();
+            this.Dock = DockStyle.Fill;
 
             Controller = controller;
         }

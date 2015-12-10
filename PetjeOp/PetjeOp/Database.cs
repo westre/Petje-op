@@ -10,7 +10,23 @@ namespace PetjeOp
     public class Database
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-        
+
+        public void InsertResult(tblResult Result)
+        {
+            db.tblResults.InsertOnSubmit(Result);
+
+            try
+            {
+                db.SubmitChanges();
+                db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Kon antwoord niet opslaan");
+            }
+            
+        }
+
         public MultipleChoiceQuestion GetQuestion(int id)
         {
             tblQuestion query = db.tblQuestions.SingleOrDefault(q => q.id == id);

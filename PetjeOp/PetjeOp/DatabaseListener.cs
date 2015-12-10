@@ -14,6 +14,8 @@ namespace PetjeOp {
         public delegate void TrackedChangedHandler(SqlNotificationEventArgs eventArgs);
         public event TrackedChangedHandler OnChange;
 
+        private SqlDependency dependency;
+
         public DatabaseListener() {
             ConnectionString = "Data Source=176.31.253.42,119;Initial Catalog=kbs2;User ID=kbs2_live;Password=12";
 
@@ -34,7 +36,7 @@ namespace PetjeOp {
                 };
 
                 // Dependency aanmaken die wordt afgevuurd wanneer er ook maar iets wordt veranderd aan de resultaten van de query
-                var dependency = new SqlDependency(command);
+                dependency = new SqlDependency(command);
                 dependency.OnChange += TrackedChanged;
 
                 if (Connection.State == ConnectionState.Closed)
@@ -48,6 +50,10 @@ namespace PetjeOp {
             else {
                 Console.WriteLine("ERROR: Geen tracked query gevonden");
             }
+        }
+        public void Stop()
+        {
+            dependency.OnChange -= TrackedChanged;
         }
 
         void TrackedChanged(object sender, SqlNotificationEventArgs e) {

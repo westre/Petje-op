@@ -32,6 +32,7 @@ namespace PetjeOp {
 
         private void btnAnswerQuestion_Click(object sender, EventArgs e)
         {
+            Controller.MasterController.User = Controller.MasterController.DB.GetStudent("1111111");
             Controller.AnswerQuestion(1);
         }
 

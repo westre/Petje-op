@@ -70,7 +70,7 @@ namespace PetjeOp {
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1184, 64);
+            this.pnlHeader.Size = new System.Drawing.Size(1174, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // btnResults
@@ -248,14 +248,12 @@ namespace PetjeOp {
             // 
             // viewPanel
             // 
-            this.viewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.viewPanel.AutoSize = true;
-            this.viewPanel.Location = new System.Drawing.Point(2, 68);
+            this.viewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.viewPanel.Location = new System.Drawing.Point(0, 59);
             this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
             this.viewPanel.Name = "viewPanel";
-            this.viewPanel.Size = new System.Drawing.Size(4942, 2044);
+            this.viewPanel.Size = new System.Drawing.Size(1174, 427);
             this.viewPanel.TabIndex = 4;
             // 
             // StudentView
@@ -264,9 +262,9 @@ namespace PetjeOp {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
-            this.Dock = DockStyle.Fill;
+            
             this.Name = "StudentView";
-            this.Size = new System.Drawing.Size(1184, 486);
+            this.Size = new System.Drawing.Size(1174, 486);
             this.Resize += new System.EventHandler(this.logOutBtn);
             this.pnlHeader.ResumeLayout(false);
             this.pnlButton_Logout_Background.ResumeLayout(false);
