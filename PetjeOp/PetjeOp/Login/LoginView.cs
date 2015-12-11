@@ -45,10 +45,7 @@ namespace PetjeOp.Login
         {
             Controller.BackgroundWorker.RunWorkerAsync();
 
-            //pbLogin.MarqueeAnimationSpeed = 30;
-            //pbLogin.Show();
-
-            pbLoading.Show();
+            pbLoading.Show();            
         }
 
         private void LoginView_Load(object sender, EventArgs e)
