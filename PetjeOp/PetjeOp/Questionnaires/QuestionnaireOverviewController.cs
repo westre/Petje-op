@@ -156,6 +156,12 @@ namespace PetjeOp.Questionnaires
 
         public void GoToQuestionnaireDetails()
         {
+            // Null check
+            if(View.tvQuestionnaires.SelectedNode == null) {
+                MessageBox.Show("Kies een afnamemoment");
+                return;
+            }
+
             //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
             QuestionnaireDetailController qoc = (QuestionnaireDetailController)MasterController.GetController(typeof(QuestionnaireDetailController));
 
