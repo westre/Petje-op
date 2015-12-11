@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PetjeOp {
-    public class ExampleTwoModel {
+    public class JOUWKLASSEModel {
         public string Name { get; set; }
     }
 }

@@ -106,7 +106,6 @@ namespace PetjeOp.AddQuestionnaire
             foreach (Subject subject in Model.Subjects)
             {
                 View.cbSubjects.Items.Add(subject);
-
             }
         }
 
