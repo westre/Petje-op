@@ -93,6 +93,15 @@ namespace PetjeOp
 
                     question.ID = dbQuestion.id;
                     question.QuestionIndex = dbQuestion.questionindex;
+                    if (dbQuestion.timerestriction != null)
+                    {
+                        question.TimeRestriction = TimeSpan.FromTicks((long) dbQuestion.timerestriction);
+                    }
+                    else
+                    {
+                        question.TimeRestriction = TimeSpan.Zero;
+                    }
+                    
 
                     List<Answer> answerOptions = new List<Answer>();
 
