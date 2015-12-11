@@ -131,9 +131,9 @@
             this.lblShowQuestionnaire.Location = new System.Drawing.Point(22, 37);
             this.lblShowQuestionnaire.Margin = new System.Windows.Forms.Padding(4);
             this.lblShowQuestionnaire.Name = "lblShowQuestionnaire";
-            this.lblShowQuestionnaire.Size = new System.Drawing.Size(507, 55);
+            this.lblShowQuestionnaire.Size = new System.Drawing.Size(604, 55);
             this.lblShowQuestionnaire.TabIndex = 26;
-            this.lblShowQuestionnaire.Text = "Vragenlijst Weergeven";
+            this.lblShowQuestionnaire.Text = "Vragenlijstdetails / Wijzigen";
             // 
             // lblAuthor
             // 
@@ -270,11 +270,13 @@
             // 
             // questionsView1
             // 
+            this.questionsView1.AddQuestionnaireController = null;
             this.questionsView1.Dialog = null;
             this.questionsView1.Location = new System.Drawing.Point(44, 458);
             this.questionsView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.questionsView1.Name = "questionsView1";
             this.questionsView1.ParentController = null;
+            this.questionsView1.QuestionnaireDetailController = null;
             this.questionsView1.Size = new System.Drawing.Size(1668, 473);
             this.questionsView1.TabIndex = 37;
             // 
