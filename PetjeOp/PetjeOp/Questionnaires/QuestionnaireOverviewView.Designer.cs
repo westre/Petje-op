@@ -103,7 +103,7 @@
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(150, 44);
             this.btnDetails.TabIndex = 6;
-            this.btnDetails.Text = "Details";
+            this.btnDetails.Text = "Details/Wijzig";
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 
@@ -157,7 +157,7 @@
             this.Controls.Add(this.btnAddQuestionnaire);
             this.Controls.Add(this.tvQuestionnaires);
             this.Controls.Add(this.lblAddQuestionnaire);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "QuestionnaireOverviewView";
             this.Size = new System.Drawing.Size(1318, 1011);
             this.Load += new System.EventHandler(this.QuestionnaireOverviewView_Load);
