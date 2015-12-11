@@ -240,5 +240,10 @@ namespace PetjeOp.AddQuestionnaire
                     btnAddAnswer_Click(this, new EventArgs());
             }
         }
+
+        private void rbLimit_CheckedChanged(object sender, EventArgs e)
+        {
+            rbNoLimit_CheckedChanged(sender, e);
+        }
     }
 }

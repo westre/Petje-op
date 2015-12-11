@@ -175,7 +175,7 @@ namespace PetjeOp.AddQuestionnaire
             foreach (MultipleChoiceQuestion q in tempQuestionnaire.Questions)
             {
                 //Voeg Node toe met vraag
-                TreeNode addedNode = tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
+                TreeNode addedNode = tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description + " [" + q.TimeRestriction + "]");
 
                 //Maak een bold font aan
                 Font boldFont = new Font(tvQuestions.Font, FontStyle.Bold);
