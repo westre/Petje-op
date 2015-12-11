@@ -62,11 +62,12 @@ namespace PetjeOp
                 questionnaire.ID = dbQuestionnaire.id; // Geef het id mee vanuit de database
                 questionnaire.Subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name); // Set het subject van de vragenlijst
 
-                Teacher author = new Teacher(); // Set auteur van de vragenlijst
+                Teacher author = new Teacher(); 
                 author.TeacherNr = dbQuestionnaire.tblTeacher.nr;
                 author.FirstName = dbQuestionnaire.tblTeacher.firstname;
                 author.SurName = dbQuestionnaire.tblTeacher.surname;
-                questionnaire.Author = author;
+
+                questionnaire.Author = author; // Set auteur van de vragenlijst
                 questionnaire.Archived = dbQuestionnaire.archived;
 
                 // Loop door alle questions binnen die questionnaire
