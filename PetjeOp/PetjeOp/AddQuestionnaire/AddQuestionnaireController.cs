@@ -130,7 +130,7 @@ namespace PetjeOp.AddQuestionnaire
         {
             View.tbQuestionnaireName.Clear();
             View.cbSubjects.SelectedIndex = -1;
-            //View.tvQuestions.Nodes.Clear();
+            View.questionsView1.tvQuestions.Nodes.Clear();
         }
     }
 }
