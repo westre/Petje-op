@@ -116,11 +116,6 @@ namespace PetjeOp {
             aqc.Init(ExamID);
             MasterController.SetController(aqc);
 
-            /*Controller controller = MasterController.GetController(typeof(AnswerQuestionnaireController));
-            AnswerQuestionnaireController AnswerQuestionnaireController = (AnswerQuestionnaireController)controller;
-            AnswerQuestionnaireController.setExam(ExamID);
-            AnswerQuestionnaireController.Init(ExamID);
-            MasterController.SetController(controller);*/
             View.DialogResult = DialogResult.OK;
             View.Close();
         }

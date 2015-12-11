@@ -272,7 +272,7 @@
   <ItemGroup>
     <Content Include="Resources\Button_Login_Icon.png" />
     <Content Include="Resources\Inloggen.png" />
-    <Content Include="Resources\loadgif.gif" />
+    <None Include="Resources\loadgif.gif" />
     <Content Include="Resources\Uitloggen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
