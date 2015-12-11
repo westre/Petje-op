@@ -47,7 +47,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -96,17 +95,11 @@
     <Compile Include="Exam.cs" />
     <Compile Include="ExampleTwo\ExampleTwoController.cs" />
     <Compile Include="ExampleTwo\ExampleTwoModel.cs" />
-    <Compile Include="ExampleTwo\ExampleTwoView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="ExampleTwo\ExampleTwoView.cs" />
     <Compile Include="ExampleTwo\ExampleTwoView.Designer.cs">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
     </Compile>
-    <Compile Include="IContainsModel.cs" />
     <Compile Include="IEnvironment.cs" />
-    <Compile Include="kevineter.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Login\LoginController.cs" />
     <Compile Include="Login\LoginModel.cs" />
     <Compile Include="Login\LoginView.cs">
@@ -164,9 +157,7 @@
     <Compile Include="Questionnaire.cs" />
     <Compile Include="Example\ExampleController.cs" />
     <Compile Include="Example\ExampleModel.cs" />
-    <Compile Include="Example\ExampleView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Example\ExampleView.cs" />
     <Compile Include="Example\ExampleView.Designer.cs">
       <DependentUpon>ExampleView.cs</DependentUpon>
     </Compile>

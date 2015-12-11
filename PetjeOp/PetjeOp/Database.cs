@@ -23,7 +23,7 @@ namespace PetjeOp
                 db.SubmitChanges();
                 db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 System.Console.WriteLine("Kon antwoord niet opslaan");
             }
