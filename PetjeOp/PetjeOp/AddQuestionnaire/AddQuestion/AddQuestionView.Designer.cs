@@ -63,9 +63,9 @@
             this.gbQuestion.Controls.Add(this.tbQuestion);
             this.gbQuestion.Controls.Add(this.lblQuestion);
             this.gbQuestion.Location = new System.Drawing.Point(4, 4);
-            this.gbQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.gbQuestion.Name = "gbQuestion";
-            this.gbQuestion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbQuestion.Padding = new System.Windows.Forms.Padding(4);
             this.gbQuestion.Size = new System.Drawing.Size(1008, 465);
             this.gbQuestion.TabIndex = 0;
             this.gbQuestion.TabStop = false;
@@ -89,9 +89,9 @@
             this.gbTime.Controls.Add(this.rbNoLimit);
             this.gbTime.Controls.Add(this.tbSeconds);
             this.gbTime.Location = new System.Drawing.Point(12, 346);
-            this.gbTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbTime.Margin = new System.Windows.Forms.Padding(4);
             this.gbTime.Name = "gbTime";
-            this.gbTime.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbTime.Padding = new System.Windows.Forms.Padding(4);
             this.gbTime.Size = new System.Drawing.Size(468, 108);
             this.gbTime.TabIndex = 22;
             this.gbTime.TabStop = false;
@@ -102,7 +102,7 @@
             this.rbLimit.AutoSize = true;
             this.rbLimit.BackColor = System.Drawing.Color.Transparent;
             this.rbLimit.Location = new System.Drawing.Point(6, 65);
-            this.rbLimit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbLimit.Margin = new System.Windows.Forms.Padding(4);
             this.rbLimit.Name = "rbLimit";
             this.rbLimit.Size = new System.Drawing.Size(213, 29);
             this.rbLimit.TabIndex = 4;
@@ -116,7 +116,7 @@
             this.rbNoLimit.AutoSize = true;
             this.rbNoLimit.Checked = true;
             this.rbNoLimit.Location = new System.Drawing.Point(6, 31);
-            this.rbNoLimit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbNoLimit.Margin = new System.Windows.Forms.Padding(4);
             this.rbNoLimit.Name = "rbNoLimit";
             this.rbNoLimit.Size = new System.Drawing.Size(158, 29);
             this.rbNoLimit.TabIndex = 3;
@@ -128,7 +128,7 @@
             // tbSeconds
             // 
             this.tbSeconds.Location = new System.Drawing.Point(228, 63);
-            this.tbSeconds.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSeconds.Margin = new System.Windows.Forms.Padding(4);
             this.tbSeconds.Name = "tbSeconds";
             this.tbSeconds.Size = new System.Drawing.Size(100, 31);
             this.tbSeconds.TabIndex = 2;
@@ -167,7 +167,7 @@
             // 
             this.btnDeleteAnswer.Enabled = false;
             this.btnDeleteAnswer.Location = new System.Drawing.Point(500, 137);
-            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
             this.btnDeleteAnswer.Size = new System.Drawing.Size(140, 40);
             this.btnDeleteAnswer.TabIndex = 18;
@@ -178,7 +178,7 @@
             // tbAnswer
             // 
             this.tbAnswer.Location = new System.Drawing.Point(12, 277);
-            this.tbAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.tbAnswer.Name = "tbAnswer";
             this.tbAnswer.Size = new System.Drawing.Size(468, 31);
             this.tbAnswer.TabIndex = 17;
@@ -189,7 +189,7 @@
             // 
             this.btnAddAnswer.Enabled = false;
             this.btnAddAnswer.Location = new System.Drawing.Point(500, 277);
-            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddAnswer.Name = "btnAddAnswer";
             this.btnAddAnswer.Size = new System.Drawing.Size(140, 40);
             this.btnAddAnswer.TabIndex = 16;
@@ -202,7 +202,7 @@
             this.clbAnswers.CheckOnClick = true;
             this.clbAnswers.FormattingEnabled = true;
             this.clbAnswers.Location = new System.Drawing.Point(12, 137);
-            this.clbAnswers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clbAnswers.Margin = new System.Windows.Forms.Padding(4);
             this.clbAnswers.Name = "clbAnswers";
             this.clbAnswers.Size = new System.Drawing.Size(468, 82);
             this.clbAnswers.TabIndex = 15;
@@ -222,7 +222,7 @@
             // tbQuestion
             // 
             this.tbQuestion.Location = new System.Drawing.Point(88, 37);
-            this.tbQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.tbQuestion.Name = "tbQuestion";
             this.tbQuestion.Size = new System.Drawing.Size(392, 31);
             this.tbQuestion.TabIndex = 13;
@@ -244,7 +244,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.gbQuestion);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddQuestionView";
             this.Size = new System.Drawing.Size(1016, 479);
             this.Load += new System.EventHandler(this.AddQuestionView_Load);
