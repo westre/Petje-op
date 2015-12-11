@@ -78,7 +78,7 @@ namespace PetjeOp
                 questionnaire.ID = dbQuestionnaire.id; // Geef het id mee vanuit de database
                 questionnaire.Subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name); // Set het subject van de vragenlijst
 
-                Teacher author = new Teacher(); 
+                Teacher author = new Teacher(); // Teacher object aanmaken voor Autheur
                 author.TeacherNr = dbQuestionnaire.tblTeacher.nr;
                 author.FirstName = dbQuestionnaire.tblTeacher.firstname;
                 author.SurName = dbQuestionnaire.tblTeacher.surname;
@@ -89,7 +89,7 @@ namespace PetjeOp
                 // Loop door alle questions binnen die questionnaire
                 foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
                 {
-                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
+                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description); // 
 
                     question.ID = dbQuestion.id;
                     question.QuestionIndex = dbQuestion.questionindex;

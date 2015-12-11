@@ -246,7 +246,6 @@ namespace PetjeOp.AddQuestionnaire
             {
                 return true;
             }
-
             return false;
         }
 
