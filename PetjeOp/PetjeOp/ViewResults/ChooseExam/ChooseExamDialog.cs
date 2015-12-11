@@ -10,7 +10,6 @@ using System.Windows.Forms;
 namespace PetjeOp.ViewResults.ChooseExam {
     public partial class ChooseExamDialog : Form
     {
-
         private TeacherController Controller;
         public ChooseExamDialog(TeacherController Controller)
         {
@@ -20,6 +19,8 @@ namespace PetjeOp.ViewResults.ChooseExam {
 
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
+
+
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
             List<Exam> exams = Controller.MasterController.DB.GetAllExams();
 
@@ -28,14 +29,11 @@ namespace PetjeOp.ViewResults.ChooseExam {
                 listBox1.Items.AddRange(new object[] { ex });
             }
 
-          
-
-
 
 
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        public virtual void btnOk_Click(object sender, EventArgs e)
         {
             // hier kun je op OK klikken als je een afnamemoment hebt gekozen
             Controller.x = (Exam)listBox1.SelectedItem;

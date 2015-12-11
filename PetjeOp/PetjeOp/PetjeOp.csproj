@@ -79,6 +79,12 @@
       <DependentUpon>QuestionsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Answer.cs" />
+    <Compile Include="ChooseExamDialogs\ChooseExamDetailsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseExamDialogs\ChooseExamDetailsDialog.Designer.cs">
+      <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Database.designer.cs">
@@ -101,18 +107,10 @@
     <Compile Include="kevineter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEController.cs" />
-    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEModel.cs" />
-    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.Designer.cs">
-      <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login\LoginController.cs" />
-    <Compile Include="KOPIEER EN LEES DIT VOOR MVC\LoginModel.cs" />
+    <Compile Include="Login\LoginModel.cs" />
     <Compile Include="Login\LoginView.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -220,6 +218,9 @@
     <EmbeddedResource Include="AnswerQuestionnaire\AnswerQuestionnaireView.resx">
       <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChooseExamDialogs\ChooseExamDetailsDialog.resx">
+      <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,9 +238,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExampleTwo\ExampleTwoView.resx">
       <DependentUpon>ExampleTwoView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KOPIEER EN LEES DIT VOOR MVC\JOUWKLASSEView.resx">
-      <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -285,7 +283,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="KOPIEER EN LEES DIT VOOR MVC\README.txt" />
     <None Include="Resources\bannerBackground.png" />
     <None Include="Resources\Menu_Background1.png" />
     <None Include="Resources\Menu_Background.png" />

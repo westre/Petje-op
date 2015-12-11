@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PetjeOp {
     public delegate void SetTextCallback();
-    public class AnswerQuestionnaireController : Controller, IEnvironment {
+    public class AnswerQuestionnaireController : Controller{
         public AnswerQuestionnaireView View { get; set; }
         public AnswerQuestionnaireModel Model { get; set; }
         public Exam Exam { get; set; }
@@ -89,14 +89,14 @@ namespace PetjeOp {
 
             if(Exam.CurrenQuestion != null)
             { 
-                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
-                View.lblTitle_Results_Title.Text = question.Description;
+            MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
+            View.lblTitle_Results_Title.Text = question.Description;
                 View.VraagBox.Visible = true;
 
-                foreach (Answer answer in question.AnswerOptions)
-                {
-                    View.VraagBox.Items.Add(answer.Description);
-                }
+            foreach (Answer answer in question.AnswerOptions)
+            {
+                View.VraagBox.Items.Add(answer.Description);
+            }
                 //View.VraagBox.Height = View.VraagBox.GetItemHeight(0) * View.VraagBox.Items.Count;
                 System.Console.WriteLine(View.VraagBox.GetItemHeight(2));
             }

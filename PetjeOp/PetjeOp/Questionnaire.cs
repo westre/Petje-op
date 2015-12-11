@@ -12,6 +12,8 @@ namespace PetjeOp
         public string Name { get; set; }
         public List<Question> Questions { get; set; }
         public Subject Subject { get; set; }
+        public Teacher Author { get; set;  }
+        public bool Archived { get; set; }
 
         // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
         public Questionnaire(string n)
@@ -26,29 +28,10 @@ namespace PetjeOp
             Questions = new List<Question>();
         }
 
-        // Voeg een vraag aan de vragenlijst toe
-        public void addQuestion(Question q)
-        {
-            Questions.Add(q);
-        }
-
-        // Verwijder een vraag uit de vragenlijst
-        public void deleteQuestion(int i)
-        {
-            Questions.RemoveAt(i);
-        }
-
-        // Weergeeft de vragen in de vragenlijst
-        public void listQuestions()
-        {
-            foreach (Question q in Questions)
-            {
-                Console.WriteLine(q);
-            }
-        }
         public override string ToString()
         {
-            return Convert.ToString(ID);
+            return String.Format("{0}: {1}", Subject, Name);
         }
+
     }
 }

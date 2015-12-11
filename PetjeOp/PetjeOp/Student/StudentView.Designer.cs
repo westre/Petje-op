@@ -70,7 +70,6 @@ namespace PetjeOp {
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1174, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // btnResults
@@ -111,7 +110,7 @@ namespace PetjeOp {
             // pbIcon_Logout_Icon
             // 
             this.pbIcon_Logout_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_Logout_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Logout_Icon;
+            this.pbIcon_Logout_Icon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbIcon_Logout_Icon.BackgroundImage")));
             this.pbIcon_Logout_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(30, 9);
             this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(2);
@@ -253,7 +252,6 @@ namespace PetjeOp {
             this.viewPanel.Location = new System.Drawing.Point(0, 59);
             this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
             this.viewPanel.Name = "viewPanel";
-            this.viewPanel.Size = new System.Drawing.Size(1174, 427);
             this.viewPanel.TabIndex = 4;
             // 
             // StudentView
@@ -264,7 +262,6 @@ namespace PetjeOp {
             this.Controls.Add(this.pnlHeader);
             
             this.Name = "StudentView";
-            this.Size = new System.Drawing.Size(1174, 486);
             this.Resize += new System.EventHandler(this.logOutBtn);
             this.pnlHeader.ResumeLayout(false);
             this.pnlButton_Logout_Background.ResumeLayout(false);

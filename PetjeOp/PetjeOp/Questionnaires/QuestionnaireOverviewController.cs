@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
 
@@ -36,7 +38,15 @@ namespace PetjeOp.Questionnaires
             Application.DoEvents();
 
             //Vraag Questionnaires op
-            Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
+            if (View.cbShowArchive.Checked)
+            {
+                Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
+            }
+            else
+            {
+                Model.AllQuestionnaires = MasterController.DB.GetAllActiveQuestionnaires();
+            }
+
             ResetList();
 
             //Vraag Subjects op
@@ -59,6 +69,9 @@ namespace PetjeOp.Questionnaires
                 TreeNode questionnaireTreeNode = View.tvQuestionnaires.Nodes.Add(questionnaire.Name + " (" + questionnaire.Subject + ")");
                 questionnaireTreeNode.Tag = questionnaire;
 
+                if (questionnaire.Archived)
+                    questionnaireTreeNode.ForeColor = Color.DarkGray;
+
                 //Loop over Questions
                 foreach (MultipleChoiceQuestion question in questionnaire.Questions)
                 {
@@ -66,6 +79,9 @@ namespace PetjeOp.Questionnaires
                     TreeNode questionTreeNode =
                         questionnaireTreeNode.Nodes.Add(question.QuestionIndex + ": " + question.Description);
                     questionTreeNode.Tag = question;
+
+                    if (questionnaire.Archived)
+                        questionTreeNode.ForeColor = Color.DarkGray;
 
                     //Loop over Answers
                     foreach (Answer answer in question.AnswerOptions)
@@ -136,6 +152,96 @@ namespace PetjeOp.Questionnaires
         public void ResetList()
         {
             Model.ListQuestionnaires = Model.AllQuestionnaires;
+        }
+
+        public void GoToQuestionnaireDetails()
+        {
+            //Roep het questionnairescherm aan en voeg de huidige questionnaire er aan toe.
+            QuestionnaireDetailController qoc = (QuestionnaireDetailController)MasterController.GetController(typeof(QuestionnaireDetailController));
+
+            //Bepaal geselecteerde Questionnaire
+            qoc.Model.Questionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
+
+            //Set de ParentController
+            qoc.View.questionsView1.ParentController = qoc;
+
+            //Update de TreeView met vragen in QuestionnareDetails
+            qoc.View.questionsView1.UpdateTreeView();
+
+            //Set lijst met alle Questionnaires in QuestionnaireDetails
+            qoc.Model.Questionnaires = Model.AllQuestionnaires;
+
+            //Vul de ComboBox met alle Questionnaires
+            qoc.FillCbSelectQuestionnaire();
+
+            //Verander scherm naar QuestionnareDetails
+            MasterController.SetController(qoc);
+        }
+
+        public void CheckButtons()
+        {
+            //Als er een Node geselecteerd is, mag de knop 'Details' aangezet worden
+            if (View.tvQuestionnaires.SelectedNode != null)
+            {
+                Questionnaire selectedQuestionnaire = (Questionnaire) View.tvQuestionnaires.SelectedNode.Tag;
+
+                if (!selectedQuestionnaire.Archived)
+                {
+                    View.btnDelete.Enabled = true;
+                    View.btnRecover.Hide();
+                }
+                else
+                {
+                    View.btnDelete.Enabled = false;
+                    View.btnRecover.Show();
+                }
+
+                View.btnDetails.Enabled = true;
+            }
+            else
+            {
+                View.btnDetails.Enabled = false;
+                View.btnDelete.Enabled = false;
+                View.btnRecover.Hide();
+            }
+        }
+
+        public void ArchiveQuestionnaire()
+        {
+            DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt archiveren?",
+                "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dlr == DialogResult.Yes)
+            {
+                Questionnaire selectedQuestionnaire = (Questionnaire) View.tvQuestionnaires.SelectedNode.Tag;
+
+                selectedQuestionnaire.Archived = true;
+
+                MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
+
+                GetAllQuestionnairesAndSubjects();
+                FillTreeView();
+                CheckButtons();
+            }
+        }
+
+        public void UnarchiveQuestionnaire()
+        {
+            DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt herstellen?",
+                "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dlr == DialogResult.Yes)
+            {
+                Questionnaire selectedQuestionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
+
+                selectedQuestionnaire.Archived = false;
+
+                MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
+
+                GetAllQuestionnairesAndSubjects();
+                FillTreeView();
+                CheckButtons();
+            }
         }
     }
 }

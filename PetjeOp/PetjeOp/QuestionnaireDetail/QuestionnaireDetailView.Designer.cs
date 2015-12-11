@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace PetjeOp {
-    partial class QuestionnaireDetailView {
+﻿namespace PetjeOp.QuestionnaireDetail
+{
+    partial class QuestionnaireDetailView
+    {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -12,8 +11,10 @@ namespace PetjeOp {
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -25,300 +26,316 @@ namespace PetjeOp {
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionnaireDetailView));
-            this.pnlHeader = new System.Windows.Forms.Panel();
-            this.btnResults = new System.Windows.Forms.Button();
-            this.pnlButton_Logout_Background = new System.Windows.Forms.Panel();
-            this.lblTitle_Logout_Title = new System.Windows.Forms.Label();
-            this.pbIcon_Logout_Icon = new System.Windows.Forms.PictureBox();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
-            this.pnlButton_Agenda_Background = new System.Windows.Forms.Panel();
-            this.pbIcon_Agenda_Icon = new System.Windows.Forms.PictureBox();
-            this.lblTitle_Agenda_Title = new System.Windows.Forms.Label();
-            this.pnlButton_Result_Background = new System.Windows.Forms.Panel();
-            this.pbIcon_Results_Icon = new System.Windows.Forms.PictureBox();
-            this.lblTitle_Results_Title = new System.Windows.Forms.Label();
-            this.pnlButton_QuestionnaireOverview_Background = new System.Windows.Forms.Panel();
-            this.pbIcon_QuestionnaireOverview_Icon = new System.Windows.Forms.PictureBox();
-            this.lblTitle_QuestionnaireOverview_Title = new System.Windows.Forms.Label();
-            this.viewPanel = new System.Windows.Forms.Panel();
-            this.pnlHeader.SuspendLayout();
-            this.pnlButton_Logout_Background.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
-            this.pnlButton_Agenda_Background.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Agenda_Icon)).BeginInit();
-            this.pnlButton_Result_Background.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Results_Icon)).BeginInit();
-            this.pnlButton_QuestionnaireOverview_Background.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_QuestionnaireOverview_Icon)).BeginInit();
+        private void InitializeComponent()
+        {
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.lblErrorSubject = new System.Windows.Forms.Label();
+            this.lblSubject = new System.Windows.Forms.Label();
+            this.lblNoNodeSelectedError = new System.Windows.Forms.Label();
+            this.lblQuestionaireNameError = new System.Windows.Forms.Label();
+            this.btnSaveQuestionnaire = new System.Windows.Forms.Button();
+            this.lblQuestionnaireName = new System.Windows.Forms.Label();
+            this.lblShowQuestionnaire = new System.Windows.Forms.Label();
+            this.lblAuthor = new System.Windows.Forms.Label();
+            this.lblAuthorData = new System.Windows.Forms.Label();
+            this.lblNameData = new System.Windows.Forms.Label();
+            this.lblSubjectData = new System.Windows.Forms.Label();
+            this.lblNoQuestionsInQuestionaire = new System.Windows.Forms.Label();
+            this.btnExams = new System.Windows.Forms.Button();
+            this.cbSelectQuestionnaire = new System.Windows.Forms.ComboBox();
+            this.lblSelectQuestionnaire = new System.Windows.Forms.Label();
+            this.tbNameEdit = new System.Windows.Forms.TextBox();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancelEdit = new System.Windows.Forms.Button();
+            this.cbSubject = new System.Windows.Forms.ComboBox();
+            this.questionsView1 = new PetjeOp.AddQuestionnaire.QuestionsView();
             this.SuspendLayout();
             // 
-            // pnlHeader
+            // btnCancel
             // 
-            this.pnlHeader.AutoSize = true;
-            this.pnlHeader.BackColor = System.Drawing.Color.Transparent;
-            this.pnlHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlHeader.BackgroundImage")));
-            this.pnlHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlHeader.Controls.Add(this.btnResults);
-            this.pnlHeader.Controls.Add(this.pnlButton_Logout_Background);
-            this.pnlHeader.Controls.Add(this.pbLogo);
-            this.pnlHeader.Controls.Add(this.pnlButton_Agenda_Background);
-            this.pnlHeader.Controls.Add(this.pnlButton_Result_Background);
-            this.pnlHeader.Controls.Add(this.pnlButton_QuestionnaireOverview_Background);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1184, 64);
-            this.pnlHeader.TabIndex = 2;
+            this.btnCancel.Location = new System.Drawing.Point(586, 988);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(420, 94);
+            this.btnCancel.TabIndex = 36;
+            this.btnCancel.Text = "Annuleer";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnResults
+            // lblErrorSubject
             // 
-            this.btnResults.Location = new System.Drawing.Point(785, 18);
-            this.btnResults.Name = "btnResults";
-            this.btnResults.Size = new System.Drawing.Size(75, 23);
-            this.btnResults.TabIndex = 16;
-            this.btnResults.Text = "Resultaten";
-            this.btnResults.UseVisualStyleBackColor = true;
+            this.lblErrorSubject.AutoSize = true;
+            this.lblErrorSubject.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorSubject.Location = new System.Drawing.Point(764, 410);
+            this.lblErrorSubject.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblErrorSubject.Name = "lblErrorSubject";
+            this.lblErrorSubject.Size = new System.Drawing.Size(0, 25);
+            this.lblErrorSubject.TabIndex = 35;
             // 
-            // pnlButton_Logout_Background
+            // lblSubject
             // 
-            this.pnlButton_Logout_Background.BackColor = System.Drawing.Color.Transparent;
-            this.pnlButton_Logout_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
-            this.pnlButton_Logout_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlButton_Logout_Background.Controls.Add(this.lblTitle_Logout_Title);
-            this.pnlButton_Logout_Background.Controls.Add(this.pbIcon_Logout_Icon);
-            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(0, 0);
-            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
-            this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
-            this.pnlButton_Logout_Background.TabIndex = 15;
+            this.lblSubject.AutoSize = true;
+            this.lblSubject.Location = new System.Drawing.Point(34, 287);
+            this.lblSubject.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSubject.Name = "lblSubject";
+            this.lblSubject.Size = new System.Drawing.Size(55, 25);
+            this.lblSubject.TabIndex = 33;
+            this.lblSubject.Text = "Vak:";
             // 
-            // lblTitle_Logout_Title
+            // lblNoNodeSelectedError
             // 
-            this.lblTitle_Logout_Title.AutoSize = true;
-            this.lblTitle_Logout_Title.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle_Logout_Title.Font = new System.Drawing.Font("Calibri", 14F);
-            this.lblTitle_Logout_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_Logout_Title.Location = new System.Drawing.Point(61, 9);
-            this.lblTitle_Logout_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle_Logout_Title.Name = "lblTitle_Logout_Title";
-            this.lblTitle_Logout_Title.Size = new System.Drawing.Size(83, 23);
-            this.lblTitle_Logout_Title.TabIndex = 14;
-            this.lblTitle_Logout_Title.Text = "Uitloggen";
+            this.lblNoNodeSelectedError.AutoSize = true;
+            this.lblNoNodeSelectedError.ForeColor = System.Drawing.Color.Red;
+            this.lblNoNodeSelectedError.Location = new System.Drawing.Point(1540, 513);
+            this.lblNoNodeSelectedError.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblNoNodeSelectedError.Name = "lblNoNodeSelectedError";
+            this.lblNoNodeSelectedError.Size = new System.Drawing.Size(0, 25);
+            this.lblNoNodeSelectedError.TabIndex = 31;
             // 
-            // pbIcon_Logout_Icon
+            // lblQuestionaireNameError
             // 
-            this.pbIcon_Logout_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_Logout_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Logout_Icon;
-            this.pbIcon_Logout_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(30, 9);
-            this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(2);
-            this.pbIcon_Logout_Icon.Name = "pbIcon_Logout_Icon";
-            this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(21, 25);
-            this.pbIcon_Logout_Icon.TabIndex = 4;
-            this.pbIcon_Logout_Icon.TabStop = false;
+            this.lblQuestionaireNameError.AutoSize = true;
+            this.lblQuestionaireNameError.ForeColor = System.Drawing.Color.Red;
+            this.lblQuestionaireNameError.Location = new System.Drawing.Point(764, 360);
+            this.lblQuestionaireNameError.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblQuestionaireNameError.Name = "lblQuestionaireNameError";
+            this.lblQuestionaireNameError.Size = new System.Drawing.Size(0, 25);
+            this.lblQuestionaireNameError.TabIndex = 30;
             // 
-            // pbLogo
+            // btnSaveQuestionnaire
             // 
-            this.pbLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbLogo.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
-            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbLogo.Location = new System.Drawing.Point(8, 7);
-            this.pbLogo.Margin = new System.Windows.Forms.Padding(2);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(150, 50);
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
+            this.btnSaveQuestionnaire.Enabled = false;
+            this.btnSaveQuestionnaire.Location = new System.Drawing.Point(40, 988);
+            this.btnSaveQuestionnaire.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSaveQuestionnaire.Name = "btnSaveQuestionnaire";
+            this.btnSaveQuestionnaire.Size = new System.Drawing.Size(534, 94);
+            this.btnSaveQuestionnaire.TabIndex = 29;
+            this.btnSaveQuestionnaire.Text = "Vragenlijst Opslaan";
+            this.btnSaveQuestionnaire.UseVisualStyleBackColor = true;
             // 
-            // pnlButton_Agenda_Background
+            // lblQuestionnaireName
             // 
-            this.pnlButton_Agenda_Background.BackColor = System.Drawing.Color.Transparent;
-            this.pnlButton_Agenda_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
-            this.pnlButton_Agenda_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlButton_Agenda_Background.Controls.Add(this.pbIcon_Agenda_Icon);
-            this.pnlButton_Agenda_Background.Controls.Add(this.lblTitle_Agenda_Title);
-            this.pnlButton_Agenda_Background.Location = new System.Drawing.Point(571, 12);
-            this.pnlButton_Agenda_Background.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlButton_Agenda_Background.Name = "pnlButton_Agenda_Background";
-            this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(165, 40);
-            this.pnlButton_Agenda_Background.TabIndex = 15;
+            this.lblQuestionnaireName.AutoSize = true;
+            this.lblQuestionnaireName.Location = new System.Drawing.Point(34, 231);
+            this.lblQuestionnaireName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblQuestionnaireName.Name = "lblQuestionnaireName";
+            this.lblQuestionnaireName.Size = new System.Drawing.Size(74, 25);
+            this.lblQuestionnaireName.TabIndex = 27;
+            this.lblQuestionnaireName.Text = "Naam:";
             // 
-            // pbIcon_Agenda_Icon
+            // lblShowQuestionnaire
             // 
-            this.pbIcon_Agenda_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_Agenda_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Agenda_Icon;
-            this.pbIcon_Agenda_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_Agenda_Icon.Location = new System.Drawing.Point(36, 10);
-            this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(2);
-            this.pbIcon_Agenda_Icon.Name = "pbIcon_Agenda_Icon";
-            this.pbIcon_Agenda_Icon.Size = new System.Drawing.Size(25, 22);
-            this.pbIcon_Agenda_Icon.TabIndex = 5;
-            this.pbIcon_Agenda_Icon.TabStop = false;
+            this.lblShowQuestionnaire.AutoSize = true;
+            this.lblShowQuestionnaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowQuestionnaire.Location = new System.Drawing.Point(22, 37);
+            this.lblShowQuestionnaire.Margin = new System.Windows.Forms.Padding(4);
+            this.lblShowQuestionnaire.Name = "lblShowQuestionnaire";
+            this.lblShowQuestionnaire.Size = new System.Drawing.Size(507, 55);
+            this.lblShowQuestionnaire.TabIndex = 26;
+            this.lblShowQuestionnaire.Text = "Vragenlijst Weergeven";
             // 
-            // lblTitle_Agenda_Title
+            // lblAuthor
             // 
-            this.lblTitle_Agenda_Title.AutoSize = true;
-            this.lblTitle_Agenda_Title.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle_Agenda_Title.Font = new System.Drawing.Font("Calibri", 14F);
-            this.lblTitle_Agenda_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_Agenda_Title.Location = new System.Drawing.Point(65, 8);
-            this.lblTitle_Agenda_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle_Agenda_Title.Name = "lblTitle_Agenda_Title";
-            this.lblTitle_Agenda_Title.Size = new System.Drawing.Size(68, 23);
-            this.lblTitle_Agenda_Title.TabIndex = 13;
-            this.lblTitle_Agenda_Title.Text = "Agenda";
+            this.lblAuthor.AutoSize = true;
+            this.lblAuthor.Location = new System.Drawing.Point(34, 335);
+            this.lblAuthor.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblAuthor.Name = "lblAuthor";
+            this.lblAuthor.Size = new System.Drawing.Size(81, 25);
+            this.lblAuthor.TabIndex = 38;
+            this.lblAuthor.Text = "Auteur:";
             // 
-            // pnlButton_Result_Background
+            // lblAuthorData
             // 
-            this.pnlButton_Result_Background.BackColor = System.Drawing.Color.Transparent;
-            this.pnlButton_Result_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
-            this.pnlButton_Result_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlButton_Result_Background.Controls.Add(this.pbIcon_Results_Icon);
-            this.pnlButton_Result_Background.Controls.Add(this.lblTitle_Results_Title);
-            this.pnlButton_Result_Background.Location = new System.Drawing.Point(233, 12);
-            this.pnlButton_Result_Background.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlButton_Result_Background.Name = "pnlButton_Result_Background";
-            this.pnlButton_Result_Background.Size = new System.Drawing.Size(165, 40);
-            this.pnlButton_Result_Background.TabIndex = 14;
+            this.lblAuthorData.AutoSize = true;
+            this.lblAuthorData.Location = new System.Drawing.Point(202, 335);
+            this.lblAuthorData.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblAuthorData.Name = "lblAuthorData";
+            this.lblAuthorData.Size = new System.Drawing.Size(75, 25);
+            this.lblAuthorData.TabIndex = 39;
+            this.lblAuthorData.Text = "Author";
             // 
-            // pbIcon_Results_Icon
+            // lblNameData
             // 
-            this.pbIcon_Results_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_Results_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Results_Icon;
-            this.pbIcon_Results_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_Results_Icon.Location = new System.Drawing.Point(22, 10);
-            this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(2);
-            this.pbIcon_Results_Icon.Name = "pbIcon_Results_Icon";
-            this.pbIcon_Results_Icon.Size = new System.Drawing.Size(18, 20);
-            this.pbIcon_Results_Icon.TabIndex = 7;
-            this.pbIcon_Results_Icon.TabStop = false;
+            this.lblNameData.AutoSize = true;
+            this.lblNameData.Location = new System.Drawing.Point(202, 233);
+            this.lblNameData.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblNameData.Name = "lblNameData";
+            this.lblNameData.Size = new System.Drawing.Size(68, 25);
+            this.lblNameData.TabIndex = 40;
+            this.lblNameData.Text = "Name";
             // 
-            // lblTitle_Results_Title
+            // lblSubjectData
             // 
-            this.lblTitle_Results_Title.AutoSize = true;
-            this.lblTitle_Results_Title.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle_Results_Title.Font = new System.Drawing.Font("Calibri", 14F);
-            this.lblTitle_Results_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_Results_Title.Location = new System.Drawing.Point(56, 8);
-            this.lblTitle_Results_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle_Results_Title.Name = "lblTitle_Results_Title";
-            this.lblTitle_Results_Title.Size = new System.Drawing.Size(91, 23);
-            this.lblTitle_Results_Title.TabIndex = 4;
-            this.lblTitle_Results_Title.Text = "Resultaten";
+            this.lblSubjectData.AutoSize = true;
+            this.lblSubjectData.Location = new System.Drawing.Point(202, 285);
+            this.lblSubjectData.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSubjectData.Name = "lblSubjectData";
+            this.lblSubjectData.Size = new System.Drawing.Size(84, 25);
+            this.lblSubjectData.TabIndex = 41;
+            this.lblSubjectData.Text = "Subject";
             // 
-            // pnlButton_QuestionnaireOverview_Background
+            // lblNoQuestionsInQuestionaire
             // 
-            this.pnlButton_QuestionnaireOverview_Background.BackColor = System.Drawing.Color.Transparent;
-            this.pnlButton_QuestionnaireOverview_Background.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Background;
-            this.pnlButton_QuestionnaireOverview_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.pbIcon_QuestionnaireOverview_Icon);
-            this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.lblTitle_QuestionnaireOverview_Title);
-            this.pnlButton_QuestionnaireOverview_Background.Location = new System.Drawing.Point(402, 12);
-            this.pnlButton_QuestionnaireOverview_Background.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlButton_QuestionnaireOverview_Background.Name = "pnlButton_QuestionnaireOverview_Background";
-            this.pnlButton_QuestionnaireOverview_Background.Size = new System.Drawing.Size(165, 40);
-            this.pnlButton_QuestionnaireOverview_Background.TabIndex = 15;
+            this.lblNoQuestionsInQuestionaire.AutoSize = true;
+            this.lblNoQuestionsInQuestionaire.ForeColor = System.Drawing.Color.Red;
+            this.lblNoQuestionsInQuestionaire.Location = new System.Drawing.Point(556, 887);
+            this.lblNoQuestionsInQuestionaire.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblNoQuestionsInQuestionaire.Name = "lblNoQuestionsInQuestionaire";
+            this.lblNoQuestionsInQuestionaire.Size = new System.Drawing.Size(0, 25);
+            this.lblNoQuestionsInQuestionaire.TabIndex = 32;
             // 
-            // pbIcon_QuestionnaireOverview_Icon
+            // btnExams
             // 
-            this.pbIcon_QuestionnaireOverview_Icon.BackColor = System.Drawing.Color.Transparent;
-            this.pbIcon_QuestionnaireOverview_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_QuestionnaireOverview_Icon;
-            this.pbIcon_QuestionnaireOverview_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_QuestionnaireOverview_Icon.Location = new System.Drawing.Point(17, 10);
-            this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(2);
-            this.pbIcon_QuestionnaireOverview_Icon.Name = "pbIcon_QuestionnaireOverview_Icon";
-            this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(21, 21);
-            this.pbIcon_QuestionnaireOverview_Icon.TabIndex = 6;
-            this.pbIcon_QuestionnaireOverview_Icon.TabStop = false;
+            this.btnExams.Location = new System.Drawing.Point(1370, 988);
+            this.btnExams.Margin = new System.Windows.Forms.Padding(6);
+            this.btnExams.Name = "btnExams";
+            this.btnExams.Size = new System.Drawing.Size(394, 94);
+            this.btnExams.TabIndex = 42;
+            this.btnExams.Text = "Afnamemomenten";
+            this.btnExams.UseVisualStyleBackColor = true;
+            this.btnExams.Click += new System.EventHandler(this.btnExams_Click);
             // 
-            // lblTitle_QuestionnaireOverview_Title
+            // cbSelectQuestionnaire
             // 
-            this.lblTitle_QuestionnaireOverview_Title.AutoSize = true;
-            this.lblTitle_QuestionnaireOverview_Title.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle_QuestionnaireOverview_Title.Font = new System.Drawing.Font("Calibri", 14F);
-            this.lblTitle_QuestionnaireOverview_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_QuestionnaireOverview_Title.Location = new System.Drawing.Point(42, 8);
-            this.lblTitle_QuestionnaireOverview_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle_QuestionnaireOverview_Title.Name = "lblTitle_QuestionnaireOverview_Title";
-            this.lblTitle_QuestionnaireOverview_Title.Size = new System.Drawing.Size(111, 23);
-            this.lblTitle_QuestionnaireOverview_Title.TabIndex = 12;
-            this.lblTitle_QuestionnaireOverview_Title.Text = "Vragenlijsten";
+            this.cbSelectQuestionnaire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSelectQuestionnaire.FormattingEnabled = true;
+            this.cbSelectQuestionnaire.Location = new System.Drawing.Point(1034, 63);
+            this.cbSelectQuestionnaire.Margin = new System.Windows.Forms.Padding(6);
+            this.cbSelectQuestionnaire.Name = "cbSelectQuestionnaire";
+            this.cbSelectQuestionnaire.Size = new System.Drawing.Size(726, 33);
+            this.cbSelectQuestionnaire.Sorted = true;
+            this.cbSelectQuestionnaire.TabIndex = 43;
+            this.cbSelectQuestionnaire.SelectedIndexChanged += new System.EventHandler(this.cbSelectQuestionnaire_SelectedIndexChanged);
             // 
-            // viewPanel
+            // lblSelectQuestionnaire
             // 
-            this.viewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewPanel.AutoSize = true;
-            this.viewPanel.Location = new System.Drawing.Point(2, 68);
-            this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.viewPanel.Name = "viewPanel";
-            this.viewPanel.Size = new System.Drawing.Size(4942, 2044);
-            this.viewPanel.TabIndex = 4;
+            this.lblSelectQuestionnaire.AutoSize = true;
+            this.lblSelectQuestionnaire.Location = new System.Drawing.Point(1028, 33);
+            this.lblSelectQuestionnaire.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSelectQuestionnaire.Name = "lblSelectQuestionnaire";
+            this.lblSelectQuestionnaire.Size = new System.Drawing.Size(265, 25);
+            this.lblSelectQuestionnaire.TabIndex = 44;
+            this.lblSelectQuestionnaire.Text = "Snel vragenlijst selecteren";
             // 
-            // StudentView
+            // tbNameEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.tbNameEdit.Location = new System.Drawing.Point(207, 231);
+            this.tbNameEdit.Name = "tbNameEdit";
+            this.tbNameEdit.Size = new System.Drawing.Size(459, 31);
+            this.tbNameEdit.TabIndex = 45;
+            this.tbNameEdit.Visible = false;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(700, 268);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(216, 50);
+            this.btnEdit.TabIndex = 48;
+            this.btnEdit.Text = "Wijzig Gegevens";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(700, 268);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(216, 50);
+            this.btnSave.TabIndex = 49;
+            this.btnSave.Text = "Toepassen";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Visible = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancelEdit
+            // 
+            this.btnCancelEdit.Location = new System.Drawing.Point(922, 268);
+            this.btnCancelEdit.Name = "btnCancelEdit";
+            this.btnCancelEdit.Size = new System.Drawing.Size(216, 50);
+            this.btnCancelEdit.TabIndex = 50;
+            this.btnCancelEdit.Text = "Annuleren";
+            this.btnCancelEdit.UseVisualStyleBackColor = true;
+            this.btnCancelEdit.Visible = false;
+            this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
+            // 
+            // cbSubject
+            // 
+            this.cbSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSubject.FormattingEnabled = true;
+            this.cbSubject.Location = new System.Drawing.Point(207, 279);
+            this.cbSubject.Name = "cbSubject";
+            this.cbSubject.Size = new System.Drawing.Size(459, 33);
+            this.cbSubject.TabIndex = 51;
+            this.cbSubject.Visible = false;
+            // 
+            // questionsView1
+            // 
+            this.questionsView1.Dialog = null;
+            this.questionsView1.Location = new System.Drawing.Point(44, 458);
+            this.questionsView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.questionsView1.Name = "questionsView1";
+            this.questionsView1.ParentController = null;
+            this.questionsView1.Size = new System.Drawing.Size(1668, 473);
+            this.questionsView1.TabIndex = 37;
+            // 
+            // QuestionnaireDetailView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.viewPanel);
-            this.Controls.Add(this.pnlHeader);
-            this.Dock = DockStyle.Fill;
-            this.Name = "StudentView";
-            this.Size = new System.Drawing.Size(1184, 486);
-            this.Resize += new System.EventHandler(this.logOutBtn);
-            this.pnlHeader.ResumeLayout(false);
-            this.pnlButton_Logout_Background.ResumeLayout(false);
-            this.pnlButton_Logout_Background.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Logout_Icon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-            this.pnlButton_Agenda_Background.ResumeLayout(false);
-            this.pnlButton_Agenda_Background.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Agenda_Icon)).EndInit();
-            this.pnlButton_Result_Background.ResumeLayout(false);
-            this.pnlButton_Result_Background.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Results_Icon)).EndInit();
-            this.pnlButton_QuestionnaireOverview_Background.ResumeLayout(false);
-            this.pnlButton_QuestionnaireOverview_Background.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon_QuestionnaireOverview_Icon)).EndInit();
+            this.Controls.Add(this.cbSubject);
+            this.Controls.Add(this.btnCancelEdit);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.tbNameEdit);
+            this.Controls.Add(this.lblErrorSubject);
+            this.Controls.Add(this.lblQuestionaireNameError);
+            this.Controls.Add(this.lblNoNodeSelectedError);
+            this.Controls.Add(this.lblSelectQuestionnaire);
+            this.Controls.Add(this.cbSelectQuestionnaire);
+            this.Controls.Add(this.btnExams);
+            this.Controls.Add(this.lblSubjectData);
+            this.Controls.Add(this.lblNameData);
+            this.Controls.Add(this.lblAuthorData);
+            this.Controls.Add(this.lblAuthor);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.lblSubject);
+            this.Controls.Add(this.lblNoQuestionsInQuestionaire);
+            this.Controls.Add(this.btnSaveQuestionnaire);
+            this.Controls.Add(this.lblQuestionnaireName);
+            this.Controls.Add(this.lblShowQuestionnaire);
+            this.Controls.Add(this.questionsView1);
+            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Name = "QuestionnaireDetailView";
+            this.Size = new System.Drawing.Size(1818, 1121);
+            this.Load += new System.EventHandler(this.QuestionnaireDetailView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-        }
-
-        private void scaleBanner()
-        {
-            pnlHeader.Size = new System.Drawing.Size(Controller.MasterController.Size.Width, pnlHeader.Size.Height);
-        }
-
         #endregion
-        public System.Windows.Forms.Panel pnlHeader;
-        private System.Windows.Forms.PictureBox pbLogo;
-        private System.Windows.Forms.PictureBox pbIcon_Results_Icon;
-        private System.Windows.Forms.PictureBox pbIcon_QuestionnaireOverview_Icon;
-        private System.Windows.Forms.PictureBox pbIcon_Agenda_Icon;
-        private System.Windows.Forms.PictureBox pbIcon_Logout_Icon;
-        private System.Windows.Forms.Label lblTitle_Results_Title;
-        private System.Windows.Forms.Label lblTitle_QuestionnaireOverview_Title;
-        private System.Windows.Forms.Panel pnlButton_Agenda_Background;
-        private System.Windows.Forms.Panel pnlButton_Result_Background;
-        private System.Windows.Forms.Panel pnlButton_QuestionnaireOverview_Background;
-        private System.Windows.Forms.Label lblTitle_Agenda_Title;
-        private System.Windows.Forms.Label lblTitle_Logout_Title;
-        public System.Windows.Forms.Panel pnlButton_Logout_Background;
-        private System.Windows.Forms.Button btnResults;
-        public Panel viewPanel;
 
-        private void logOutBtn(object sender, EventArgs e)
-        {
-            pnlButton_Logout_Background.Location = new System.Drawing.Point((pnlHeader.Size.Width - pnlButton_Logout_Background.Size.Width - 10), 12);
-        }
+        private System.Windows.Forms.Button btnCancel;
+        public System.Windows.Forms.Label lblErrorSubject;
+        private System.Windows.Forms.Label lblSubject;
+        public System.Windows.Forms.Label lblNoNodeSelectedError;
+        public System.Windows.Forms.Label lblQuestionaireNameError;
+        public System.Windows.Forms.Button btnSaveQuestionnaire;
+        private System.Windows.Forms.Label lblQuestionnaireName;
+        private System.Windows.Forms.Label lblShowQuestionnaire;
+        private System.Windows.Forms.Label lblAuthor;
+        public System.Windows.Forms.Label lblAuthorData;
+        public System.Windows.Forms.Label lblNameData;
+        public System.Windows.Forms.Label lblSubjectData;
+        public AddQuestionnaire.QuestionsView questionsView1;
+        public System.Windows.Forms.Label lblNoQuestionsInQuestionaire;
+        private System.Windows.Forms.Button btnExams;
+        public System.Windows.Forms.ComboBox cbSelectQuestionnaire;
+        private System.Windows.Forms.Label lblSelectQuestionnaire;
+        public System.Windows.Forms.ComboBox cbSubject;
+        public System.Windows.Forms.TextBox tbNameEdit;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnCancelEdit;
+        public System.Windows.Forms.Button btnEdit;
     }
 }

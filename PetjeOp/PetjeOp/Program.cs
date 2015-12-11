@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetjeOp.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,20 @@ namespace PetjeOp {
             if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MasterController());
+            MasterController MasterController = new MasterController(); //Aanmaken van MasterController, het hoofdscherm
+            // Login dialog laten zien en wachten op resultaat.
+            LoginView LoginView = new LoginView((LoginController)MasterController.GetController(typeof(LoginController)));            
+            if (LoginView.ShowDialog() == DialogResult.OK) //Als login dialog OK returnt dan MasterController uitvoeren
+            {
+                //MasterController runnen als hoofdapplicaties
+                Application.Run(MasterController); 
+            }
+            else
+            {
+                //Als login dialog iets anders dan OK returnt dan sluit hij de applicatie af, dus o.a. bij sluiten
+                Application.Exit(); 
+            }        
+            
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

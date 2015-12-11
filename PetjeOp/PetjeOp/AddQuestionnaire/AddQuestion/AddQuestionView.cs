@@ -236,7 +236,8 @@ namespace PetjeOp.AddQuestionnaire
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnAddAnswer_Click(this, new EventArgs());
+                if (tbAnswer.Text.Any())
+                    btnAddAnswer_Click(this, new EventArgs());
             }
         }
     }

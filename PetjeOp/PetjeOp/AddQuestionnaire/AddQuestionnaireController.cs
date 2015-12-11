@@ -24,12 +24,14 @@ namespace PetjeOp.AddQuestionnaire
         //Slaat Questionnaire op in de database.
         public void SaveQuestionnaire() {
             Model.Questionnaire.Name = View.tbQuestionnaireName.Text;
+            Model.Questionnaire.Author = (Teacher)MasterController.User;
             
             //Als de questionnaire geen ID heeft staat hij nog niet in de database dus maken we hem aan.
             if (Model.Questionnaire.ID == -1) {
-                Model.Questionnaire = MasterController.DB.AddQuestionnaire(Model.Questionnaire);
+                Model.Questionnaire = MasterController.DB.AddQuestionnaire((Teacher)MasterController.User, Model.Questionnaire);
             }
-            else {                
+            else
+            {
                 MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
             }
 
@@ -82,7 +84,7 @@ namespace PetjeOp.AddQuestionnaire
             }
             else
             {
-                View.lblErrorSubject.Text = "";
+                View.lblNoQuestionsInQuestionaire.Text = "";
                 questionsCheck = true;
             }
 

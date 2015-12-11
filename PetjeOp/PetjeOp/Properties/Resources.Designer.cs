@@ -93,6 +93,16 @@ namespace PetjeOp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Button_Login_Icon {
+            get {
+                object obj = ResourceManager.GetObject("Button_Login_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Button_Logout_Icon {
             get {
                 object obj = ResourceManager.GetObject("Button_Logout_Icon", resourceCulture);
@@ -116,6 +126,16 @@ namespace PetjeOp.Properties {
         internal static System.Drawing.Bitmap Button_Results_Icon {
             get {
                 object obj = ResourceManager.GetObject("Button_Results_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loadgif {
+            get {
+                object obj = ResourceManager.GetObject("loadgif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

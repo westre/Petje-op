@@ -30,6 +30,8 @@ namespace PetjeOp.Questionnaires
 
             //Vul ComboBox met vakken
             Controller.FillSubjects();
+
+            Controller.CheckButtons();
         }
 
         //Als op knop 'Vragenlijst Toevoegen' is geklikt
@@ -72,6 +74,39 @@ namespace PetjeOp.Questionnaires
             {
                 e.Cancel = true;
             }
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            //Zet scherm naar QuestionnaireDetails
+            Controller.GoToQuestionnaireDetails();
+        }
+
+        private void tvQuestionnaires_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            //Controleer of de knoppen aangezet kunnen worden
+            Controller.CheckButtons();
+        }
+
+        private void cbShowArchive_CheckedChanged(object sender, EventArgs e)
+        {
+            //Vraag gegevens op uit database
+            Controller.GetAllQuestionnairesAndSubjects();
+
+            //Vul ComboBox met vakken
+            Controller.FillSubjects();
+
+            Controller.CheckButtons();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Controller.ArchiveQuestionnaire();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Controller.UnarchiveQuestionnaire();
         }
     }
 }

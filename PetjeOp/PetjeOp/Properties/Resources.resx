@@ -121,9 +121,6 @@
   <data name="Button_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button_Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Button_Logout_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Button_Logout_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Menu_Background1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Menu_Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -147,5 +144,14 @@
   </data>
   <data name="bannerBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bannerBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Button_Login_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Button_Login_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Button_Logout_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Button_Logout_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loadgif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\loadgif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
