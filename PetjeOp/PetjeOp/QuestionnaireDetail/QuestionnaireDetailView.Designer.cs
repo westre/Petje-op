@@ -106,6 +106,7 @@
             this.btnSaveQuestionnaire.TabIndex = 29;
             this.btnSaveQuestionnaire.Text = "Vragenlijst Opslaan";
             this.btnSaveQuestionnaire.UseVisualStyleBackColor = true;
+            this.btnSaveQuestionnaire.Click += new System.EventHandler(this.btnSaveQuestionnaire_Click);
             // 
             // lblQuestionnaireName
             // 

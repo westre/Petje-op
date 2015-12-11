@@ -139,17 +139,25 @@ namespace PetjeOp
 
             foreach (tblQuestion dbQuestion in updateQuestionnaire.tblQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
             {
-                MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Single(q => q.ID == dbQuestion.id);// Haalt Question op uit Questionnaire                 
-                dbQuestion.description = question.Description;                                                                      // Wijzigt de vraag in DB
+                try {
+                    MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Single(q => q.ID == dbQuestion.id);// Haalt Question op uit Questionnaire                 
+                    dbQuestion.description = question.Description;                                                                      // Wijzigt de vraag in DB
 
-                foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList())                                        // Doorloopt lijst van bijbehorende answers uit DB
-                {
-                    tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
-                    Answer answer = (Answer)question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer);                               // Haalt Answer op uit Question
-                    dbAnswer.description = answer.Description;                                                                  // Wijzigt het antwoord in DB
+                    foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList())                                        // Doorloopt lijst van bijbehorende answers uit DB
+                    {
+                        tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
+                        Answer answer = (Answer)question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer);                               // Haalt Answer op uit Question
+                        dbAnswer.description = answer.Description;                                                                  // Wijzigt het antwoord in DB
+                    }
+                    dbQuestion.correctanswer = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
                 }
-                dbQuestion.correctanswer = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
-            }
+                catch (Exception e)
+                {
+                    // Question is verwijderd uit de questionnaire
+                    // Verwijder deze ook uit de database
+                    DeleteMultipleChoiceQuestion(dbQuestion.id);
+                }
+}
             db.SubmitChanges();                                                                                                              // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB            
         }
 
@@ -285,22 +293,20 @@ namespace PetjeOp
             };
         }
 
-        public void DeleteMultipleChoiceQuestion(MultipleChoiceQuestion question)
+        public void DeleteMultipleChoiceQuestion(int id)
         {
             // Eerst moeten we de link verwijderen om referentiele integriteit te behouden
             List<tblAnsweroption> referencedAnswerOption = (from ao in db.tblAnsweroptions
-                                                            where ao.question == question.ID
+                                                            where ao.question == id
                                                             select ao).ToList();
 
             foreach (tblAnsweroption answerOption in referencedAnswerOption)
             {
-                Console.WriteLine("Removing AnswerOption ID: " + answerOption.question);
                 DeleteLinkAnswerToQuestion(answerOption.question);
             }
-
-            Console.WriteLine("Question ID: " + question.ID);
+            
             tblQuestion selectedQuestion = (from q in db.tblQuestions
-                                            where q.id == question.ID
+                                            where q.id == id
                                             select q).FirstOrDefault();
 
             if (selectedQuestion != null)
@@ -313,7 +319,6 @@ namespace PetjeOp
         public MultipleChoiceQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId, tblQuestionnaire tblQuestionnaire)
         {
             tblQuestion question = new tblQuestion();
-            //question.id = new Random().Next(100, 1000); // AI maken!!
             question.description = createdQuestion.Description;
             question.correctanswer = createdQuestion.CorrectAnswer.ID;
             question.questionnaire = questionnaireId;
@@ -354,10 +359,26 @@ namespace PetjeOp
 
         private void DeleteLinkAnswerToQuestion(int questionId)
         {
-            //Of dus zo:
-            tblAnsweroption answerOption = db.tblAnsweroptions.Single(q => q.question == questionId); // Selecteer item op id
-            db.tblAnsweroptions.DeleteOnSubmit(answerOption); // Geef opdracht om bovenstaande item te verwijderen
+            List<tblAnsweroption> answerOptions = db.tblAnsweroptions.Where(q => q.question == questionId).ToList(); // Selecteer item op id
+            foreach (tblAnsweroption dbAnswerOption in answerOptions)
+            {
+                db.tblAnsweroptions.DeleteOnSubmit(dbAnswerOption);
+            }
+
+             // Geef opdracht om bovenstaande item te verwijderen
             db.SubmitChanges(); // Voer veranderingen door
+        }
+
+        public void AnswerCleanup()
+        {
+            foreach(tblAnswer dbAnswer in db.tblAnswers) // Doorloopt alle antwoorden
+            {
+                if (dbAnswer.tblAnsweroptions.Count == 0) // Als een antwoordt geen relatie meer heeft met een answeroption
+                {
+                    db.tblAnswers.DeleteOnSubmit(dbAnswer); // dan wordt het antwoordt verwijderd.
+                }
+            }
+            db.SubmitChanges(); // Voert de wijziginen uit
         }
 
         public List<Questionnaire> GetAllQuestionnaires()
