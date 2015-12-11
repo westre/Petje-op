@@ -14,6 +14,22 @@ namespace PetjeOp
         // Initialiseren van de database connectie die vervolgens gebruikt wordt voor LinqtoSQL
         DataClasses1DataContext db = new DataClasses1DataContext();
 
+        public void InsertResult(tblResult Result)
+        {
+            db.tblResults.InsertOnSubmit(Result);
+
+            try
+            {
+                db.SubmitChanges();
+                db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Kon antwoord niet opslaan");
+            }
+            
+        }
+
         // Deze functie wordt gebruikt om een vraag op te halen uit de database, het ID wordt hiervoor meegegeven
         public MultipleChoiceQuestion GetQuestion(int id)
         {

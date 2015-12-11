@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace PetjeOp {
     public partial class AnswerQuestionnaireView : UserControl {
@@ -14,8 +15,6 @@ namespace PetjeOp {
 
         public AnswerQuestionnaireView(AnswerQuestionnaireController controller) {
             InitializeComponent();
-
-            Controller = controller;
         }
 
         private void btnStudentLogin_Click(object sender, EventArgs e) {
@@ -30,6 +29,16 @@ namespace PetjeOp {
             if (e.NewValue == CheckState.Checked)
                 for (int ix = 0; ix < VraagBox.Items.Count; ++ix)
                     if (e.Index != ix) VraagBox.SetItemChecked(ix, false);
+        }
+
+        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblTitle_Results_Title_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

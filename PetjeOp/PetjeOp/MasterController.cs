@@ -20,7 +20,7 @@ namespace PetjeOp
         public Person User { get; set; }
 
         public MasterController()
-        {            
+        {
             InitializeComponent();
             Controllers = new List<Controller>();
 
@@ -89,13 +89,12 @@ namespace PetjeOp
                 ActiveParentContainer = (StudentController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
             }
-
         }
 
         private void MasterController_Resize(object sender, EventArgs e)
         {
             if (ActiveParentContainer != null)
-            {
+        {
                 // Resize de parent container met de form
                 ActiveParentContainer.GetView().Width = mainPanel.Width;
                 ActiveParentContainer.GetView().Height = mainPanel.Height;
@@ -103,7 +102,7 @@ namespace PetjeOp
                 ActiveParentContainer.GetHeaderPanel().Width = Width;
                 if (Width > 930)
                     ActiveParentContainer.GetLogoutButton().Location = new Point(Width - ActiveParentContainer.GetLogoutButton().Size.Width - 25, ActiveParentContainer.GetLogoutButton().Location.Y);
-            }
+        }
         }
     }
 }

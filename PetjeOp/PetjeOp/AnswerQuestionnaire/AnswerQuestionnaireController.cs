@@ -1,19 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PetjeOp {
-    public class AnswerQuestionnaireController : Controller {
+    public delegate void SetTextCallback();
+    public class AnswerQuestionnaireController : Controller{
         public AnswerQuestionnaireView View { get; set; }
         public AnswerQuestionnaireModel Model { get; set; }
         public Exam Exam { get; set; }
+        private DatabaseListener changeListener = new DatabaseListener();
 
+        private Thread demoThread;
         public AnswerQuestionnaireController(MasterController masterController) : base(masterController) {
             Model = new AnswerQuestionnaireModel();
             View = new AnswerQuestionnaireView(this);
+            
+           changeListener.TrackedQuery = "SELECT * FROM exam";
+           changeListener.OnChange += refreshQuestion;
+        }
+
+        public void Init(int ExamID)
+        {
+            View.VraagBox.Items.Clear();
+            setExam(ExamID);
+            changeListener.TrackedQuery = "SELECT currentquestion FROM [dbo].[exam]";
+            changeListener.Start();
         }
 
         public override UserControl GetView() {
@@ -24,14 +40,70 @@ namespace PetjeOp {
             return View.viewPanel;
         }
 
+        public void refreshQuestion(SqlNotificationEventArgs eventArgs)
+        {
+            this.demoThread = new Thread(new ThreadStart(this.ThreadProcSafe));
+
+            this.demoThread.Start();
+            System.Console.WriteLine(eventArgs.Info);
+        }
+        private void ThreadProcSafe()
+        {
+            this.SetText();
+        }
+        private void SetText()
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.View.VraagBox.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.View.Invoke(d);
+            }
+            else
+            {
+                if (this.View.VraagBox.SelectedIndex != -1)
+                {
+                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
+
+                    tblResult result = new tblResult();
+                    result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
+                    result.student = ((Student)(MasterController.User)).StudentNr;
+                    result.exam = Exam.Examnr;
+                    result.question = question.ID;
+
+                    System.Console.WriteLine(result.answer + ", " + result.student + ", " + result.exam + ", " + result.question);
+
+                    MasterController.DB.InsertResult(result);
+                }
+
+                this.View.VraagBox.Items.Clear();
+                setExam(Exam.Examnr);
+            }
+        }
+
         public void setExam(int examID)
         {
             this.Exam = MasterController.DB.GetExam(examID);
+
+            if(Exam.CurrenQuestion != null)
+            { 
             MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
             View.lblTitle_Results_Title.Text = question.Description;
+                View.VraagBox.Visible = true;
+
             foreach (Answer answer in question.AnswerOptions)
             {
                 View.VraagBox.Items.Add(answer.Description);
+            }
+                //View.VraagBox.Height = View.VraagBox.GetItemHeight(0) * View.VraagBox.Items.Count;
+                System.Console.WriteLine(View.VraagBox.GetItemHeight(2));
+            }
+            else
+            {
+                View.lblTitle_Results_Title.Text = "Niks beschikbaar!";
+                View.VraagBox.Visible = false;
             }
         }
     }

@@ -29,6 +29,7 @@ namespace PetjeOp.Login
 
         private void btnAnswerQuestion_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
         {
+            Controller.MasterController.User = Controller.MasterController.DB.GetStudent("1111111");
             Controller.AnswerQuestion(1);
         }
 
