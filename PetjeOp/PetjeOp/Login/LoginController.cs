@@ -36,11 +36,11 @@ namespace PetjeOp {
             var message = e.UserState.ToString();
 
             if(message == "ErGingWatMis") {
-                View.Error.Text = "Woops.. Er ging wat mis.";
+                View.Error.Text = "Onjuiste Login...";
                 View.Error.Visible = true;
             }
             else if (message == "NiksIngevuld") {
-                View.Error.Text = "U heeft niks ingevuld.";
+                View.Error.Text = "U heeft niks ingevuld...";
                 View.Error.Visible = true;
             }
             else if (message == "TeacherLogin") {
