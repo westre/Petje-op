@@ -99,5 +99,10 @@ namespace PetjeOp {
 
             setLabels();
         }
+
+        public void SaveQuestionnaire()
+        {
+            MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
+        }
     }
 }

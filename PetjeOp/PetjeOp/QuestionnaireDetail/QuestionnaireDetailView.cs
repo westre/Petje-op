@@ -79,7 +79,7 @@ namespace PetjeOp.QuestionnaireDetail
 
         private void btnSaveQuestionnaire_Click(object sender, EventArgs e)
         {
-
+            Controller.SaveQuestionnaire();
         }
     }
 }
