@@ -65,6 +65,7 @@ namespace PetjeOp.QuestionnaireDetail
         private void btnCancelEdit_Click(object sender, EventArgs e)
         {
             tbNameEdit.Hide();
+            epTbEdit.Clear();
 
             cbSubject.Hide();
 
@@ -80,6 +81,24 @@ namespace PetjeOp.QuestionnaireDetail
         private void btnSaveQuestionnaire_Click(object sender, EventArgs e)
         {
             Controller.SaveQuestionnaire();
+        }
+
+        private void tbNameEdit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void tbNameEdit_TextChanged(object sender, EventArgs e)
+        {
+            if (!tbNameEdit.Text.Any())
+            {
+                epTbEdit.SetError(tbNameEdit, "Voer een naam in voor de vragenlijst");
+            } else
+            {
+                epTbEdit.Clear();
+            }
+
+            Controller.CheckForErrors();
         }
     }
 }
