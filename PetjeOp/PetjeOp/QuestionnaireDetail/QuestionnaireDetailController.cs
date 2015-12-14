@@ -30,15 +30,25 @@ namespace PetjeOp {
         {
             Model.Questionnaire = q;
 
+            //Check of vragenlijst gearchiveerd is
             if (Model.Questionnaire.Archived)
             {
                 DisableControls();
                 View.lblNoEdit.Text = "Vragenlijst kan niet gewijzigd worden, omdat deze gearchiveerd is";
                 View.lblNoEdit.Show();
-            } else if (((Teacher) MasterController.User).TeacherNr != Model.Questionnaire.Author.TeacherNr)
+            }
+            //Check of huidige teacher de auteur is
+            else if (((Teacher) MasterController.User).TeacherNr != Model.Questionnaire.Author.TeacherNr)
             {
                 DisableControls();
                 View.lblNoEdit.Text = "Vragenlijst kan alleen gewijzigd worden door auteur";
+                View.lblNoEdit.Show();
+            }
+            //Check of de vragenlijst resultaten bevat
+            else if (MasterController.DB.QuestionnaireContainsResults(Model.Questionnaire.ID))
+            {
+                DisableControls();
+                View.lblNoEdit.Text = "Vragenlijst kan niet gewijzigd worden, omdat deze resultaten bevat";
                 View.lblNoEdit.Show();
             }
             else
@@ -48,7 +58,6 @@ namespace PetjeOp {
             }
         }
 
-        //
         public void GoToQuestionnaireOverview()
         {
             //Roep het questionnairescherm aan, haal gegevens uit de database en vul deze in in de treeview. 
@@ -69,7 +78,7 @@ namespace PetjeOp {
             View.lblSubjectData.Text = Model.Questionnaire.Subject.Name;
         }
 
-        //Stop gegevens van de database in de combobox.
+        //Vul ComboBox met vragenlijsten
         public void FillCbSelectQuestionnaire()
         {
             View.cbSelectQuestionnaire.Items.Clear();
@@ -82,6 +91,7 @@ namespace PetjeOp {
                 View.cbSelectQuestionnaire.SelectedItem = Model.Questionnaire;
         }
 
+        //Vul ComboBox met vakken
         public void FillCbSubjects()
         {
             View.cbSubject.Items.Clear();
@@ -94,6 +104,7 @@ namespace PetjeOp {
             }
         }
 
+        //Selecteer vak in de combobox van de huidige Questionnaire
         public void SelectSubject(Subject subject)
         {
             foreach (object item in View.cbSubject.Items)
@@ -105,6 +116,7 @@ namespace PetjeOp {
             }
         }
 
+        //Sla de details van de Questionnaire op
         public void SaveQuestionnaireDetails()
         {
             Model.Questionnaire.Name = View.tbNameEdit.Text;
@@ -120,11 +132,13 @@ namespace PetjeOp {
             setLabels();
         }
 
+        //Update de Questionnaire in de database
         public void SaveQuestionnaire()
         {
             MasterController.DB.UpdateQuestionnaire(Model.Questionnaire, Model.DeletedQuestions);
         }
 
+        //Kijk of de ErrorProvider(s) een error bevatten
         public void CheckForErrors()
         {
             if (string.IsNullOrEmpty(View.epTbEdit.GetError(View.tbNameEdit)))
@@ -137,6 +151,7 @@ namespace PetjeOp {
             }
         }
 
+        //Kijk of er vragen in de Questionniare aanwezig zijn
         public void CheckQuestions()
         {
             if (string.IsNullOrEmpty(View.questionsView1.epNoQuestions.GetError(View.questionsView1.lblQuestions)) && !Disabled)
@@ -149,6 +164,7 @@ namespace PetjeOp {
             }
         }
 
+        //Zet de controls uit
         public void DisableControls()
         {
             Disabled = true;
@@ -156,6 +172,7 @@ namespace PetjeOp {
             View.questionsView1.DisableView();
         }
 
+        //Zet de controls aan
         public void EnableControls()
         {
             Disabled = false;

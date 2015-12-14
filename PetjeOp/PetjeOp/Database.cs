@@ -32,13 +32,17 @@ namespace PetjeOp
             
         }
 
+        // Deze functie controlleert of er geen Results zijn voor een Exam van een bepaalde Questionnaire
         public Boolean QuestionnaireContainsResults(int id)
         {
+            //Selecteer de Questionnaire voor het ID
             tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
 
+            //Loop door de examens
             foreach(tblExam exam in dbQuestionnaire.tblExams.ToList())
             {
-                if ((db.tblResults.SingleOrDefault(q => q.exam == exam.id)) != null)
+                //Controleer of er results zijn voor dit Exam, Mocht dit zo zijn; return meteen true;
+                if ((db.tblResults.Where(q => q.exam == exam.id)).Count() != 0)
                 {
                     return true;
                 }
@@ -230,23 +234,6 @@ namespace PetjeOp
             return null;
         }
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-        }
-
-        public bool QuestionnaireExists(string name)
-        {
-            try {
-            tblQuestionnaire foundQuestionnaire = (from questionnaire in db.tblQuestionnaires
-                                                   where questionnaire.description.ToString().Equals(name)
-                                                   select questionnaire).FirstOrDefault();
-
-                if (foundQuestionnaire != null) {
-                return true;
-            }
-            return false;
-        }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return false; }
-
-
         }
 
         public Questionnaire AddQuestionnaire(Teacher teacher, Questionnaire questionnaire)
@@ -569,66 +556,6 @@ namespace PetjeOp
             
         }
 
-        // hier worden de vragen die bij een specifieke vragenlijst horen opgehaald
-        public List<Question> GetQuestionsByQuestionnaire(int id)
-        {
-            try {
-            List<tblQuestion> tblQuestion = (from questions in db.tblQuestions
-                                             where questions.questionnaire == id
-                                             select questions).ToList();
-
-            List<Question> listQuestions = new List<Question>();
-                foreach (tblQuestion question in tblQuestion) {
-                Question newQuestion = new MultipleChoiceQuestion(question.description);
-                newQuestion.ID = question.id;
-                newQuestion.CorrectAnswer = new Answer(question.correctanswer);
-
-                listQuestions.Add(newQuestion);
-            }
-
-            return listQuestions;
-        }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-
-            
-        }
-        // hier worden de antwoorden opgehaald uit de database
-        public List<Answer> GetAnswers()
-        {
-            try {
-            List<Answer> answers = new List<Answer>();
-
-                foreach (tblAnswer tblAnswer in db.tblAnswers) {
-                Answer answer = new Answer(tblAnswer.description);
-
-                answers.Add(answer);
-            }
-
-            return answers;
-        }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-
-            
-        }
-        // hier worden de vragen opgehaald uit de database
-        public List<Question> GetQuestions()
-        {
-            try {
-            List<Question> questions = new List<Question>();
-
-                foreach (tblQuestion tblQuestion in db.tblQuestions) {
-                Question question = new MultipleChoiceQuestion(tblQuestion.description);
-
-                questions.Add(question);
-            }
-
-            return questions;
-            }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-
-            
-
-        }
         // hier worden de antwoorden opgehaald die bij een specifieke vraag horen
         public List<Answer> GetAnswersByQuestion(int id)
         {
