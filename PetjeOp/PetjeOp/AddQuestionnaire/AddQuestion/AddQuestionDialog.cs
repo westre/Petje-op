@@ -126,9 +126,9 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 }
                 else
                 {
-                    /* Question.QuestionIndex =
+                     Question.QuestionIndex =
                         ((QuestionnaireDetailController)QuestionsView.ParentController).Model.Questionnaire.Questions
-                            .Count + 1; */
+                            .Count + 1;
                 }
             }
 
