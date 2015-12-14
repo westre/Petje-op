@@ -17,10 +17,12 @@ namespace PetjeOp.AddQuestionnaire
         public AddQuestionnaireController AddQuestionnaireController { get; set; }
         public QuestionnaireDetailController QuestionnaireDetailController { get; set; }
         public bool ContainsQuestions { get; private set; }
+        public bool Disabled { get; private set; }
 
         public QuestionsView()
         {
             InitializeComponent();
+            Disabled = false;
         }
 
         //Toon dialoog voor vraag toevoegen na klikken op 'Vraag Toevoegen'
@@ -34,7 +36,7 @@ namespace PetjeOp.AddQuestionnaire
         private void tvQuestions_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //Check of knoppen aangezet mogen worden
-            if (tvQuestions.SelectedNode != null && tvQuestions.SelectedNode.Parent == null)
+            if (tvQuestions.SelectedNode != null && tvQuestions.SelectedNode.Parent == null && !Disabled)
             {
                 EnableEditDeleteButtons();
             } else
@@ -270,6 +272,7 @@ namespace PetjeOp.AddQuestionnaire
         private void QuestionsView_Load(object sender, EventArgs e)
         {
             UpdateTreeView();
+
             if (ParentController is AddQuestionnaireController)
             {
                 AddQuestionnaireController = ((AddQuestionnaireController)ParentController);
@@ -303,6 +306,22 @@ namespace PetjeOp.AddQuestionnaire
         private void tvQuestions_ControlRemoved(object sender, ControlEventArgs e)
         {
             UpdateTreeView();
+        }
+
+        public void DisableView()
+        {
+            Disabled = true;
+            btnAddQuestion.Enabled = false;
+            DisableEditDeleteButtons();
+            tvQuestions.Enabled = false;
+        }
+
+        public void EnableView()
+        {
+            Disabled = false;
+            btnAddQuestion.Enabled = true;
+            EnableEditDeleteButtons();
+            tvQuestions.Enabled = true;
         }
     }
 }

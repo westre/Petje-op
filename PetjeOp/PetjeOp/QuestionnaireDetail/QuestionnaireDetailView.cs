@@ -37,7 +37,7 @@ namespace PetjeOp.QuestionnaireDetail
         //Wanneer de index van de combobox wordt gewijzigd, verander de huidige questionnaire, set de labels opnieuw en update de treeview.
         private void cbSelectQuestionnaire_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Controller.Model.Questionnaire = (Questionnaire)cbSelectQuestionnaire.SelectedItem;
+            Controller.SetQuestionnaire((Questionnaire)cbSelectQuestionnaire.SelectedItem);
             Controller.setLabels();
             Controller.View.questionsView1.UpdateTreeView();
         }
