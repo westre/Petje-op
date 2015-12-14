@@ -33,6 +33,12 @@ namespace PetjeOp {
             if (Model.Questionnaire.Archived)
             {
                 DisableControls();
+                View.lblNoEdit.Text = "Vragenlijst kan niet gewijzigd worden, omdat deze gearchiveerd is";
+                View.lblNoEdit.Show();
+            } else if (((Teacher) MasterController.User).TeacherNr != Model.Questionnaire.Author.TeacherNr)
+            {
+                DisableControls();
+                View.lblNoEdit.Text = "Vragenlijst kan alleen gewijzigd worden door auteur";
                 View.lblNoEdit.Show();
             }
             else
