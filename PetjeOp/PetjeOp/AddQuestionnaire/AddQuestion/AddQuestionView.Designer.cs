@@ -109,6 +109,7 @@
             this.rbLimit.TabStop = true;
             this.rbLimit.Text = "Aantal Seconden:";
             this.rbLimit.UseVisualStyleBackColor = false;
+            this.rbLimit.CheckedChanged += new System.EventHandler(this.rbLimit_CheckedChanged);
             // 
             // rbNoLimit
             // 
@@ -204,6 +205,7 @@
             this.clbAnswers.TabIndex = 15;
             this.clbAnswers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbAnswers_ItemCheck);
             this.clbAnswers.SelectedIndexChanged += new System.EventHandler(this.clbAnswers_SelectedIndexChanged);
+            this.clbAnswers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.clbAnswers_MouseDoubleClick);
             // 
             // lblAnswers
             // 

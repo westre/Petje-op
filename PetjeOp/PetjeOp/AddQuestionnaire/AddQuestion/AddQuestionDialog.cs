@@ -189,7 +189,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             if (Question != null)
             {
                 //Valideer gegevens
-                addQuestionView1.checkQuestionView();
+                //addQuestionView1.checkQuestionView();
             }
         }
     }
