@@ -5,7 +5,7 @@ namespace PetjeOp
     public abstract class Question : IComparable<Question>
     {
         public int ID { get; set; }
-        public int QuestionIndex { get; set; } // :D
+        public int QuestionIndex { get; set; }
         public String Description { get; set; }
 
         // "Answer" is het goede antwoord op de vraag.           

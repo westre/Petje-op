@@ -15,7 +15,7 @@ namespace PetjeOp.AddQuestionnaire
         public AddQuestionDialog Dialog { get; set; }
         public Controller ParentController { get; set; }
         public AddQuestionnaireController AddQuestionnaireController { get; set; }
-        public QuestionnaireDetailController QuestionnaireDetailController { get; set; }
+        public QuestionnaireDetailController QuestionnaireDetailController { get; set; }        
         public bool ContainsQuestions { get; private set; }
         public bool Disabled { get; private set; }
 
@@ -108,8 +108,7 @@ namespace PetjeOp.AddQuestionnaire
             }
 
             //Dialoog voor bevestiging
-            DialogResult dr = MessageBox.Show("Weet u zeker dat u deze vraag wilt verwijderen?", "Let op",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            DialogResult dr = MessageBox.Show("Weet u zeker dat u deze vraag wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
             //Als er op OK geklikt is, verwijder antwoord uit lijst
             if (dr == DialogResult.Yes)
@@ -136,6 +135,7 @@ namespace PetjeOp.AddQuestionnaire
                 if (QuestionnaireDetailController != null)
                 {
                     QuestionnaireDetailController.Model.Questionnaire = tempQuestionnaire;
+                    QuestionnaireDetailController.Model.DeletedQuestions.Add(q);
                 }
             }
         }

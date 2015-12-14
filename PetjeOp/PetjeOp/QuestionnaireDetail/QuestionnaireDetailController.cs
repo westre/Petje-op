@@ -122,7 +122,7 @@ namespace PetjeOp {
 
         public void SaveQuestionnaire()
         {
-            MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
+            MasterController.DB.UpdateQuestionnaire(Model.Questionnaire, Model.DeletedQuestions);
         }
 
         public void CheckForErrors()
