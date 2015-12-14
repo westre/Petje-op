@@ -40,6 +40,11 @@ namespace PetjeOp {
                 DisableControls();
                 View.lblNoEdit.Text = "Vragenlijst kan alleen gewijzigd worden door auteur";
                 View.lblNoEdit.Show();
+            } else if (MasterController.DB.QuestionnaireContainsResults(Model.Questionnaire.ID))
+            {
+                DisableControls();
+                View.lblNoEdit.Text = "Vragenlijst kan niet gewijzigd worden, omdat deze resultaten bevat";
+                View.lblNoEdit.Show();
             }
             else
             {
