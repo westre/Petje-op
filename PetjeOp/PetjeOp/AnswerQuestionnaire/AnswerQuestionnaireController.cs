@@ -102,7 +102,7 @@ namespace PetjeOp {
             }
             else
             {
-                View.lblTitle_Results_Title.Text = "Niks beschikbaar!";
+                View.lblTitle_Results_Title.Text = "Geen vraag beschikbaar! Wacht op de docent...";
                 View.VraagBox.Visible = false;
             }
         }
