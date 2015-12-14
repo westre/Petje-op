@@ -14,10 +14,15 @@ namespace PetjeOp.AddQuestionnaire
     {
         public AddQuestionDialog Dialog { get; set; }
         public Controller ParentController { get; set; }
+        public AddQuestionnaireController AddQuestionnaireController { get; set; }
+        public QuestionnaireDetailController QuestionnaireDetailController { get; set; }
+        public bool ContainsQuestions { get; private set; }
+        public bool Disabled { get; private set; }
 
         public QuestionsView()
         {
             InitializeComponent();
+            Disabled = false;
         }
 
         //Toon dialoog voor vraag toevoegen na klikken op 'Vraag Toevoegen'
@@ -31,7 +36,7 @@ namespace PetjeOp.AddQuestionnaire
         private void tvQuestions_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //Check of knoppen aangezet mogen worden
-            if (tvQuestions.SelectedNode != null && tvQuestions.SelectedNode.Parent == null)
+            if (tvQuestions.SelectedNode != null && tvQuestions.SelectedNode.Parent == null && !Disabled)
             {
                 EnableEditDeleteButtons();
             } else
@@ -52,12 +57,15 @@ namespace PetjeOp.AddQuestionnaire
                 //Bepaal vraag als attribuut voor Dialog
                 currentQuestion = (MultipleChoiceQuestion) tvQuestions.SelectedNode.Tag;
 
-                if (ParentController is AddQuestionnaireController)
+                if (AddQuestionnaireController != null)
                 {
-                    currentQuestionIndex = ((AddQuestionnaireController) ParentController).Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
-                } else if (ParentController is QuestionnaireDetailController)
+                    currentQuestionIndex = AddQuestionnaireController.Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
+                    AddQuestionnaireController.CheckButtons();
+                }
+
+                if (QuestionnaireDetailController != null)
                 {
-                    currentQuestionIndex = ((QuestionnaireDetailController)ParentController).Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
+                    currentQuestionIndex = QuestionnaireDetailController.Model.Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
                 }
 
                 //currentQuestionIndex = Questionnaire.Questions.FindIndex(ql => ql.QuestionIndex == currentQuestion.QuestionIndex);
@@ -71,18 +79,14 @@ namespace PetjeOp.AddQuestionnaire
             //Nieuwe vraag is toegevoegd bij het sluiten van het dialoog
             if (dr == DialogResult.OK)
             {
-                // Database actie
-                ParentController.MasterController.DB.DeleteMultipleChoiceQuestion(currentQuestion);
-
-                if (ParentController is AddQuestionnaireController)
+                if (AddQuestionnaireController != null)
                 {
-                    ((AddQuestionnaireController) ParentController).Model.Questionnaire.Questions.RemoveAt(
-                        currentQuestionIndex);
+                    AddQuestionnaireController.Model.Questionnaire.Questions.RemoveAt(currentQuestionIndex);
+                    AddQuestionnaireController.CheckButtons();
                 }
-                else if(ParentController is QuestionnaireDetailController)
+                if (QuestionnaireDetailController != null)
                 {
-                    ((QuestionnaireDetailController)ParentController).Model.Questionnaire.Questions.RemoveAt(
-                        currentQuestionIndex);
+                    QuestionnaireDetailController.Model.Questionnaire.Questions.RemoveAt(currentQuestionIndex);
                 }
             }
 
@@ -94,12 +98,13 @@ namespace PetjeOp.AddQuestionnaire
         {
             Questionnaire tempQuestionnaire = new Questionnaire(-1);
 
-            if (ParentController is AddQuestionnaireController)
+            if (AddQuestionnaireController != null)
             {
-               tempQuestionnaire = ((AddQuestionnaireController) ParentController).Model.Questionnaire;
-            } else if (ParentController is QuestionnaireDetailController)
+                tempQuestionnaire = AddQuestionnaireController.Model.Questionnaire;
+            }
+            if (QuestionnaireDetailController != null)
             {
-                tempQuestionnaire = ((QuestionnaireDetailController)ParentController).Model.Questionnaire;
+                tempQuestionnaire = QuestionnaireDetailController.Model.Questionnaire;
             }
 
             //Dialoog voor bevestiging
@@ -113,10 +118,7 @@ namespace PetjeOp.AddQuestionnaire
 
                 int index = tempQuestionnaire.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
                 tempQuestionnaire.Questions.RemoveAt(index);
-
-                // Verwijder van DB
-                ParentController.MasterController.DB.DeleteMultipleChoiceQuestion(q);
-
+                
                 int newQuestionIndex = 1;
                 foreach (Question question in tempQuestionnaire.Questions)
                 {
@@ -126,12 +128,14 @@ namespace PetjeOp.AddQuestionnaire
                 UpdateTreeView();
                 DisableEditDeleteButtons();
 
-                if (ParentController is AddQuestionnaireController)
+                if (AddQuestionnaireController != null)
                 {
-                    ((AddQuestionnaireController) ParentController).Model.Questionnaire = tempQuestionnaire;
-                } else if (ParentController is QuestionnaireDetailController)
+                    AddQuestionnaireController.Model.Questionnaire = tempQuestionnaire;
+                    AddQuestionnaireController.CheckButtons();
+                }
+                if (QuestionnaireDetailController != null)
                 {
-                    ((QuestionnaireDetailController)ParentController).Model.Questionnaire = tempQuestionnaire;
+                    QuestionnaireDetailController.Model.Questionnaire = tempQuestionnaire;
                 }
             }
         }
@@ -156,13 +160,13 @@ namespace PetjeOp.AddQuestionnaire
             Questionnaire tempQuestionnaire = new Questionnaire(-1);
 
             //Sorteer de lijst met vragen op QuestionIndex
-            if (ParentController is AddQuestionnaireController)
+            if (AddQuestionnaireController != null)
             {
-                tempQuestionnaire = ((AddQuestionnaireController) ParentController).Model.Questionnaire;
+                tempQuestionnaire = AddQuestionnaireController.Model.Questionnaire;
             }
-            else if (ParentController is QuestionnaireDetailController)
+            if (QuestionnaireDetailController != null)
             {
-                tempQuestionnaire = ((QuestionnaireDetailController)ParentController).Model.Questionnaire;
+                tempQuestionnaire = QuestionnaireDetailController.Model.Questionnaire;
             }
 
             tempQuestionnaire.Questions.Sort();
@@ -174,7 +178,7 @@ namespace PetjeOp.AddQuestionnaire
             foreach (MultipleChoiceQuestion q in tempQuestionnaire.Questions)
             {
                 //Voeg Node toe met vraag
-                TreeNode addedNode = tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description);
+                TreeNode addedNode = tvQuestions.Nodes.Add(q.QuestionIndex + ": " + q.Description + " [" + q.TimeRestriction + "]");
 
                 //Maak een bold font aan
                 Font boldFont = new Font(tvQuestions.Font, FontStyle.Bold);
@@ -212,32 +216,37 @@ namespace PetjeOp.AddQuestionnaire
             //Klap alle vragen uit
             tvQuestions.ExpandAll();
 
-
-            if (ParentController is AddQuestionnaireController)
+            if (!ValidateQuestions())
             {
-                AddQuestionnaireController tempController = ((AddQuestionnaireController)ParentController);
-                tempController.CheckButtons();
+                epNoQuestions.SetError(lblQuestions, "Voeg vragen toe aan de vragenlijst");
             }
-            else if (ParentController is QuestionnaireDetailController)
+            else
             {
-                QuestionnaireDetailController tempController = ((QuestionnaireDetailController)ParentController);
+                epNoQuestions.Clear();
             }
 
+            if (AddQuestionnaireController != null)
+            {
+                AddQuestionnaireController.CheckButtons();
+            }
 
-
+            if (QuestionnaireDetailController != null)
+            {
+                QuestionnaireDetailController.CheckQuestions();
+            }
         }
 
         //Geef gegenereerde vraag door aan het model
         public void AddDialogInformation(MultipleChoiceQuestion question, bool updateTV)
         {
             //Voeg vraag toe aan lijst met vragen in Model
-
-            if (ParentController is AddQuestionnaireController)
+            if (AddQuestionnaireController != null)
             {
-                ((AddQuestionnaireController)ParentController).Model.Questionnaire.Questions.Add(question);
-            } else if (ParentController is QuestionnaireDetailController)
+                AddQuestionnaireController.Model.Questionnaire.Questions.Add(question);
+            }
+            if (QuestionnaireDetailController != null)
             {
-                ((QuestionnaireDetailController)ParentController).Model.Questionnaire.Questions.Add(question);
+                QuestionnaireDetailController.Model.Questionnaire.Questions.Add(question);
             }
 
             //Bepaal of TreeView geupdatet moet worden
@@ -252,15 +261,26 @@ namespace PetjeOp.AddQuestionnaire
             //Check of er vragen zijn toegevoegd aan de vragenlijst
             if (tvQuestions.Nodes.Count > 0)
             {
+                ContainsQuestions = true;
                 return true;
             }
 
+            ContainsQuestions = false;
             return false;
         }
 
         private void QuestionsView_Load(object sender, EventArgs e)
         {
             UpdateTreeView();
+
+            if (ParentController is AddQuestionnaireController)
+            {
+                AddQuestionnaireController = ((AddQuestionnaireController)ParentController);
+            }
+            else if (ParentController is QuestionnaireDetailController)
+            {
+                QuestionnaireDetailController = ((QuestionnaireDetailController)ParentController);
+            }
         }
 
         private void tvQuestions_BeforeSelect(object sender, TreeViewCancelEventArgs e)
@@ -286,6 +306,22 @@ namespace PetjeOp.AddQuestionnaire
         private void tvQuestions_ControlRemoved(object sender, ControlEventArgs e)
         {
             UpdateTreeView();
+        }
+
+        public void DisableView()
+        {
+            Disabled = true;
+            btnAddQuestion.Enabled = false;
+            DisableEditDeleteButtons();
+            tvQuestions.Enabled = false;
+        }
+
+        public void EnableView()
+        {
+            Disabled = false;
+            btnAddQuestion.Enabled = true;
+            EnableEditDeleteButtons();
+            tvQuestions.Enabled = true;
         }
     }
 }

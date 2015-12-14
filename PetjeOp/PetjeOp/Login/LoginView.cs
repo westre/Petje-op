@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,9 @@ namespace PetjeOp.Login
             InitializeComponent();
             this.Controller = Controller; // Stelt de controller in van het Login Dialog
             this.Controller.View = this; // Stelt verwijzing van de view in de controller naar dit Dialog
+
+            pbLoading.Image = Properties.Resources.loadgif;
+            pbLoading.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
         private void btnVraagOverzicht_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
@@ -26,6 +30,7 @@ namespace PetjeOp.Login
 
         private void btnAnswerQuestion_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
         {
+            Controller.MasterController.User = Controller.MasterController.DB.GetStudent("1111111");
             Controller.AnswerQuestion(1);
         }
 
@@ -39,34 +44,20 @@ namespace PetjeOp.Login
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (txtLoginCode.Text == "") // Controleert of het text-veld blanco is, en zet het label naar een ERROR.
-            {
-                Error.Text = "U heeft niks ingevuld.";
-                Error.Visible = true;
-            }
-            else
-            {
-                if (Controller.MasterController.DB.GetStudent(txtLoginCode.Text) != null) // Controleer op een code van een Student
-                {
-                    Controller.MasterController.User = Controller.MasterController.DB.GetStudent(txtLoginCode.Text); // Haal de Student uit de DB.
-                    Controller.StudentLogin(); // Zet de client over naar Student omgeving
-                }
-                else if (Controller.MasterController.DB.GetTeacher(txtLoginCode.Text) != null) // Controleer op een code van een Teacher
-                {
-                    Controller.MasterController.User = Controller.MasterController.DB.GetTeacher(txtLoginCode.Text); // Haal de Teacher uit de DB.
-                    Controller.TeacherLogin(); // Zet de client over naar Teacher omgeving
-                }
-                else // Zet het label naar een ERROR
-                {
-                    Error.Text = "Woops.. Er ging wat mis.";
-                    Error.Visible = true;
-                }
-            }
+            Controller.BackgroundWorker.RunWorkerAsync();
+
+            pbLoading.Show();            
         }
 
         private void LoginView_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txtLoginCode; //Zorgt ervoor dat je direct bij het starten van de applicatie kan typen in dit textbox
+        }
+
+        private void pictureBox2_DoubleClick(object sender, EventArgs e)
+        {
+            Controller.MasterController.User = Controller.MasterController.DB.GetStudent("1111111");
+            Controller.AnswerQuestion(1);
         }
     }
 }

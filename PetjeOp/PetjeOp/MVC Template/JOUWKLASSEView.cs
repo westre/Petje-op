@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PetjeOp {
-    public partial class ExampleTwoView : UserControl {
-        public ExampleTwoController Controller;
+    public partial class JOUWKLASSEView : UserControl {
+        public JOUWKLASSEController Controller;
 
-        public ExampleTwoView(ExampleTwoController controller) {
+        public JOUWKLASSEView(JOUWKLASSEController controller) {
             InitializeComponent();
+
+            Controller = controller;
         }
     }
 }

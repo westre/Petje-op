@@ -30,7 +30,8 @@ namespace PetjeOp.AddQuestionnaire
             if (Model.Questionnaire.ID == -1) {
                 Model.Questionnaire = MasterController.DB.AddQuestionnaire((Teacher)MasterController.User, Model.Questionnaire);
             }
-            else {                
+            else
+            {
                 MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
             }
 
@@ -105,7 +106,6 @@ namespace PetjeOp.AddQuestionnaire
             foreach (Subject subject in Model.Subjects)
             {
                 View.cbSubjects.Items.Add(subject);
-
             }
         }
 
@@ -130,7 +130,7 @@ namespace PetjeOp.AddQuestionnaire
         {
             View.tbQuestionnaireName.Clear();
             View.cbSubjects.SelectedIndex = -1;
-            //View.tvQuestions.Nodes.Clear();
+            View.questionsView1.tvQuestions.Nodes.Clear();
         }
     }
 }

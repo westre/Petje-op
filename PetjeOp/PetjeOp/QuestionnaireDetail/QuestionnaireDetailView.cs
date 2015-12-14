@@ -30,13 +30,14 @@ namespace PetjeOp.QuestionnaireDetail
         private void QuestionnaireDetailView_Load(object sender, EventArgs e)
         {
             Controller.setLabels();
-            Controller.fillCbSelectQuestionnaire();
+            Controller.FillCbSelectQuestionnaire();
+            Controller.FillCbSubjects();
         }
 
         //Wanneer de index van de combobox wordt gewijzigd, verander de huidige questionnaire, set de labels opnieuw en update de treeview.
         private void cbSelectQuestionnaire_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Controller.Model.Questionnaire = (Questionnaire)cbSelectQuestionnaire.SelectedItem;
+            Controller.SetQuestionnaire((Questionnaire)cbSelectQuestionnaire.SelectedItem);
             Controller.setLabels();
             Controller.View.questionsView1.UpdateTreeView();
         }
@@ -46,6 +47,58 @@ namespace PetjeOp.QuestionnaireDetail
         {
             ChooseExamDetailsDialog ExamsDialog = new ChooseExamDetailsDialog(Controller);
             ExamsDialog.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+            tbNameEdit.Text = lblNameData.Text;
+            tbNameEdit.Show();
+            
+            Controller.SelectSubject(Controller.Model.Questionnaire.Subject);
+            cbSubject.Show();
+
+            btnSave.Show();
+            btnCancelEdit.Show();
+        }
+
+        private void btnCancelEdit_Click(object sender, EventArgs e)
+        {
+            tbNameEdit.Hide();
+            epTbEdit.Clear();
+
+            cbSubject.Hide();
+
+            btnSave.Hide();
+            btnCancelEdit.Hide();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Controller.SaveQuestionnaireDetails();
+        }
+
+        private void btnSaveQuestionnaire_Click(object sender, EventArgs e)
+        {
+            Controller.SaveQuestionnaire();
+        }
+
+        private void tbNameEdit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void tbNameEdit_TextChanged(object sender, EventArgs e)
+        {
+            if (!tbNameEdit.Text.Any())
+            {
+                epTbEdit.SetError(tbNameEdit, "Voer een naam in voor de vragenlijst");
+            } else
+            {
+                epTbEdit.Clear();
+            }
+
+            Controller.CheckForErrors();
         }
     }
 }

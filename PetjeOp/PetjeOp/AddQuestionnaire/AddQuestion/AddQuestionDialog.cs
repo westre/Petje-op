@@ -93,9 +93,15 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             //Voeg tijdsrestrictie toe aan vraag
             if (addQuestionView1.rbLimit.Checked)
             {
-                int seconds = int.Parse(addQuestionView1.tbSeconds.Text);
-
-                Question.TimeRestriction = new TimeSpan(0, 0, seconds);
+                try
+                {
+                    int seconds = int.Parse(addQuestionView1.tbSeconds.Text);
+                    Question.TimeRestriction = new TimeSpan(0, 0, seconds);
+                }
+                catch (FormatException fe)
+                {
+                    Question.TimeRestriction = TimeSpan.Zero;
+                }
             }
             else
             {
@@ -120,9 +126,9 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 }
                 else
                 {
-                    /* Question.QuestionIndex =
+                     Question.QuestionIndex =
                         ((QuestionnaireDetailController)QuestionsView.ParentController).Model.Questionnaire.Questions
-                            .Count + 1; */
+                            .Count + 1;
                 }
             }
 
@@ -183,6 +189,13 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                         //Vink correct antwoord aan
                         addQuestionView1.clbAnswers.SetItemChecked(addedIndex, true);
                     }
+                }
+
+                //Stel tijdslimiet in
+                if (Question.TimeRestriction != TimeSpan.Zero)
+                {
+                    addQuestionView1.rbLimit.Checked = true;
+                    addQuestionView1.tbSeconds.Text = Question.TimeRestriction.TotalSeconds.ToString();
                 }
             }
 

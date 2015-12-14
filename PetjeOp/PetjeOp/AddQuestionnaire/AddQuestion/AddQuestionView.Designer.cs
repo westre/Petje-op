@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbQuestion = new System.Windows.Forms.GroupBox();
+            this.lblDuplicate = new System.Windows.Forms.Label();
             this.lblErrorSeconds = new System.Windows.Forms.Label();
             this.gbTime = new System.Windows.Forms.GroupBox();
             this.rbLimit = new System.Windows.Forms.RadioButton();
@@ -50,6 +51,7 @@
             // 
             // gbQuestion
             // 
+            this.gbQuestion.Controls.Add(this.lblDuplicate);
             this.gbQuestion.Controls.Add(this.lblErrorSeconds);
             this.gbQuestion.Controls.Add(this.gbTime);
             this.gbQuestion.Controls.Add(this.lblAnswersError);
@@ -71,6 +73,16 @@
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Vraag";
             this.gbQuestion.Enter += new System.EventHandler(this.gbQuestion_Enter);
+            // 
+            // lblDuplicate
+            // 
+            this.lblDuplicate.AutoSize = true;
+            this.lblDuplicate.ForeColor = System.Drawing.Color.Red;
+            this.lblDuplicate.Location = new System.Drawing.Point(9, 111);
+            this.lblDuplicate.Name = "lblDuplicate";
+            this.lblDuplicate.Size = new System.Drawing.Size(0, 13);
+            this.lblDuplicate.TabIndex = 24;
+            this.lblDuplicate.Visible = false;
             // 
             // lblErrorSeconds
             // 
@@ -201,7 +213,7 @@
             this.clbAnswers.Location = new System.Drawing.Point(6, 71);
             this.clbAnswers.Margin = new System.Windows.Forms.Padding(2);
             this.clbAnswers.Name = "clbAnswers";
-            this.clbAnswers.Size = new System.Drawing.Size(236, 49);
+            this.clbAnswers.Size = new System.Drawing.Size(236, 34);
             this.clbAnswers.TabIndex = 15;
             this.clbAnswers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbAnswers_ItemCheck);
             this.clbAnswers.SelectedIndexChanged += new System.EventHandler(this.clbAnswers_SelectedIndexChanged);
@@ -272,5 +284,6 @@
         public System.Windows.Forms.RadioButton rbNoLimit;
         public System.Windows.Forms.TextBox tbSeconds;
         private System.Windows.Forms.Label lblErrorSeconds;
+        private System.Windows.Forms.Label lblDuplicate;
     }
 }
