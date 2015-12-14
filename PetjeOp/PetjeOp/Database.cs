@@ -38,7 +38,7 @@ namespace PetjeOp
 
             foreach(tblExam exam in dbQuestionnaire.tblExams.ToList())
             {
-                if ((db.tblResults.Where(q => q.exam == exam.id)).Count() == 0)
+                if ((db.tblResults.Where(q => q.exam == exam.id)).Count() != 0)
                 {
                     return true;
                 }
