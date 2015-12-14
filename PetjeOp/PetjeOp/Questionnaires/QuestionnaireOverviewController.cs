@@ -218,7 +218,7 @@ namespace PetjeOp.Questionnaires
             DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt archiveren?",
                 "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (dlr == DialogResult.Yes)
+            if (dlr == DialogResult.Yes && View.tvQuestionnaires.SelectedNode != null)
             {
                 Questionnaire selectedQuestionnaire = (Questionnaire) View.tvQuestionnaires.SelectedNode.Tag;
 
