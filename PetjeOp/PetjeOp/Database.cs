@@ -15,6 +15,7 @@ namespace PetjeOp
         // Initialiseren van de database connectie die vervolgens gebruikt wordt voor LinqtoSQL
         DataClasses1DataContext db = new DataClasses1DataContext();
 
+        // Voegt een resultaat toe van een antwoord op een vraag in een examen.
         public void InsertResult(tblResult Result)
         {
             db.tblResults.InsertOnSubmit(Result);
@@ -29,6 +30,21 @@ namespace PetjeOp
                 System.Console.WriteLine("Kon antwoord niet opslaan");
             }
             
+        }
+
+        public Boolean QuestionnaireContainsResults(int id)
+        {
+            tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
+
+            foreach(tblExam exam in dbQuestionnaire.tblExams.ToList())
+            {
+                if ((db.tblResults.SingleOrDefault(q => q.exam == exam.id)) != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // Deze functie wordt gebruikt om een vraag op te halen uit de database, het ID wordt hiervoor meegegeven

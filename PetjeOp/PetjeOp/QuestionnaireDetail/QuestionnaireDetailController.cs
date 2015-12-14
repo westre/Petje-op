@@ -12,9 +12,12 @@ namespace PetjeOp {
         public QuestionnaireDetailView View { get; set; }
         public QuestionnaireDetailModel Model { get; set; }
 
+        public bool Disabled { get; private set; }
+
         public QuestionnaireDetailController(MasterController masterController) : base(masterController) {
             Model = new QuestionnaireDetailModel();
             View = new QuestionnaireDetailView(this);
+            Disabled = false;
         }
 
         
@@ -23,9 +26,26 @@ namespace PetjeOp {
         }
 
         //Verander de questionnaire van de model.
-        public void setQuestionnaire(Questionnaire q)
+        public void SetQuestionnaire(Questionnaire q)
         {
             Model.Questionnaire = q;
+
+            if (Model.Questionnaire.Archived)
+            {
+                DisableControls();
+                View.lblNoEdit.Text = "Vragenlijst kan niet gewijzigd worden, omdat deze gearchiveerd is";
+                View.lblNoEdit.Show();
+            } else if (((Teacher) MasterController.User).TeacherNr != Model.Questionnaire.Author.TeacherNr)
+            {
+                DisableControls();
+                View.lblNoEdit.Text = "Vragenlijst kan alleen gewijzigd worden door auteur";
+                View.lblNoEdit.Show();
+            }
+            else
+            {
+                EnableControls();
+                View.lblNoEdit.Hide();
+            }
         }
 
         //
@@ -119,7 +139,7 @@ namespace PetjeOp {
 
         public void CheckQuestions()
         {
-            if (string.IsNullOrEmpty(View.questionsView1.epNoQuestions.GetError(View.questionsView1.lblQuestions)))
+            if (string.IsNullOrEmpty(View.questionsView1.epNoQuestions.GetError(View.questionsView1.lblQuestions)) && !Disabled)
             {
                 View.btnSaveQuestionnaire.Enabled = true;
             }
@@ -127,6 +147,20 @@ namespace PetjeOp {
             {
                 View.btnSaveQuestionnaire.Enabled = false;
             }
+        }
+
+        public void DisableControls()
+        {
+            Disabled = true;
+            View.btnEdit.Enabled = false;
+            View.questionsView1.DisableView();
+        }
+
+        public void EnableControls()
+        {
+            Disabled = false;
+            View.btnEdit.Enabled = true;
+            View.questionsView1.EnableView();
         }
     }
 }
