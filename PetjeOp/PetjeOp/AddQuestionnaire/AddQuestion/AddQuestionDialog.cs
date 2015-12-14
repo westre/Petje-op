@@ -18,6 +18,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         //public AddQuestionnaireController Controller { get; set; }
         private int QuestionIndex { get; }
         public QuestionsView QuestionsView { get; set; }
+        private bool Update { get; set; }
 
         /*Constructor voor het toevoegen van een vraag
         public AddQuestionDialog(AddQuestionnaireController controller)
@@ -34,6 +35,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             addQuestionView1.SetQuestionDialog(this);
             QuestionsView = qv;
             QuestionIndex = 0;
+            Update = false;
         }
 
         /*Constructor voor het wijzigen van een vraag
@@ -51,36 +53,49 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             QuestionIndex = questionIndex;
             Question = question;
             Text = btnAddQuestion.Text = "Vraag Wijzigen";
+            Update = true;
         }
 
         //Functie voor afhandeling van klik op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
-            //Maak het vraagobject aan
+            if (!Update) {
             Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
+            }
 
             //Loop voor alle ingevoerde antwoorden
             foreach (var item in addQuestionView1.clbAnswers.Items)
             {
+                Answer ans = null;
+
+                if (!Update || Question.GetAnswer(item.ToString()) == null) {
                 //Maak een antwoordobject aan
-                Answer ans = new Answer(item.ToString());
+                    ans = new Answer(item.ToString());
 
                 //Voeg het antwoord toe aan de lijst met antwoorden
                 answers.Add(ans);
-
-                //Controleer of het antwoord het correcte antwoord is
-                if (addQuestionView1.clbAnswers.CheckedItems.Contains(item))
-                {
-                    //Stel het correcte antwoord gelijk aan het huidge antwoord in de loop
-                    correct = ans;
                 }
+
+                correct = ans;
             }
 
             //Voeg antwoorden toe aan het vraagobject
             Question.AddAnswerOptions(answers);
 
+            foreach (var item in addQuestionView1.clbAnswers.Items) {
+                //Controleer of het antwoord het correcte antwoord is
+                if (addQuestionView1.clbAnswers.CheckedItems.Contains(item)) {
+                    //Stel het correcte antwoord gelijk aan het huidge antwoord in de loop
+                    if (Update) {
+                        correct = Question.GetAnswer(item.ToString());
+                    }
+                }
+            }
+
+
             //Voeg correct antwoord toe aan het vraagobject
             Question.CorrectAnswer = correct;
+            //MessageBox.Show("CorrectAnswer: " + Question.CorrectAnswer.Description);
 
             //Voeg tijdsrestrictie toe aan vraag
             if (addQuestionView1.rbLimit.Checked)

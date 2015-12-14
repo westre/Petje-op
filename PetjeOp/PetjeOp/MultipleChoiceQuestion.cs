@@ -51,8 +51,14 @@ namespace PetjeOp
         {
             return Description;
         }
-        
 
+        public Answer GetAnswer(string desc) {
+            foreach(Answer answer in AnswerOptions) {
+                if (desc == answer.Description)
+                    return answer;
+            }
+            return null;
         }
+    }
     }
     
