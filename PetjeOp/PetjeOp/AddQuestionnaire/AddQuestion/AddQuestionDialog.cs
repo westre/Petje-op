@@ -46,8 +46,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         } */
 
         //Constructor voor het wijzigen van een vraag
-        public AddQuestionDialog(QuestionsView qv, MultipleChoiceQuestion question,
-            int questionIndex) : this(qv)
+        public AddQuestionDialog(QuestionsView qv, MultipleChoiceQuestion question, int questionIndex) : this(qv)
         {
             QuestionIndex = questionIndex;
             Question = question;
@@ -63,13 +62,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             //Loop voor alle ingevoerde antwoorden
             foreach (var item in addQuestionView1.clbAnswers.Items)
             {
-                // Check of het antwoord al in de database bestaat
-                /*Answer ans = Controller.MasterController.DB.GetAnswer(item.ToString());
-                if(ans == null) {
-                    // Het bestaat niet :(, dus maken we een nieuwe record aan!
-                    ans = Controller.MasterController.DB.AddAnswer(item.ToString());
-                }*/
-
                 //Maak een antwoordobject aan
                 Answer ans = new Answer(item.ToString());
 
@@ -131,19 +123,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                             .Count + 1;
                 }
             }
-
-            // Maak nieuwe question record aan in tabel
-            //MultipleChoiceQuestion dbQuestion = Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
-
-            // Update lokale Question variabel met ID van DBQuestion
-            //Question.ID = dbQuestion.ID;
-
-            // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
-            //foreach(Answer answer in answers) {
-                // DB link
-            //    Controller.MasterController.DB.LinkAnswerToQuestion(dbQuestion, answer);
-            //}
-
             //Sluit het dialoog
             Close();
         }
@@ -202,7 +181,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             if (Question != null)
             {
                 //Valideer gegevens
-                addQuestionView1.checkQuestionView();
+                //addQuestionView1.checkQuestionView();
             }
         }
     }
