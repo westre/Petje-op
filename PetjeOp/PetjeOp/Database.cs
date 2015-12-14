@@ -32,12 +32,16 @@ namespace PetjeOp
             
         }
 
+        // Deze functie controlleert of er geen Results zijn voor een Exam van een bepaalde Questionnaire
         public Boolean QuestionnaireContainsResults(int id)
         {
+            //Selecteer de Questionnaire voor het ID
             tblQuestionnaire dbQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == id);
 
+            //Loop door de examens
             foreach(tblExam exam in dbQuestionnaire.tblExams.ToList())
             {
+                //Controleer of er results zijn voor dit Exam, Mocht dit zo zijn; return meteen true;
                 if ((db.tblResults.Where(q => q.exam == exam.id)).Count() != 0)
                 {
                     return true;
