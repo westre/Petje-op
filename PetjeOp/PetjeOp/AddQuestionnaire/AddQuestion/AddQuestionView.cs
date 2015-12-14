@@ -256,7 +256,7 @@ namespace PetjeOp.AddQuestionnaire
 
         private void tbAnswer_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && CheckIfDuplicate(tbAnswer.Text))
             {
                 if (tbAnswer.Text.Any())
                     btnAddAnswer_Click(this, new EventArgs());
