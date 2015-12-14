@@ -48,8 +48,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         } */
 
         //Constructor voor het wijzigen van een vraag
-        public AddQuestionDialog(QuestionsView qv, MultipleChoiceQuestion question,
-            int questionIndex) : this(qv)
+        public AddQuestionDialog(QuestionsView qv, MultipleChoiceQuestion question, int questionIndex) : this(qv)
         {
             QuestionIndex = questionIndex;
             Question = question;
@@ -61,7 +60,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
             if (!Update) {
-                Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
+            Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
             }
 
             //Loop voor alle ingevoerde antwoorden
@@ -70,11 +69,11 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 Answer ans = null;
 
                 if (!Update || Question.GetAnswer(item.ToString()) == null) {
-                    //Maak een antwoordobject aan
+                //Maak een antwoordobject aan
                     ans = new Answer(item.ToString());
 
-                    //Voeg het antwoord toe aan de lijst met antwoorden
-                    answers.Add(ans);
+                //Voeg het antwoord toe aan de lijst met antwoorden
+                answers.Add(ans);
                 }
 
                 correct = ans;
@@ -139,19 +138,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                             .Count + 1;
                 }
             }
-
-            // Maak nieuwe question record aan in tabel
-            //MultipleChoiceQuestion dbQuestion = Controller.MasterController.DB.AddMultipleChoiceQuestion(Question, Controller.Model.Questionnaire.ID);
-
-            // Update lokale Question variabel met ID van DBQuestion
-            //Question.ID = dbQuestion.ID;
-
-            // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
-            //foreach(Answer answer in answers) {
-                // DB link
-            //    Controller.MasterController.DB.LinkAnswerToQuestion(dbQuestion, answer);
-            //}
-
             //Sluit het dialoog
             Close();
         }
@@ -210,7 +196,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             if (Question != null)
             {
                 //Valideer gegevens
-                addQuestionView1.checkQuestionView();
+                //addQuestionView1.checkQuestionView();
             }
         }
     }

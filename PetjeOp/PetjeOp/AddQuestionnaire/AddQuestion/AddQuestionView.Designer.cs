@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbQuestion = new System.Windows.Forms.GroupBox();
+            this.lblDuplicate = new System.Windows.Forms.Label();
             this.lblErrorSeconds = new System.Windows.Forms.Label();
             this.gbTime = new System.Windows.Forms.GroupBox();
             this.rbLimit = new System.Windows.Forms.RadioButton();
@@ -44,7 +45,6 @@
             this.lblAnswers = new System.Windows.Forms.Label();
             this.tbQuestion = new System.Windows.Forms.TextBox();
             this.lblQuestion = new System.Windows.Forms.Label();
-            this.lblDuplicate = new System.Windows.Forms.Label();
             this.gbQuestion.SuspendLayout();
             this.gbTime.SuspendLayout();
             this.SuspendLayout();
@@ -65,14 +65,23 @@
             this.gbQuestion.Controls.Add(this.tbQuestion);
             this.gbQuestion.Controls.Add(this.lblQuestion);
             this.gbQuestion.Location = new System.Drawing.Point(2, 2);
-            this.gbQuestion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbQuestion.Margin = new System.Windows.Forms.Padding(2);
             this.gbQuestion.Name = "gbQuestion";
-            this.gbQuestion.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbQuestion.Padding = new System.Windows.Forms.Padding(2);
             this.gbQuestion.Size = new System.Drawing.Size(504, 242);
             this.gbQuestion.TabIndex = 0;
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Vraag";
             this.gbQuestion.Enter += new System.EventHandler(this.gbQuestion_Enter);
+            // 
+            // lblDuplicate
+            // 
+            this.lblDuplicate.AutoSize = true;
+            this.lblDuplicate.ForeColor = System.Drawing.Color.Red;
+            this.lblDuplicate.Location = new System.Drawing.Point(253, 118);
+            this.lblDuplicate.Name = "lblDuplicate";
+            this.lblDuplicate.Size = new System.Drawing.Size(0, 13);
+            this.lblDuplicate.TabIndex = 24;
             // 
             // lblErrorSeconds
             // 
@@ -91,9 +100,9 @@
             this.gbTime.Controls.Add(this.rbNoLimit);
             this.gbTime.Controls.Add(this.tbSeconds);
             this.gbTime.Location = new System.Drawing.Point(6, 180);
-            this.gbTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbTime.Margin = new System.Windows.Forms.Padding(2);
             this.gbTime.Name = "gbTime";
-            this.gbTime.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbTime.Padding = new System.Windows.Forms.Padding(2);
             this.gbTime.Size = new System.Drawing.Size(234, 56);
             this.gbTime.TabIndex = 22;
             this.gbTime.TabStop = false;
@@ -104,7 +113,7 @@
             this.rbLimit.AutoSize = true;
             this.rbLimit.BackColor = System.Drawing.Color.Transparent;
             this.rbLimit.Location = new System.Drawing.Point(3, 34);
-            this.rbLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbLimit.Margin = new System.Windows.Forms.Padding(2);
             this.rbLimit.Name = "rbLimit";
             this.rbLimit.Size = new System.Drawing.Size(110, 17);
             this.rbLimit.TabIndex = 4;
@@ -118,7 +127,7 @@
             this.rbNoLimit.AutoSize = true;
             this.rbNoLimit.Checked = true;
             this.rbNoLimit.Location = new System.Drawing.Point(3, 16);
-            this.rbNoLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbNoLimit.Margin = new System.Windows.Forms.Padding(2);
             this.rbNoLimit.Name = "rbNoLimit";
             this.rbNoLimit.Size = new System.Drawing.Size(81, 17);
             this.rbNoLimit.TabIndex = 3;
@@ -130,7 +139,7 @@
             // tbSeconds
             // 
             this.tbSeconds.Location = new System.Drawing.Point(114, 33);
-            this.tbSeconds.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSeconds.Margin = new System.Windows.Forms.Padding(2);
             this.tbSeconds.Name = "tbSeconds";
             this.tbSeconds.Size = new System.Drawing.Size(52, 20);
             this.tbSeconds.TabIndex = 2;
@@ -166,7 +175,7 @@
             // 
             this.btnDeleteAnswer.Enabled = false;
             this.btnDeleteAnswer.Location = new System.Drawing.Point(250, 71);
-            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
             this.btnDeleteAnswer.Size = new System.Drawing.Size(70, 21);
             this.btnDeleteAnswer.TabIndex = 18;
@@ -177,7 +186,7 @@
             // tbAnswer
             // 
             this.tbAnswer.Location = new System.Drawing.Point(6, 144);
-            this.tbAnswer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbAnswer.Margin = new System.Windows.Forms.Padding(2);
             this.tbAnswer.Name = "tbAnswer";
             this.tbAnswer.Size = new System.Drawing.Size(236, 20);
             this.tbAnswer.TabIndex = 17;
@@ -188,7 +197,7 @@
             // 
             this.btnAddAnswer.Enabled = false;
             this.btnAddAnswer.Location = new System.Drawing.Point(250, 144);
-            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAnswer.Name = "btnAddAnswer";
             this.btnAddAnswer.Size = new System.Drawing.Size(70, 21);
             this.btnAddAnswer.TabIndex = 16;
@@ -201,12 +210,13 @@
             this.clbAnswers.CheckOnClick = true;
             this.clbAnswers.FormattingEnabled = true;
             this.clbAnswers.Location = new System.Drawing.Point(6, 71);
-            this.clbAnswers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clbAnswers.Margin = new System.Windows.Forms.Padding(2);
             this.clbAnswers.Name = "clbAnswers";
-            this.clbAnswers.Size = new System.Drawing.Size(236, 34);
+            this.clbAnswers.Size = new System.Drawing.Size(236, 64);
             this.clbAnswers.TabIndex = 15;
             this.clbAnswers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbAnswers_ItemCheck);
             this.clbAnswers.SelectedIndexChanged += new System.EventHandler(this.clbAnswers_SelectedIndexChanged);
+            this.clbAnswers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.clbAnswers_MouseDoubleClick);
             // 
             // lblAnswers
             // 
@@ -221,7 +231,7 @@
             // tbQuestion
             // 
             this.tbQuestion.Location = new System.Drawing.Point(44, 19);
-            this.tbQuestion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbQuestion.Margin = new System.Windows.Forms.Padding(2);
             this.tbQuestion.Name = "tbQuestion";
             this.tbQuestion.Size = new System.Drawing.Size(198, 20);
             this.tbQuestion.TabIndex = 13;
@@ -237,23 +247,13 @@
             this.lblQuestion.TabIndex = 12;
             this.lblQuestion.Text = "Vraag:";
             // 
-            // lblDuplicate
-            // 
-            this.lblDuplicate.AutoSize = true;
-            this.lblDuplicate.Location = new System.Drawing.Point(9, 111);
-            this.lblDuplicate.Name = "lblDuplicate";
-            this.lblDuplicate.Size = new System.Drawing.Size(62, 13);
-            this.lblDuplicate.TabIndex = 24;
-            this.lblDuplicate.Text = "lblDuplicate";
-            this.lblDuplicate.Visible = false;
-            // 
             // AddQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.gbQuestion);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddQuestionView";
             this.Size = new System.Drawing.Size(508, 249);
             this.Load += new System.EventHandler(this.AddQuestionView_Load);

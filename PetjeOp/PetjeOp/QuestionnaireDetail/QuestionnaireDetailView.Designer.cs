@@ -52,6 +52,7 @@
             this.cbSubject = new System.Windows.Forms.ComboBox();
             this.epTbEdit = new System.Windows.Forms.ErrorProvider(this.components);
             this.questionsView1 = new PetjeOp.AddQuestionnaire.QuestionsView();
+            this.lblNoEdit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epTbEdit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -288,17 +289,28 @@
             this.questionsView1.AddQuestionnaireController = null;
             this.questionsView1.Dialog = null;
             this.questionsView1.Location = new System.Drawing.Point(44, 458);
-            this.questionsView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.questionsView1.Margin = new System.Windows.Forms.Padding(4);
             this.questionsView1.Name = "questionsView1";
             this.questionsView1.ParentController = null;
             this.questionsView1.QuestionnaireDetailController = null;
             this.questionsView1.Size = new System.Drawing.Size(1668, 473);
             this.questionsView1.TabIndex = 37;
             // 
+            // lblNoEdit
+            // 
+            this.lblNoEdit.AutoSize = true;
+            this.lblNoEdit.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblNoEdit.Location = new System.Drawing.Point(39, 106);
+            this.lblNoEdit.Name = "lblNoEdit";
+            this.lblNoEdit.Size = new System.Drawing.Size(643, 25);
+            this.lblNoEdit.TabIndex = 52;
+            this.lblNoEdit.Text = "Vragenlijst kan niet gewijzigd worden, omdat deze gearchiveerd is";
+            // 
             // QuestionnaireDetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblNoEdit);
             this.Controls.Add(this.cbSubject);
             this.Controls.Add(this.btnCancelEdit);
             this.Controls.Add(this.btnSave);
@@ -356,5 +368,6 @@
         public System.Windows.Forms.Button btnCancelEdit;
         public System.Windows.Forms.Button btnEdit;
         public System.Windows.Forms.ErrorProvider epTbEdit;
+        public System.Windows.Forms.Label lblNoEdit;
     }
 }

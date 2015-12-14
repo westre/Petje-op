@@ -168,7 +168,7 @@ namespace PetjeOp.Questionnaires
             QuestionnaireDetailController qoc = (QuestionnaireDetailController)MasterController.GetController(typeof(QuestionnaireDetailController));
 
             //Bepaal geselecteerde Questionnaire
-            qoc.Model.Questionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
+            qoc.SetQuestionnaire((Questionnaire)View.tvQuestionnaires.SelectedNode.Tag);
 
             //Set de ParentController
             qoc.View.questionsView1.ParentController = qoc;
