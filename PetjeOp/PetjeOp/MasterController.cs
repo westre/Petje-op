@@ -37,6 +37,7 @@ namespace PetjeOp
             //Creëer database instantie
             DB = new Database();
             DB.AnswerCleanup();
+
             Resize += MasterController_Resize;
 
             // We beginnen met deze view, verander dit niet!
@@ -94,15 +95,17 @@ namespace PetjeOp
         private void MasterController_Resize(object sender, EventArgs e)
         {
             if (ActiveParentContainer != null)
-        {
-                // Resize de parent container met de form
-                ActiveParentContainer.GetView().Width = mainPanel.Width;
-                ActiveParentContainer.GetView().Height = mainPanel.Height;
+            {
+                    // Resize de parent container met de form
+                    ActiveParentContainer.GetView().Width = mainPanel.Width;
+                    ActiveParentContainer.GetView().Height = mainPanel.Height;
 
-                ActiveParentContainer.GetHeaderPanel().Width = Width;
-                if (Width > 930)
-                    ActiveParentContainer.GetLogoutButton().Location = new Point(Width - ActiveParentContainer.GetLogoutButton().Size.Width - 25, ActiveParentContainer.GetLogoutButton().Location.Y);
+                    ActiveParentContainer.GetHeaderPanel().Width = Width;
+                    if (Width > 930)
+                        ActiveParentContainer.GetLogoutButton().Location = new Point(Width - ActiveParentContainer.GetLogoutButton().Size.Width - 25, ActiveParentContainer.GetLogoutButton().Location.Y);
+            }
         }
-        }
+
+
     }
 }

@@ -104,6 +104,10 @@ namespace PetjeOp.AddQuestionnaire
             bool checkCorrectAnswer;
             bool checkMaxAnswers;
             bool checkSeconds = true;
+            bool checkNoDuplicates = true;
+
+            lblDuplicate.Visible = false;
+            lblDuplicate.Text = "";
 
             //Check of er minimaal 2 antwoorden ingevuld zijn
             if (clbAnswers.Items.Count <= 1)
@@ -115,6 +119,27 @@ namespace PetjeOp.AddQuestionnaire
             {
                 lblNonSufficientAnswers.Text = "";
                 checkTwoAnswers = true;
+            }
+
+            // Check of er duplicates zijn
+            foreach (object item in clbAnswers.Items) {
+                string itemString = Convert.ToString(item);
+                int duplicateCount = 0;
+
+                foreach (object item2 in clbAnswers.Items) {
+                    string item2String = Convert.ToString(item2);
+                    if(itemString == item2String) {
+                        duplicateCount++;
+
+                        if (duplicateCount == 2) {
+                            lblDuplicate.Visible = true;
+                            lblDuplicate.Text = "Error";
+                            lblDuplicate.ForeColor = Color.Red;
+                            checkNoDuplicates = false;
+                            break;
+                        }
+                    }
+                }
             }
 
             //Check of er een vraag is ingevuld
@@ -193,7 +218,7 @@ namespace PetjeOp.AddQuestionnaire
 
             //Zet knop 'Vraag Toevoegen' aan of uit
             if (checkTwoAnswers && checkQuestion && 
-                checkCorrectAnswer && checkMaxAnswers && checkSeconds)
+                checkCorrectAnswer && checkMaxAnswers && checkSeconds && checkNoDuplicates)
             {
                 AddQuestionDialog.btnAddQuestion.Enabled = true;
             } else
