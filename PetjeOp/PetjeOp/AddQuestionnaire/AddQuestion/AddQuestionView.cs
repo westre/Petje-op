@@ -75,14 +75,29 @@ namespace PetjeOp.AddQuestionnaire
         //Knop om antwoord toe te voegen aan- en uitzetten
         private void tbAnswer_TextChanged(object sender, EventArgs e)
         {
+
             if (tbAnswer.Text.Count() > 0)
             {
-                btnAddAnswer.Enabled = true;
+                if (CheckIfDuplicate(tbAnswer.Text))
+                {
+                    btnAddAnswer.Enabled = true;
+                    lblDuplicate.Text = "";
+                }
+                else
+                {
+                    btnAddAnswer.Enabled = false;
+                    lblDuplicate.Text = "Geen dubbele antwoorden!";
+                    Console.WriteLine("Dit werkt!");
+                }
             }
             else
             {
                 btnAddAnswer.Enabled = false;
+                lblDuplicate.Text = "";
             }
+
+
+
         }
 
         //Valideer de ingevoerde gegevens
@@ -108,38 +123,7 @@ namespace PetjeOp.AddQuestionnaire
                 lblNonSufficientAnswers.Text = "";
                 checkTwoAnswers = true;
             }
-
-
-
-            // Check of er duplicates zijn
-            foreach (object item in clbAnswers.Items)
-            {
-                string itemString = Convert.ToString(item);
-                int duplicateCount = 0;
-                
-                foreach (object item2 in clbAnswers.Items)
-                {
-                    string item2String = Convert.ToString(item2);
-                    if (itemString == item2String)
-                    {
-                        duplicateCount++;
-                        if (duplicateCount >= 2)
-                        {
-                            lblDuplicate.Text = "Geen dubbele antwoorden!";
-                            checkNoDuplicates = false;
-                            break;
-                        }
-                        else
-                        {
-                            checkNoDuplicates = true;
-                            lblDuplicate.Text = "";
-                        }
-                    }
-                 }
-             }
             
-
-
             //Check of er een vraag is ingevuld
             if (!tbQuestion.Text.Any())
             {
@@ -301,6 +285,21 @@ namespace PetjeOp.AddQuestionnaire
         private void clbAnswers_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             checkQuestionView();
+        }
+
+        public bool CheckIfDuplicate(string currentString)
+        {
+            List<string> items = new List<string>();
+            foreach (object item in clbAnswers.Items)
+            {
+                string itemString = Convert.ToString(item);
+                items.Add(itemString);
+            }
+            if (items.Contains(currentString))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
