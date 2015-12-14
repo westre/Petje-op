@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Drawing.Design;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
@@ -39,15 +40,7 @@ namespace PetjeOp.Questionnaires
             Application.DoEvents();
 
             //Vraag Questionnaires op
-            if (View.cbShowArchive.Checked)
-            {
-                Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
-            }
-            else
-            {
-                Model.AllQuestionnaires = MasterController.DB.GetAllActiveQuestionnaires();
-            }
-
+            Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
             ResetList();
 
             //Vraag Subjects op
@@ -133,11 +126,12 @@ namespace PetjeOp.Questionnaires
         //Filter de Questionnaires
         public void FilterQuestionnaires(Subject s)
         {
+            ResetList();
             //Maak nieuwe List
             List<Questionnaire> newList = new List<Questionnaire>();
 
             //Loop over Questionnaires
-            foreach (Questionnaire q in Model.AllQuestionnaires)
+            foreach (Questionnaire q in Model.ListQuestionnaires)
             {
                 //Als SubjectID van Questonnair gelijk is aan ID van gekozen Subject
                 if (q.Subject.Id == s.Id)
@@ -152,7 +146,14 @@ namespace PetjeOp.Questionnaires
         //Reset de lijst zodat alle Questionnaires er weer in staan
         public void ResetList()
         {
-            Model.ListQuestionnaires = Model.AllQuestionnaires;
+            if (View.cbShowArchive.Checked)
+            {
+                Model.ListQuestionnaires = Model.AllQuestionnaires;
+            }
+            else
+            {
+                Model.ListQuestionnaires = Model.AllQuestionnaires.Where(q => q.Archived == false).ToList();
+            }
         }
 
         public void GoToQuestionnaireDetails()

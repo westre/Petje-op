@@ -139,24 +139,22 @@ namespace PetjeOp
 
             foreach (tblQuestion dbQuestion in updateQuestionnaire.tblQuestions.ToList())                                            // Doorloopt lijst van bijbehorende questions uit DB
             {
-                try {
+              
                     MultipleChoiceQuestion question = (MultipleChoiceQuestion)questionnaire.Questions.Single(q => q.ID == dbQuestion.id);// Haalt Question op uit Questionnaire                 
                     dbQuestion.description = question.Description;                                                                      // Wijzigt de vraag in DB
 
                     foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList())                                        // Doorloopt lijst van bijbehorende answers uit DB
                     {
                         tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
-                        Answer answer = (Answer)question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer);                               // Haalt Answer op uit Question
+                        Answer answer = question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer);                               // Haalt Answer op uit Question
                         dbAnswer.description = answer.Description;                                                                  // Wijzigt het antwoord in DB
                     }
                     dbQuestion.correctanswer = question.CorrectAnswer.ID;                                                          // Wijzigt het correcte antwoord in DB
-                }
-                catch (Exception e)
-                {
+
                     // Question is verwijderd uit de questionnaire
                     // Verwijder deze ook uit de database
-                    DeleteMultipleChoiceQuestion(dbQuestion.id);
-                }
+                    // DeleteMultipleChoiceQuestion(dbQuestion.id);
+                
 }
             db.SubmitChanges();                                                                                                              // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB            
         }
@@ -394,20 +392,6 @@ namespace PetjeOp
 
             return questionnaires;
         } 
-
-        public List<Questionnaire> GetAllActiveQuestionnaires()
-        {
-            List<Questionnaire> newQuestionnaires = new List<Questionnaire>();
-            List<Questionnaire> questionnaires = GetAllQuestionnaires();
-
-            foreach (Questionnaire q in questionnaires)
-            {
-                if(!q.Archived)
-                    newQuestionnaires.Add(q);
-            }
-
-            return newQuestionnaires;
-        }
 
         // hier worden de afnamemomenten uit de database gehaald
         public List<Exam> GetAllExams()

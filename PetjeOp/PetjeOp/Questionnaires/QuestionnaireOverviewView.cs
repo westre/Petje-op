@@ -60,7 +60,7 @@ namespace PetjeOp.Questionnaires
             else
             {
                 //Toon alle vakken
-                Controller.ResetList();
+                Controller.GetAllQuestionnairesAndSubjects();
             }
 
             //Vul de TreeView met gegevens
