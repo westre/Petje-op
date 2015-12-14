@@ -242,9 +242,9 @@
             this.lblDuplicate.AutoSize = true;
             this.lblDuplicate.Location = new System.Drawing.Point(9, 111);
             this.lblDuplicate.Name = "lblDuplicate";
-            this.lblDuplicate.Size = new System.Drawing.Size(35, 13);
+            this.lblDuplicate.Size = new System.Drawing.Size(62, 13);
             this.lblDuplicate.TabIndex = 24;
-            this.lblDuplicate.Text = "label1";
+            this.lblDuplicate.Text = "lblDuplicate";
             this.lblDuplicate.Visible = false;
             // 
             // AddQuestionView

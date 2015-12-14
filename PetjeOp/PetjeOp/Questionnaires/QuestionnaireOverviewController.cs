@@ -26,6 +26,7 @@ namespace PetjeOp.Questionnaires
         public void GoToAddQuestionnaire()
         {
             AddQuestionnaireController aqc = (AddQuestionnaireController)MasterController.GetController(typeof(AddQuestionnaireController));
+            aqc.ClearControls();
             MasterController.SetController(aqc);
         }
 

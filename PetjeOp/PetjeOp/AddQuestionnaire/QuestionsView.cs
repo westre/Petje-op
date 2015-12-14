@@ -16,6 +16,7 @@ namespace PetjeOp.AddQuestionnaire
         public Controller ParentController { get; set; }
         public AddQuestionnaireController AddQuestionnaireController { get; set; }
         public QuestionnaireDetailController QuestionnaireDetailController { get; set; }
+        public bool ContainsQuestions { get; private set; }
 
         public QuestionsView()
         {
@@ -213,10 +214,24 @@ namespace PetjeOp.AddQuestionnaire
             //Klap alle vragen uit
             tvQuestions.ExpandAll();
 
+            if (!ValidateQuestions())
+            {
+                epNoQuestions.SetError(lblQuestions, "Voeg vragen toe aan de vragenlijst");
+            }
+            else
+            {
+                epNoQuestions.Clear();
+            }
+
             if (AddQuestionnaireController != null)
             {
                 AddQuestionnaireController.CheckButtons();
-            }      
+            }
+
+            if (QuestionnaireDetailController != null)
+            {
+                QuestionnaireDetailController.CheckQuestions();
+            }
         }
 
         //Geef gegenereerde vraag door aan het model
@@ -244,8 +259,11 @@ namespace PetjeOp.AddQuestionnaire
             //Check of er vragen zijn toegevoegd aan de vragenlijst
             if (tvQuestions.Nodes.Count > 0)
             {
+                ContainsQuestions = true;
                 return true;
             }
+
+            ContainsQuestions = false;
             return false;
         }
 
