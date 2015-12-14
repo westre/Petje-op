@@ -54,12 +54,6 @@ namespace PetjeOp.AddQuestionnaire
             checkQuestionView();
         }
 
-        //Knop om te verwijderen van antwoord aan- en uitzetten
-        private void clbAnswers_SelectedIndexChanged(object sender, ItemCheckEventArgs e)
-        {
-
-        }
-
         //Functie zodat er maar 1 checkbox aangevinkt kan worden
         private void clbAnswers_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -100,6 +94,7 @@ namespace PetjeOp.AddQuestionnaire
             bool checkCorrectAnswer = false;
             bool checkMaxAnswers = false;
             bool checkSeconds = false;
+            bool checkNoDuplicates = true;
 
             //Check of er minimaal 2 antwoorden ingevuld zijn
             if (clbAnswers.Items.Count <= 1)
@@ -113,6 +108,37 @@ namespace PetjeOp.AddQuestionnaire
                 lblNonSufficientAnswers.Text = "";
                 checkTwoAnswers = true;
             }
+
+
+
+            // Check of er duplicates zijn
+            foreach (object item in clbAnswers.Items)
+            {
+                string itemString = Convert.ToString(item);
+                int duplicateCount = 0;
+                
+                foreach (object item2 in clbAnswers.Items)
+                {
+                    string item2String = Convert.ToString(item2);
+                    if (itemString == item2String)
+                    {
+                        duplicateCount++;
+                        if (duplicateCount >= 2)
+                        {
+                            lblDuplicate.Text = "Geen dubbele antwoorden!";
+                            checkNoDuplicates = false;
+                            break;
+                        }
+                        else
+                        {
+                            checkNoDuplicates = true;
+                            lblDuplicate.Text = "";
+                        }
+                    }
+                 }
+             }
+            
+
 
             //Check of er een vraag is ingevuld
             if (!tbQuestion.Text.Any())
@@ -204,7 +230,7 @@ namespace PetjeOp.AddQuestionnaire
 
             //Zet knop 'Vraag Toevoegen' aan of uit
             if (checkTwoAnswers && checkQuestion &&
-                checkCorrectAnswer && checkMaxAnswers && checkSeconds)
+                checkCorrectAnswer && checkMaxAnswers && checkSeconds && checkNoDuplicates)
             { 
                 AddQuestionDialog.btnAddQuestion.Enabled = true;
             } else
@@ -258,8 +284,17 @@ namespace PetjeOp.AddQuestionnaire
             checkQuestionView();
         }
 
+        //Knop om te verwijderen van antwoord aan- en uitzetten
         private void clbAnswers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (clbAnswers.SelectedIndex != -1)
+            {
+                btnDeleteAnswer.Enabled = true;
+            }
+            else
+            {
+                btnDeleteAnswer.Enabled = false;
+            }
             checkQuestionView();
         }
 

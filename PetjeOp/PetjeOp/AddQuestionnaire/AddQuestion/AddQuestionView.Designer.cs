@@ -78,11 +78,10 @@
             // 
             this.lblDuplicate.AutoSize = true;
             this.lblDuplicate.ForeColor = System.Drawing.Color.Red;
-            this.lblDuplicate.Location = new System.Drawing.Point(9, 111);
+            this.lblDuplicate.Location = new System.Drawing.Point(253, 118);
             this.lblDuplicate.Name = "lblDuplicate";
             this.lblDuplicate.Size = new System.Drawing.Size(0, 13);
             this.lblDuplicate.TabIndex = 24;
-            this.lblDuplicate.Visible = false;
             // 
             // lblErrorSeconds
             // 
@@ -213,7 +212,7 @@
             this.clbAnswers.Location = new System.Drawing.Point(6, 71);
             this.clbAnswers.Margin = new System.Windows.Forms.Padding(2);
             this.clbAnswers.Name = "clbAnswers";
-            this.clbAnswers.Size = new System.Drawing.Size(236, 34);
+            this.clbAnswers.Size = new System.Drawing.Size(236, 64);
             this.clbAnswers.TabIndex = 15;
             this.clbAnswers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbAnswers_ItemCheck);
             this.clbAnswers.SelectedIndexChanged += new System.EventHandler(this.clbAnswers_SelectedIndexChanged);
