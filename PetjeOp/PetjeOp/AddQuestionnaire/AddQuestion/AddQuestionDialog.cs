@@ -190,6 +190,13 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                         addQuestionView1.clbAnswers.SetItemChecked(addedIndex, true);
                     }
                 }
+
+                //Stel tijdslimiet in
+                if (Question.TimeRestriction != TimeSpan.Zero)
+                {
+                    addQuestionView1.rbLimit.Checked = true;
+                    addQuestionView1.tbSeconds.Text = Question.TimeRestriction.TotalSeconds.ToString();
+                }
             }
 
             if (Question != null)

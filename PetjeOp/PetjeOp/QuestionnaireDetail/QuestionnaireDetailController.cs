@@ -104,5 +104,29 @@ namespace PetjeOp {
         {
             MasterController.DB.UpdateQuestionnaire(Model.Questionnaire);
         }
+
+        public void CheckForErrors()
+        {
+            if (string.IsNullOrEmpty(View.epTbEdit.GetError(View.tbNameEdit)))
+            {
+                View.btnSave.Enabled = true;
+            }
+            else
+            {
+                View.btnSave.Enabled = false;
+            }
+        }
+
+        public void CheckQuestions()
+        {
+            if (string.IsNullOrEmpty(View.questionsView1.epNoQuestions.GetError(View.questionsView1.lblQuestions)))
+            {
+                View.btnSaveQuestionnaire.Enabled = true;
+            }
+            else
+            {
+                View.btnSaveQuestionnaire.Enabled = false;
+            }
+        }
     }
 }

@@ -216,6 +216,12 @@ namespace PetjeOp.Questionnaires
 
         public void ArchiveQuestionnaire()
         {
+            // Null check
+            if (View.tvQuestionnaires.SelectedNode == null) {
+                MessageBox.Show("Kies een afnamemoment");
+                return;
+            }
+
             DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt archiveren?",
                 "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
