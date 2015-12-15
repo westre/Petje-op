@@ -62,8 +62,8 @@ namespace PetjeOpPowerPoint {
             }
 
             // Calculeer breedte van grafiek
-            int breedte = distinctAnswers.Count * 100;
-            float centerX = (Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - breedte) / 2;
+            int width = distinctAnswers.Count * 100;
+            float centerX = (Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - width) / 2;
 
             int maxHeight = 300;
             int x = (int)centerX;
