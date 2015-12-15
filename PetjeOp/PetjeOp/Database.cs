@@ -536,24 +536,42 @@ namespace PetjeOp
 
             
         }
-    
-        
+
+
         public List<Subject> GetSubjects()
         {
-            try {
-            List<Subject> subjects = new List<Subject>();
+            try
+            {
+                List<Subject> subjects = new List<Subject>();
 
-                foreach (tblSubject tblSubject in db.tblSubjects) {
-                Subject subject = new Subject(tblSubject.id, tblSubject.name);
+                foreach (tblSubject tblSubject in db.tblSubjects)
+                {
+                    Subject subject = new Subject(tblSubject.id, tblSubject.name);
 
-                subjects.Add(subject);
+                    subjects.Add(subject);
+                }
+
+                return subjects;
             }
-
-            return subjects;
-        }
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+        }
 
-            
+        public List<Teacher> GetTeachers()
+        {
+            try
+            {
+                List<Teacher> teachers = new List<Teacher>();
+
+                foreach (tblTeacher tblTeacher in db.tblTeachers)
+                {
+                    Teacher teacher = new Teacher(tblTeacher.nr, tblTeacher.firstname, tblTeacher.surname);
+
+                    teachers.Add(teacher);
+                }
+
+                return teachers;
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
         // hier worden de antwoorden opgehaald die bij een specifieke vraag horen

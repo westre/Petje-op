@@ -238,6 +238,7 @@ namespace PetjeOp.AddQuestionnaire
         private void AddQuestionView_Load(object sender, EventArgs e)
         {
             lblErrorSeconds.Hide();
+            checkQuestionView();
         }
 
         private void tbSeconds_TextChanged(object sender, EventArgs e)
