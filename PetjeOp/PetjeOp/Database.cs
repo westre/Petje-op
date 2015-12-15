@@ -616,6 +616,8 @@ namespace PetjeOp
         
         // Haal resultaten op van examen
         public List<Result> GetResultsByExamId(int id) {
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
+
             List<Result> results = new List<Result>();
 
             List<tblResult> tblResults = (from result in db.tblResults
