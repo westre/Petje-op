@@ -18,7 +18,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         //public AddQuestionnaireController Controller { get; set; }
         private int QuestionIndex { get; }
         public QuestionsView QuestionsView { get; set; }
-        private bool Update { get; set; }
+        private bool UpdateView { get; set; }
 
         /*Constructor voor het toevoegen van een vraag
         public AddQuestionDialog(AddQuestionnaireController controller)
@@ -35,7 +35,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             addQuestionView1.SetQuestionDialog(this);
             QuestionsView = qv;
             QuestionIndex = 0;
-            Update = false;
+            UpdateView = false;
         }
 
         /*Constructor voor het wijzigen van een vraag
@@ -53,13 +53,13 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             QuestionIndex = questionIndex;
             Question = question;
             Text = btnAddQuestion.Text = "Vraag Wijzigen";
-            Update = true;
+            UpdateView = true;
         }
 
         //Functie voor afhandeling van klik op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
-            if (!Update) {
+            if (!UpdateView) {
             Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
             }
 
@@ -68,7 +68,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             {
                 Answer ans = null;
 
-                if (!Update || Question.GetAnswer(item.ToString()) == null) {
+                if (!UpdateView || Question.GetAnswer(item.ToString()) == null) {
                 //Maak een antwoordobject aan
                     ans = new Answer(item.ToString());
 
@@ -86,7 +86,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 //Controleer of het antwoord het correcte antwoord is
                 if (addQuestionView1.clbAnswers.CheckedItems.Contains(item)) {
                     //Stel het correcte antwoord gelijk aan het huidge antwoord in de loop
-                    if (Update) {
+                    if (UpdateView) {
                         correct = Question.GetAnswer(item.ToString());
                     }
                 }
