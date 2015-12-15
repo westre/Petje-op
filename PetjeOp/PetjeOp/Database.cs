@@ -437,6 +437,7 @@ namespace PetjeOp
 
                 foreach (tblExam tblExam in db.tblExams) {
                 Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+               
 
                 Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
 
@@ -450,6 +451,31 @@ namespace PetjeOp
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
 
             
+
+        }
+
+        public List<Class> GetAllClasses()
+        {
+            try
+            {
+                List<Class> css = new List<Class>();
+
+                foreach (tblClass tblclass in db.tblClasses)
+                {
+
+
+                    Class cs = new Class(tblclass.code);
+
+                    css.Add(cs);
+
+
+                }
+
+                return css;
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+
+
 
         }
 

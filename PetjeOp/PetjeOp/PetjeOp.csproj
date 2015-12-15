@@ -84,6 +84,7 @@
     <Compile Include="ChooseExamDialogs\ChooseExamDetailsDialog.Designer.cs">
       <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Database.designer.cs">
