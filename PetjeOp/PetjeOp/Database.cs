@@ -255,11 +255,11 @@ namespace PetjeOp
                 //Loop door alle antwoorden heen
                     foreach (Answer answer in q.AnswerOptions) {
                     Answer ans = GetAnswer(answer.Description);
-                        if (ans == null) {
+                    if (ans == null) {
                         ans = AddAnswer(answer.Description.ToString());
                     }
 
-                        if (q.CorrectAnswer == answer) {
+                    if (q.CorrectAnswer == answer) {
                         q.CorrectAnswer = ans;
                     }
 

@@ -60,7 +60,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
             if (!Update) {
-            Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
+                Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
             }
 
             //Loop voor alle ingevoerde antwoorden
@@ -69,11 +69,10 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 Answer ans = null;
 
                 if (!Update || Question.GetAnswer(item.ToString()) == null) {
-                //Maak een antwoordobject aan
+                    //Maak een antwoordobject aan
                     ans = new Answer(item.ToString());
-
-                //Voeg het antwoord toe aan de lijst met antwoorden
-                answers.Add(ans);
+                    //Voeg het antwoord toe aan de lijst met antwoorden
+                    answers.Add(ans);
                 }
 
                 correct = ans;
