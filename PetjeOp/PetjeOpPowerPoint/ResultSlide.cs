@@ -61,8 +61,12 @@ namespace PetjeOpPowerPoint {
                     highestCount = kvp.Value.Count * 10;
             }
 
+            // Calculeer breedte van grafiek
+            int breedte = distinctAnswers.Count * 100;
+            float centerX = (Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - breedte) / 2;
+
             int maxHeight = 300;
-            int x = 300;
+            int x = (int)centerX;
             int y = 500;
             foreach (KeyValuePair<int, ChartData> kvp in distinctAnswers) {
                 double percentage = (double)(10 * kvp.Value.Count) / (double)highestCount;
