@@ -614,6 +614,20 @@ namespace PetjeOp
             
         }     
         
+        // Haal resultaten op van examen
+        public List<Result> GetResultsByExamId(int id) {
+            List<Result> results = new List<Result>();
 
+            List<tblResult> tblResults = (from result in db.tblResults
+                                          where result.exam == id
+                                          select result).ToList();
+
+            foreach(tblResult tblResult in tblResults) {
+                Result result = new Result(id, tblResult.answer, tblResult.question);
+                results.Add(result);
+            }
+
+            return results;
+        }
     }
 }

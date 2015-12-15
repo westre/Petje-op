@@ -138,25 +138,74 @@ namespace PetjeOpPowerPoint
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
         {
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-            Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
-            foreach (Question q in testquest.Questions)
+            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.questionnaire.ID);
+
+            // Haal alle resultaten op die bij deze examen hoort
+            List<Result> allResults = DB.GetResultsByExamId(chosen.Examnr);
+
+            foreach (Question q in questionnaire.Questions)
             {
-                PowerPoint.Slide currentSld = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-                PowerPoint.Shape textBox = currentSld.Shapes.AddTextbox(
-                Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
-                textBox.TextFrame.TextRange.InsertAfter(q.Description);
-                textBox.TextFrame.TextRange.Font.Size = 30;
+                PowerPoint.Slide questionSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+                PowerPoint.Shape questionTextBox = questionSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
 
-                textBox.TextFrame.TextRange.InsertAfter("\n\n");
+                questionTextBox.TextFrame.TextRange.InsertAfter(q.Description);
+                questionTextBox.TextFrame.TextRange.Font.Size = 30;
+                questionTextBox.TextFrame.TextRange.InsertAfter("\n\n");
 
-                currentSld.Tags.Add("questionId", q.ID.ToString());
-                currentSld.Tags.Add("examId", chosen.Examnr.ToString());
+                questionSlide.Tags.Add("questionId", q.ID.ToString());
+                questionSlide.Tags.Add("examId", chosen.Examnr.ToString());
+
                 string answers = GetFormattedAnswers(q.ID);
-                textBox.TextFrame.TextRange.InsertAfter(answers);
+                questionTextBox.TextFrame.TextRange.InsertAfter(answers);
 
-                PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
+                PowerPoint.Shape winQWatermark = questionSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
                 winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
                 winQWatermark.TextFrame.TextRange.Font.Size = 10;
+
+                // volgende slide
+                PowerPoint.Slide resultSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+                PowerPoint.Shape resultTextBox = resultSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
+
+                // Hall alle resultaten op voor deze vraag
+                List<Result> currentQuestionResults = new List<Result>();
+                foreach(Result result in allResults) {
+                    if(result.questionID == q.ID) {
+                        currentQuestionResults.Add(result);
+                    }
+                }
+
+                // Haal alle answeroptions op (de int)
+                List<int> distinctAnswerOptions = new List<int>();
+                foreach(Result result in currentQuestionResults) {
+                    int res = distinctAnswerOptions.Select(value => result.answerID).FirstOrDefault();
+                    if(res == 0) {
+                        distinctAnswerOptions.Add(result.answerID);
+                    }
+                }
+
+                resultTextBox.TextFrame.TextRange.InsertAfter("Resultaten voor " + q.Description + ", aan resultaten: " + currentQuestionResults.Count);
+
+                /*const double barHeight = 300;
+
+                double percentage1 = 1.00;
+                double barHeight1 = barHeight * percentage1;
+
+                double percentage2 = 0.60;
+                double barHeight2 = barHeight * percentage2;
+
+                double percentage3 = 0.80;
+                double barHeight3 = barHeight * percentage3;
+
+                PowerPoint.Shape shape = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 10, 10, 100, Convert.ToInt32(barHeight1));
+                PowerPoint.Shape shape1 = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 120, 10 + 300 - (int)barHeight2, 100, Convert.ToInt32(barHeight2));
+                PowerPoint.Shape shape2 = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, 230, 10 + 300 - (int)barHeight3, 100, Convert.ToInt32(barHeight3));*/
+
+                int left = 50;
+                foreach(Result result in currentQuestionResults) {
+                    //resultSlide.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeRectangle, left, 100, 75, 10 * res)
+
+                    //left += 100;
+                }
             }
         }
     }
