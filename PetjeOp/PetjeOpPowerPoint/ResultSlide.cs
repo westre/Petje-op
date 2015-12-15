@@ -60,19 +60,26 @@ namespace PetjeOpPowerPoint {
                 if (kvp.Value.Count * 10 > highestCount)
                     highestCount = kvp.Value.Count * 10;
             }
+          
+            // Max breedte en hoogte voor grafiek
+            int maxWidth = 400;
+            int maxHeight = 300;
+            
+            // Calculeer breedte per staaf
+            float rectPercentage = (26f - distinctAnswers.Count) / 26f; // We hebben 26 letters in het alfabet
+            float rectangleWidth = (maxWidth / distinctAnswers.Count) * rectPercentage;
 
             // Calculeer breedte van grafiek
-            int width = distinctAnswers.Count * 100;
+            float width = distinctAnswers.Count * rectangleWidth;
             float centerX = (Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - width) / 2;
-
-            int maxHeight = 300;
+        
             int x = (int)centerX;
             int y = 500;
             foreach (KeyValuePair<int, ChartData> kvp in distinctAnswers) {
                 double percentage = (double)(10 * kvp.Value.Count) / (double)highestCount;
                 double barHeight = maxHeight * percentage;
 
-                Microsoft.Office.Interop.PowerPoint.Shape shape = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, x, y - (int)barHeight, 75, (int)barHeight);
+                Microsoft.Office.Interop.PowerPoint.Shape shape = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, x, y - (int)barHeight, rectangleWidth, (int)barHeight);
                 shape.Tags.Add("answer", kvp.Value.Result.answerID.ToString());
 
                 // Zoek voor juiste answer
@@ -86,7 +93,7 @@ namespace PetjeOpPowerPoint {
                 
                 resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x, y - (int)barHeight, 100, 100).TextEffect.Text = "Count: " + kvp.Value.Count;
 
-                x += 100;
+                x += (int)(rectangleWidth + 10);
             }
         }
     }
