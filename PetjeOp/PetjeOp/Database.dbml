@@ -34,7 +34,7 @@
       <Column Name="firstname" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
       <Column Name="surname" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
       <Column Name="class" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="tblStudent_result" Member="tblResults" ThisKey="nr" OtherKey="student" Type="tblResult" />
+      <Association Name="tblStudent_tblResult" Member="tblResults" ThisKey="nr" OtherKey="student" Type="tblResult" />
       <Association Name="tblClass_tblStudent" Member="tblClass" Storage="_class1" ThisKey="class" OtherKey="code" Type="tblClass" IsForeignKey="true" />
     </Type>
   </Table>
@@ -52,7 +52,7 @@
       <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="tblAnswer_tblQuestion" Member="tblQuestions" ThisKey="id" OtherKey="correctanswer" Type="tblQuestion" />
       <Association Name="tblAnswer_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="answer" Type="tblAnsweroption" />
-      <Association Name="tblAnswer_result" Member="tblResults" ThisKey="id" OtherKey="answer" Type="tblResult" />
+      <Association Name="tblAnswer_tblResult" Member="tblResults" ThisKey="id" OtherKey="answer" Type="tblResult" />
     </Type>
   </Table>
   <Table Name="dbo.question" Member="tblQuestions">
@@ -65,7 +65,7 @@
       <Column Name="timerestriction" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Association Name="tblQuestion_tblAnsweroption" Member="tblAnsweroptions" ThisKey="id" OtherKey="question" Type="tblAnsweroption" />
       <Association Name="tblQuestion_tblExam" Member="tblExams" Storage="_exams" ThisKey="id" OtherKey="currentquestion" Type="tblExam" />
-      <Association Name="tblQuestion_result" Member="tblResults" ThisKey="id" OtherKey="question" Type="tblResult" />
+      <Association Name="tblQuestion_tblResult" Member="tblResults" ThisKey="id" OtherKey="question" Type="tblResult" />
       <Association Name="tblAnswer_tblQuestion" Member="tblAnswer" ThisKey="correctanswer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
       <Association Name="tblQuestionnaire_tblQuestion" Member="tblQuestionnaire" ThisKey="questionnaire" OtherKey="id" Type="tblQuestionnaire" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -86,7 +86,7 @@
       <Column Name="starttime" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
       <Column Name="endtime" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
       <Column Name="currentquestion" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblExam_result" Member="tblResults" ThisKey="id" OtherKey="exam" Type="tblResult" />
+      <Association Name="tblExam_tblResult" Member="tblResults" ThisKey="id" OtherKey="exam" Type="tblResult" />
       <Association Name="tblQuestion_tblExam" Member="tblQuestion" ThisKey="currentquestion" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
       <Association Name="tblLecture_tblExam" Member="tblLecture" ThisKey="lecture" OtherKey="id" Type="tblLecture" IsForeignKey="true" />
       <Association Name="tblQuestionnaire_tblExam" Member="tblQuestionnaire" ThisKey="questionnaire" OtherKey="id" Type="tblQuestionnaire" IsForeignKey="true" />
@@ -111,10 +111,10 @@
       <Column Name="exam" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="answer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="question" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="tblAnswer_result" Member="tblAnswer" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
-      <Association Name="tblExam_result" Member="tblExam" ThisKey="exam" OtherKey="id" Type="tblExam" IsForeignKey="true" />
-      <Association Name="tblQuestion_result" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
-      <Association Name="tblStudent_result" Member="tblStudent" ThisKey="student" OtherKey="nr" Type="tblStudent" IsForeignKey="true" />
+      <Association Name="tblAnswer_tblResult" Member="tblAnswer" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
+      <Association Name="tblExam_tblResult" Member="tblExam" ThisKey="exam" OtherKey="id" Type="tblExam" IsForeignKey="true" />
+      <Association Name="tblQuestion_tblResult" Member="tblQuestion" ThisKey="question" OtherKey="id" Type="tblQuestion" IsForeignKey="true" />
+      <Association Name="tblStudent_tblResult" Member="tblStudent" ThisKey="student" OtherKey="nr" Type="tblStudent" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
