@@ -14,6 +14,11 @@ namespace PetjeOpPowerPoint {
         }
 
         public static void Add(List<Result> allResults, Question question, Microsoft.Office.Interop.PowerPoint.Slide resultSlide) {
+            MultipleChoiceQuestion multipleChoiceQuestion = null;
+            if (question is MultipleChoiceQuestion) {
+                multipleChoiceQuestion = (MultipleChoiceQuestion)question;
+            }
+
             // Verwijder eerst alle data
             while (resultSlide.Shapes.Count > 0) {
                 resultSlide.Shapes[1].Delete();
@@ -66,7 +71,15 @@ namespace PetjeOpPowerPoint {
                 Microsoft.Office.Interop.PowerPoint.Shape shape = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, x, y - (int)barHeight, 75, (int)barHeight);
                 shape.Tags.Add("answer", kvp.Value.Result.answerID.ToString());
 
-                resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x, y, 100, 100).TextEffect.Text = "aID: " + kvp.Value.Result.answerID;
+                // Zoek voor juiste answer
+                if(multipleChoiceQuestion != null) {
+                    foreach (Answer answer in multipleChoiceQuestion.AnswerOptions) {
+                        if (answer.ID == kvp.Value.Result.answerID) {
+                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x, y, 100, 100).TextEffect.Text = answer.Description;
+                        }
+                    }
+                }            
+                
                 resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x, y - (int)barHeight, 100, 100).TextEffect.Text = "Count: " + kvp.Value.Count;
 
                 x += 100;
