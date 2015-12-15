@@ -1,6 +1,7 @@
 ﻿using PetjeOp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -69,9 +70,12 @@ namespace PetjeOpPowerPoint {
             float rectPercentage = (26f - distinctAnswers.Count) / 26f; // We hebben 26 letters in het alfabet
             float rectangleWidth = (maxWidth / distinctAnswers.Count) * rectPercentage;
 
-            // Calculeer breedte van grafiek
+            // Calculeer breedte van grafiek voor het centeren
             float width = distinctAnswers.Count * rectangleWidth;
             float centerX = (Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - width) / 2;
+
+            // Calculeer breedte van staaf voor het centeren van labels
+            float centerLabelPosition = rectangleWidth / 2;
         
             int x = (int)centerX;
             int y = 500;
@@ -86,12 +90,14 @@ namespace PetjeOpPowerPoint {
                 if(multipleChoiceQuestion != null) {
                     foreach (Answer answer in multipleChoiceQuestion.AnswerOptions) {
                         if (answer.ID == kvp.Value.Result.answerID) {
-                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x, y, 100, 100).TextEffect.Text = answer.Description;
+                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y, 100, 100).TextEffect.Text = answer.Description;
                         }
                     }
-                }            
-                
-                resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x, y - (int)barHeight, 100, 100).TextEffect.Text = "Count: " + kvp.Value.Count;
+                }
+
+                Microsoft.Office.Interop.PowerPoint.Shape label = resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y - (int)barHeight, 100, 100);
+                label.TextEffect.Text = kvp.Value.Count.ToString();
+                label.TextFrame.TextRange.Font.Color.RGB = Color.White.ToArgb();
 
                 x += (int)(rectangleWidth + 10);
             }
