@@ -8,6 +8,8 @@ namespace PetjeOp.Questionnaires
         public List<Questionnaire> AllQuestionnaires { get; set; }
         public List<Questionnaire> ListQuestionnaires { get; set; }
         public List<Subject> Subjects { get; set; } 
-        public List<Teacher> Teachers { get; set; } 
+        public List<Teacher> Teachers { get; set; }
+        public Subject CurrentSubject { get; set; }
+        public Teacher CurrentAuthor { get; set; }
     }
 }

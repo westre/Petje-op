@@ -41,7 +41,6 @@ namespace PetjeOp.Questionnaires
 
             //Vraag Questionnaires op
             Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
-            ResetLists();
 
             //Vraag Subjects op
             Model.Subjects = MasterController.DB.GetSubjects();
@@ -53,62 +52,20 @@ namespace PetjeOp.Questionnaires
             l.Hide();
         }
 
-        //Vul de TreeView met gegevens
-        public void FillTreeView()
-        {
-            //TreeView leegmaken
-            View.tvQuestionnaires.Nodes.Clear();
-
-            //Loop over Questionnaires
-            foreach (Questionnaire questionnaire in Model.ListQuestionnaires)
-            {
-                //Voeg Node toe
-                TreeNode questionnaireTreeNode = View.tvQuestionnaires.Nodes.Add(questionnaire.Name + " (" + questionnaire.Subject + ")");
-                questionnaireTreeNode.Tag = questionnaire;
-
-                if (questionnaire.Archived)
-                    questionnaireTreeNode.ForeColor = Color.DarkGray;
-
-                //Loop over Questions
-                foreach (MultipleChoiceQuestion question in questionnaire.Questions)
-                {
-                    //Voeg Node toe
-                    TreeNode questionTreeNode =
-                        questionnaireTreeNode.Nodes.Add(question.QuestionIndex + ": " + question.Description);
-                    questionTreeNode.Tag = question;
-
-                    if (questionnaire.Archived)
-                        questionTreeNode.ForeColor = Color.DarkGray;
-
-                    //Loop over Answers
-                    foreach (Answer answer in question.AnswerOptions)
-                    {
-                        //Check of antwoord correct antwoord is
-                        if (answer.ID == question.CorrectAnswer.ID)
-                        {
-                            //Voeg antwoord toe en zet de kleur naar groen
-                            TreeNode addedAnswer = questionTreeNode.Nodes.Add(question.CorrectAnswer.Description);
-                            addedAnswer.Tag = answer;
-                            addedAnswer.ForeColor = Color.Green;
-                        }
-                        else
-                        {
-                            //Voeg antwoord toe en zet de kleur naar rood
-                            TreeNode addedAnswer = questionTreeNode.Nodes.Add(answer.Description);
-                            addedAnswer.Tag = answer;
-                            addedAnswer.ForeColor = Color.Red;
-                        }
-                    }
-                }
-            }
-
-            //Sorteer Nodes alfabetisch
-            View.tvQuestionnaires.Sort();
-        }
-
         //Vul ComboBox met Subjects
         public void FillComboBoxes()
         {
+            Teacher temporaryTeacher = null;
+            Subject temporarySubject = null;
+            if (View.cbAuthors.SelectedItem is Teacher)
+            {
+                temporaryTeacher = Model.CurrentAuthor;
+            }
+            if (View.cbSubjects.SelectedItem is Subject)
+            {
+                temporarySubject = Model.CurrentSubject;
+            }
+
             //Maak ComboBox leeg
             View.cbSubjects.Items.Clear();
             View.cbAuthors.Items.Clear();
@@ -130,14 +87,39 @@ namespace PetjeOp.Questionnaires
             }
 
             //Selecteer eerste index
-            View.cbSubjects.SelectedIndex = 0;
-            View.cbAuthors.SelectedIndex = 0;
+            if (!View.cbShowArchive.Checked)
+            {
+                View.cbSubjects.SelectedIndex = 0;
+                View.cbAuthors.SelectedIndex = 0;
+            }
+            else
+            {
+                if (temporarySubject != null)
+                {
+                    View.cbSubjects.SelectedItem = temporarySubject;
+                }
+                else
+                {
+                    View.cbSubjects.SelectedIndex = 0;
+                }
+                if (temporaryTeacher != null)
+                {
+                    View.cbAuthors.SelectedItem = temporaryTeacher;
+
+                    //Console.WriteLine(temporaryTeacher.TeacherNr);
+                    //Console.WriteLine(((Teacher) View.cbAuthors.SelectedItem).TeacherNr);
+                    Console.WriteLine("Selected item: " + View.cbAuthors.SelectedItem);
+                }
+                else
+                {
+                    View.cbAuthors.SelectedIndex = 0;
+                }
+            }
         }
 
         //Filter de Questionnaires
         public void FilterQuestionnaires(Subject s)
         {
-            ResetLists();
             //Maak nieuwe List
             List<Questionnaire> newList = new List<Questionnaire>();
 
@@ -149,14 +131,12 @@ namespace PetjeOp.Questionnaires
                     //Voeg toe aan nieuwe List
                     newList.Add(q);
             }
-            Console.WriteLine("Voeg toe: Subjects!");
             //Vervang oude list door nieuwe List
             Model.ListQuestionnaires = newList;
         }
 
         public void FilterQuestionnaires(Teacher t)
         {
-            ResetLists();
             //Maak nieuwe List
             List<Questionnaire> newList = new List<Questionnaire>();
 
@@ -168,7 +148,6 @@ namespace PetjeOp.Questionnaires
                     //Voeg toe aan nieuwe List
                     newList.Add(q);
             }
-            Console.WriteLine("Voeg toe: Teachers!");
             //Vervang oude list door nieuwe List
             Model.ListQuestionnaires = newList;
         }
@@ -188,7 +167,6 @@ namespace PetjeOp.Questionnaires
                     //Voeg toe aan nieuwe List
                     newList.Add(q);
             }
-            Console.WriteLine("Voeg toe: Teachers EN Subjects!!");
             //Vervang oude list door nieuwe List
             Model.ListQuestionnaires = newList;
         }
@@ -203,6 +181,14 @@ namespace PetjeOp.Questionnaires
             else
             {
                 Model.ListQuestionnaires = Model.AllQuestionnaires.Where(q => q.Archived == false).ToList();
+            }
+            if (View.cbAuthors.SelectedItem is Teacher)
+            {
+                FilterQuestionnaires((Teacher)View.cbAuthors.SelectedItem);
+            }
+            if (View.cbSubjects.SelectedItem is Subject)
+            {
+                FilterQuestionnaires((Subject)View.cbSubjects.SelectedItem);
             }
         }
 
@@ -283,7 +269,6 @@ namespace PetjeOp.Questionnaires
 
                 MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
 
-                GetAllQuestionnairesAndSubjects();
                 FillTreeView();
                 CheckButtons();
             }
@@ -302,56 +287,67 @@ namespace PetjeOp.Questionnaires
 
                 MasterController.DB.UpdateQuestionnaire(selectedQuestionnaire);
 
-                GetAllQuestionnairesAndSubjects();
                 FillTreeView();
                 CheckButtons();
             }
         }
 
-        public void FilterTreeView()
+        public void FillTreeView()
         {
-            //Vraag geselecteerd object op
-            object selectedSubject = View.cbSubjects.SelectedItem;
-            object selectedTeacher = View.cbAuthors.SelectedItem;
-
-            //Check of selectedItem een vak is
-            if (!(selectedSubject is Subject) && selectedTeacher is Teacher)
-            {
-                //Cast het object naar een Subjectobject
-                Teacher currentAuthor = (Teacher)View.cbAuthors.SelectedItem;
-
-                //Filter de lijst met Questionnaires, zodat alleen de questionnaires van het
-                //geselecteerde vak wordt getoond
-                FilterQuestionnaires(currentAuthor);
-            }
-            else if (selectedSubject is Subject && !(selectedTeacher is Teacher))
-            {
-                //Cast het object naar een Subjectobject
-                Subject currentSubject = (Subject)View.cbSubjects.SelectedItem;
-
-                //Filter de lijst met Questionnaires, zodat alleen de questionnaires van het
-                //geselecteerde vak wordt getoond
-                FilterQuestionnaires(currentSubject);
-            }
-            else if (selectedSubject is Subject && selectedTeacher is Teacher)
-            {
-                Subject currentSubject = (Subject)View.cbSubjects.SelectedItem;
-                Teacher currentTeacher = (Teacher)View.cbAuthors.SelectedItem;
-
-                FilterQuestionnaires(currentSubject, currentTeacher);
-            }
-            else
-            {
-                GetAllQuestionnairesAndSubjects();
-            }
-
+            ResetLists();
             //Vul de TreeView met gegevens
-            FillTreeView();
+            //TreeView leegmaken
+            View.tvQuestionnaires.Nodes.Clear();
+
+            //Loop over Questionnaires
+            foreach (Questionnaire questionnaire in Model.ListQuestionnaires)
+            {
+                //Voeg Node toe
+                TreeNode questionnaireTreeNode = View.tvQuestionnaires.Nodes.Add(questionnaire.Name + " (" + questionnaire.Subject + ")");
+                questionnaireTreeNode.Tag = questionnaire;
+
+                if (questionnaire.Archived)
+                    questionnaireTreeNode.ForeColor = Color.DarkGray;
+
+                //Loop over Questions
+                foreach (MultipleChoiceQuestion question in questionnaire.Questions)
+                {
+                    //Voeg Node toe
+                    TreeNode questionTreeNode =
+                        questionnaireTreeNode.Nodes.Add(question.QuestionIndex + ": " + question.Description);
+                    questionTreeNode.Tag = question;
+
+                    if (questionnaire.Archived)
+                        questionTreeNode.ForeColor = Color.DarkGray;
+
+                    //Loop over Answers
+                    foreach (Answer answer in question.AnswerOptions)
+                    {
+                        //Check of antwoord correct antwoord is
+                        if (answer.ID == question.CorrectAnswer.ID)
+                        {
+                            //Voeg antwoord toe en zet de kleur naar groen
+                            TreeNode addedAnswer = questionTreeNode.Nodes.Add(question.CorrectAnswer.Description);
+                            addedAnswer.Tag = answer;
+                            addedAnswer.ForeColor = Color.Green;
+                        }
+                        else
+                        {
+                            //Voeg antwoord toe en zet de kleur naar rood
+                            TreeNode addedAnswer = questionTreeNode.Nodes.Add(answer.Description);
+                            addedAnswer.Tag = answer;
+                            addedAnswer.ForeColor = Color.Red;
+                        }
+                    }
+                }
+            }
+
+            //Sorteer Nodes alfabetisch
+            View.tvQuestionnaires.Sort();
         }
 
         public void FilterOnOwnQuestionnaires()
         {
-
             if (View.cbOwnQuestionnairesOnly.Checked)
             {
                 foreach (object s in View.cbAuthors.Items)
@@ -371,6 +367,18 @@ namespace PetjeOp.Questionnaires
             {
                 View.cbAuthors.Enabled = true;
                 View.cbAuthors.SelectedIndex = 0;
+            }
+        }
+
+        public void SetCurrentCbValue()
+        {
+            if (View.cbSubjects.SelectedItem is Subject)
+            {
+                Model.CurrentSubject = (Subject)View.cbSubjects.SelectedItem;
+            }
+            if (View.cbAuthors.SelectedItem is Teacher)
+            {
+                Model.CurrentAuthor = (Teacher)View.cbAuthors.SelectedItem;
             }
         }
     }
