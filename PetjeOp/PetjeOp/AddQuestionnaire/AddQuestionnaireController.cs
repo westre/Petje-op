@@ -112,6 +112,7 @@ namespace PetjeOp.AddQuestionnaire
         //Zet het vak naar het geselecteerde vak in de combobox.
         public void setSubject()
         {
+            //Wanneer de selecteditem van de subject not null is, set het huidige subject in de model.
             if (View.cbSubjects.SelectedItem != null)
             {
                 Model.Questionnaire.Subject = (Subject)View.cbSubjects.SelectedItem;
@@ -121,6 +122,7 @@ namespace PetjeOp.AddQuestionnaire
         //Verander scherm naar QuestionnaireOverview
         public void GoToQuestionnaireOverview()
         {
+            //Clear de controls op de controller.
             ClearControls();
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             MasterController.SetController(qoc);
@@ -128,8 +130,11 @@ namespace PetjeOp.AddQuestionnaire
 
         public void ClearControls()
         {
+            //Clear de textbox in de Questionnairename
             View.tbQuestionnaireName.Clear();
+            //Leeg de combobox
             View.cbSubjects.SelectedIndex = -1;
+            //Clear de nodes van de treeview
             View.questionsView1.tvQuestions.Nodes.Clear();
         }
     }

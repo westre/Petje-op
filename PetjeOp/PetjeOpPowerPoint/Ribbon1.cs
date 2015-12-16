@@ -204,5 +204,27 @@ namespace PetjeOpPowerPoint
                 DB.DeleteResults(int.Parse(CurrentSlide.Tags["examId"]), int.Parse(CurrentSlide.Tags["questionId"]));
             }
         }
+
+        private void btnStartTimer_Click(object sender, RibbonControlEventArgs e) {
+            RibbonButton button = (RibbonButton)sender;
+            button.Enabled = false;
+
+            Timer timer = new Timer();
+            timer.Interval = (int)button.Tag * 1000;
+            timer.Tick += (t, args) => {
+                PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
+
+                if(Globals.ThisAddIn.Application.ActivePresentation.Slides[CurrentSlide.SlideIndex + 1] != null) {
+                    Globals.ThisAddIn.Application.ActivePresentation.Slides[CurrentSlide.SlideIndex + 1].Select();
+                }
+                else {
+                    MessageBox.Show("Geen volgende slide gevonden");
+                }
+                
+                timer.Enabled = false;
+                button.Enabled = true;
+            };
+            timer.Enabled = true;
+        }
     }
 }
