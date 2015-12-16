@@ -61,31 +61,37 @@ namespace PetjeOp
             // Hier wordt gecontrolleerd of de query gelukt is, 
             // null staat immers voor een niet geslaagde query of een query zonder resultaten
                 if (dbQuestion != null) {
-                // Hier wordt een nieuwe vraag aangemaakt via de contstructor van MultipleChoiceQuestion
-                // De description wordt hieraan meegegeven, die met de query is opgehaald
-                MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
-                question.ID = id; // Vervolgens wordt het ID van het Question object toegevoegd, dit is hetzelfde ID dan degene in de database
-                                
-                List<Answer> answerOptions = new List<Answer>(); // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
-                List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList(); // Lijst met tblAnsweropties, welke straks doorlopen wordt
+                    // Hier wordt een nieuwe vraag aangemaakt via de contstructor van MultipleChoiceQuestion
+                    // De description wordt hieraan meegegeven, die met de query is opgehaald
+                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
+                    question.ID = id; // Vervolgens wordt het ID van het Question object toegevoegd, dit is hetzelfde ID dan degene in de database
+                                    
+                    List<Answer> answerOptions = new List<Answer>(); // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
+                    List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList(); // Lijst met tblAnsweropties, welke straks doorlopen wordt
 
+                    
                     foreach (tblAnsweroption dbAnswerOption in dbAnsweroption) { // Doorloopt de antwoordopties die een foreign key naar de geselecteerde question in de database hebben
-                    // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                    tblAnswer tblAnswer = dbAnswerOption.tblAnswer; // Cast antwoordtabel in variable
+                        // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
+                        tblAnswer tblAnswer = dbAnswerOption.tblAnswer; // Cast antwoordtabel in variable
 
-                    Answer answer = new Answer(tblAnswer.description); // Maakt een nieuw antwoord aan
-                    answer.ID = tblAnswer.id; // Werkt het id bij naar degene die ook in de database gebruikt wordt
-                    answerOptions.Add(answer); // Voegt het antwoord object toe aan de lijst van antwoordopties die straks toegevoegd wordt aan de vraag
+                        Answer answer = new Answer(tblAnswer.description); // Maakt een nieuw antwoord aan
+                        answer.ID = tblAnswer.id; // Werkt het id bij naar degene die ook in de database gebruikt wordt
+
+                        if (dbQuestion.correctanswer == tblAnswer.id) {
+                            question.CorrectAnswer = answer;
+                        }
+                        answerOptions.Add(answer); // Voegt het antwoord object toe aan de lijst van antwoordopties die straks toegevoegd wordt aan de vraag
+
+                    }
+
+                    // Voegt de lijst met antwoord opties toe aan de vraag
+                    question.AnswerOptions = answerOptions;               
+
+                    return question;
                 }
-
-                // Voegt de lijst met antwoord opties toe aan de vraag
-                question.AnswerOptions = answerOptions;               
-
-                return question;
+                // Als de query gefaalt is return null, deze wordt later opgevangen
+                return null;
             }
-            // Als de query gefaalt is return null, deze wordt later opgevangen
-            return null;
-        }
             catch(SqlException ex) { MessageBox.Show(ex.Message); return null; }  
         }
 
@@ -658,6 +664,22 @@ namespace PetjeOp
             
         }     
         
+        // Haal resultaten op van examen
+        public List<Result> GetResultsByExamId(int id) {
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
 
+            List<Result> results = new List<Result>();
+
+            List<tblResult> tblResults = (from result in db.tblResults
+                                          where result.exam == id
+                                          select result).ToList();
+
+            foreach(tblResult tblResult in tblResults) {
+                Result result = new Result(id, tblResult.answer, tblResult.question);
+                results.Add(result);
+            }
+
+            return results;
+        }
     }
 }
