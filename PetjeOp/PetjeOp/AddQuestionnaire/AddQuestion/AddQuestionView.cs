@@ -27,7 +27,7 @@ namespace PetjeOp.AddQuestionnaire
             if (tbAnswer.Text != null)
             {
                 //Voeg antwoord toe aan lijst
-                clbAnswers.Items.Add(tbAnswer.Text);
+                clbAnswers.Items.Add(tbAnswer.Text.Trim());
                 checkQuestionView();
                 tbAnswer.Clear();
             }
@@ -289,6 +289,8 @@ namespace PetjeOp.AddQuestionnaire
 
         public bool CheckIfDuplicate(string currentString)
         {
+            currentString = currentString.Trim();
+
             List<string> items = new List<string>();
             foreach (object item in clbAnswers.Items)
             {

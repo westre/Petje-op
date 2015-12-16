@@ -36,7 +36,7 @@ namespace PetjeOp
 
             //Creëer database instantie
             DB = new Database();
-            DB.AnswerCleanup();
+            DB.AnswerCleanup();        
 
             Resize += MasterController_Resize;
 
