@@ -28,6 +28,7 @@ namespace PetjeOp.Questionnaires
         {
             //Vraag gegevens op uit database
             Controller.GetAllQuestionnairesAndSubjects();
+            Controller.FillTreeView();
 
             //Vul ComboBox met vakken
             Controller.FillComboBoxes();
@@ -36,7 +37,7 @@ namespace PetjeOp.Questionnaires
         }
 
         //Als op knop 'Vragenlijst Toevoegen' is geklikt
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAddQuestionnaire_Click(object sender, EventArgs e)
         {
             //Zet scherm naar AddQuestionnaire
            Controller.GoToAddQuestionnaire();
@@ -45,13 +46,13 @@ namespace PetjeOp.Questionnaires
         //Als er een ander vak is geselecteerd
         private void cbSubjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Controller.FilterTreeView();
+            Controller.FillTreeView();
         }
 
         //Als er een andere author is geselecteerd
         private void cbAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Controller.FilterTreeView();
+            Controller.FillTreeView();
         }
 
         private void tvQuestionnaires_BeforeSelect(object sender, TreeViewCancelEventArgs e)
@@ -77,28 +78,29 @@ namespace PetjeOp.Questionnaires
 
         private void cbShowArchive_CheckedChanged(object sender, EventArgs e)
         {
-            //Vraag gegevens op uit database
-            Controller.GetAllQuestionnairesAndSubjects();
-
-            //Vul ComboBox met vakken
-            Controller.FillComboBoxes();
-
+            //Vul de treeview met gegevens die voldoen aan de huidige criteria
+            Controller.FillTreeView();
+            //Kijk welke knoppen beschikbaar mogen zijn.
             Controller.CheckButtons();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //Archiveer huidig geselecteerde vragenlijst
             Controller.ArchiveQuestionnaire();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnRecover_Click(object sender, EventArgs e)
         {
+            //Herstel huidig geselecteerde vragenlijst
             Controller.UnarchiveQuestionnaire();
         }
 
         private void cbOwnQuestionnairesOnly_CheckedChanged(object sender, EventArgs e)
         {
+            //Vul de treeview met gegevens die voldoen aan de huidige criteria
             Controller.FilterOnOwnQuestionnaires();
         }
+        
     }
 }

@@ -38,25 +38,18 @@ namespace PetjeOp {
 
         }
 
-        private void btnResults_Click(object sender, EventArgs e) {
-            Controller.ShowExamDialog();
-        }
-
-        private void pnlButton_Result_Background_Paint(object sender, PaintEventArgs e) {
-            Console.WriteLine("resultaten");
-        }
-
-        private void pnlButton_Result_Background_Click_1(object sender, EventArgs e) {
-            Console.WriteLine("test");
-        }
-
         private void ResultClick(object sender, EventArgs e) {
             Controller.ShowExamDialog();
         }
 
-        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        private void pbLogo_Click(object sender, EventArgs e)
         {
+            Controller.GoToTeacherHome();
+        }
 
+        private void pnlButton_QuestionnaireOverview_Background_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireOverview();
         }
     }
 }

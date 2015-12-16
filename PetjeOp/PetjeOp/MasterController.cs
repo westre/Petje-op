@@ -80,9 +80,9 @@ namespace PetjeOp
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
 
                 // Initialisatie van QuestionnaireOverviewController wanneer we in TeacherController zitten
-                QuestionnaireOverviewController questionnaireOverviewController = (QuestionnaireOverviewController)GetController(typeof(QuestionnaireOverviewController));
-                questionnaireOverviewController.InitializeView();
-                SetController(questionnaireOverviewController);
+                TeacherHomeController teacherHomeController = (TeacherHomeController)GetController(typeof(TeacherHomeController));
+                teacherHomeController.InitializeView();
+                SetController(teacherHomeController);
             }
             else if (controller is StudentController)
             {
