@@ -23,20 +23,19 @@ namespace PetjeOp
             return View;
         }
 
+        //Maak een titel met de naam van de docent
         public void InitializeTitle()
         {
-            string title;
-
-            title = String.Format("Welkom, {0} {1}!", MasterController.User.FirstName, MasterController.User.SurName);
-
-            View.lblWelcome.Text = title;
+            View.lblWelcome.Text = String.Format("Welkom, {0} {1}!", MasterController.User.FirstName, MasterController.User.SurName);
         }
 
+        //Ga naar het resultatenscherm
         public void GoToResults()
         {
             ((TeacherController)MasterController.ActiveParentContainer).ShowExamDialog();
         }
 
+        //Ga naar het vragenlijstenscherm
         public void GoToQuestionnaires()
         {
             ((TeacherController)MasterController.ActiveParentContainer).GoToQuestionnaireOverview();
