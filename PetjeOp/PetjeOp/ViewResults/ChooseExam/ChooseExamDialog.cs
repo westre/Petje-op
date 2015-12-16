@@ -21,13 +21,14 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
 
-
+        
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
             List<Exam> exams = Controller.MasterController.DB.GetAllExams();
 
             foreach (Exam ex in exams)
             {
                 listBox1.Items.AddRange(new object[] { ex });
+               
             }
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
@@ -143,21 +144,16 @@ namespace PetjeOp.ViewResults.ChooseExam
             {
                 foreach (Exam ex in exams)
                 {
+                    Console.WriteLine(ex.Groupnr);
                     listBox1.Items.AddRange(new object[] { ex });
                 }
             }
 
             else
             {
-                foreach (Exam ex in exams)
-                {
-                    //if (ex.cs.Code == cbClass.GetItemText(cbSubject.SelectedItem))
-                    //{
-                    //    listBox1.Items.AddRange(new object[] { ex });
-                    //}
-                }
             }
         }
+        
 
         private void btnResetDate_Click(object sender, EventArgs e)
         {
@@ -183,6 +179,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 {
                     
                     listBox1.Items.AddRange(new object[] { ex });
+                    
                 }
             }
 

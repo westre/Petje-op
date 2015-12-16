@@ -14,6 +14,10 @@ namespace PetjeOp
             Code = code;
         }
 
+        public override string ToString()
+        {
+            return Code;
+        }
     }
   
 }
