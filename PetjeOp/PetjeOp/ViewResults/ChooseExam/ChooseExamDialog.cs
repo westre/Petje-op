@@ -28,7 +28,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             foreach (Exam ex in Exams)
             {
-                listBox1.Items.AddRange(new object[] { ex });
+                listBox1.Items.Add(ex);
             }
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
@@ -38,7 +38,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             foreach (Subject sb in subjects)
             {
-                cbSubject.Items.AddRange(new object[] { sb });
+                cbSubject.Items.Add(sb);
             }
             cbSubject.SelectedIndex = 0;
 
@@ -49,7 +49,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             foreach (Class c in cs)
             {
-                cbClass.Items.AddRange(new object[] { c });
+                cbClass.Items.Add(c);
             }
             cbClass.SelectedIndex = 0;
 
@@ -60,7 +60,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             foreach (Questionnaire q in qtn)
             {
-                cbQuestionnaire.Items.AddRange(new object[] { q });
+                cbQuestionnaire.Items.Add(q);
                 
             }
             cbQuestionnaire.SelectedIndex = 0;
@@ -100,7 +100,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             foreach (Exam ex in Exams)
             {
                 if (ex.starttime > dateTimePicker1.Value.Date && ex.starttime < dateTimePicker1.Value.Date.AddDays(1))
-                    listBox1.Items.AddRange(new object[] { ex });
+                    listBox1.Items.Add(ex);
             }
         }
 
@@ -113,7 +113,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             {
                 foreach (Exam ex in Exams)
                 {
-                    listBox1.Items.AddRange(new object[] { ex });
+                    listBox1.Items.Add(ex);
                 }
             }
 
@@ -124,7 +124,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 {
                     if (ex.questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
                     {
-                        listBox1.Items.AddRange(new object[] { ex });
+                        listBox1.Items.Add(ex);
                     }
 
                 }
@@ -139,7 +139,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             {
                 foreach (Exam ex in Exams)
                 {
-                    listBox1.Items.AddRange(new object[] { ex });
+                    listBox1.Items.Add(ex);
                 }
             }
 
@@ -162,7 +162,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             foreach (Exam ex in Exams)
             {
-                listBox1.Items.AddRange(new object[] { ex });
+                listBox1.Items.Add(ex);
             }
         }
 
@@ -176,7 +176,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 foreach (Exam ex in Exams)
                 {
                     
-                    listBox1.Items.AddRange(new object[] { ex });
+                    listBox1.Items.Add(ex);
                 }
             }
 
@@ -188,7 +188,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                     if (String.Format("{0}: {1}", ex.questionnaire.Subject.Name, ex.questionnaire.Name) == cbQuestionnaire.GetItemText(cbSubject.SelectedItem))
                     {
                        
-                        listBox1.Items.AddRange(new object[] { ex });
+                        listBox1.Items.Add(ex);
                     }
                 }
             }
