@@ -52,6 +52,18 @@ namespace PetjeOp.ViewResults.ChooseExam
             }
             cbClass.SelectedIndex = 0;
 
+            // hier worden de vragenlijsten toegevoegd aan de lijst met vragenlijsten
+            List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
+
+            cbQuestionnaire.Items.Add("Alle vragenlijsten");
+
+            foreach (Questionnaire q in qtn)
+            {
+                cbQuestionnaire.Items.AddRange(new object[] { q });
+                
+            }
+            cbQuestionnaire.SelectedIndex = 0;
+
 
         }
 
@@ -157,6 +169,34 @@ namespace PetjeOp.ViewResults.ChooseExam
             {
                 listBox1.Items.AddRange(new object[] { ex });
             }
+        }
+
+        private void cbQuestionnaire_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+
+            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
+            
+            if (cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten")
+            {
+                foreach (Exam ex in exams)
+                {
+                    Console.WriteLine(Convert.ToString((ex.questionnaire.Subject.Name + ": " + ex.questionnaire.Name)));
+                    listBox1.Items.AddRange(new object[] { ex });
+                }
+            }
+
+            else
+            {
+                foreach (Exam ex in exams)
+                {
+                    if (Convert.ToString((ex.questionnaire.Subject.Name+": "+ex.questionnaire.Name)) == cbQuestionnaire.GetItemText(cbSubject.SelectedItem))
+                    {
+                        listBox1.Items.AddRange(new object[] { ex });
+                    }
+                }
+            }
+
         }
     }
 }

@@ -36,6 +36,7 @@
             this.cbSubject = new System.Windows.Forms.ComboBox();
             this.cbClass = new System.Windows.Forms.ComboBox();
             this.btnResetDate = new System.Windows.Forms.Button();
+            this.cbQuestionnaire = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // listBox1
@@ -81,16 +82,16 @@
             this.cbSubject.FormattingEnabled = true;
             this.cbSubject.Location = new System.Drawing.Point(299, 13);
             this.cbSubject.Name = "cbSubject";
-            this.cbSubject.Size = new System.Drawing.Size(121, 21);
+            this.cbSubject.Size = new System.Drawing.Size(107, 21);
             this.cbSubject.TabIndex = 4;
             this.cbSubject.SelectedIndexChanged += new System.EventHandler(this.cbSubject_SelectedIndexChanged);
             // 
             // cbClass
             // 
             this.cbClass.FormattingEnabled = true;
-            this.cbClass.Location = new System.Drawing.Point(426, 13);
+            this.cbClass.Location = new System.Drawing.Point(412, 13);
             this.cbClass.Name = "cbClass";
-            this.cbClass.Size = new System.Drawing.Size(121, 21);
+            this.cbClass.Size = new System.Drawing.Size(107, 21);
             this.cbClass.TabIndex = 5;
             this.cbClass.SelectedIndexChanged += new System.EventHandler(this.cbClass_SelectedIndexChanged);
             // 
@@ -104,11 +105,21 @@
             this.btnResetDate.UseVisualStyleBackColor = true;
             this.btnResetDate.Click += new System.EventHandler(this.btnResetDate_Click);
             // 
+            // cbQuestionnaire
+            // 
+            this.cbQuestionnaire.FormattingEnabled = true;
+            this.cbQuestionnaire.Location = new System.Drawing.Point(525, 12);
+            this.cbQuestionnaire.Name = "cbQuestionnaire";
+            this.cbQuestionnaire.Size = new System.Drawing.Size(107, 21);
+            this.cbQuestionnaire.TabIndex = 7;
+            this.cbQuestionnaire.SelectedIndexChanged += new System.EventHandler(this.cbQuestionnaire_SelectedIndexChanged);
+            // 
             // ChooseExamDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 328);
+            this.Controls.Add(this.cbQuestionnaire);
             this.Controls.Add(this.btnResetDate);
             this.Controls.Add(this.cbClass);
             this.Controls.Add(this.cbSubject);
@@ -133,5 +144,6 @@
         private System.Windows.Forms.ComboBox cbSubject;
         private System.Windows.Forms.ComboBox cbClass;
         private System.Windows.Forms.Button btnResetDate;
+        private System.Windows.Forms.ComboBox cbQuestionnaire;
     }
 }
