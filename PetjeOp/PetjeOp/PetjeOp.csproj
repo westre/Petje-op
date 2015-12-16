@@ -166,6 +166,14 @@
     <Compile Include="Student\StudentView.Designer.cs">
       <DependentUpon>StudentView.cs</DependentUpon>
     </Compile>
+    <Compile Include="TeacherHome\TeacherHomeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TeacherHome\TeacherHomeView.Designer.cs">
+      <DependentUpon>TeacherHomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherHome\TeacherHomeModel.cs" />
+    <Compile Include="TeacherHome\TeacherHomeController.cs" />
     <Compile Include="Teacher\TeacherController.cs" />
     <Compile Include="Teacher\TeacherModel.cs" />
     <Compile Include="Teacher\TeacherView.cs">
@@ -217,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuestionnaireDetail\QuestionnaireDetailView.resx">
       <DependentUpon>QuestionnaireDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeacherHome\TeacherHomeView.resx">
+      <DependentUpon>TeacherHomeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewResults\ChooseExam\ChooseExamDialog.resx">
       <DependentUpon>ChooseExamDialog.cs</DependentUpon>
