@@ -78,30 +78,27 @@ namespace PetjeOp.Questionnaires
 
         private void cbShowArchive_CheckedChanged(object sender, EventArgs e)
         {
-            //Vraag gegevens op uit database
-            //Controller.GetAllQuestionnairesAndSubjects();
+            //Vul de treeview met gegevens die voldoen aan de huidige criteria
             Controller.FillTreeView();
-
-
-            Controller.SetCurrentCbValue();
-            //Vul ComboBox met vakken
-            //Controller.FillComboBoxes();
-
+            //Kijk welke knoppen beschikbaar mogen zijn.
             Controller.CheckButtons();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //Archiveer huidig geselecteerde vragenlijst
             Controller.ArchiveQuestionnaire();
         }
 
         private void btnRecover_Click(object sender, EventArgs e)
         {
+            //Herstel huidig geselecteerde vragenlijst
             Controller.UnarchiveQuestionnaire();
         }
 
         private void cbOwnQuestionnairesOnly_CheckedChanged(object sender, EventArgs e)
         {
+            //Vul de treeview met gegevens die voldoen aan de huidige criteria
             Controller.FilterOnOwnQuestionnaires();
         }
         

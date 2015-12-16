@@ -55,17 +55,6 @@ namespace PetjeOp.Questionnaires
         //Vul ComboBox met Subjects
         public void FillComboBoxes()
         {
-            Teacher temporaryTeacher = null;
-            Subject temporarySubject = null;
-            if (View.cbAuthors.SelectedItem is Teacher)
-            {
-                temporaryTeacher = Model.CurrentAuthor;
-            }
-            if (View.cbSubjects.SelectedItem is Subject)
-            {
-                temporarySubject = Model.CurrentSubject;
-            }
-
             //Maak ComboBox leeg
             View.cbSubjects.Items.Clear();
             View.cbAuthors.Items.Clear();
@@ -87,34 +76,8 @@ namespace PetjeOp.Questionnaires
             }
 
             //Selecteer eerste index
-            if (!View.cbShowArchive.Checked)
-            {
-                View.cbSubjects.SelectedIndex = 0;
-                View.cbAuthors.SelectedIndex = 0;
-            }
-            else
-            {
-                if (temporarySubject != null)
-                {
-                    View.cbSubjects.SelectedItem = temporarySubject;
-                }
-                else
-                {
-                    View.cbSubjects.SelectedIndex = 0;
-                }
-                if (temporaryTeacher != null)
-                {
-                    View.cbAuthors.SelectedItem = temporaryTeacher;
-
-                    //Console.WriteLine(temporaryTeacher.TeacherNr);
-                    //Console.WriteLine(((Teacher) View.cbAuthors.SelectedItem).TeacherNr);
-                    Console.WriteLine("Selected item: " + View.cbAuthors.SelectedItem);
-                }
-                else
-                {
-                    View.cbAuthors.SelectedIndex = 0;
-                }
-            }
+            View.cbSubjects.SelectedIndex = 0;
+            View.cbAuthors.SelectedIndex = 0;
         }
 
         //Filter de Questionnaires
@@ -151,43 +114,29 @@ namespace PetjeOp.Questionnaires
             //Vervang oude list door nieuwe List
             Model.ListQuestionnaires = newList;
         }
-
-
-        public void FilterQuestionnaires(Subject s, Teacher t)
-        {
-            ResetLists();
-            //Maak nieuwe List
-            List<Questionnaire> newList = new List<Questionnaire>();
-
-            //Loop over Questionnaires
-            foreach (Questionnaire q in Model.ListQuestionnaires)
-            {
-                //Als SubjectID van Questonnair gelijk is aan ID van gekozen Subject
-                if (q.Subject.Id == s.Id && q.Author.TeacherNr == t.TeacherNr)
-                    //Voeg toe aan nieuwe List
-                    newList.Add(q);
-            }
-            //Vervang oude list door nieuwe List
-            Model.ListQuestionnaires = newList;
-        }
-
+        
         //Reset de lijst zodat alle Questionnaires er weer in staan
         public void ResetLists()
         {
+            //Kijk of de gearchiveerde vragenlijsten weergeven moeten worden.
             if (View.cbShowArchive.Checked)
             {
+                //Laat alle vragenlijsten zien
                 Model.ListQuestionnaires = Model.AllQuestionnaires;
             }
             else
             {
+                //Laat alleen vragenlijsten zien die niet gearchiveerd zijn
                 Model.ListQuestionnaires = Model.AllQuestionnaires.Where(q => q.Archived == false).ToList();
             }
             if (View.cbAuthors.SelectedItem is Teacher)
             {
+                //Wanneer er iets is geselecteerd, filtreer de questionnaires
                 FilterQuestionnaires((Teacher)View.cbAuthors.SelectedItem);
             }
             if (View.cbSubjects.SelectedItem is Subject)
             {
+                //Wanneer er iets is geselecteerd, filtreer de questionnaires
                 FilterQuestionnaires((Subject)View.cbSubjects.SelectedItem);
             }
         }
@@ -231,19 +180,21 @@ namespace PetjeOp.Questionnaires
 
                 if (!selectedQuestionnaire.Archived)
                 {
+                    //Wanneer de huidige questionnaire niet gearchiveerd is, kan je hem verwijderen en niet recoveren
                     View.btnDelete.Enabled = true;
                     View.btnRecover.Hide();
                 }
                 else
                 {
+                    //Zo niet, kan je hem niet verwijderen maar wel recoveren
                     View.btnDelete.Enabled = false;
                     View.btnRecover.Show();
                 }
-
                 View.btnDetails.Enabled = true;
             }
             else
             {
+                //Zo niet, verstop allen knoppen en zorg dat knoppen niet meer ingedrukt wordt
                 View.btnDetails.Enabled = false;
                 View.btnDelete.Enabled = false;
                 View.btnRecover.Hide();
@@ -258,9 +209,11 @@ namespace PetjeOp.Questionnaires
                 return;
             }
 
+            //Vraag of de gebruiker echt wilt archiveren
             DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt archiveren?",
                 "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            //Wanneer er ja geklikt wordt, archiveer de vraag
             if (dlr == DialogResult.Yes)
             {
                 Questionnaire selectedQuestionnaire = (Questionnaire) View.tvQuestionnaires.SelectedNode.Tag;
@@ -276,9 +229,11 @@ namespace PetjeOp.Questionnaires
 
         public void UnarchiveQuestionnaire()
         {
+            //Vraag of de gebruiker de vraag echt wilt herstellen
             DialogResult dlr = MessageBox.Show("Weet u zeker dat u deze vragenlijst wilt herstellen?",
                 "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            //Wanneer er ja geklikt wordt, herstel de vraag
             if (dlr == DialogResult.Yes)
             {
                 Questionnaire selectedQuestionnaire = (Questionnaire)View.tvQuestionnaires.SelectedNode.Tag;
@@ -348,6 +303,7 @@ namespace PetjeOp.Questionnaires
 
         public void FilterOnOwnQuestionnaires()
         {
+            //Filter de lijst van vragenlijsten op de vragenlijsten van de ingelogde gebruiker
             if (View.cbOwnQuestionnairesOnly.Checked)
             {
                 foreach (object s in View.cbAuthors.Items)
@@ -367,18 +323,6 @@ namespace PetjeOp.Questionnaires
             {
                 View.cbAuthors.Enabled = true;
                 View.cbAuthors.SelectedIndex = 0;
-            }
-        }
-
-        public void SetCurrentCbValue()
-        {
-            if (View.cbSubjects.SelectedItem is Subject)
-            {
-                Model.CurrentSubject = (Subject)View.cbSubjects.SelectedItem;
-            }
-            if (View.cbAuthors.SelectedItem is Teacher)
-            {
-                Model.CurrentAuthor = (Teacher)View.cbAuthors.SelectedItem;
             }
         }
     }
