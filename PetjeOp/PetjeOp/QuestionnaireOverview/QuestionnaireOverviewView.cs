@@ -28,6 +28,7 @@ namespace PetjeOp.Questionnaires
         {
             //Vraag gegevens op uit database
             Controller.GetAllQuestionnairesAndSubjects();
+            Controller.FillTreeView();
 
             //Vul ComboBox met vakken
             Controller.FillComboBoxes();
@@ -36,7 +37,7 @@ namespace PetjeOp.Questionnaires
         }
 
         //Als op knop 'Vragenlijst Toevoegen' is geklikt
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAddQuestionnaire_Click(object sender, EventArgs e)
         {
             //Zet scherm naar AddQuestionnaire
            Controller.GoToAddQuestionnaire();
@@ -45,13 +46,13 @@ namespace PetjeOp.Questionnaires
         //Als er een ander vak is geselecteerd
         private void cbSubjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Controller.FilterTreeView();
+            Controller.FillTreeView();
         }
 
         //Als er een andere author is geselecteerd
         private void cbAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Controller.FilterTreeView();
+            Controller.FillTreeView();
         }
 
         private void tvQuestionnaires_BeforeSelect(object sender, TreeViewCancelEventArgs e)
@@ -78,10 +79,13 @@ namespace PetjeOp.Questionnaires
         private void cbShowArchive_CheckedChanged(object sender, EventArgs e)
         {
             //Vraag gegevens op uit database
-            Controller.GetAllQuestionnairesAndSubjects();
+            //Controller.GetAllQuestionnairesAndSubjects();
+            Controller.FillTreeView();
 
+
+            Controller.SetCurrentCbValue();
             //Vul ComboBox met vakken
-            Controller.FillComboBoxes();
+            //Controller.FillComboBoxes();
 
             Controller.CheckButtons();
         }
@@ -91,7 +95,7 @@ namespace PetjeOp.Questionnaires
             Controller.ArchiveQuestionnaire();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnRecover_Click(object sender, EventArgs e)
         {
             Controller.UnarchiveQuestionnaire();
         }
@@ -100,5 +104,6 @@ namespace PetjeOp.Questionnaires
         {
             Controller.FilterOnOwnQuestionnaires();
         }
+        
     }
 }

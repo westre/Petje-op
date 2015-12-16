@@ -13,7 +13,9 @@ namespace PetjeOp {
         [STAThread]
         static void Main()
         {
+            // Zorgt ervoor dat de applicatie werkt op HiDPI-schermen
             if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MasterController MasterController = new MasterController(); //Aanmaken van MasterController, het hoofdscherm
@@ -29,7 +31,6 @@ namespace PetjeOp {
                 //Als login dialog iets anders dan OK returnt dan sluit hij de applicatie af, dus o.a. bij sluiten
                 Application.Exit(); 
             }        
-            
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

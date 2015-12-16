@@ -39,12 +39,6 @@ namespace PetjeOp {
             MasterController.SetController(vrc);
             vrc.ex = x;
 
-
-            foreach (Question question in vrc.ex.questionnaire.Questions)
-            {
-                Console.WriteLine("question gevonden: " + question.Description);
-            }
-
             vrc.ShowResults(vrc.ex);
         }
 
@@ -59,6 +53,12 @@ namespace PetjeOp {
 
         public Panel GetLogoutButton() {
             return View.pnlButton_Logout_Background;
+        }
+
+        public void GoToTeacherHome()
+        {
+            TeacherHomeController thc =(TeacherHomeController) MasterController.GetController(typeof(TeacherHomeController));
+            MasterController.SetController(thc);
         }
     }
 }

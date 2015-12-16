@@ -682,5 +682,18 @@ namespace PetjeOp
 
             return results;
         }
+
+        public void DeleteResults(int examId, int questionId) {
+            IEnumerable<tblResult> results = (from result in db.tblResults
+                                 where result.exam == examId && result.question == questionId
+                                 select result).ToList();
+
+            if (results.Count() > 0) {
+                db.tblResults.DeleteAllOnSubmit(results);
+                db.SubmitChanges();
+            }
+
+            MessageBox.Show("Alle resultaten zijn verwijderd");
+        }
     }
 }

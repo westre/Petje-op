@@ -38,10 +38,11 @@
             this.GrpQuestionnaire = this.Factory.CreateRibbonGroup();
             this.ddExams = this.Factory.CreateRibbonDropDown();
             this.ddQuestions = this.Factory.CreateRibbonDropDown();
-            this.btnAllQuestions = this.Factory.CreateRibbonButton();
             this.GrpResults = this.Factory.CreateRibbonGroup();
-            this.btnViewResultsPPT = this.Factory.CreateRibbonButton();
             this.grpSlide = this.Factory.CreateRibbonGroup();
+            this.btnAllQuestions = this.Factory.CreateRibbonButton();
+            this.btnViewResultsPPT = this.Factory.CreateRibbonButton();
+            this.btnReset = this.Factory.CreateRibbonButton();
             this.btnSlideInfo = this.Factory.CreateRibbonButton();
             this.WinQ.SuspendLayout();
             this.GrpQuestionnaire.SuspendLayout();
@@ -77,6 +78,18 @@
             this.ddQuestions.Name = "ddQuestions";
             this.ddQuestions.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ddQuestions_SelectionChanged);
             // 
+            // GrpResults
+            // 
+            this.GrpResults.Items.Add(this.btnViewResultsPPT);
+            this.GrpResults.Items.Add(this.btnReset);
+            this.GrpResults.Label = "Resultaten";
+            this.GrpResults.Name = "GrpResults";
+            // 
+            // grpSlide
+            // 
+            this.grpSlide.Items.Add(this.btnSlideInfo);
+            this.grpSlide.Name = "grpSlide";
+            // 
             // btnAllQuestions
             // 
             this.btnAllQuestions.Label = "Alle vragen toevoegen";
@@ -84,22 +97,16 @@
             this.btnAllQuestions.Visible = false;
             this.btnAllQuestions.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnAllQuestions_Click);
             // 
-            // GrpResults
-            // 
-            this.GrpResults.Items.Add(this.btnViewResultsPPT);
-            this.GrpResults.Label = "Resultaten";
-            this.GrpResults.Name = "GrpResults";
-            this.GrpResults.Visible = false;
-            // 
             // btnViewResultsPPT
             // 
             this.btnViewResultsPPT.Label = "";
             this.btnViewResultsPPT.Name = "btnViewResultsPPT";
             // 
-            // grpSlide
+            // btnReset
             // 
-            this.grpSlide.Items.Add(this.btnSlideInfo);
-            this.grpSlide.Name = "grpSlide";
+            this.btnReset.Label = "Opnieuw stellen";
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnReset_Click);
             // 
             // btnSlideInfo
             // 
@@ -138,6 +145,7 @@
         public Microsoft.Office.Tools.Ribbon.RibbonDropDown ddExams;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpSlide;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSlideInfo;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnReset;
     }
 
     partial class ThisRibbonCollection
