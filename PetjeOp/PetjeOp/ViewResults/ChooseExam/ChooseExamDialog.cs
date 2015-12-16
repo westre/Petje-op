@@ -176,22 +176,24 @@ namespace PetjeOp.ViewResults.ChooseExam
             listBox1.Items.Clear();
 
             List<Exam> exams = Controller.MasterController.DB.GetAllExams();
-            
+            Console.WriteLine(cbQuestionnaire.SelectedItem);
             if (cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten")
             {
                 foreach (Exam ex in exams)
                 {
-                    Console.WriteLine(Convert.ToString((ex.questionnaire.Subject.Name + ": " + ex.questionnaire.Name)));
+                    
                     listBox1.Items.AddRange(new object[] { ex });
                 }
             }
 
             else
-            {
+            
                 foreach (Exam ex in exams)
                 {
-                    if (Convert.ToString((ex.questionnaire.Subject.Name+": "+ex.questionnaire.Name)) == cbQuestionnaire.GetItemText(cbSubject.SelectedItem))
+                    
+                    if (String.Format("{0}: {1}", ex.questionnaire.Subject.Name, ex.questionnaire.Name) == cbQuestionnaire.GetItemText(cbSubject.SelectedItem))
                     {
+                       
                         listBox1.Items.AddRange(new object[] { ex });
                     }
                 }
@@ -199,4 +201,3 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         }
     }
-}

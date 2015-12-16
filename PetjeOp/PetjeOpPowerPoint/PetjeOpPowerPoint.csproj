@@ -177,6 +177,7 @@
     <None Include="PetjeOpPowerPoint_2_TemporaryKey.pfx" />
     <None Include="PetjeOpPowerPoint_3_TemporaryKey.pfx" />
     <None Include="PetjeOpPowerPoint_4_TemporaryKey.pfx" />
+    <None Include="PetjeOpPowerPoint_5_TemporaryKey.pfx" />
     <None Include="PetjeOpPowerPoint_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -255,10 +256,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PetjeOpPowerPoint_4_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>PetjeOpPowerPoint_5_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0A587D49C7A392929CE7D1664C28FA70810FEE94</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>1D494FD24D107C0A2B2A0D75B71681FC94FB017F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
