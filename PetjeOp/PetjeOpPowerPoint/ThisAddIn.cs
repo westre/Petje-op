@@ -13,24 +13,54 @@ namespace PetjeOpPowerPoint
     public partial class ThisAddIn
     {
         private Database DB { get; set; }
+        private DatabaseListener DL { get; set; }
+        public PowerPoint.Slide CurrentSlide { get; set; }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             DB = new Database();
             Application.SlideSelectionChanged += Application_SlideSelectionChanged;
             Application.SlideShowNextSlide += Application_SlideShowNextSlide;
+
+            DL = new DatabaseListener();
+            DL.OnChange += DL_OnChange;
+        }
+
+        private void DL_OnChange(System.Data.SqlClient.SqlNotificationEventArgs eventArgs) {
+            if(CurrentSlide != null && CurrentSlide.Tags["isResultSlide"] == "1") {
+                // Haal alle resultaten op die bij deze examen hoort
+                List<Result> allResults = DB.GetResultsByExamId(Convert.ToInt32(CurrentSlide.Tags["examId"]));
+
+                //int questionId = Convert.ToInt32(CurrentSlide.Tags["questionId"]); 
+                Question question = DB.GetQuestion(Convert.ToInt32(CurrentSlide.Tags["questionId"]));
+                ResultSlide.Add(allResults, question, CurrentSlide);
+            }
+        }
+
+        private void ProcessSlide(PowerPoint.Slide slide) {
+            if (slide.Tags["isResultSlide"] == "1") {
+                List<Result> allResults = DB.GetResultsByExamId(Convert.ToInt32(slide.Tags["examId"]));
+
+                //int questionId = Convert.ToInt32(slide.Tags["questionId"]);
+                Question question = DB.GetQuestion(Convert.ToInt32(slide.Tags["questionId"]));
+                ResultSlide.Add(allResults, question, slide);
+            }
+
+            if (slide.Tags != null && slide.Tags["questionId"] != null && slide.Tags["examId"] != null) {
+                DL.Stop();
+                DL.TrackedQuery = "SELECT [answer] FROM [dbo].[result] WHERE exam = " + slide.Tags["examId"] + " AND question = " + slide.Tags["questionId"];
+                DL.Start();
+
+                DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), int.Parse(slide.Tags["questionId"]));
+            }
         }
 
         private void Application_SlideShowNextSlide(PowerPoint.SlideShowWindow Wn) {  
             try {
                 PowerPoint.Slide slide = Wn.View.Slide;
+                CurrentSlide = slide;
                 AttachTags(slide);
-
-                //MessageBox.Show("Application_SlideShowNextSlide SlideId: " + slide.SlideID.ToString() + "ExamId: " + slide.Tags["examId"] + ", QuestionId: " + slide.Tags["questionId"]);
-
-                if (slide.Tags != null && slide.Tags["questionId"] != null && slide.Tags["examId"] != null) {
-                    DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), int.Parse(slide.Tags["questionId"]));
-                }
+                ProcessSlide(slide);
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -41,13 +71,9 @@ namespace PetjeOpPowerPoint
             try {
                 if(SldRange.Count > 0) {
                     PowerPoint.Slide slide = Application.ActivePresentation.Slides.FindBySlideID(SldRange.SlideID);
+                    CurrentSlide = slide;
                     AttachTags(slide);
-
-                    //MessageBox.Show("Application_SlideSelectionChanged SlideId: " + SldRange.SlideID.ToString() + "ExamId: " + slide.Tags["examId"] + ", QuestionId: " + slide.Tags["questionId"]);
-
-                    if (slide.Tags != null && slide.Tags["questionId"] != null && slide.Tags["examId"] != null) {
-                        DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), int.Parse(slide.Tags["questionId"]));
-                    }
+                    ProcessSlide(slide);
                 }   
             }
             catch (Exception ex) {
@@ -56,6 +82,9 @@ namespace PetjeOpPowerPoint
         }
 
         private void AttachTags(PowerPoint.Slide slide) {
+            if (slide.Tags["isResultSlide"].Length == 0)
+                slide.Tags.Add("isResultSlide", "-1");
+
             if (slide.Tags["questionId"].Length == 0)
                 slide.Tags.Add("questionId", "-1");
 
