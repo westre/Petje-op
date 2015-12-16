@@ -12,6 +12,7 @@ namespace PetjeOp.ViewResults.ChooseExam
     public partial class ChooseExamDialog : Form
     {
         private TeacherController Controller;
+        private List<Exam> Exams;
         public ChooseExamDialog(TeacherController Controller)
         {
             this.Controller = Controller;
@@ -23,9 +24,9 @@ namespace PetjeOp.ViewResults.ChooseExam
 
 
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
-            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
+            Exams = Controller.MasterController.DB.GetAllExams();
 
-            foreach (Exam ex in exams)
+            foreach (Exam ex in Exams)
             {
                 listBox1.Items.AddRange(new object[] { ex });
             }
@@ -95,9 +96,8 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
 
-            foreach (Exam ex in exams)
+            foreach (Exam ex in Exams)
             {
                 if (ex.starttime > dateTimePicker1.Value.Date && ex.starttime < dateTimePicker1.Value.Date.AddDays(1))
                     listBox1.Items.AddRange(new object[] { ex });
@@ -108,12 +108,10 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listBox1.Items.Clear();
 
-            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
-
 
             if (cbSubject.GetItemText(cbSubject.SelectedItem) == "Alle vakken")
             {
-                foreach (Exam ex in exams)
+                foreach (Exam ex in Exams)
                 {
                     listBox1.Items.AddRange(new object[] { ex });
                 }
@@ -122,7 +120,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             else
             {
 
-                foreach (Exam ex in exams)
+                foreach (Exam ex in Exams)
                 {
                     if (ex.questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
                     {
@@ -137,11 +135,9 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listBox1.Items.Clear();
 
-            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
-
             if (cbClass.GetItemText(cbClass.SelectedItem) == "Alle klassen")
             {
-                foreach (Exam ex in exams)
+                foreach (Exam ex in Exams)
                 {
                     listBox1.Items.AddRange(new object[] { ex });
                 }
@@ -149,7 +145,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             else
             {
-                foreach (Exam ex in exams)
+                foreach (Exam ex in Exams)
                 {
                     //if (ex.cs.Code == cbClass.GetItemText(cbSubject.SelectedItem))
                     //{
@@ -163,9 +159,8 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             dateTimePicker1.Value = DateTime.Now;
             listBox1.Items.Clear();
-            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
 
-            foreach (Exam ex in exams)
+            foreach (Exam ex in Exams)
             {
                 listBox1.Items.AddRange(new object[] { ex });
             }
@@ -175,11 +170,10 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listBox1.Items.Clear();
 
-            List<Exam> exams = Controller.MasterController.DB.GetAllExams();
             Console.WriteLine(cbQuestionnaire.SelectedItem);
             if (cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten")
             {
-                foreach (Exam ex in exams)
+                foreach (Exam ex in Exams)
                 {
                     
                     listBox1.Items.AddRange(new object[] { ex });
@@ -188,7 +182,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             else
             
-                foreach (Exam ex in exams)
+                foreach (Exam ex in Exams)
                 {
                     
                     if (String.Format("{0}: {1}", ex.questionnaire.Subject.Name, ex.questionnaire.Name) == cbQuestionnaire.GetItemText(cbSubject.SelectedItem))
