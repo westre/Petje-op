@@ -17,5 +17,20 @@ namespace PetjeOp {
 
             Controller = controller;
         }
+
+        private void TeacherHomeView_Load(object sender, EventArgs e)
+        {
+            Controller.InitializeTitle();
+        }
+
+        private void btnGoToResults_Click(object sender, EventArgs e)
+        {
+            Controller.GoToResults();
+        }
+
+        private void btnGoToQuestionnaires_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaires();
+        }
     }
 }
