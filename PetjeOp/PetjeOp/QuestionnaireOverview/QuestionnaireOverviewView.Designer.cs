@@ -73,7 +73,7 @@
             this.btnAddQuestionnaire.TabIndex = 3;
             this.btnAddQuestionnaire.Text = "+ Vragenlijst Toevoegen";
             this.btnAddQuestionnaire.UseVisualStyleBackColor = true;
-            this.btnAddQuestionnaire.Click += new System.EventHandler(this.button1_Click);
+            this.btnAddQuestionnaire.Click += new System.EventHandler(this.btnAddQuestionnaire_Click);
             // 
             // lblSubject
             // 
@@ -141,7 +141,7 @@
             this.btnRecover.Text = "Herstel";
             this.btnRecover.UseVisualStyleBackColor = true;
             this.btnRecover.Visible = false;
-            this.btnRecover.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnRecover.Click += new System.EventHandler(this.btnRecover_Click);
             // 
             // cbAuthors
             // 
