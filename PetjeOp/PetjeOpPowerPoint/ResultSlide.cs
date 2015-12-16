@@ -64,7 +64,7 @@ namespace PetjeOpPowerPoint {
           
             // Max breedte en hoogte voor grafiek
             int maxWidth = 400;
-            int maxHeight = 300;
+            int maxHeight = 275;
 
             // Calculeer breedte per staaf
             float rectangleWidth = 0;
@@ -81,7 +81,7 @@ namespace PetjeOpPowerPoint {
             float centerLabelPosition = rectangleWidth / 2;
         
             int x = (int)centerX;
-            int y = 500;
+            int y = 400;
             foreach (KeyValuePair<int, ChartData> kvp in distinctAnswers) {
                 double percentage = (double)(10 * kvp.Value.Count) / (double)highestCount;
                 double barHeight = maxHeight * percentage;
@@ -97,10 +97,27 @@ namespace PetjeOpPowerPoint {
                 if(multipleChoiceQuestion != null) {
                     foreach (Answer answer in multipleChoiceQuestion.AnswerOptions) {
                         if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID != answer.ID) {
-                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y, 100, 100).TextEffect.Text = answer.Description;
+                            int offset = answer.Description.Length * 5;
+
+                            if (answer.Description.Length <= 10)
+                                resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = answer.Description;
+                            else {
+                                Microsoft.Office.Interop.PowerPoint.Shape labelShape = resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationDownward, x + centerLabelPosition - offset, y, 100, 100);
+                                labelShape.TextEffect.Text = answer.Description;
+                                labelShape.Rotation = 315f;
+                            }
                         }
                         else if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID == answer.ID) {
-                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y, 100, 100).TextEffect.Text = question.CorrectAnswer.Description;
+                            int offset = question.CorrectAnswer.Description.Length * 5;
+
+                            if (question.CorrectAnswer.Description.Length <= 10)
+                                resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = answer.Description;
+                            else {
+                                Microsoft.Office.Interop.PowerPoint.Shape labelShape = resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationDownward, x + centerLabelPosition - offset, y, 100, 100);
+                                labelShape.TextEffect.Text = question.CorrectAnswer.Description;
+                                labelShape.Rotation = 315f;
+                            }
+                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = question.CorrectAnswer.Description;
                         }
                     }
                 }
