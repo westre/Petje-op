@@ -127,18 +127,18 @@
     <Compile Include="MVC Template\JOUWKLASSEView.Designer.cs">
       <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Questionnaires\LoadingDialog.cs">
+    <Compile Include="QuestionnaireOverview\LoadingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Questionnaires\LoadingDialog.Designer.cs">
+    <Compile Include="QuestionnaireOverview\LoadingDialog.Designer.cs">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Questionnaires\QuestionnaireOverviewController.cs" />
-    <Compile Include="Questionnaires\QuestionnaireOverviewModel.cs" />
-    <Compile Include="Questionnaires\QuestionnaireOverviewView.cs">
+    <Compile Include="QuestionnaireOverview\QuestionnaireOverviewController.cs" />
+    <Compile Include="QuestionnaireOverview\QuestionnaireOverviewModel.cs" />
+    <Compile Include="QuestionnaireOverview\QuestionnaireOverviewView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Questionnaires\QuestionnaireOverviewView.Designer.cs">
+    <Compile Include="QuestionnaireOverview\QuestionnaireOverviewView.Designer.cs">
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
     </Compile>
     <Compile Include="Result.cs" />
@@ -217,10 +217,10 @@
     <EmbeddedResource Include="ChooseExamDialogs\ChooseExamDetailsDialog.resx">
       <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Questionnaires\LoadingDialog.resx">
+    <EmbeddedResource Include="QuestionnaireOverview\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Questionnaires\QuestionnaireOverviewView.resx">
+    <EmbeddedResource Include="QuestionnaireOverview\QuestionnaireOverviewView.resx">
       <DependentUpon>QuestionnaireOverviewView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuestionnaireDetail\QuestionnaireDetailView.resx">
