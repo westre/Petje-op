@@ -38,13 +38,12 @@
             this.GrpQuestionnaire = this.Factory.CreateRibbonGroup();
             this.ddExams = this.Factory.CreateRibbonDropDown();
             this.ddQuestions = this.Factory.CreateRibbonDropDown();
-            this.GrpResults = this.Factory.CreateRibbonGroup();
-            this.grpSlide = this.Factory.CreateRibbonGroup();
             this.btnAllQuestions = this.Factory.CreateRibbonButton();
+            this.GrpResults = this.Factory.CreateRibbonGroup();
             this.btnViewResultsPPT = this.Factory.CreateRibbonButton();
             this.btnReset = this.Factory.CreateRibbonButton();
+            this.grpSlide = this.Factory.CreateRibbonGroup();
             this.btnSlideInfo = this.Factory.CreateRibbonButton();
-            this.btnStartTimer = this.Factory.CreateRibbonButton();
             this.WinQ.SuspendLayout();
             this.GrpQuestionnaire.SuspendLayout();
             this.GrpResults.SuspendLayout();
@@ -79,25 +78,19 @@
             this.ddQuestions.Name = "ddQuestions";
             this.ddQuestions.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ddQuestions_SelectionChanged);
             // 
-            // GrpResults
-            // 
-            this.GrpResults.Items.Add(this.btnViewResultsPPT);
-            this.GrpResults.Items.Add(this.btnReset);
-            this.GrpResults.Label = "Resultaten";
-            this.GrpResults.Name = "GrpResults";
-            // 
-            // grpSlide
-            // 
-            this.grpSlide.Items.Add(this.btnSlideInfo);
-            this.grpSlide.Items.Add(this.btnStartTimer);
-            this.grpSlide.Name = "grpSlide";
-            // 
             // btnAllQuestions
             // 
             this.btnAllQuestions.Label = "Alle vragen toevoegen";
             this.btnAllQuestions.Name = "btnAllQuestions";
             this.btnAllQuestions.Visible = false;
             this.btnAllQuestions.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnAllQuestions_Click);
+            // 
+            // GrpResults
+            // 
+            this.GrpResults.Items.Add(this.btnViewResultsPPT);
+            this.GrpResults.Items.Add(this.btnReset);
+            this.GrpResults.Label = "Resultaten";
+            this.GrpResults.Name = "GrpResults";
             // 
             // btnViewResultsPPT
             // 
@@ -110,6 +103,11 @@
             this.btnReset.Name = "btnReset";
             this.btnReset.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnReset_Click);
             // 
+            // grpSlide
+            // 
+            this.grpSlide.Items.Add(this.btnSlideInfo);
+            this.grpSlide.Name = "grpSlide";
+            // 
             // btnSlideInfo
             // 
             this.btnSlideInfo.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -117,13 +115,6 @@
             this.btnSlideInfo.Name = "btnSlideInfo";
             this.btnSlideInfo.ShowImage = true;
             this.btnSlideInfo.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnSlideInfo_Click);
-            // 
-            // btnStartTimer
-            // 
-            this.btnStartTimer.Label = "Start Timer";
-            this.btnStartTimer.Name = "btnStartTimer";
-            this.btnStartTimer.Visible = false;
-            this.btnStartTimer.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnStartTimer_Click);
             // 
             // Ribbon1
             // 
@@ -155,7 +146,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpSlide;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSlideInfo;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnReset;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnStartTimer;
     }
 
     partial class ThisRibbonCollection

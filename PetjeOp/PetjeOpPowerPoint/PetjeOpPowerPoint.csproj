@@ -173,6 +173,7 @@
     <EmbeddedResource Include="Ribbon1.resx">
       <DependentUpon>Ribbon1.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="PetjeOpPowerPoint_2_TemporaryKey.pfx" />
     <None Include="PetjeOpPowerPoint_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -251,10 +252,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PetjeOpPowerPoint_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>PetjeOpPowerPoint_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2E36B6401BADE509016E6B07E500BC9A5C3970C8</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>006EC4927041D2E246B9C751E682BF82772702EA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
