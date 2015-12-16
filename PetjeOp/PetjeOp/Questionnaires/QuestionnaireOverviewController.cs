@@ -348,5 +348,30 @@ namespace PetjeOp.Questionnaires
             //Vul de TreeView met gegevens
             FillTreeView();
         }
+
+        public void FilterOnOwnQuestionnaires()
+        {
+
+            if (View.cbOwnQuestionnairesOnly.Checked)
+            {
+                foreach (object s in View.cbAuthors.Items)
+                {
+                    if (s is Teacher)
+                    {
+                        Teacher s2 = (Teacher)s;
+                        if (s2.TeacherNr == ((Teacher)MasterController.User).TeacherNr)
+                        {
+                            View.cbAuthors.SelectedItem = s2;
+                            View.cbAuthors.Enabled = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                View.cbAuthors.Enabled = true;
+                View.cbAuthors.SelectedIndex = 0;
+            }
+        }
     }
 }

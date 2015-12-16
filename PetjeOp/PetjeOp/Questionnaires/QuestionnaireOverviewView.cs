@@ -98,26 +98,7 @@ namespace PetjeOp.Questionnaires
 
         private void cbOwnQuestionnairesOnly_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbOwnQuestionnairesOnly.Checked)
-            {
-                foreach (object s in cbAuthors.Items)
-                {
-                    if (s is Teacher)
-                    {
-                        Teacher s2 = (Teacher) s;
-                        if (s2.TeacherNr == ((Teacher)Controller.MasterController.User).TeacherNr)
-                        {
-                            cbAuthors.SelectedItem = s2;
-                            cbAuthors.Enabled = false;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                cbAuthors.Enabled = true;
-                cbAuthors.SelectedIndex = 0;
-            }
+            Controller.FilterOnOwnQuestionnaires();
         }
     }
 }

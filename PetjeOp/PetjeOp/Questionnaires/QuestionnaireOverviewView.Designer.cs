@@ -103,7 +103,7 @@
             this.btnDetails.Enabled = false;
             this.btnDetails.Location = new System.Drawing.Point(572, 161);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(75, 23);
+            this.btnDetails.Size = new System.Drawing.Size(105, 23);
             this.btnDetails.TabIndex = 6;
             this.btnDetails.Text = "Details/Wijzig";
             this.btnDetails.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             // 
             this.btnRecover.Location = new System.Drawing.Point(572, 190);
             this.btnRecover.Name = "btnRecover";
-            this.btnRecover.Size = new System.Drawing.Size(75, 23);
+            this.btnRecover.Size = new System.Drawing.Size(105, 23);
             this.btnRecover.TabIndex = 9;
             this.btnRecover.Text = "Herstel";
             this.btnRecover.UseVisualStyleBackColor = true;
@@ -197,7 +197,7 @@
             this.Controls.Add(this.lblAddQuestionnaire);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "QuestionnaireOverviewView";
-            this.Size = new System.Drawing.Size(659, 526);
+            this.Size = new System.Drawing.Size(680, 526);
             this.Load += new System.EventHandler(this.QuestionnaireOverviewView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -217,6 +217,6 @@
         public System.Windows.Forms.Button btnRecover;
         public System.Windows.Forms.ComboBox cbAuthors;
         private System.Windows.Forms.Label lblAuthor;
-        private System.Windows.Forms.CheckBox cbOwnQuestionnairesOnly;
+        public System.Windows.Forms.CheckBox cbOwnQuestionnairesOnly;
     }
 }
