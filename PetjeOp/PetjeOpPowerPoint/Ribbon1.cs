@@ -196,5 +196,13 @@ namespace PetjeOpPowerPoint
                 MessageBox.Show(info);
             }
         }
+
+        private void btnReset_Click(object sender, RibbonControlEventArgs e) {
+            PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
+
+            if (CurrentSlide.Tags["isResultSlide"] == "0") {
+                DB.DeleteResults(int.Parse(CurrentSlide.Tags["examId"]), int.Parse(CurrentSlide.Tags["questionId"]));
+            }
+        }
     }
 }
