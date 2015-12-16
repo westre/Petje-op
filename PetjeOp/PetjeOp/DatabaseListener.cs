@@ -10,6 +10,7 @@ namespace PetjeOp {
         private string ConnectionString { get; set; }
         private SqlConnection Connection { get; set; }
         public string TrackedQuery { get; set; }
+        public bool Subscribed { get; set; }
 
         public delegate void TrackedChangedHandler(SqlNotificationEventArgs eventArgs);
         public event TrackedChangedHandler OnChange;
@@ -46,6 +47,8 @@ namespace PetjeOp {
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Close();
                 Connection.Close();
+
+                Subscribed = true;
             }
             else {
                 Console.WriteLine("ERROR: Geen tracked query gevonden");
@@ -53,7 +56,10 @@ namespace PetjeOp {
         }
         public void Stop()
         {
-            dependency.OnChange -= TrackedChanged;
+            if(Subscribed) {
+                dependency.OnChange -= TrackedChanged;
+                Subscribed = false;
+            } 
         }
 
         void TrackedChanged(object sender, SqlNotificationEventArgs e) {
