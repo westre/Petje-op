@@ -86,11 +86,19 @@ namespace PetjeOpPowerPoint {
                 Microsoft.Office.Interop.PowerPoint.Shape shape = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, x, y - (int)barHeight, rectangleWidth, (int)barHeight);
                 shape.Tags.Add("answer", kvp.Value.Result.answerID.ToString());
 
+                if(question.CorrectAnswer != null && kvp.Key == question.CorrectAnswer.ID) {
+                    shape.Fill.ForeColor.RGB = ColorTranslator.ToOle(Color.ForestGreen);
+                }
+
                 // Zoek voor juiste answer
                 if(multipleChoiceQuestion != null) {
                     foreach (Answer answer in multipleChoiceQuestion.AnswerOptions) {
-                        if (answer.ID == kvp.Value.Result.answerID) {
+                        if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID != answer.ID) {
                             resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y, 100, 100).TextEffect.Text = answer.Description;
+                        }
+
+                        if (question.CorrectAnswer.ID == answer.ID) {
+                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y, 100, 100).TextEffect.Text = question.CorrectAnswer.Description;
                         }
                     }
                 }
