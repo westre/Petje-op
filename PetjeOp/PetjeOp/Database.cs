@@ -69,7 +69,13 @@ namespace PetjeOp
                     List<Answer> answerOptions = new List<Answer>(); // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
                     List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList(); // Lijst met tblAnsweropties, welke straks doorlopen wordt
 
-                    
+                    if (dbQuestion.timerestriction != null) {
+                        question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
+                    }
+                    else {
+                        question.TimeRestriction = TimeSpan.Zero;
+                    }
+
                     foreach (tblAnsweroption dbAnswerOption in dbAnsweroption) { // Doorloopt de antwoordopties die een foreign key naar de geselecteerde question in de database hebben
                         // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
                         tblAnswer tblAnswer = dbAnswerOption.tblAnswer; // Cast antwoordtabel in variable

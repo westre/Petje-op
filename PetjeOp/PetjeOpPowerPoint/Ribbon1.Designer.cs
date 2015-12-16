@@ -44,6 +44,7 @@
             this.btnViewResultsPPT = this.Factory.CreateRibbonButton();
             this.btnReset = this.Factory.CreateRibbonButton();
             this.btnSlideInfo = this.Factory.CreateRibbonButton();
+            this.btnStartTimer = this.Factory.CreateRibbonButton();
             this.WinQ.SuspendLayout();
             this.GrpQuestionnaire.SuspendLayout();
             this.GrpResults.SuspendLayout();
@@ -88,6 +89,7 @@
             // grpSlide
             // 
             this.grpSlide.Items.Add(this.btnSlideInfo);
+            this.grpSlide.Items.Add(this.btnStartTimer);
             this.grpSlide.Name = "grpSlide";
             // 
             // btnAllQuestions
@@ -115,6 +117,13 @@
             this.btnSlideInfo.Name = "btnSlideInfo";
             this.btnSlideInfo.ShowImage = true;
             this.btnSlideInfo.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnSlideInfo_Click);
+            // 
+            // btnStartTimer
+            // 
+            this.btnStartTimer.Label = "Start Timer";
+            this.btnStartTimer.Name = "btnStartTimer";
+            this.btnStartTimer.Visible = false;
+            this.btnStartTimer.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnStartTimer_Click);
             // 
             // Ribbon1
             // 
@@ -146,6 +155,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpSlide;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSlideInfo;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnReset;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnStartTimer;
     }
 
     partial class ThisRibbonCollection
