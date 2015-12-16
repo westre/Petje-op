@@ -33,6 +33,7 @@ namespace PetjeOp
             Controllers.Add(new ViewResultsController(this));
             Controllers.Add(new QuestionnaireOverviewController(this));
             Controllers.Add(new AnswerQuestionnaireController(this));
+            Controllers.Add(new TeacherHomeController(this));
 
             //Creëer database instantie
             DB = new Database();
