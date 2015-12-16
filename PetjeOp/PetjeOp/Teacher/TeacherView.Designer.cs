@@ -150,6 +150,7 @@
             this.pbLogo.BackColor = System.Drawing.Color.Transparent;
             this.pbLogo.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
             this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLogo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbLogo.Location = new System.Drawing.Point(16, 13);
             this.pbLogo.Margin = new System.Windows.Forms.Padding(4);
             this.pbLogo.Name = "pbLogo";
@@ -165,6 +166,7 @@
             this.pnlButton_Agenda_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Agenda_Background.Controls.Add(this.pbIcon_Agenda_Icon);
             this.pnlButton_Agenda_Background.Controls.Add(this.lblTitle_Agenda_Title);
+            this.pnlButton_Agenda_Background.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlButton_Agenda_Background.Location = new System.Drawing.Point(1142, 23);
             this.pnlButton_Agenda_Background.Margin = new System.Windows.Forms.Padding(4);
             this.pnlButton_Agenda_Background.Name = "pnlButton_Agenda_Background";
@@ -203,6 +205,7 @@
             this.pnlButton_Result_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_Result_Background.Controls.Add(this.pbIcon_Results_Icon);
             this.pnlButton_Result_Background.Controls.Add(this.lblTitle_Results_Title);
+            this.pnlButton_Result_Background.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlButton_Result_Background.Location = new System.Drawing.Point(466, 23);
             this.pnlButton_Result_Background.Margin = new System.Windows.Forms.Padding(4);
             this.pnlButton_Result_Background.Name = "pnlButton_Result_Background";
@@ -244,6 +247,7 @@
             this.pnlButton_QuestionnaireOverview_Background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.pbIcon_QuestionnaireOverview_Icon);
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.lblTitle_QuestionnaireOverview_Title);
+            this.pnlButton_QuestionnaireOverview_Background.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlButton_QuestionnaireOverview_Background.Location = new System.Drawing.Point(804, 23);
             this.pnlButton_QuestionnaireOverview_Background.Margin = new System.Windows.Forms.Padding(4);
             this.pnlButton_QuestionnaireOverview_Background.Name = "pnlButton_QuestionnaireOverview_Background";
