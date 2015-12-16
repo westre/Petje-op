@@ -65,10 +65,13 @@ namespace PetjeOpPowerPoint {
             // Max breedte en hoogte voor grafiek
             int maxWidth = 400;
             int maxHeight = 300;
-            
+
             // Calculeer breedte per staaf
+            float rectangleWidth = 0;
             float rectPercentage = (26f - distinctAnswers.Count) / 26f; // We hebben 26 letters in het alfabet
-            float rectangleWidth = (maxWidth / distinctAnswers.Count) * rectPercentage;
+            if(distinctAnswers.Count > 0) {
+                rectangleWidth = (maxWidth / distinctAnswers.Count) * rectPercentage;
+            }
 
             // Calculeer breedte van grafiek voor het centeren
             float width = distinctAnswers.Count * rectangleWidth;
@@ -96,8 +99,7 @@ namespace PetjeOpPowerPoint {
                         if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID != answer.ID) {
                             resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y, 100, 100).TextEffect.Text = answer.Description;
                         }
-
-                        if (question.CorrectAnswer.ID == answer.ID) {
+                        else if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID == answer.ID) {
                             resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y, 100, 100).TextEffect.Text = question.CorrectAnswer.Description;
                         }
                     }
