@@ -34,6 +34,8 @@ namespace PetjeOp
             Controllers.Add(new QuestionnaireOverviewController(this));
             Controllers.Add(new AnswerQuestionnaireController(this));
 
+            Controllers.Add(new ExamOverviewStudentController(this));
+
             //Creëer database instantie
             DB = new Database();
             DB.AnswerCleanup();
@@ -89,6 +91,12 @@ namespace PetjeOp
 
                 ActiveParentContainer = (StudentController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
+
+                // Initialisatie van ExamOverviewStudentController wanneer we in StudentController zitten
+                ExamOverviewStudentController questionnaireOverviewController = (ExamOverviewStudentController)GetController(typeof(ExamOverviewStudentController));
+                questionnaireOverviewController.Init();
+                questionnaireOverviewController.InitializeView();
+                SetController(questionnaireOverviewController);
             }
         }
 

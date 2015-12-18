@@ -15,13 +15,35 @@ namespace PetjeOp
         // Initialiseren van de database connectie die vervolgens gebruikt wordt voor LinqtoSQL
         DataClasses1DataContext db = new DataClasses1DataContext();
 
+        public Boolean QuestionContainsAnswerFromUser(Exam Exam, Student student, Question Question)
+        {
+            tblResult result = db.tblResults.SingleOrDefault(g => g.student == student.StudentNr && g.exam == Exam.Examnr && g.question == Question.ID);
+
+            if(result != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public List<tblExam> GetExamsOfStudent(String StudentNR)
+        {
+            tblStudent student = db.tblStudents.SingleOrDefault(g => g.nr == StudentNR);
+
+            List<tblExam> exams = db.tblExams.Where(g => g.tblLecture.@class == student.@class).ToList();
+
+            return exams;
+        }
+
         // Voegt een resultaat toe van een antwoord op een vraag in een examen.
         public void InsertResult(tblResult Result)
         {
-            db.tblResults.InsertOnSubmit(Result);
-
+            // Wordt aangeroepen om de gehele enity te refreshen. Inverband met foreign-keys...
+            db = new DataClasses1DataContext();
             try
             {
+                db.tblResults.InsertOnSubmit(Result);
                 db.SubmitChanges();
                 db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
             }
@@ -477,7 +499,7 @@ namespace PetjeOp
         public Exam GetExam(int examID) // Return een Exam van het opgegeven ID
         {
             try {
-            Exam exam = (from tblExam in db.tblExams
+             Exam exam = (from tblExam in db.tblExams
                          where tblExam.id == examID
                              select new Exam(tblExam.id, tblExam.questionnaire) {
                              CurrenQuestion = tblExam.currentquestion
