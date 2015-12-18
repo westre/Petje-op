@@ -83,31 +83,43 @@ namespace PetjeOp
             // Hier wordt gecontrolleerd of de query gelukt is, 
             // null staat immers voor een niet geslaagde query of een query zonder resultaten
                 if (dbQuestion != null) {
-                // Hier wordt een nieuwe vraag aangemaakt via de contstructor van MultipleChoiceQuestion
-                // De description wordt hieraan meegegeven, die met de query is opgehaald
-                MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
-                question.ID = id; // Vervolgens wordt het ID van het Question object toegevoegd, dit is hetzelfde ID dan degene in de database
-                                
-                List<Answer> answerOptions = new List<Answer>(); // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
-                List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList(); // Lijst met tblAnsweropties, welke straks doorlopen wordt
+                    // Hier wordt een nieuwe vraag aangemaakt via de contstructor van MultipleChoiceQuestion
+                    // De description wordt hieraan meegegeven, die met de query is opgehaald
+                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
+                    question.ID = id; // Vervolgens wordt het ID van het Question object toegevoegd, dit is hetzelfde ID dan degene in de database
+                                    
+                    List<Answer> answerOptions = new List<Answer>(); // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
+                    List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList(); // Lijst met tblAnsweropties, welke straks doorlopen wordt
+
+                    if (dbQuestion.timerestriction != null) {
+                        question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
+                    }
+                    else {
+                        question.TimeRestriction = TimeSpan.Zero;
+                    }
 
                     foreach (tblAnsweroption dbAnswerOption in dbAnsweroption) { // Doorloopt de antwoordopties die een foreign key naar de geselecteerde question in de database hebben
-                    // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                    tblAnswer tblAnswer = dbAnswerOption.tblAnswer; // Cast antwoordtabel in variable
+                        // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
+                        tblAnswer tblAnswer = dbAnswerOption.tblAnswer; // Cast antwoordtabel in variable
 
-                    Answer answer = new Answer(tblAnswer.description); // Maakt een nieuw antwoord aan
-                    answer.ID = tblAnswer.id; // Werkt het id bij naar degene die ook in de database gebruikt wordt
-                    answerOptions.Add(answer); // Voegt het antwoord object toe aan de lijst van antwoordopties die straks toegevoegd wordt aan de vraag
+                        Answer answer = new Answer(tblAnswer.description); // Maakt een nieuw antwoord aan
+                        answer.ID = tblAnswer.id; // Werkt het id bij naar degene die ook in de database gebruikt wordt
+
+                        if (dbQuestion.correctanswer == tblAnswer.id) {
+                            question.CorrectAnswer = answer;
+                        }
+                        answerOptions.Add(answer); // Voegt het antwoord object toe aan de lijst van antwoordopties die straks toegevoegd wordt aan de vraag
+
+                    }
+
+                    // Voegt de lijst met antwoord opties toe aan de vraag
+                    question.AnswerOptions = answerOptions;               
+
+                    return question;
                 }
-
-                // Voegt de lijst met antwoord opties toe aan de vraag
-                question.AnswerOptions = answerOptions;               
-
-                return question;
+                // Als de query gefaalt is return null, deze wordt later opgevangen
+                return null;
             }
-            // Als de query gefaalt is return null, deze wordt later opgevangen
-            return null;
-        }
             catch(SqlException ex) { MessageBox.Show(ex.Message); return null; }  
         }
 
@@ -459,6 +471,7 @@ namespace PetjeOp
 
                 foreach (tblExam tblExam in db.tblExams) {
                 Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+               
 
                 Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
 
@@ -472,6 +485,31 @@ namespace PetjeOp
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
 
             
+
+        }
+
+        public List<Class> GetAllClasses()
+        {
+            try
+            {
+                List<Class> css = new List<Class>();
+
+                foreach (tblClass tblclass in db.tblClasses)
+                {
+
+
+                    Class cs = new Class(tblclass.code);
+
+                    css.Add(cs);
+
+
+                }
+
+                return css;
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+
+
 
         }
 
@@ -539,6 +577,7 @@ namespace PetjeOp
 
         }
 
+     
         public void UpdateExamCurrentQuestion(int examId, int questionId) {
             try {
                 if (examId != -1) {
@@ -558,24 +597,42 @@ namespace PetjeOp
 
             
         }
-    
-        
+
+
         public List<Subject> GetSubjects()
         {
-            try {
-            List<Subject> subjects = new List<Subject>();
+            try
+            {
+                List<Subject> subjects = new List<Subject>();
 
-                foreach (tblSubject tblSubject in db.tblSubjects) {
-                Subject subject = new Subject(tblSubject.id, tblSubject.name);
+                foreach (tblSubject tblSubject in db.tblSubjects)
+                {
+                    Subject subject = new Subject(tblSubject.id, tblSubject.name);
 
-                subjects.Add(subject);
+                    subjects.Add(subject);
+                }
+
+                return subjects;
             }
-
-            return subjects;
-        }
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+        }
 
-            
+        public List<Teacher> GetTeachers()
+        {
+            try
+            {
+                List<Teacher> teachers = new List<Teacher>();
+
+                foreach (tblTeacher tblTeacher in db.tblTeachers)
+                {
+                    Teacher teacher = new Teacher(tblTeacher.nr, tblTeacher.firstname, tblTeacher.surname);
+
+                    teachers.Add(teacher);
+                }
+
+                return teachers;
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
         // hier worden de antwoorden opgehaald die bij een specifieke vraag horen
@@ -636,6 +693,35 @@ namespace PetjeOp
             
         }     
         
+        // Haal resultaten op van examen
+        public List<Result> GetResultsByExamId(int id) {
+            db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
 
+            List<Result> results = new List<Result>();
+
+            List<tblResult> tblResults = (from result in db.tblResults
+                                          where result.exam == id
+                                          select result).ToList();
+
+            foreach(tblResult tblResult in tblResults) {
+                Result result = new Result(id, tblResult.answer, tblResult.question);
+                results.Add(result);
+            }
+
+            return results;
+        }
+
+        public void DeleteResults(int examId, int questionId) {
+            IEnumerable<tblResult> results = (from result in db.tblResults
+                                 where result.exam == examId && result.question == questionId
+                                 select result).ToList();
+
+            if (results.Count() > 0) {
+                db.tblResults.DeleteAllOnSubmit(results);
+                db.SubmitChanges();
+            }
+
+            MessageBox.Show("Alle resultaten zijn verwijderd");
+        }
     }
 }

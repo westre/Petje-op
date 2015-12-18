@@ -33,6 +33,7 @@ namespace PetjeOp
             Controllers.Add(new ViewResultsController(this));
             Controllers.Add(new QuestionnaireOverviewController(this));
             Controllers.Add(new AnswerQuestionnaireController(this));
+            Controllers.Add(new TeacherHomeController(this));
 
             Controllers.Add(new ExamOverviewStudentController(this));
 
@@ -81,9 +82,9 @@ namespace PetjeOp
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
 
                 // Initialisatie van QuestionnaireOverviewController wanneer we in TeacherController zitten
-                QuestionnaireOverviewController questionnaireOverviewController = (QuestionnaireOverviewController)GetController(typeof(QuestionnaireOverviewController));
-                questionnaireOverviewController.InitializeView();
-                SetController(questionnaireOverviewController);
+                TeacherHomeController teacherHomeController = (TeacherHomeController)GetController(typeof(TeacherHomeController));
+                teacherHomeController.InitializeView();
+                SetController(teacherHomeController);
             }
             else if (controller is StudentController)
             {

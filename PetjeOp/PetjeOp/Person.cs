@@ -7,7 +7,18 @@ namespace PetjeOp
 {
     public abstract class Person
     {
-        public String FirstName { get; set; }
-        public String SurName { get; set; }
+        public string FirstName { get; set; }
+        public string SurName { get; set; }
+
+        public Person()
+        {
+            
+        }
+
+        public Person(string firstName, string surName)
+        {
+            this.FirstName = firstName;
+            this.SurName = surName;
+        }
     }
 }

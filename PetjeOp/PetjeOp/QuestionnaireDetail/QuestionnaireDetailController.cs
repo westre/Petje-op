@@ -73,6 +73,7 @@ namespace PetjeOp {
         //Set labeldata in het scherm, auteurdata, naamdata en vakdata van een vragenlijst.
         public void setLabels()
         {
+            //Set de tekst van de labels naar de gegevens van de huidige questionnaire.
             View.lblAuthorData.Text = "(" + Model.Questionnaire.Author.TeacherNr + ") " + Model.Questionnaire.Author.FirstName + " " + Model.Questionnaire.Author.SurName;
             View.lblNameData.Text = Model.Questionnaire.Name;
             View.lblSubjectData.Text = Model.Questionnaire.Subject.Name;
