@@ -47,29 +47,29 @@
             this.lblAddQuestionnaire.AutoSize = true;
             this.lblAddQuestionnaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddQuestionnaire.ForeColor = System.Drawing.Color.Black;
-            this.lblAddQuestionnaire.Location = new System.Drawing.Point(1, 4);
-            this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(1);
+            this.lblAddQuestionnaire.Location = new System.Drawing.Point(2, 8);
+            this.lblAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblAddQuestionnaire.Name = "lblAddQuestionnaire";
-            this.lblAddQuestionnaire.Size = new System.Drawing.Size(153, 29);
+            this.lblAddQuestionnaire.Size = new System.Drawing.Size(301, 55);
             this.lblAddQuestionnaire.TabIndex = 1;
             this.lblAddQuestionnaire.Text = "Vragenlijsten";
             // 
             // tvQuestionnaires
             // 
-            this.tvQuestionnaires.Location = new System.Drawing.Point(5, 161);
-            this.tvQuestionnaires.Margin = new System.Windows.Forms.Padding(2);
+            this.tvQuestionnaires.Location = new System.Drawing.Point(10, 310);
+            this.tvQuestionnaires.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tvQuestionnaires.Name = "tvQuestionnaires";
-            this.tvQuestionnaires.Size = new System.Drawing.Size(564, 304);
+            this.tvQuestionnaires.Size = new System.Drawing.Size(1124, 581);
             this.tvQuestionnaires.TabIndex = 2;
             this.tvQuestionnaires.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvQuestionnaires_BeforeSelect);
             this.tvQuestionnaires.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvQuestionnaires_AfterSelect);
             // 
             // btnAddQuestionnaire
             // 
-            this.btnAddQuestionnaire.Location = new System.Drawing.Point(5, 477);
-            this.btnAddQuestionnaire.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddQuestionnaire.Location = new System.Drawing.Point(10, 917);
+            this.btnAddQuestionnaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddQuestionnaire.Name = "btnAddQuestionnaire";
-            this.btnAddQuestionnaire.Size = new System.Drawing.Size(146, 40);
+            this.btnAddQuestionnaire.Size = new System.Drawing.Size(292, 77);
             this.btnAddQuestionnaire.TabIndex = 3;
             this.btnAddQuestionnaire.Text = "+ Vragenlijst Toevoegen";
             this.btnAddQuestionnaire.UseVisualStyleBackColor = true;
@@ -78,10 +78,10 @@
             // lblSubject
             // 
             this.lblSubject.AutoSize = true;
-            this.lblSubject.Location = new System.Drawing.Point(16, 63);
-            this.lblSubject.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSubject.Location = new System.Drawing.Point(32, 121);
+            this.lblSubject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSubject.Name = "lblSubject";
-            this.lblSubject.Size = new System.Drawing.Size(29, 13);
+            this.lblSubject.Size = new System.Drawing.Size(55, 25);
             this.lblSubject.TabIndex = 4;
             this.lblSubject.Text = "Vak:";
             // 
@@ -91,19 +91,20 @@
             this.cbSubjects.FormattingEnabled = true;
             this.cbSubjects.Items.AddRange(new object[] {
             "Alle vakken"});
-            this.cbSubjects.Location = new System.Drawing.Point(50, 60);
-            this.cbSubjects.Margin = new System.Windows.Forms.Padding(2);
+            this.cbSubjects.Location = new System.Drawing.Point(100, 115);
+            this.cbSubjects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbSubjects.Name = "cbSubjects";
-            this.cbSubjects.Size = new System.Drawing.Size(166, 21);
+            this.cbSubjects.Size = new System.Drawing.Size(328, 33);
             this.cbSubjects.TabIndex = 5;
             this.cbSubjects.SelectedIndexChanged += new System.EventHandler(this.cbSubjects_SelectedIndexChanged);
             // 
             // btnDetails
             // 
             this.btnDetails.Enabled = false;
-            this.btnDetails.Location = new System.Drawing.Point(572, 161);
+            this.btnDetails.Location = new System.Drawing.Point(1144, 310);
+            this.btnDetails.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(105, 23);
+            this.btnDetails.Size = new System.Drawing.Size(210, 44);
             this.btnDetails.TabIndex = 6;
             this.btnDetails.Text = "Details/Wijzig";
             this.btnDetails.UseVisualStyleBackColor = true;
@@ -112,9 +113,10 @@
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(572, 190);
+            this.btnDelete.Location = new System.Drawing.Point(1144, 365);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(210, 44);
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Archiveer";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -123,10 +125,10 @@
             // cbShowArchive
             // 
             this.cbShowArchive.AutoSize = true;
-            this.cbShowArchive.Location = new System.Drawing.Point(49, 125);
-            this.cbShowArchive.Margin = new System.Windows.Forms.Padding(2);
+            this.cbShowArchive.Location = new System.Drawing.Point(98, 240);
+            this.cbShowArchive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbShowArchive.Name = "cbShowArchive";
-            this.cbShowArchive.Size = new System.Drawing.Size(187, 17);
+            this.cbShowArchive.Size = new System.Drawing.Size(371, 29);
             this.cbShowArchive.TabIndex = 8;
             this.cbShowArchive.Text = "Toon Gearchiveerde Vragenlijsten";
             this.cbShowArchive.UseVisualStyleBackColor = true;
@@ -134,9 +136,10 @@
             // 
             // btnRecover
             // 
-            this.btnRecover.Location = new System.Drawing.Point(572, 190);
+            this.btnRecover.Location = new System.Drawing.Point(1144, 365);
+            this.btnRecover.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnRecover.Name = "btnRecover";
-            this.btnRecover.Size = new System.Drawing.Size(105, 23);
+            this.btnRecover.Size = new System.Drawing.Size(210, 44);
             this.btnRecover.TabIndex = 9;
             this.btnRecover.Text = "Herstel";
             this.btnRecover.UseVisualStyleBackColor = true;
@@ -149,29 +152,30 @@
             this.cbAuthors.FormattingEnabled = true;
             this.cbAuthors.Items.AddRange(new object[] {
             "Alle Docenten"});
-            this.cbAuthors.Location = new System.Drawing.Point(50, 85);
-            this.cbAuthors.Margin = new System.Windows.Forms.Padding(2);
+            this.cbAuthors.Location = new System.Drawing.Point(100, 163);
+            this.cbAuthors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbAuthors.Name = "cbAuthors";
-            this.cbAuthors.Size = new System.Drawing.Size(166, 21);
+            this.cbAuthors.Size = new System.Drawing.Size(328, 33);
             this.cbAuthors.TabIndex = 11;
             this.cbAuthors.SelectedIndexChanged += new System.EventHandler(this.cbAuthor_SelectedIndexChanged);
             // 
             // lblAuthor
             // 
             this.lblAuthor.AutoSize = true;
-            this.lblAuthor.Location = new System.Drawing.Point(7, 88);
-            this.lblAuthor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAuthor.Location = new System.Drawing.Point(14, 169);
+            this.lblAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAuthor.Name = "lblAuthor";
-            this.lblAuthor.Size = new System.Drawing.Size(41, 13);
+            this.lblAuthor.Size = new System.Drawing.Size(81, 25);
             this.lblAuthor.TabIndex = 10;
             this.lblAuthor.Text = "Auteur:";
             // 
             // cbOwnQuestionnairesOnly
             // 
             this.cbOwnQuestionnairesOnly.AutoSize = true;
-            this.cbOwnQuestionnairesOnly.Location = new System.Drawing.Point(224, 88);
+            this.cbOwnQuestionnairesOnly.Location = new System.Drawing.Point(448, 169);
+            this.cbOwnQuestionnairesOnly.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cbOwnQuestionnairesOnly.Name = "cbOwnQuestionnairesOnly";
-            this.cbOwnQuestionnairesOnly.Size = new System.Drawing.Size(173, 17);
+            this.cbOwnQuestionnairesOnly.Size = new System.Drawing.Size(344, 29);
             this.cbOwnQuestionnairesOnly.TabIndex = 12;
             this.cbOwnQuestionnairesOnly.Text = "Toon alleen eigen vragenlijsten";
             this.cbOwnQuestionnairesOnly.UseVisualStyleBackColor = true;
@@ -179,7 +183,7 @@
             // 
             // QuestionnaireOverviewView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -195,9 +199,9 @@
             this.Controls.Add(this.btnAddQuestionnaire);
             this.Controls.Add(this.tvQuestionnaires);
             this.Controls.Add(this.lblAddQuestionnaire);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "QuestionnaireOverviewView";
-            this.Size = new System.Drawing.Size(680, 526);
+            this.Size = new System.Drawing.Size(1360, 1012);
             this.Load += new System.EventHandler(this.QuestionnaireOverviewView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
