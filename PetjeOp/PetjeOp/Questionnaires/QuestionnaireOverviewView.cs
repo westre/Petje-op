@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace PetjeOp.Questionnaires
@@ -29,7 +30,7 @@ namespace PetjeOp.Questionnaires
             Controller.GetAllQuestionnairesAndSubjects();
 
             //Vul ComboBox met vakken
-            Controller.FillSubjects();
+            Controller.FillComboBoxes();
 
             Controller.CheckButtons();
         }
@@ -44,27 +45,13 @@ namespace PetjeOp.Questionnaires
         //Als er een ander vak is geselecteerd
         private void cbSubjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Vraag geselecteerd object op
-            object selectedItem = cbSubjects.SelectedItem;
+            Controller.FilterTreeView();
+        }
 
-            //Check of selectedItem een vak is
-            if (selectedItem is Subject)
-            {
-                //Cast het object naar een Subjectobject
-                Subject selectedSubject = (Subject) cbSubjects.SelectedItem;
-                
-                //Filter de lijst met Questionnaires, zodat alleen de questionnaires van het
-                //geselecteerde vak wordt getoond
-                Controller.FilterQuestionnaires(selectedSubject);
-            }
-            else
-            {
-                //Toon alle vakken
-                Controller.GetAllQuestionnairesAndSubjects();
-            }
-
-            //Vul de TreeView met gegevens
-            Controller.FillTreeView();
+        //Als er een andere author is geselecteerd
+        private void cbAuthor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Controller.FilterTreeView();
         }
 
         private void tvQuestionnaires_BeforeSelect(object sender, TreeViewCancelEventArgs e)
@@ -94,7 +81,7 @@ namespace PetjeOp.Questionnaires
             Controller.GetAllQuestionnairesAndSubjects();
 
             //Vul ComboBox met vakken
-            Controller.FillSubjects();
+            Controller.FillComboBoxes();
 
             Controller.CheckButtons();
         }
@@ -107,6 +94,11 @@ namespace PetjeOp.Questionnaires
         private void button1_Click_1(object sender, EventArgs e)
         {
             Controller.UnarchiveQuestionnaire();
+        }
+
+        private void cbOwnQuestionnairesOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            Controller.FilterOnOwnQuestionnaires();
         }
     }
 }

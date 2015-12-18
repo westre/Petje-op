@@ -41,10 +41,13 @@ namespace PetjeOp.Questionnaires
 
             //Vraag Questionnaires op
             Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
-            ResetList();
+            ResetLists();
 
             //Vraag Subjects op
             Model.Subjects = MasterController.DB.GetSubjects();
+
+            //Vraag Teachers op
+            Model.Teachers = MasterController.DB.GetTeachers();
 
             //Verberg LoadingDialog
             l.Hide();
@@ -104,13 +107,15 @@ namespace PetjeOp.Questionnaires
         }
 
         //Vul ComboBox met Subjects
-        public void FillSubjects()
+        public void FillComboBoxes()
         {
             //Maak ComboBox leeg
             View.cbSubjects.Items.Clear();
+            View.cbAuthors.Items.Clear();
 
             //Voeg item toe om alle vakken te laden
             View.cbSubjects.Items.Add("Alle Vakken");
+            View.cbAuthors.Items.Add("Alle Docenten");
 
             //Loop over Subjects
             foreach (Subject s in Model.Subjects)
@@ -118,15 +123,21 @@ namespace PetjeOp.Questionnaires
                 //Subject toevoegen
                 View.cbSubjects.Items.Add(s);
             }
+            foreach (Teacher t in Model.Teachers)
+            {
+                //Teacher toevoegen
+                View.cbAuthors.Items.Add(t);
+            }
 
             //Selecteer eerste index
             View.cbSubjects.SelectedIndex = 0;
+            View.cbAuthors.SelectedIndex = 0;
         }
 
         //Filter de Questionnaires
         public void FilterQuestionnaires(Subject s)
         {
-            ResetList();
+            ResetLists();
             //Maak nieuwe List
             List<Questionnaire> newList = new List<Questionnaire>();
 
@@ -138,13 +149,52 @@ namespace PetjeOp.Questionnaires
                     //Voeg toe aan nieuwe List
                     newList.Add(q);
             }
+            Console.WriteLine("Voeg toe: Subjects!");
+            //Vervang oude list door nieuwe List
+            Model.ListQuestionnaires = newList;
+        }
 
+        public void FilterQuestionnaires(Teacher t)
+        {
+            ResetLists();
+            //Maak nieuwe List
+            List<Questionnaire> newList = new List<Questionnaire>();
+
+            //Loop over Questionnaires
+            foreach (Questionnaire q in Model.ListQuestionnaires)
+            {
+                //Als SubjectID van Questonnair gelijk is aan ID van gekozen Subject
+                if (q.Author.TeacherNr == t.TeacherNr)
+                    //Voeg toe aan nieuwe List
+                    newList.Add(q);
+            }
+            Console.WriteLine("Voeg toe: Teachers!");
+            //Vervang oude list door nieuwe List
+            Model.ListQuestionnaires = newList;
+        }
+
+
+        public void FilterQuestionnaires(Subject s, Teacher t)
+        {
+            ResetLists();
+            //Maak nieuwe List
+            List<Questionnaire> newList = new List<Questionnaire>();
+
+            //Loop over Questionnaires
+            foreach (Questionnaire q in Model.ListQuestionnaires)
+            {
+                //Als SubjectID van Questonnair gelijk is aan ID van gekozen Subject
+                if (q.Subject.Id == s.Id && q.Author.TeacherNr == t.TeacherNr)
+                    //Voeg toe aan nieuwe List
+                    newList.Add(q);
+            }
+            Console.WriteLine("Voeg toe: Teachers EN Subjects!!");
             //Vervang oude list door nieuwe List
             Model.ListQuestionnaires = newList;
         }
 
         //Reset de lijst zodat alle Questionnaires er weer in staan
-        public void ResetList()
+        public void ResetLists()
         {
             if (View.cbShowArchive.Checked)
             {
@@ -255,6 +305,72 @@ namespace PetjeOp.Questionnaires
                 GetAllQuestionnairesAndSubjects();
                 FillTreeView();
                 CheckButtons();
+            }
+        }
+
+        public void FilterTreeView()
+        {
+            //Vraag geselecteerd object op
+            object selectedSubject = View.cbSubjects.SelectedItem;
+            object selectedTeacher = View.cbAuthors.SelectedItem;
+
+            //Check of selectedItem een vak is
+            if (!(selectedSubject is Subject) && selectedTeacher is Teacher)
+            {
+                //Cast het object naar een Subjectobject
+                Teacher currentAuthor = (Teacher)View.cbAuthors.SelectedItem;
+
+                //Filter de lijst met Questionnaires, zodat alleen de questionnaires van het
+                //geselecteerde vak wordt getoond
+                FilterQuestionnaires(currentAuthor);
+            }
+            else if (selectedSubject is Subject && !(selectedTeacher is Teacher))
+            {
+                //Cast het object naar een Subjectobject
+                Subject currentSubject = (Subject)View.cbSubjects.SelectedItem;
+
+                //Filter de lijst met Questionnaires, zodat alleen de questionnaires van het
+                //geselecteerde vak wordt getoond
+                FilterQuestionnaires(currentSubject);
+            }
+            else if (selectedSubject is Subject && selectedTeacher is Teacher)
+            {
+                Subject currentSubject = (Subject)View.cbSubjects.SelectedItem;
+                Teacher currentTeacher = (Teacher)View.cbAuthors.SelectedItem;
+
+                FilterQuestionnaires(currentSubject, currentTeacher);
+            }
+            else
+            {
+                GetAllQuestionnairesAndSubjects();
+            }
+
+            //Vul de TreeView met gegevens
+            FillTreeView();
+        }
+
+        public void FilterOnOwnQuestionnaires()
+        {
+
+            if (View.cbOwnQuestionnairesOnly.Checked)
+            {
+                foreach (object s in View.cbAuthors.Items)
+                {
+                    if (s is Teacher)
+                    {
+                        Teacher s2 = (Teacher)s;
+                        if (s2.TeacherNr == ((Teacher)MasterController.User).TeacherNr)
+                        {
+                            View.cbAuthors.SelectedItem = s2;
+                            View.cbAuthors.Enabled = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                View.cbAuthors.Enabled = true;
+                View.cbAuthors.SelectedIndex = 0;
             }
         }
     }

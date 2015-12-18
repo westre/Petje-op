@@ -13,6 +13,7 @@ namespace PetjeOp {
         public DateTime? endtime;
         public int Groupnr { get; set; }
         public List<Result> results;
+       
 
         public int? CurrenQuestion { get; set; }
 
@@ -24,6 +25,7 @@ namespace PetjeOp {
             endtime = et;
             Groupnr = gnr;
             results = new List<Result>();
+           
 
         }
 
