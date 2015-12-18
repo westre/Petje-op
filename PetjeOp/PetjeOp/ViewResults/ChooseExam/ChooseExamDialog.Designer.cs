@@ -37,6 +37,11 @@
             this.cbClass = new System.Windows.Forms.ComboBox();
             this.btnResetDate = new System.Windows.Forms.Button();
             this.cbQuestionnaire = new System.Windows.Forms.ComboBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chStarttime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chEndtime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listBox1
@@ -114,11 +119,47 @@
             this.cbQuestionnaire.TabIndex = 7;
             this.cbQuestionnaire.SelectedIndexChanged += new System.EventHandler(this.cbQuestionnaire_SelectedIndexChanged);
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chName,
+            this.chSubject,
+            this.chStarttime,
+            this.chEndtime});
+            this.listView1.Location = new System.Drawing.Point(26, 357);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(631, 204);
+            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.listView1.TabIndex = 8;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // chName
+            // 
+            this.chName.Text = "Naam";
+            this.chName.Width = 200;
+            // 
+            // chSubject
+            // 
+            this.chSubject.Text = "Vak";
+            this.chSubject.Width = 160;
+            // 
+            // chStarttime
+            // 
+            this.chStarttime.Text = "Starttijd";
+            this.chStarttime.Width = 120;
+            // 
+            // chEndtime
+            // 
+            this.chEndtime.Text = "Eindtijd";
+            this.chEndtime.Width = 120;
+            // 
             // ChooseExamDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 328);
+            this.ClientSize = new System.Drawing.Size(669, 604);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.cbQuestionnaire);
             this.Controls.Add(this.btnResetDate);
             this.Controls.Add(this.cbClass);
@@ -145,5 +186,10 @@
         private System.Windows.Forms.ComboBox cbClass;
         private System.Windows.Forms.Button btnResetDate;
         private System.Windows.Forms.ComboBox cbQuestionnaire;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader chName;
+        private System.Windows.Forms.ColumnHeader chSubject;
+        private System.Windows.Forms.ColumnHeader chStarttime;
+        private System.Windows.Forms.ColumnHeader chEndtime;
     }
 }

@@ -125,8 +125,8 @@ namespace PetjeOp
 
         public void UpdateQuestionnaire(Questionnaire questionnaire, List<Question> deletedQuestions = null)
         {
-            try
-            {
+            //try
+            //{
                 tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID); // Haalt questionnaire op uit DB
                 updateQuestionnaire.description = questionnaire.Name; // Wijzigingen toepassen
                 updateQuestionnaire.archived = questionnaire.Archived; 
@@ -169,8 +169,8 @@ namespace PetjeOp
                     }
                 }
                 db.SubmitChanges(); // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB      
-            }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); }
+            //}
+            //catch (SqlException ex) { MessageBox.Show(ex.Message); }
         }
 
         // Deze functie wordt gebruikt om een vragenlijst op te halen uit de database, het ID wordt hiervoor meegegeven
@@ -252,10 +252,11 @@ namespace PetjeOp
         // Voegt een resultaat toe van een antwoord op een vraag in een examen.
         public void InsertResult(tblResult Result)
         {
-            db.tblResults.InsertOnSubmit(Result);
-
+            // Wordt aangeroepen om de gehele enity te refreshen. Inverband met foreign-keys...
+            db = new DatabaseDataContext();
             try
             {
+                db.tblResults.InsertOnSubmit(Result);
                 db.SubmitChanges();
                 db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
             }
@@ -354,6 +355,7 @@ namespace PetjeOp
                     db.tblQuestions.DeleteOnSubmit(selectedQuestion);
                     db.SubmitChanges();
                 }
+                AnswerCleanup();
             }
             catch (SqlException ex) { MessageBox.Show(ex.Message); }
         }
@@ -667,6 +669,21 @@ namespace PetjeOp
 
         }
 
+        public void DeleteResults(int examId, int questionId)
+        {
+            IEnumerable<tblResult> results = (from result in db.tblResults
+                                              where result.exam == examId && result.question == questionId
+                                              select result).ToList();
+
+            if (results.Count() > 0)
+            {
+                db.tblResults.DeleteAllOnSubmit(results);
+                db.SubmitChanges();
+            }
+
+            MessageBox.Show("Alle resultaten zijn verwijderd");
+        }
+
         // Haal resultaten op van examen
         public List<Result> GetResultsByExamId(int id)
         {
@@ -685,6 +702,28 @@ namespace PetjeOp
             }
             return results;
         }
+
+        public Boolean QuestionContainsAnswerFromUser(Exam Exam, Student student, Question Question)
+        {
+            tblResult result = db.tblResults.SingleOrDefault(g => g.student == student.StudentNr && g.exam == Exam.Examnr && g.question == Question.ID);
+
+            if (result != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public List<tblExam> GetExamsOfStudent(String StudentNR)
+        {
+            tblStudent student = db.tblStudents.SingleOrDefault(g => g.nr == StudentNR);
+
+            List<tblExam> exams = db.tblExams.Where(g => g.tblLecture.@class == student.@class).ToList();
+
+            return exams;
+        }
+
 
         public Questionnaire ConvertDbQuestionnaire(tblQuestionnaire dbQuestionnaire)
         {

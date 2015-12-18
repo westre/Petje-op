@@ -14,6 +14,7 @@ namespace PetjeOp {
         public AnswerQuestionnaireModel Model { get; set; }
         public Exam Exam { get; set; }
         private DatabaseListener changeListener = new DatabaseListener();
+        private DatabaseListener resultListener = new DatabaseListener();
 
         private Thread demoThread;
         public AnswerQuestionnaireController(MasterController masterController) : base(masterController) {
@@ -22,14 +23,17 @@ namespace PetjeOp {
             
            changeListener.TrackedQuery = "SELECT * FROM exam";
            changeListener.OnChange += refreshQuestion;
+           resultListener.OnChange += refreshQuestion;
         }
 
         public void Init(int ExamID)
         {
             View.VraagBox.Items.Clear();
             setExam(ExamID);
-            changeListener.TrackedQuery = "SELECT currentquestion FROM [dbo].[exam]";
+            changeListener.TrackedQuery = "SELECT currentquestion FROM [dbo].[exam] WHERE id = " + ExamID;
             changeListener.Start();
+            resultListener.TrackedQuery = "SELECT answer FROM [dbo].[result] WHERE student = '" + ((Student)(MasterController.User)).StudentNr + "'";
+            resultListener.Start();
         }
 
         public override UserControl GetView() {
@@ -85,20 +89,29 @@ namespace PetjeOp {
 
         public void setExam(int examID)
         {
+
             this.Exam = MasterController.DB.GetExam(examID);
 
-            if(Exam.CurrenQuestion != null)
-            { 
-            MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
-            View.lblTitle_Results_Title.Text = question.Description;
-                View.VraagBox.Visible = true;
-
-            foreach (Answer answer in question.AnswerOptions)
+            if (Exam.CurrenQuestion != null)
             {
-                View.VraagBox.Items.Add(answer.Description);
-            }
-                //View.VraagBox.Height = View.VraagBox.GetItemHeight(0) * View.VraagBox.Items.Count;
-                System.Console.WriteLine(View.VraagBox.GetItemHeight(2));
+
+
+                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
+
+                if (MasterController.DB.QuestionContainsAnswerFromUser(Exam, ((Student)(MasterController.User)), question))
+                {
+                    View.lblTitle_Results_Title.Text = "Deze vraag is al door u beantwoord...";
+                    View.VraagBox.Visible = false;
+                }
+                else
+                {
+                    foreach (Answer answer in question.AnswerOptions)
+                    {
+                        View.VraagBox.Items.Add(answer.Description);
+                    }
+                    View.lblTitle_Results_Title.Text = question.Description;
+                    View.VraagBox.Visible = true;
+                }
             }
             else
             {

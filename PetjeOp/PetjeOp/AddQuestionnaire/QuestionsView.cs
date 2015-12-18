@@ -134,6 +134,10 @@ namespace PetjeOp.AddQuestionnaire
                 }
                 if (QuestionnaireDetailController != null)
                 {
+                    if(QuestionnaireDetailController.Model.DeletedQuestions == null)
+                    {
+                        QuestionnaireDetailController.Model.DeletedQuestions = new List<Question>();
+                    }
                     QuestionnaireDetailController.Model.Questionnaire = tempQuestionnaire;
                     QuestionnaireDetailController.Model.DeletedQuestions.Add(q);
                 }

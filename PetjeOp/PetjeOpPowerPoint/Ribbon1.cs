@@ -60,6 +60,7 @@ namespace PetjeOpPowerPoint
                 currentSld.Tags.Add("isResultSlide", "0");
                 currentSld.Tags.Add("questionId", question.ID.ToString());
                 currentSld.Tags.Add("examId", chosen.Examnr.ToString());
+                currentSld.Tags.Add("isClosed", "0");
                 string answers = GetFormattedAnswers(question.ID);
 
                 textBox.TextFrame.TextRange.InsertAfter(answers);
@@ -148,6 +149,7 @@ namespace PetjeOpPowerPoint
                 questionSlide.Tags.Add("isResultSlide", "0");
                 questionSlide.Tags.Add("questionId", q.ID.ToString());
                 questionSlide.Tags.Add("examId", chosen.Examnr.ToString());
+                questionSlide.Tags.Add("isClosed", "0");
 
                 string answers = GetFormattedAnswers(q.ID);
                 questionTextBox.TextFrame.TextRange.InsertAfter(answers);
@@ -189,12 +191,52 @@ namespace PetjeOpPowerPoint
                     info += "Vraag ID: n.v.t.\n";
 
                 if (CurrentSlide.Tags["examId"] != "-1")
-                    info += "Afnamemoment ID: " + CurrentSlide.Tags["examId"];
+                    info += "Afnamemoment ID: " + CurrentSlide.Tags["examId"] + "\n";
                 else
-                    info += "Afnamemoment ID: n.v.t.";
+                    info += "Afnamemoment ID: n.v.t.\n";
+
+                if (CurrentSlide.Tags["timeRestriction"] != "-1")
+                    info += "Tijdsrestrictie: " + CurrentSlide.Tags["timeRestriction"] + "s";
+                else
+                    info += "Tijdsrestrictie: n.v.t.";
 
                 MessageBox.Show(info);
             }
+        }
+
+        private void btnReset_Click(object sender, RibbonControlEventArgs e) {
+            PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
+
+            if (CurrentSlide.Tags["isResultSlide"] == "0") {
+                DB.DeleteResults(int.Parse(CurrentSlide.Tags["examId"]), int.Parse(CurrentSlide.Tags["questionId"]));
+
+                if(CurrentSlide.Tags["isClosed"] == "1") {
+                    Globals.ThisAddIn.StartTimedSlide(CurrentSlide, int.Parse(CurrentSlide.Tags["timeRestriction"]));
+                }
+            }
+        }
+
+        // Wordt nu niet gebruikt
+        private void btnStartTimer_Click(object sender, RibbonControlEventArgs e) {
+            RibbonButton button = (RibbonButton)sender;
+            button.Enabled = false;
+
+            Timer timer = new Timer();
+            timer.Interval = (int)button.Tag * 1000;
+            timer.Tick += (t, args) => {
+                PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
+
+                if(Globals.ThisAddIn.Application.ActivePresentation.Slides[CurrentSlide.SlideIndex + 1] != null) {
+                    Globals.ThisAddIn.Application.ActivePresentation.Slides[CurrentSlide.SlideIndex + 1].Select();
+                }
+                else {
+                    MessageBox.Show("Geen volgende slide gevonden");
+                }
+                
+                timer.Enabled = false;
+                button.Enabled = true;
+            };
+            timer.Enabled = true;
         }
     }
 }
