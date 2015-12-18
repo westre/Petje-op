@@ -22,13 +22,18 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
 
-
+            int count = 0;
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
             Exams = Controller.MasterController.DB.GetAllExams();
 
             foreach (Exam ex in Exams)
             {
-                listBox1.Items.Add(ex);
+                //listBox1.Items.Add(ex);
+                listView1.Items.Add(ex.questionnaire.Name);
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
+                count++;
             }
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
@@ -39,6 +44,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             foreach (Subject sb in subjects)
             {
                 cbSubject.Items.Add(sb);
+                cbSubject.Sorted = true;
             }
             cbSubject.SelectedIndex = 0;
 
@@ -50,6 +56,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             foreach (Class c in cs)
             {
                 cbClass.Items.Add(c);
+                cbClass.Sorted = true;
             }
             cbClass.SelectedIndex = 0;
 
@@ -61,6 +68,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             foreach (Questionnaire q in qtn)
             {
                 cbQuestionnaire.Items.Add(q);
+                cbQuestionnaire.Sorted = true;
                 
             }
             cbQuestionnaire.SelectedIndex = 0;
@@ -185,7 +193,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 foreach (Exam ex in Exams)
                 {
                     
-                    if (String.Format("{0}: {1}", ex.questionnaire.Subject.Name, ex.questionnaire.Name) == cbQuestionnaire.GetItemText(cbSubject.SelectedItem))
+                    if (String.Format("{0}: {1}", ex.questionnaire.Subject, ex.questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
                     {
                        
                         listBox1.Items.Add(ex);
