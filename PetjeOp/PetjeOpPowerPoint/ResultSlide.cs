@@ -89,6 +89,7 @@ namespace PetjeOpPowerPoint {
                 Microsoft.Office.Interop.PowerPoint.Shape shape = resultSlide.Shapes.AddShape(Office.MsoAutoShapeType.msoShapeRectangle, x, y - (int)barHeight, rectangleWidth, (int)barHeight);
                 shape.Tags.Add("answer", kvp.Value.Result.answerID.ToString());
 
+                // Correct answer? Maak het een ander kleurtje
                 if(question.CorrectAnswer != null && kvp.Key == question.CorrectAnswer.ID) {
                     shape.Fill.ForeColor.RGB = ColorTranslator.ToOle(Color.ForestGreen);
                 }
@@ -96,23 +97,29 @@ namespace PetjeOpPowerPoint {
                 // Zoek voor juiste answer
                 if(multipleChoiceQuestion != null) {
                     foreach (Answer answer in multipleChoiceQuestion.AnswerOptions) {
+                        // Answer gevonden, is tevens geen correct answer
                         if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID != answer.ID) {
                             int offset = answer.Description.Length * 5;
 
+                            // Aantal karakters minder dan 10, geef het horizontaal weer
                             if (answer.Description.Length <= 10)
                                 resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = answer.Description;
                             else {
+                                // Meer dan 10 karakters, geef het diagonaal weer
                                 Microsoft.Office.Interop.PowerPoint.Shape labelShape = resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationDownward, x + centerLabelPosition - offset, y, 100, 100);
                                 labelShape.TextEffect.Text = answer.Description;
                                 labelShape.Rotation = 315f;
                             }
                         }
+                        // Answer gevonden, is tevens correct answer
                         else if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID == answer.ID) {
                             int offset = question.CorrectAnswer.Description.Length * 5;
 
+                            // Aantal karakters minder dan 10, geef het horizontaal weer
                             if (question.CorrectAnswer.Description.Length <= 10)
                                 resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = answer.Description;
                             else {
+                                // Meer dan 10 karakters, geef het diagonaal weer
                                 Microsoft.Office.Interop.PowerPoint.Shape labelShape = resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationDownward, x + centerLabelPosition - offset, y, 100, 100);
                                 labelShape.TextEffect.Text = question.CorrectAnswer.Description;
                                 labelShape.Rotation = 315f;
@@ -122,6 +129,7 @@ namespace PetjeOpPowerPoint {
                     }
                 }
 
+                // Answer label
                 Microsoft.Office.Interop.PowerPoint.Shape label = resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - 10, y - (int)barHeight, 100, 100);
                 label.TextEffect.Text = kvp.Value.Count.ToString();
                 label.TextFrame.TextRange.Font.Color.RGB = Color.White.ToArgb();

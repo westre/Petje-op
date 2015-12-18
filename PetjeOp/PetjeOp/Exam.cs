@@ -11,6 +11,7 @@ namespace PetjeOp {
         public int qstnn;
         public DateTime? starttime;
         public DateTime? endtime;
+        public tblLecture lecture;
         public int Groupnr { get; set; }
         public List<Result> results;
        
