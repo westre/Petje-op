@@ -111,7 +111,12 @@ namespace PetjeOpPowerPoint
                 DL.Start();
 
                 // Zeg tegen de database dat we op een andere current question zitten, zodat de studentenomgeving ook wordt geupdatet
-                DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), int.Parse(slide.Tags["questionId"]));
+                if(slide.Tags["isResultSlide"] == "1") {
+                    DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), -1);
+                }
+                else if(slide.Tags["isResultSlide"] == "0") {
+                    DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), int.Parse(slide.Tags["questionId"]));
+                }
             }
         }
 
