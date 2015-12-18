@@ -66,6 +66,7 @@ namespace PetjeOp
 
                 // Initialize view met anchors en hoogte en breedte van de parent container
                 controller.InitializeView();
+
                 ActiveParentContainer.GetViewPanel().Controls.Add(controller.GetView());
 
                 // call event
@@ -79,7 +80,7 @@ namespace PetjeOp
                 ActiveParentContainer = (TeacherController)controller;
                 mainPanel.Controls.Add(ActiveParentContainer.GetView());
 
-                // Initialisatie van QuestionnaireOverviewController wanneer we in TeacherController zitten
+                // Initialisatie van TeacherHomeController wanneer we in TeacherController zitten
                 TeacherHomeController teacherHomeController = (TeacherHomeController)GetController(typeof(TeacherHomeController));
                 teacherHomeController.InitializeView();
                 SetController(teacherHomeController);
@@ -97,13 +98,13 @@ namespace PetjeOp
         {
             if (ActiveParentContainer != null)
             {
-                    // Resize de parent container met de form
-                    ActiveParentContainer.GetView().Width = mainPanel.Width;
-                    ActiveParentContainer.GetView().Height = mainPanel.Height;
+                // Resize de parent container met de form
+                ActiveParentContainer.GetView().Width = mainPanel.Width;
+                ActiveParentContainer.GetView().Height = mainPanel.Height;
 
-                    ActiveParentContainer.GetHeaderPanel().Width = Width;
-                    if (Width > 930)
-                        ActiveParentContainer.GetLogoutButton().Location = new Point(Width - ActiveParentContainer.GetLogoutButton().Size.Width - 25, ActiveParentContainer.GetLogoutButton().Location.Y);
+                ActiveParentContainer.GetHeaderPanel().Width = Width;
+                if (Width > 930)
+                    ActiveParentContainer.GetLogoutButton().Location = new Point(Width - ActiveParentContainer.GetLogoutButton().Size.Width - 25, ActiveParentContainer.GetLogoutButton().Location.Y);
             }
         }
 
