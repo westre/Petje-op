@@ -117,6 +117,7 @@
             this.chStarttime,
             this.chEndtime});
             this.listView1.Location = new System.Drawing.Point(12, 54);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(631, 204);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -124,6 +125,7 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // chName
             // 

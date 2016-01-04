@@ -57,7 +57,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         public void FillList()
         {
             listView1.Items.Clear();
-            int count = 0;
+            
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
             Exams = Controller.MasterController.DB.GetAllExams();
 
@@ -66,11 +66,13 @@ namespace PetjeOp.ViewResults.ChooseExam
             foreach (Exam ex in Exams)
             {
                 Console.WriteLine(ex);
-                listView1.Items.Add(ex.Questionnaire.Name);
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
-                count++;
+                
+                ListViewItem item = listView1.Items.Add(ex.Questionnaire.Name);
+                item.SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
+                item.SubItems.Add(Convert.ToString(ex.Starttime));
+                item.SubItems.Add(Convert.ToString(ex.Endtime));
+                item.Tag = ex;
+                
             }
             
         }
@@ -78,14 +80,15 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
 
 
-           
 
 
+                
                 listView1.Items.Add(ex.Questionnaire.Name);
                 listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
                 listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
                 listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
-                count++;
+                listView1.Items[count].Tag = ex;
+               
 
 
             
@@ -94,7 +97,10 @@ namespace PetjeOp.ViewResults.ChooseExam
         public virtual void btnOk_Click(object sender, EventArgs e)
         {
             // hier kun je op OK klikken als je een afnamemoment hebt gekozen
-           // Controller.x = (Exam);
+            if (listView1.SelectedItems.Count > 0)
+            {
+                Controller.x = (Exam)listView1.SelectedItems[0].Tag;
+            }
             if (Controller.x != null)
             {
                 this.Close();
@@ -120,7 +126,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 if (ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
                 {
                     FillListFilter(ex, count);
-
+                    count++;
 
 
                 }
@@ -151,7 +157,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                     {
 
                         FillListFilter(ex, count);
-                        
+                        count++;
                     }
 
                 }
@@ -197,8 +203,9 @@ namespace PetjeOp.ViewResults.ChooseExam
 
 
                         FillListFilter(ex, count);
+                        count++;
 
-                    }
+                }
 
                 }
             }
@@ -239,6 +246,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                     {
 
                         FillListFilter(ex, count);
+                        count++;
                     }
                 }
             }
@@ -264,6 +272,17 @@ namespace PetjeOp.ViewResults.ChooseExam
 
             }
             cbQuestionnaire.SelectedIndex = 0;
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count > 0)
+            {
+                Exam exam = (Exam)listView1.SelectedItems[0].Tag;
+
+                Console.WriteLine(exam.Examnr);
+            }
+            
         }
     }
     }
