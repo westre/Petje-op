@@ -11,7 +11,7 @@ namespace PetjeOp
         // "Answer" is het goede antwoord op de vraag.           
         public Answer CorrectAnswer { get; set; }
 
-        // De lijst bevat de media, die bij de vraag hoord.
+        // De lijst bevat de media, die bij de vraag hoort.
         private List<Media> Media;
 
         // ******************************************************************** //

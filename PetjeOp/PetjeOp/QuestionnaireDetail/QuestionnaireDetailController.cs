@@ -19,7 +19,6 @@ namespace PetjeOp {
             View = new QuestionnaireDetailView(this);
             Disabled = false;
         }
-
         
         public override UserControl GetView() {
             return View;
