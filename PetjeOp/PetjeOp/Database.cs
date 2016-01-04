@@ -250,6 +250,7 @@ namespace PetjeOp
         }
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }   
         }
+
         public Teacher GetTeacher(String code) // Returnt een Teacher als deze bestaat, anders NULL.
         {
             try {
@@ -460,32 +461,32 @@ namespace PetjeOp
                 return questionnaires;
             }
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-        } 
-            
+        }    
 
         // hier worden de afnamemomenten uit de database gehaald
         public List<Exam> GetAllExams()
         {
-            try {
-            List<Exam> exams = new List<Exam>();
+            try
+            {
+                List<Exam> exams = new List<Exam>();
 
-                foreach (tblExam tblExam in db.tblExams) {
-                Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
-               
+                foreach (tblExam tblExam in db.tblExams)
+                {
+                    Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
-                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
+                    Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value,
+                        GetLecture(tblExam.lecture));
 
-                exams.Add(exam);
+                    exams.Add(exam);
+                }
 
-
+                return exams;
             }
-
-            return exams;
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message); return null; 
+                
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-
-            
-
         }
 
         public List<Class> GetAllClasses()
@@ -496,21 +497,43 @@ namespace PetjeOp
 
                 foreach (tblClass tblclass in db.tblClasses)
                 {
-
-
                     Class cs = new Class(tblclass.code);
 
                     css.Add(cs);
-
-
                 }
 
                 return css;
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message); return null; 
+                
+            }
+        }
 
+        public Lecture GetLecture(int id)
+        {
+            try
+            {
+                foreach (tblLecture tblLecture in db.tblLectures)
+                {
+                    if (tblLecture.id == id)
+                    {
+                        int lectureId = tblLecture.id;
+                        Teacher lectureTeacher = GetTeacher(tblLecture.teacher);
+                        Class lectureClass = new Class(tblLecture.@class);
+                        Subject lectureSubject = GetSubject(tblLecture.subject);
 
+                        return new Lecture(lectureId, lectureTeacher, lectureClass, lectureSubject);
+                    }
+                }
 
+                return null;
+            } catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
         public List<Exam> GetExamsByQuestionnaire(Questionnaire q)
@@ -522,7 +545,7 @@ namespace PetjeOp
                                        select tblExam).ToList();
 
                 foreach (tblExam exam in exams) {
-                Exam newExam = new Exam(exam.id, q, exam.starttime, exam.endtime, exam.lecture);
+                Exam newExam = new Exam(exam.id, q, exam.starttime.Value, exam.endtime.Value, GetLecture(exam.lecture));
                 exams1.Add(newExam);
             }
 
@@ -533,17 +556,15 @@ namespace PetjeOp
 
         } 
 
-
         public Exam GetExam(int examID) // Return een Exam van het opgegeven ID
         {
             try {
              Exam exam = (from tblExam in db.tblExams
                          where tblExam.id == examID
-                             select new Exam(tblExam.id, tblExam.questionnaire) {
-                             CurrenQuestion = tblExam.currentquestion
+                             select new Exam(tblExam.id, GetQuestionnaire(tblExam.questionnaire)) {
+                             CurrentQuestion = tblExam.currentquestion
                          }).FirstOrDefault();
 
-            exam.questionnaire = this.GetQuestionnaire(exam.qstnn);
                 if (exam != null) {
                 return exam; // Returnt, uit database opgehaalde, Exam
             }
@@ -562,7 +583,7 @@ namespace PetjeOp
                 foreach (tblExam tblExam in db.tblExams) {
                 Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
-                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
+                Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value, GetLecture(tblExam.lecture));
 
                 exams.Add(exam);
 
@@ -598,7 +619,6 @@ namespace PetjeOp
             
         }
 
-
         public List<Subject> GetSubjects()
         {
             try
@@ -615,6 +635,27 @@ namespace PetjeOp
                 return subjects;
             }
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+        }
+
+        public Subject GetSubject(int id)
+        {
+            try
+            {
+                foreach (tblSubject tblSubject in db.tblSubjects)
+                {
+                    if (tblSubject.id == id)
+                    {
+                        return new Subject(tblSubject.id, tblSubject.name);
+                    }
+                }
+
+                return null;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
         public List<Teacher> GetTeachers()

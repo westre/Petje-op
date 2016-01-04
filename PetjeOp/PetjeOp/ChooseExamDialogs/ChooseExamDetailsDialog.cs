@@ -36,11 +36,11 @@ namespace PetjeOp.ChooseExamDialogs
                 foreach (Exam ex in exams)
                 {
                     lbExams.Items.Add(string.Empty + ex.Examnr);
-                    lbExams.Items[count].SubItems.Add(ex.questionnaire.Name);
-                    lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.Day + "-" +
-                                                      ex.starttime.Value.Month + "-" + ex.starttime.Value.Year);
-                    lbExams.Items[count].SubItems.Add(string.Empty + ex.starttime.Value.TimeOfDay);
-                    lbExams.Items[count].SubItems.Add(string.Empty + ex.endtime.Value.TimeOfDay);
+                    lbExams.Items[count].SubItems.Add(ex.Questionnaire.Name);
+                    lbExams.Items[count].SubItems.Add(string.Empty + ex.Starttime.Day + "-" +
+                                                      ex.Starttime.Month + "-" + ex.Starttime.Year);
+                    lbExams.Items[count].SubItems.Add(string.Empty + ex.Starttime.TimeOfDay);
+                    lbExams.Items[count].SubItems.Add(string.Empty + ex.Endtime.TimeOfDay);
                     count++;
                 }
             }

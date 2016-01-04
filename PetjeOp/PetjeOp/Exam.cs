@@ -7,46 +7,34 @@ namespace PetjeOp {
     public class Exam
     {
         public int Examnr { get; set; }
-        public Questionnaire questionnaire;
-        public int qstnn;
-        public DateTime? starttime;
-        public DateTime? endtime;
-        public tblLecture lecture;
-        public int Groupnr { get; set; }
-        public List<Result> results;
-       
+        public Questionnaire Questionnaire { get; set; }
+        public Lecture Lecture { get; set; }
+        public DateTime Starttime { get; set; }
+        public DateTime Endtime { get; set; }
 
-        public int? CurrenQuestion { get; set; }
-
-        public Exam(int ex, Questionnaire qu, DateTime? st, DateTime? et, int gnr)
-        {
-            Examnr = ex;
-            questionnaire = qu;
-            starttime = st;
-            endtime = et;
-            Groupnr = gnr;
-            results = new List<Result>();
-           
-
-        }
-
-        public Exam(int ex, int qu)
-        {
-            Examnr = ex;
-            qstnn = qu;
-
-        }
+        public int? CurrentQuestion { get; set; }
 
         public Exam(int id, Questionnaire questionnaire)
         {
             Examnr = id;
-            this.questionnaire = questionnaire;
+            Questionnaire = questionnaire;
         }
 
+        public Exam(int id, Questionnaire questionnaire, DateTime starttime, DateTime endtime, Lecture lecture)
+        {
+            Examnr = id;
+            Questionnaire = questionnaire;
+            Starttime = starttime;
+            Endtime = endtime;
+            Lecture = lecture;
+        }
+
+        /*
         public override string ToString()
         {
             return "VRAGENLIJST : " + questionnaire.Name + ", VAK : "  + questionnaire.Subject + ", BEGIN : " + starttime + ", EIND : " + endtime;
         }
+        */
     }
 
 }
