@@ -94,7 +94,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         public virtual void btnOk_Click(object sender, EventArgs e)
         {
             // hier kun je op OK klikken als je een afnamemoment hebt gekozen
-            Controller.x = (Exam)listBox1.SelectedItem;
+           // Controller.x = (Exam);
             if (Controller.x != null)
             {
                 this.Close();
@@ -109,16 +109,11 @@ namespace PetjeOp.ViewResults.ChooseExam
             this.Close();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-
-        }
+      
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
+            listView1.Items.Clear();
             int count = 0;
             foreach (Exam ex in Exams)
             {
@@ -137,7 +132,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
 
             listView1.Items.Clear();
-            
+            Console.WriteLine(cbQuestionnaire.SelectedItem);
 
             if (cbSubject.GetItemText(cbSubject.SelectedItem) == "Alle vakken")
             {
@@ -169,6 +164,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                         
                         cbQuestionnaire.Items.Add(q);
                         cbQuestionnaire.Sorted = true;
+                       
                     }
                     
                 }
@@ -207,7 +203,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void btnResetDate_Click(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now;
-            listBox1.Items.Clear();
+            listView1.Items.Clear();
 
             foreach (Exam ex in Exams)
             {
@@ -219,7 +215,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listView1.Items.Clear();
 
-            Console.WriteLine(cbQuestionnaire.SelectedItem);
+            
             if (cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten")
             {
                 foreach (Exam ex in Exams)
