@@ -230,11 +230,6 @@ namespace PetjeOp.AddQuestionnaire
             checkQuestionView();
         }
 
-        private void gbQuestion_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddQuestionView_Load(object sender, EventArgs e)
         {
             lblErrorSeconds.Hide();

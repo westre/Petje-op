@@ -31,7 +31,7 @@ namespace PetjeOp.AddQuestionnaire
         //Wanneer er op de SaveQuestionnaire button is geklikt, wijzig het vak van de vragenlijst en sla hem dan op.
         private void btnSaveQuestionnaire_Click(object sender, EventArgs e)
         {
-            Controller.setSubject();
+            Controller.SetSubject();
             Controller.SaveQuestionnaire();
         }
 

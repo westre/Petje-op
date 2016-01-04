@@ -35,7 +35,7 @@ namespace PetjeOpTests {
         }
 
         [TestMethod]
-        public void TestGetQuestion()
+        public void TestGetQuestion()   
         {
             Question question = db.GetQuestion(2);
             Assert.IsNotNull(question, "Questionnaire is null");
