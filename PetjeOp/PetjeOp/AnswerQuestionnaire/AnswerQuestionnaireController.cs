@@ -67,13 +67,13 @@ namespace PetjeOp {
             }
             else
             {
-                
-                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
+
+                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.Questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
 
                     tblResult result = new tblResult();
                     if (this.View.VraagBox.SelectedIndex != -1)
                     {
-                        result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
+                    result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
                     }
                     else
                     {
@@ -82,7 +82,7 @@ namespace PetjeOp {
                     result.student = ((Student)(MasterController.User)).StudentNr;
                     result.exam = Exam.Examnr;
                     result.question = question.ID;
-                    
+
 
                     System.Console.WriteLine(result.answer + ", " + result.student + ", " + result.exam + ", " + result.question);
 
@@ -103,7 +103,7 @@ namespace PetjeOp {
             {
 
 
-                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
+                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.Questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
 
                 if (MasterController.DB.QuestionContainsAnswerFromUser(Exam, ((Student)(MasterController.User)), question))
                 {

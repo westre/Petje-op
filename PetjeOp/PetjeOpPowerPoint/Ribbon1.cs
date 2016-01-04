@@ -32,7 +32,7 @@ namespace PetjeOpPowerPoint
             foreach (Exam x in exams)
             {
                 Microsoft.Office.Tools.Ribbon.RibbonDropDownItem exam = this.Factory.CreateRibbonDropDownItem();
-                exam.Label = "AFNAMEMOMENT: " + x.questionnaire.Name + ", VAK: " + x.questionnaire.Subject +  ", STARTTIJD: " +  Convert.ToString(x.starttime) + ", EINDTIJD: " + Convert.ToString(x.endtime);
+                exam.Label = "AFNAMEMOMENT: " + x.Questionnaire.Name + ", VAK: " + x.Questionnaire.Subject +  ", STARTTIJD: " +  Convert.ToString(x.Starttime) + ", EINDTIJD: " + Convert.ToString(x.Endtime);
                 ddExams.Items.Add(exam);
                 
                 int index = ddExams.Items.IndexOf(exam);
@@ -129,7 +129,7 @@ namespace PetjeOpPowerPoint
                 btnAllQuestions.Visible = true;
                 // Het programma kijkt welk afnamemoment geselecteerd is en vult dan de vragenlijst met vragen in dat afnamemoment
                 Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-                Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
+                Questionnaire testquest = DB.GetQuestionnaire(chosen.Questionnaire.ID);
 
                 foreach (Question q in testquest.Questions)
                 {
@@ -146,7 +146,7 @@ namespace PetjeOpPowerPoint
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
         {
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.questionnaire.ID);
+            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.Questionnaire.ID);
 
             // Haal alle resultaten op die bij deze examen hoort
             List<Result> allResults = DB.GetResultsByExamId(chosen.Examnr);
@@ -264,9 +264,9 @@ namespace PetjeOpPowerPoint
             Subject chosen = (Subject)ddFilterVak.SelectedItem.Tag;
             if(chosen != null) {
                 foreach (Exam exam in exams) {
-                    if (chosen.Id == exam.questionnaire.Subject.Id) {
-                        Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
-                        examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
+                    if (chosen.Id == exam.Questionnaire.Subject.Id) {
+                        RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                        examRibbon.Label = "AFNAMEMOMENT: " + exam.Questionnaire.Name + ", STARTTIJD: " + Convert.ToString(exam.Starttime) + ", EINDTIJD: " + Convert.ToString(exam.Endtime);
                         examRibbon.Tag = exam;
                         ddExams.Items.Add(examRibbon);
                     }
@@ -274,8 +274,9 @@ namespace PetjeOpPowerPoint
             }
             else {
                 foreach (Exam exam in exams) {
-                    Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
-                    examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", VAK: " + exam.questionnaire.Subject + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
+                    RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                    examRibbon.Label =  "AFNAMEMOMENT: " + exam.Questionnaire.Name + ", VAK: " + exam.Questionnaire.Subject
+                                        + ", STARTTIJD: " + Convert.ToString(exam.Starttime) + ", EINDTIJD: " + Convert.ToString(exam.Endtime);
                     examRibbon.Tag = exam;
                     ddExams.Items.Add(examRibbon);
                 }
