@@ -630,7 +630,7 @@ namespace PetjeOp
                     Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
 
-                    Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
+                    Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value, tblExam.lecture);
 
                     exams.Add(exam);
 
@@ -639,7 +639,7 @@ namespace PetjeOp
                 List<Lecture> lc = new List<Lecture>();
                 foreach (tblLecture tbllecture in db.tblLectures)
                 {
-                    Lecture l = new Lecture(tbllecture.id, tbllecture.teacher, tbllecture.@class, tbllecture.subject);
+                    Lecture l = new Lecture(tbllecture.teacher, tbllecture.id, tbllecture.@class, tbllecture.subject);
                     lc.Add(l);
 
 
@@ -647,11 +647,11 @@ namespace PetjeOp
 
                 foreach(Lecture l in lc)
                 {
-                    if(l.cs == cs)
+                    if(l.ClassString == cs)
                     {
                         foreach(Exam x in exams)
                         {
-                            if(x.lecture.id == l.ID)
+                            if(x.LectureInt == l.ID)
                             {
                                 
                                 filteredExams.Add(x);
