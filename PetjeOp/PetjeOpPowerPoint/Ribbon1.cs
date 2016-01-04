@@ -265,7 +265,7 @@ namespace PetjeOpPowerPoint
             if(chosen != null) {
                 foreach (Exam exam in exams) {
                     if (chosen.Id == exam.questionnaire.Subject.Id) {
-                        Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                        RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
                         examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
                         examRibbon.Tag = exam;
                         ddExams.Items.Add(examRibbon);
@@ -274,8 +274,9 @@ namespace PetjeOpPowerPoint
             }
             else {
                 foreach (Exam exam in exams) {
-                    Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
-                    examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", VAK: " + exam.questionnaire.Subject + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
+                    RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                    examRibbon.Label =  "AFNAMEMOMENT: " + exam.questionnaire.Name + ", VAK: " + exam.questionnaire.Subject
+                                        + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
                     examRibbon.Tag = exam;
                     ddExams.Items.Add(examRibbon);
                 }
