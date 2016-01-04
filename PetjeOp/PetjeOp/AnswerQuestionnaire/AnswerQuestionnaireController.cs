@@ -67,13 +67,13 @@ namespace PetjeOp {
             }
             else
             {
-
-                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.Questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
-
+                if (Exam.CurrentQuestion != null)
+                {
+                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion((int)Exam.CurrentQuestion);
                     tblResult result = new tblResult();
                     if (this.View.VraagBox.SelectedIndex != -1)
                     {
-                    result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
+                        result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
                     }
                     else
                     {
@@ -87,6 +87,7 @@ namespace PetjeOp {
                     System.Console.WriteLine(result.answer + ", " + result.student + ", " + result.exam + ", " + result.question);
 
                     MasterController.DB.InsertResult(result);
+                }
                 
 
                 this.View.VraagBox.Items.Clear();
