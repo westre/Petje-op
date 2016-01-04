@@ -50,7 +50,7 @@ namespace PetjeOp
             {
                 System.Console.WriteLine("Kon antwoord niet opslaan");
             }
-
+            
         }
 
         // Deze functie controlleert of er geen Results zijn voor een Exam van een bepaalde Questionnaire
@@ -77,11 +77,11 @@ namespace PetjeOp
         {
             try
             {
-                // Eerst wordt de query uitgevoerd welke de vraag selecteerd op basis van het meegegeven ID
-                tblQuestion dbQuestion = db.tblQuestions.SingleOrDefault(q => q.id == id);
+            // Eerst wordt de query uitgevoerd welke de vraag selecteerd op basis van het meegegeven ID
+            tblQuestion dbQuestion = db.tblQuestions.SingleOrDefault(q => q.id == id);
 
-                // Hier wordt gecontrolleerd of de query gelukt is, 
-                // null staat immers voor een niet geslaagde query of een query zonder resultaten
+            // Hier wordt gecontrolleerd of de query gelukt is, 
+            // null staat immers voor een niet geslaagde query of een query zonder resultaten
                 if (dbQuestion != null)
                 {
                     // Hier wordt een nieuwe vraag aangemaakt via de contstructor van MultipleChoiceQuestion
@@ -89,7 +89,7 @@ namespace PetjeOp
                     MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
                     question.ID = id;
                     // Vervolgens wordt het ID van het Question object toegevoegd, dit is hetzelfde ID dan degene in de database
-
+                                    
                     List<Answer> answerOptions = new List<Answer>();
                     // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
                     List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList();
@@ -121,7 +121,7 @@ namespace PetjeOp
                     }
 
                     // Voegt de lijst met antwoord opties toe aan de vraag
-                    question.AnswerOptions = answerOptions;
+                    question.AnswerOptions = answerOptions;               
 
                     return question;
                 }
@@ -173,7 +173,7 @@ namespace PetjeOp
                         {
                             question.TimeRestriction = TimeSpan.Zero;
                         }
-
+                    
 
                         List<Answer> answerOptions = new List<Answer>();
 
@@ -205,7 +205,7 @@ namespace PetjeOp
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public void UpdateQuestionnaire(Questionnaire questionnaire, List<Question> deletedQuestions = null)
@@ -231,7 +231,7 @@ namespace PetjeOp
                     tblQuestion dbQuestion = null;
                     if (question.ID == -1)
                     {
-                        dbQuestion = AddMultipleChoiceQuestion(question, questionnaire.ID);
+                        dbQuestion = AddMultipleChoiceQuestion(question, questionnaire.ID);                      
                     } else
                     {
                         dbQuestion = updateQuestionnaire.tblQuestions.SingleOrDefault(q => q.id == question.ID);
@@ -246,11 +246,11 @@ namespace PetjeOp
                             dbAnswer.description = answer.Description; // Wijzigt het antwoord in DB
                         }
                         dbQuestion.correctanswer = question.CorrectAnswer.ID;
-                    }
+                    }                    
                     if (dbQuestion != null)
                     {
                         updateQuestionnaire.tblQuestions.Add(dbQuestion);
-                    }
+                    }                        
                 }
                 db.SubmitChanges();
                 // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB      
@@ -258,161 +258,161 @@ namespace PetjeOp
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }                                                                            
 
         public Student GetStudent(String code)
         {
             try
             {
-                Student person = (from tblStudent in db.tblStudents
-                                  where tblStudent.nr == code
+            Student person = (from tblStudent in db.tblStudents
+                              where tblStudent.nr == code
                                   select new Student
                                   {
-                                      StudentNr = tblStudent.nr,
-                                      FirstName = tblStudent.firstname,
-                                      SurName = tblStudent.surname,
-                                      GroupNr = tblStudent.@class
+                                  StudentNr = tblStudent.nr,
+                                  FirstName = tblStudent.firstname,
+                                  SurName = tblStudent.surname,
+                                  GroupNr = tblStudent.@class
 
-                                  }).FirstOrDefault();
+                              }).FirstOrDefault();
 
                 if (person != null)
                 {
-                    return person; // Returnt, uit database opgehaalde, Student.
-                }
-                return null;
+                return person; // Returnt, uit database opgehaalde, Student.
+            }
+            return null;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public Teacher GetTeacher(String code) // Returnt een Teacher als deze bestaat, anders NULL.
         {
             try
             {
-                Teacher person = (from tblTeacher in db.tblTeachers
-                                  where tblTeacher.nr == code
+            Teacher person = (from tblTeacher in db.tblTeachers
+                              where tblTeacher.nr == code
                                   select new Teacher
                                   {
-                                      TeacherNr = tblTeacher.nr,
-                                      FirstName = tblTeacher.firstname,
-                                      SurName = tblTeacher.surname
+                                  TeacherNr = tblTeacher.nr,
+                                  FirstName = tblTeacher.firstname,
+                                  SurName = tblTeacher.surname
 
-                                  }).FirstOrDefault();
+                              }).FirstOrDefault();
 
                 if (person != null)
                 {
-                    return person; // Returnt, uit database opgehaalde, Teacher.
-                }
-                return null;
+                return person; // Returnt, uit database opgehaalde, Teacher.
+            }
+            return null;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public Questionnaire AddQuestionnaire(Teacher teacher, Questionnaire questionnaire)
         {
             try
             {
-                tblQuestionnaire tblQuestionnaire = new tblQuestionnaire();
+            tblQuestionnaire tblQuestionnaire = new tblQuestionnaire();
+            
+            tblQuestionnaire.author = teacher.TeacherNr; // test data
+            tblQuestionnaire.description = questionnaire.Name;
+            tblQuestionnaire.subject = questionnaire.Subject.Id;
+            db.tblQuestionnaires.InsertOnSubmit(tblQuestionnaire);
+            db.SubmitChanges();
 
-                tblQuestionnaire.author = teacher.TeacherNr; // test data
-                tblQuestionnaire.description = questionnaire.Name;
-                tblQuestionnaire.subject = questionnaire.Subject.Id;
-                db.tblQuestionnaires.InsertOnSubmit(tblQuestionnaire);
-                db.SubmitChanges();
+            questionnaire.ID = tblQuestionnaire.id;
+            questionnaire.Author = teacher;
 
-                questionnaire.ID = tblQuestionnaire.id;
-                questionnaire.Author = teacher;
-
-                //Loop door alle vragen heen
+            //Loop door alle vragen heen
                 foreach (MultipleChoiceQuestion q in questionnaire.Questions)
                 {
-                    //Loop door alle antwoorden heen
+                //Loop door alle antwoorden heen
                     foreach (Answer answer in q.AnswerOptions)
                     {
-                        Answer ans = GetAnswer(answer.Description);
+                    Answer ans = GetAnswer(answer.Description);
                         if (ans == null)
                         {
-                            ans = AddAnswer(answer.Description.ToString());
-                        }
+                        ans = AddAnswer(answer.Description.ToString());
+                    }
 
                         if (q.CorrectAnswer == answer)
                         {
-                            q.CorrectAnswer = ans;
-                        }
-
-                        // Synchroniseer onze offline answer met primary key van DB
-                        answer.ID = ans.ID;
+                        q.CorrectAnswer = ans;
                     }
 
-                    tblQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID);
-                    tblQuestionnaire.tblQuestions.Add(dbQuestion);
-                    // Synchroniseer onze offline dbQuestion met primary key van DB
-                    q.ID = dbQuestion.id;
-
-                    // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
-                    foreach (Answer answer in q.AnswerOptions)
-                    {
-                        LinkAnswerToQuestion(q, answer);
-                    }
+                    // Synchroniseer onze offline answer met primary key van DB
+                    answer.ID = ans.ID;
                 }
 
-                return questionnaire;
+                tblQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID);
+                tblQuestionnaire.tblQuestions.Add(dbQuestion);
+                // Synchroniseer onze offline dbQuestion met primary key van DB
+                q.ID = dbQuestion.id;
+
+                // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+                    foreach (Answer answer in q.AnswerOptions)
+                    {
+                    LinkAnswerToQuestion(q, answer);
+                }
+            }
+
+            return questionnaire;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public Answer GetAnswer(string answer)
         {
             try
             {
-                tblAnswer foundAnswer = (from answers in db.tblAnswers
-                                         where answers.description.ToString().Equals(answer)
-                                         select answers).FirstOrDefault();
+            tblAnswer foundAnswer = (from answers in db.tblAnswers
+                                     where answers.description.ToString().Equals(answer)
+                                     select answers).FirstOrDefault();
 
                 if (foundAnswer != null)
                 {
-                    Console.WriteLine("Found answer: " + foundAnswer.description.ToString());
+                Console.WriteLine("Found answer: " + foundAnswer.description.ToString());
 
-                    Answer retrievedAnswer = new Answer(foundAnswer.description);
-                    retrievedAnswer.ID = foundAnswer.id;
+                Answer retrievedAnswer = new Answer(foundAnswer.description);
+                retrievedAnswer.ID = foundAnswer.id;
 
-                    return retrievedAnswer;
-                }
-                return null;
+                return retrievedAnswer;
+            }
+            return null;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public Answer AddAnswer(string receivedAnswer)
         {
             try
             {
-                tblAnswer answer = new tblAnswer();
-                answer.description = receivedAnswer;
+            tblAnswer answer = new tblAnswer();
+            answer.description = receivedAnswer;
 
-                db.tblAnswers.InsertOnSubmit(answer);
-                db.SubmitChanges();
+            db.tblAnswers.InsertOnSubmit(answer);
+            db.SubmitChanges();
 
                 return new Answer(answer.description)
                 {
-                    ID = answer.id
-                };
+                ID = answer.id
+            };
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public void DeleteMultipleChoiceQuestion(int id)
@@ -428,7 +428,7 @@ namespace PetjeOp
                 {
                     DeleteLinkAnswerToQuestion(answerOption.question);
                 }
-
+            
                 tblQuestion selectedQuestion = (from q in db.tblQuestions
                                                 where q.id == id
                                                 select q).FirstOrDefault();
@@ -441,7 +441,7 @@ namespace PetjeOp
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+        }
         }
 
         public tblQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId)
@@ -467,25 +467,25 @@ namespace PetjeOp
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer)
         {
             try
             {
-                //Of dus zo:
-                tblAnsweroption answerOption = new tblAnsweroption // Maak item aan om toe te voegen
-                {
-                    question = refQuestion.ID,
-                    answer = refAnswer.ID
-                };
-                db.tblAnsweroptions.InsertOnSubmit(answerOption); // Geef opdracht om bovenstaande item toe te voegen
-                db.SubmitChanges(); // Voer veranderingen door
+            //Of dus zo:
+            tblAnsweroption answerOption = new tblAnsweroption // Maak item aan om toe te voegen
+            {
+                question = refQuestion.ID,
+                answer = refAnswer.ID
+            };
+            db.tblAnsweroptions.InsertOnSubmit(answerOption); // Geef opdracht om bovenstaande item toe te voegen
+            db.SubmitChanges(); // Voer veranderingen door
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+        }
         }
 
         private void DeleteLinkAnswerToQuestion(int questionId)
@@ -496,15 +496,15 @@ namespace PetjeOp
                 // Selecteer item op id
                 foreach (tblAnsweroption dbAnswerOption in answerOptions)
                 {
-                    db.tblAnsweroptions.DeleteOnSubmit(dbAnswerOption);
-                }
+                db.tblAnsweroptions.DeleteOnSubmit(dbAnswerOption);
+            }
 
-                // Geef opdracht om bovenstaande item te verwijderen
-                db.SubmitChanges(); // Voer veranderingen door
+             // Geef opdracht om bovenstaande item te verwijderen
+            db.SubmitChanges(); // Voer veranderingen door
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+        }
         }
 
         public void AnswerCleanup()
@@ -512,18 +512,18 @@ namespace PetjeOp
             try
             {
                 foreach (tblAnswer dbAnswer in db.tblAnswers) // Doorloopt alle antwoorden
-                {
+            {
                     if (dbAnswer.tblAnsweroptions.Count == 0)
                     // Als een antwoordt geen relatie meer heeft met een answeroption
-                    {
-                        db.tblAnswers.DeleteOnSubmit(dbAnswer); // dan wordt het antwoordt verwijderd.
-                    }
+                {
+                    db.tblAnswers.DeleteOnSubmit(dbAnswer); // dan wordt het antwoordt verwijderd.
                 }
-                db.SubmitChanges(); // Voert de wijziginen uit
+            }
+            db.SubmitChanges(); // Voert de wijziginen uit
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+        }
         }
 
         public List<Questionnaire> GetAllQuestionnaires()
@@ -545,26 +545,26 @@ namespace PetjeOp
                 MessageBox.Show(ex.Message);
                 return null;
             }
-        }
-
+        } 
+            
         // hier worden de afnamemomenten uit de database gehaald
         public List<Exam> GetAllExams()
         {
             try
             {
-                List<Exam> exams = new List<Exam>();
+            List<Exam> exams = new List<Exam>();
 
                 foreach (tblExam tblExam in db.tblExams)
                 {
-                    Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
-
+                Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+               
                     Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value,
                         GetLecture(tblExam.lecture));
 
-                    exams.Add(exam);
-                }
+                exams.Add(exam);
+            }
 
-                return exams;
+            return exams;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -590,8 +590,8 @@ namespace PetjeOp
             {
                 MessageBox.Show(ex.Message); return null;
 
+                }
             }
-        }
 
         public Lecture GetLecture(int id)
         {
@@ -669,8 +669,8 @@ namespace PetjeOp
         {
             try
             {
-                List<Exam> exams1 = new List<Exam>();
-                List<tblExam> exams = (from tblExam in db.tblExams
+            List<Exam> exams1 = new List<Exam>();
+            List<tblExam> exams = (from tblExam in db.tblExams
                                        where tblExam.tblQuestionnaire.id == q.ID
                                        select tblExam).ToList();
 
@@ -678,57 +678,57 @@ namespace PetjeOp
                 {
                     Exam newExam = new Exam(exam.id, q, exam.starttime.Value, exam.endtime.Value,
                         GetLecture(exam.lecture));
-                    exams1.Add(newExam);
-                }
+                exams1.Add(newExam);
+            }
 
-                return exams1;
+            return exams1;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
-        }
+        } 
+        } 
 
         public Exam GetExam(int examID) // Return een Exam van het opgegeven ID
         {
             try
             {
-                Exam exam = (from tblExam in db.tblExams
-                             where tblExam.id == examID
+             Exam exam = (from tblExam in db.tblExams
+                         where tblExam.id == examID
                              select new Exam(tblExam.id, GetQuestionnaire(tblExam.questionnaire))
                              {
                                  CurrentQuestion = tblExam.currentquestion
-                             }).FirstOrDefault();
+                         }).FirstOrDefault();
 
                 if (exam != null)
                 {
-                    return exam; // Returnt, uit database opgehaalde, Exam
-                }
-                return null;
+                return exam; // Returnt, uit database opgehaalde, Exam
+            }
+            return null;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
+        }
         }
 
         public List<Exam> GetExams()
         {
             try
             {
-                List<Exam> exams = new List<Exam>();
+            List<Exam> exams = new List<Exam>();
 
                 foreach (tblExam tblExam in db.tblExams)
                 {
-                    Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+                Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
 
                     Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value,
                         GetLecture(tblExam.lecture));
 
-                    exams.Add(exam);
-                }
+                exams.Add(exam);
+            }
 
-                return exams;
+            return exams;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -742,17 +742,17 @@ namespace PetjeOp
             {
                 if (examId != -1)
                 {
-                    tblExam tblExam = (from exam in db.tblExams
-                                       where exam.id == examId
-                                       select exam).FirstOrDefault();
+                tblExam tblExam = (from exam in db.tblExams
+                                   where exam.id == examId
+                                   select exam).FirstOrDefault();
 
                     if (questionId == -1)
                         tblExam.currentquestion = (int?)null;
                     else
-                        tblExam.currentquestion = questionId;
+                tblExam.currentquestion = questionId;
 
-                    db.SubmitChanges();
-                }
+                db.SubmitChanges();
+            }
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -827,68 +827,68 @@ namespace PetjeOp
         {
             try
             {
-                List<tblAnsweroption> tblAnsweroption = (from answeroption in db.tblAnsweroptions
-                                                         where answeroption.question == id
-                                                         select answeroption).ToList();
+            List<tblAnsweroption> tblAnsweroption = (from answeroption in db.tblAnsweroptions
+                                                     where answeroption.question == id
+                                                     select answeroption).ToList();
 
-                List<Answer> answeroptions = new List<Answer>();
+            List<Answer> answeroptions = new List<Answer>();
                 foreach (tblAnsweroption answeroption in tblAnsweroption)
                 {
-                    Answer newAnswerOption = new Answer(answeroption.answer);
-                    newAnswerOption.ID = answeroption.answer;
-                    newAnswerOption.Description = answeroption.tblAnswer.description;
+                Answer newAnswerOption = new Answer(answeroption.answer);
+                newAnswerOption.ID = answeroption.answer;
+                newAnswerOption.Description = answeroption.tblAnswer.description;
 
-                    answeroptions.Add(newAnswerOption);
-                }
+                answeroptions.Add(newAnswerOption);
+            }
 
-                return answeroptions;
+            return answeroptions;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
             }
         }
-
+            
         // Hier worden de resultaten opgehaald voor elk specifieke antwoord.
         public List<Result> GetResultByAnswer(int questionid, int answerid, int examnr)
         {
             try
             {
-                List<tblResult> tblResult = (from result in db.tblResults
-                                             where (result.question == questionid && result.answer == answerid && result.exam == examnr)
-                                             select result).ToList();
+            List<tblResult> tblResult = (from result in db.tblResults
+                                         where (result.question == questionid && result.answer == answerid && result.exam == examnr)
+                                         select result).ToList();
 
-                List<Result> results = new List<Result>();
+            List<Result> results = new List<Result>();
                 foreach (tblResult result in tblResult)
                 {
-                    Result newResult = new Result(result.exam, result.answer, result.question);
-                    results.Add(newResult);
-                }
+                Result newResult = new Result(result.exam, result.answer, result.question);
+                results.Add(newResult);
+            }
 
-                return results;
+            return results;
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
             }
         }
-
+            
         // hier wordt het antwoord opgehaald bij een antwoord ID (de beschrijving van het antwoord)
-        public String GetDescriptionByAnswer(int id)
+      public String GetDescriptionByAnswer(int id)
         {
             try
             {
                 tblAnswer tblAnswers = (from answer in db.tblAnswers
-                                        where answer.id == id
-                                        select answer).FirstOrDefault();
-                return tblAnswers.description;
+                                                   where answer.id == id
+                                                   select answer).FirstOrDefault();
+            return tblAnswers.description; 
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
-            }
-        }
-
+        }     
+        }     
+        
         // Haal resultaten op van examen
         public List<Result> GetResultsByExamId(int id)
         {
@@ -912,8 +912,8 @@ namespace PetjeOp
         public void DeleteResults(int examId, int questionId)
         {
             IEnumerable<tblResult> results = (from result in db.tblResults
-                                              where result.exam == examId && result.question == questionId
-                                              select result).ToList();
+                                 where result.exam == examId && result.question == questionId
+                                 select result).ToList();
 
             if (results.Count() > 0)
             {

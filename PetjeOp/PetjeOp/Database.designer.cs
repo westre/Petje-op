@@ -876,7 +876,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStudent_tblResult", Storage="_tblResults", ThisKey="nr", OtherKey="student")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStudent_result", Storage="_tblResults", ThisKey="nr", OtherKey="student")]
 		public EntitySet<tblResult> tblResults
 		{
 			get
@@ -1198,7 +1198,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblResult", Storage="_tblResults", ThisKey="id", OtherKey="answer")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_result", Storage="_tblResults", ThisKey="id", OtherKey="answer")]
 		public EntitySet<tblResult> tblResults
 		{
 			get
@@ -1478,7 +1478,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_tblResult", Storage="_tblResults", ThisKey="id", OtherKey="question")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_result", Storage="_tblResults", ThisKey="id", OtherKey="question")]
 		public EntitySet<tblResult> tblResults
 		{
 			get
@@ -1969,7 +1969,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblExam_tblResult", Storage="_tblResults", ThisKey="id", OtherKey="exam")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblExam_result", Storage="_tblResults", ThisKey="id", OtherKey="exam")]
 		public EntitySet<tblResult> tblResults
 		{
 			get
@@ -2423,7 +2423,7 @@ namespace PetjeOp
 		
 		private int _exam;
 		
-		private int _answer;
+		private System.Nullable<int> _answer;
 		
 		private int _question;
 		
@@ -2443,7 +2443,7 @@ namespace PetjeOp
     partial void OnstudentChanged();
     partial void OnexamChanging(int value);
     partial void OnexamChanged();
-    partial void OnanswerChanging(int value);
+    partial void OnanswerChanging(System.Nullable<int> value);
     partial void OnanswerChanged();
     partial void OnquestionChanging(int value);
     partial void OnquestionChanged();
@@ -2506,8 +2506,8 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_answer", DbType="Int NOT NULL")]
-		public int answer
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_answer", DbType="Int")]
+		public System.Nullable<int> answer
 		{
 			get
 			{
@@ -2554,7 +2554,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_tblResult", Storage="_tblAnswer", ThisKey="answer", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAnswer_result", Storage="_tblAnswer", ThisKey="answer", OtherKey="id", IsForeignKey=true)]
 		public tblAnswer tblAnswer
 		{
 			get
@@ -2581,14 +2581,14 @@ namespace PetjeOp
 					}
 					else
 					{
-						this._answer = default(int);
+						this._answer = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblAnswer");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblExam_tblResult", Storage="_tblExam", ThisKey="exam", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblExam_result", Storage="_tblExam", ThisKey="exam", OtherKey="id", IsForeignKey=true)]
 		public tblExam tblExam
 		{
 			get
@@ -2622,7 +2622,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_tblResult", Storage="_tblQuestion", ThisKey="question", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblQuestion_result", Storage="_tblQuestion", ThisKey="question", OtherKey="id", IsForeignKey=true)]
 		public tblQuestion tblQuestion
 		{
 			get
@@ -2656,7 +2656,7 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStudent_tblResult", Storage="_tblStudent", ThisKey="student", OtherKey="nr", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStudent_result", Storage="_tblStudent", ThisKey="student", OtherKey="nr", IsForeignKey=true)]
 		public tblStudent tblStudent
 		{
 			get
