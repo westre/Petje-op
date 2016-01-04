@@ -23,6 +23,7 @@ namespace PetjeOp {
 
         public void Init()
         {
+            View.lbExams.Items.Clear();
             foreach(tblExam exam in MasterController.DB.GetExamsOfStudent(((Student)(MasterController.User)).StudentNr)){
                 View.lbExams.Items.Add(new ListViewItem(new[] {
                                                                 exam.tblQuestionnaire.description,
@@ -33,8 +34,6 @@ namespace PetjeOp {
                                                                 (exam.currentquestion != null ? "Running..." : "Not Running...")}));
                 View.lbExams.Items[View.lbExams.Items.Count - 1].Tag = exam.id;
             }
-            
-           
         }
 
 
