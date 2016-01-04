@@ -40,16 +40,21 @@ namespace PetjeOpPowerPoint
         }
 
         private void DL_OnChange(System.Data.SqlClient.SqlNotificationEventArgs eventArgs) {
-            if(CurrentSlide != null && CurrentSlide.Tags["isResultSlide"] == "1") {
-                // Haal alle resultaten op die bij deze examen hoort
-                List<Result> allResults = DB.GetResultsByExamId(Convert.ToInt32(CurrentSlide.Tags["examId"]));
+            try {
+                if (CurrentSlide != null) {
+                    if (CurrentSlide.Tags["isResultSlide"] == "1") {
+                        // Haal alle resultaten op die bij deze examen hoort
+                        List<Result> allResults = DB.GetResultsByExamId(Convert.ToInt32(CurrentSlide.Tags["examId"]));
 
-                // Hall question object
-                Question question = DB.GetQuestion(Convert.ToInt32(CurrentSlide.Tags["questionId"]));
+                        // Hall question object
+                        Question question = DB.GetQuestion(Convert.ToInt32(CurrentSlide.Tags["questionId"]));
 
-                // Voeg resultaat toe aan slide
-                ResultSlide.Add(allResults, question, CurrentSlide);
+                        // Voeg resultaat toe aan slide
+                        ResultSlide.Add(allResults, question, CurrentSlide);
+                    }
+                }
             }
+            catch { } 
         }
 
         // Dit wordt geroepen wanneer er van slide wordt veranderd
@@ -96,7 +101,7 @@ namespace PetjeOpPowerPoint
 
                         // Voeg een gesloten label toe
                         PowerPoint.Shape timerLabel = CurrentSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 150, 10, 150, 100);
-                        timerLabel.TextFrame.TextRange.InsertAfter("Gesloten");
+                        timerLabel.TextFrame.TextRange.InsertAfter("Al gesteld");
                         timerLabel.TextFrame.TextRange.Font.Size = 28;
                         timerLabel.TextFrame.TextRange.Font.Color.RGB = BGR(Color.Red);
                         timerLabel.Tags.Add("timer", "1");

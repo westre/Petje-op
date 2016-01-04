@@ -15,6 +15,7 @@ namespace PetjeOpPowerPoint
     public partial class Ribbon1
     {
         private Database DB;
+        public List<Exam> exams;
 
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
@@ -26,7 +27,7 @@ namespace PetjeOpPowerPoint
             emptyExams.Label = null;
             ddExams.Items.Add(emptyExams);
             // Vul de rest van de dropdown lijst met afnamemomenten uit de database
-            List<Exam> exams = DB.GetExams();
+            exams = DB.GetExams();
 
             foreach (Exam x in exams)
             {
@@ -37,7 +38,20 @@ namespace PetjeOpPowerPoint
                 int index = ddExams.Items.IndexOf(exam);
                 ddExams.Items[index].Tag = x;              
             }
-            //////
+
+
+            List<Subject> subjects = DB.GetSubjects();
+            RibbonDropDownItem empty = Factory.CreateRibbonDropDownItem();
+            empty.Label = "Alles";
+            empty.Tag = null;
+            ddFilterVak.Items.Add(empty);
+
+            foreach (Subject subject in subjects) {
+                RibbonDropDownItem ribbonSubject = Factory.CreateRibbonDropDownItem();
+                ribbonSubject.Label = subject.Name;
+                ribbonSubject.Tag = subject;
+                ddFilterVak.Items.Add(ribbonSubject);
+            }
         }
        
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
@@ -237,6 +251,35 @@ namespace PetjeOpPowerPoint
                 button.Enabled = true;
             };
             timer.Enabled = true;
+        }
+
+        private void ddFilterVak_SelectionChanged(object sender, RibbonControlEventArgs e) {
+            // Button 'alle vragen toevoegen' wordt tijdelijk onzichtbaar totdat het programma weet dat er een afnamemoment is gekozen, en niet een leeg record
+            ddExams.Items.Clear();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExam = this.Factory.CreateRibbonDropDownItem();
+            // Ook hier wordt een leeg record aangemaakt bovenaan de dropdown lijst
+            emptyExam.Label = null;
+            ddExams.Items.Add(emptyExam);
+
+            Subject chosen = (Subject)ddFilterVak.SelectedItem.Tag;
+            if(chosen != null) {
+                foreach (Exam exam in exams) {
+                    if (chosen.Id == exam.questionnaire.Subject.Id) {
+                        Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                        examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
+                        examRibbon.Tag = exam;
+                        ddExams.Items.Add(examRibbon);
+                    }
+                }
+            }
+            else {
+                foreach (Exam exam in exams) {
+                    Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                    examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", VAK: " + exam.questionnaire.Subject + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
+                    examRibbon.Tag = exam;
+                    ddExams.Items.Add(examRibbon);
+                }
+            }
         }
     }
 }
