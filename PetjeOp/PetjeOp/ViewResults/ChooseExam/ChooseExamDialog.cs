@@ -50,19 +50,8 @@ namespace PetjeOp.ViewResults.ChooseExam
             }
             cbClass.SelectedIndex = 0;
 
-            // hier worden de vragenlijsten toegevoegd aan de lijst met vragenlijsten
-            List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
-
-            cbQuestionnaire.Items.Add("Alle vragenlijsten");
-
-            foreach (Questionnaire q in qtn)
-            {
-                cbQuestionnaire.Items.Add(q);
-                cbQuestionnaire.Sorted = true;
-                
-            }
-            cbQuestionnaire.SelectedIndex = 0;
-
+            
+            
 
         }
         public void FillList()
@@ -145,11 +134,14 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
 
             listView1.Items.Clear();
-
+            
 
             if (cbSubject.GetItemText(cbSubject.SelectedItem) == "Alle vakken")
             {
-               // FillList();
+                FillList();
+                
+                FillQuestionnaire();
+
             }
 
             else
@@ -157,17 +149,36 @@ namespace PetjeOp.ViewResults.ChooseExam
                 int count = 0;
                 foreach (Exam ex in Exams)
                 {
-                    //if (ex.questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
-                    //{
+                    if (ex.questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
+                    {
 
-                    //    FillListFilter(ex, count);
-                    //}
+                        FillListFilter(ex, count);
+                        FilterQuestionnaire(ex.questionnaire.Subject.Id);
+                    }
 
                 }
 
             }
         }
+        private void FilterQuestionnaire(int sj)
+        {
+            List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
 
+            foreach (Questionnaire q in qtn)
+            {
+                if (q.Subject.Id == sj)
+                {
+                    cbQuestionnaire.Items.Clear();
+                    cbQuestionnaire.Items.Add(q);
+                    cbQuestionnaire.Sorted = true;
+                    
+                }
+                
+                    cbQuestionnaire.SelectedIndex = 0;
+            }
+            
+
+        }
         private void cbClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             
@@ -176,6 +187,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 foreach (Exam ex in Exams)
                 {
                     listBox1.Items.Add(ex);
+                    
                 }
             }
 
@@ -229,5 +241,26 @@ namespace PetjeOp.ViewResults.ChooseExam
                 }
             }
 
+        private void listView1_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
+        {
+            listView1.Sort();
         }
+
+        private void FillQuestionnaire()
+        {
+            // hier worden de vragenlijsten toegevoegd aan de lijst met vragenlijsten
+            cbQuestionnaire.Items.Clear();
+            List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
+
+            cbQuestionnaire.Items.Add("Alle vragenlijsten");
+
+            foreach (Questionnaire q in qtn)
+            {
+                cbQuestionnaire.Items.Add(q);
+                cbQuestionnaire.Sorted = true;
+
+            }
+            cbQuestionnaire.SelectedIndex = 0;
+        }
+    }
     }
