@@ -157,6 +157,8 @@ namespace PetjeOp.ViewResults.ChooseExam
                 }
                 List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
                 cbQuestionnaire.Items.Clear();
+                cbQuestionnaire.ResetText();
+                
                 cbQuestionnaire.Items.Add("Alle vragenlijsten");
                 foreach (Questionnaire q in qtn)
                 {
@@ -166,7 +168,8 @@ namespace PetjeOp.ViewResults.ChooseExam
                         cbQuestionnaire.Sorted = true;
                        
                     }
-                    
+
+                    cbQuestionnaire.SelectedIndex = 0;
                 }
 
             }
