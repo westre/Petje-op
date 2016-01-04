@@ -7,18 +7,17 @@ namespace PetjeOp
 {
     public class Lecture
     {
-        public int ID { get; set; }
-        public string teacher;
-        public string cs;
-        public int subject;
+        int ID { get; set; }
+        private Teacher Teacher { get; set; }
+        public Class Class { get; set; }
+        public Subject Subject { get; set; }
 
-        public Lecture(int I, string t, string c, int s)
+        public Lecture(int id, Teacher teacher, Class Class, Subject subject)
         {
-            ID = I;
-            teacher = t;
-            cs = c;
-            subject = s;
+            ID = id;
+            Teacher = teacher;
+            this.Class = Class;
+            Subject = subject;
         }
-
     }
 }

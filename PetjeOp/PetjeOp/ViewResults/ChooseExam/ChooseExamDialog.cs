@@ -66,10 +66,10 @@ namespace PetjeOp.ViewResults.ChooseExam
             foreach (Exam ex in Exams)
             {
                 Console.WriteLine(ex);
-                listView1.Items.Add(ex.questionnaire.Name);
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
+                listView1.Items.Add(ex.Questionnaire.Name);
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
                 count++;
             }
             
@@ -81,10 +81,10 @@ namespace PetjeOp.ViewResults.ChooseExam
            
 
 
-                listView1.Items.Add(ex.questionnaire.Name);
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
+                listView1.Items.Add(ex.Questionnaire.Name);
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
                 count++;
 
 
@@ -117,7 +117,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             int count = 0;
             foreach (Exam ex in Exams)
             {
-                if (ex.starttime > dateTimePicker1.Value.Date && ex.starttime < dateTimePicker1.Value.Date.AddDays(1))
+                if (ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
                 {
                     FillListFilter(ex, count);
 
@@ -147,7 +147,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 int count = 0;
                 foreach (Exam ex in Exams)
                 {
-                    if (ex.questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
+                    if (ex.Questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
                     {
 
                         FillListFilter(ex, count);
@@ -168,7 +168,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                         cbQuestionnaire.Sorted = true;
                        
                     }
-
+                    
                     cbQuestionnaire.SelectedIndex = 0;
                 }
 
@@ -193,8 +193,8 @@ namespace PetjeOp.ViewResults.ChooseExam
                 
                 List<Exam> cse = Controller.MasterController.DB.GetExamByClass(cbClass.GetItemText(cbClass.SelectedItem));
                 foreach (Exam ex in cse)
-                {
-                    
+                    {
+
 
                         FillListFilter(ex, count);
 
@@ -202,7 +202,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
                 }
             }
-        
+
 
         private void btnResetDate_Click(object sender, EventArgs e)
         {
@@ -235,7 +235,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 foreach (Exam ex in Exams)
                 {
 
-                    if (String.Format("{0}: {1}", ex.questionnaire.Subject, ex.questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
+                    if (String.Format("{0}: {1}", ex.Questionnaire.Subject, ex.Questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
                     {
 
                         FillListFilter(ex, count);
