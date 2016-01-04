@@ -7,10 +7,10 @@ namespace PetjeOp
 {
     public class Lecture
     {
-        int ID { get; set; }
-        string teacher;
-        string cs;
-        int subject;
+        public int ID { get; set; }
+        public string teacher;
+        public string cs;
+        public int subject;
 
         public Lecture(int I, string t, string c, int s)
         {

@@ -190,10 +190,11 @@ namespace PetjeOp.ViewResults.ChooseExam
             else
             {
                 int count = 0;
-                foreach (Exam ex in Exams)
+                
+                List<Exam> cse = Controller.MasterController.DB.GetExamByClass(cbClass.GetItemText(cbClass.SelectedItem));
+                foreach (Exam ex in cse)
                 {
-                   // if (ex.Class == cbClass.GetItemText(cbClass.SelectedItem))
-                    {
+                    
 
                         FillListFilter(ex, count);
 
@@ -201,7 +202,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
                 }
             }
-        }
+        
 
         private void btnResetDate_Click(object sender, EventArgs e)
         {

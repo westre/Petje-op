@@ -513,6 +513,53 @@ namespace PetjeOp
 
         }
 
+        public List<Exam> GetExamByClass(string cs)
+        {
+            try
+            {
+                List<Exam> filteredExams = new List<Exam>();
+                List<Exam> exams = new List<Exam>();
+
+                foreach (tblExam tblExam in db.tblExams)
+                {
+                    Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+
+
+                    Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime, tblExam.endtime, tblExam.lecture);
+
+                    exams.Add(exam);
+
+
+                }
+                List<Lecture> lc = new List<Lecture>();
+                foreach (tblLecture tbllecture in db.tblLectures)
+                {
+                    Lecture l = new Lecture(tbllecture.id, tbllecture.teacher, tbllecture.@class, tbllecture.subject);
+                    lc.Add(l);
+
+
+                }
+
+                foreach(Lecture l in lc)
+                {
+                    if(l.cs == cs)
+                    {
+                        foreach(Exam x in exams)
+                        {
+                            if(x.lecture.id == l.ID)
+                            {
+                                
+                                filteredExams.Add(x);
+                            }
+                        }
+                    }
+                }
+                return filteredExams;
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+        }
+
+
         public List<Exam> GetExamsByQuestionnaire(Questionnaire q)
         {
             try {
