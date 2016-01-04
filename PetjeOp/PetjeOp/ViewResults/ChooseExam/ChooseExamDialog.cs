@@ -50,10 +50,10 @@ namespace PetjeOp.ViewResults.ChooseExam
             }
             cbClass.SelectedIndex = 0;
 
+            
+            
 
-
-                
-            }
+        }
         public void FillList()
         {
             listView1.Items.Clear();
@@ -109,7 +109,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             this.Close();
         }
 
-
+      
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -120,12 +120,12 @@ namespace PetjeOp.ViewResults.ChooseExam
                 if (ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
                 {
                     FillListFilter(ex, count);
-           
 
-                    
+
+
                 }
-                    
-        }
+
+            }
         }
 
         private void cbSubject_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,6 +157,8 @@ namespace PetjeOp.ViewResults.ChooseExam
                 }
                 List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
                 cbQuestionnaire.Items.Clear();
+                cbQuestionnaire.ResetText();
+                
                 cbQuestionnaire.Items.Add("Alle vragenlijsten");
                 foreach (Questionnaire q in qtn)
                 {
@@ -164,9 +166,10 @@ namespace PetjeOp.ViewResults.ChooseExam
                         
                         cbQuestionnaire.Items.Add(q);
                         cbQuestionnaire.Sorted = true;
-
+                       
                     }
 
+                
                 }
 
             }
@@ -187,10 +190,11 @@ namespace PetjeOp.ViewResults.ChooseExam
             else
             {
                 int count = 0;
-                foreach (Exam ex in Exams)
-                {
-                   // if (ex.Class == cbClass.GetItemText(cbClass.SelectedItem))
+                
+                List<Exam> cse = Controller.MasterController.DB.GetExamByClass(cbClass.GetItemText(cbClass.SelectedItem));
+                foreach (Exam ex in cse)
                     {
+
 
                         FillListFilter(ex, count);
 
@@ -198,7 +202,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
                 }
             }
-        }
+
 
         private void btnResetDate_Click(object sender, EventArgs e)
         {
@@ -215,12 +219,12 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listView1.Items.Clear();
 
-
+            
             if (cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten")
             {
                 foreach (Exam ex in Exams)
                 {
-                    
+
                     FillList();
                 }
             }
@@ -230,20 +234,20 @@ namespace PetjeOp.ViewResults.ChooseExam
                 int count = 0;
                 foreach (Exam ex in Exams)
                 {
-                    
+
                     if (String.Format("{0}: {1}", ex.Questionnaire.Subject, ex.Questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
                     {
-                       
+
                         FillListFilter(ex, count);
                     }
                 }
-                    }
-                }
+            }
+        }
 
         private void listView1_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
         {
             listView1.Sort();
-            }
+        }
 
         private void FillQuestionnaire()
         {
@@ -258,7 +262,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 cbQuestionnaire.Items.Add(q);
                 cbQuestionnaire.Sorted = true;
 
-        }
+            }
             cbQuestionnaire.SelectedIndex = 0;
         }
     }
