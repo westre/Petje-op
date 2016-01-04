@@ -168,8 +168,8 @@ namespace PetjeOp.ViewResults.ChooseExam
                         cbQuestionnaire.Sorted = true;
                        
                     }
-                    
-                    cbQuestionnaire.SelectedIndex = 0;
+
+                
                 }
 
             }
