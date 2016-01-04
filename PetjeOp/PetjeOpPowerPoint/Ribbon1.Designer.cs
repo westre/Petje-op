@@ -38,12 +38,15 @@
             this.GrpQuestionnaire = this.Factory.CreateRibbonGroup();
             this.ddExams = this.Factory.CreateRibbonDropDown();
             this.ddQuestions = this.Factory.CreateRibbonDropDown();
-            this.btnAllQuestions = this.Factory.CreateRibbonButton();
             this.GrpResults = this.Factory.CreateRibbonGroup();
+            this.grpSlide = this.Factory.CreateRibbonGroup();
+            this.btnAllQuestions = this.Factory.CreateRibbonButton();
             this.btnViewResultsPPT = this.Factory.CreateRibbonButton();
             this.btnReset = this.Factory.CreateRibbonButton();
-            this.grpSlide = this.Factory.CreateRibbonGroup();
             this.btnSlideInfo = this.Factory.CreateRibbonButton();
+            this.separator1 = this.Factory.CreateRibbonSeparator();
+            this.ddFilterVak = this.Factory.CreateRibbonDropDown();
+            this.lblFilter = this.Factory.CreateRibbonLabel();
             this.WinQ.SuspendLayout();
             this.GrpQuestionnaire.SuspendLayout();
             this.GrpResults.SuspendLayout();
@@ -60,6 +63,9 @@
             // 
             // GrpQuestionnaire
             // 
+            this.GrpQuestionnaire.Items.Add(this.lblFilter);
+            this.GrpQuestionnaire.Items.Add(this.ddFilterVak);
+            this.GrpQuestionnaire.Items.Add(this.separator1);
             this.GrpQuestionnaire.Items.Add(this.ddExams);
             this.GrpQuestionnaire.Items.Add(this.ddQuestions);
             this.GrpQuestionnaire.Items.Add(this.btnAllQuestions);
@@ -78,19 +84,24 @@
             this.ddQuestions.Name = "ddQuestions";
             this.ddQuestions.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ddQuestions_SelectionChanged);
             // 
-            // btnAllQuestions
-            // 
-            this.btnAllQuestions.Label = "Alle vragen toevoegen";
-            this.btnAllQuestions.Name = "btnAllQuestions";
-            this.btnAllQuestions.Visible = false;
-            this.btnAllQuestions.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnAllQuestions_Click);
-            // 
             // GrpResults
             // 
             this.GrpResults.Items.Add(this.btnViewResultsPPT);
             this.GrpResults.Items.Add(this.btnReset);
             this.GrpResults.Label = "Resultaten";
             this.GrpResults.Name = "GrpResults";
+            // 
+            // grpSlide
+            // 
+            this.grpSlide.Items.Add(this.btnSlideInfo);
+            this.grpSlide.Name = "grpSlide";
+            // 
+            // btnAllQuestions
+            // 
+            this.btnAllQuestions.Label = "Alle vragen toevoegen";
+            this.btnAllQuestions.Name = "btnAllQuestions";
+            this.btnAllQuestions.Visible = false;
+            this.btnAllQuestions.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnAllQuestions_Click);
             // 
             // btnViewResultsPPT
             // 
@@ -103,11 +114,6 @@
             this.btnReset.Name = "btnReset";
             this.btnReset.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnReset_Click);
             // 
-            // grpSlide
-            // 
-            this.grpSlide.Items.Add(this.btnSlideInfo);
-            this.grpSlide.Name = "grpSlide";
-            // 
             // btnSlideInfo
             // 
             this.btnSlideInfo.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -115,6 +121,21 @@
             this.btnSlideInfo.Name = "btnSlideInfo";
             this.btnSlideInfo.ShowImage = true;
             this.btnSlideInfo.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnSlideInfo_Click);
+            // 
+            // separator1
+            // 
+            this.separator1.Name = "separator1";
+            // 
+            // ddFilterVak
+            // 
+            this.ddFilterVak.Label = "Vak";
+            this.ddFilterVak.Name = "ddFilterVak";
+            this.ddFilterVak.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ddFilterVak_SelectionChanged);
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.Label = "Filteren";
+            this.lblFilter.Name = "lblFilter";
             // 
             // Ribbon1
             // 
@@ -146,6 +167,9 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpSlide;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSlideInfo;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnReset;
+        internal Microsoft.Office.Tools.Ribbon.RibbonLabel lblFilter;
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown ddFilterVak;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
     }
 
     partial class ThisRibbonCollection

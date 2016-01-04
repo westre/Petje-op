@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using PetjeOp.AddQuestionnaire;
 using PetjeOp.Questionnaires;
+using PetjeOp.Login;
 
 namespace PetjeOp
 {
@@ -116,6 +117,23 @@ namespace PetjeOp
             }
         }
 
+        public void Logout()
+        {
+            this.User = null;
+            this.Visible = false;
+            this.ActiveParentContainer = null;
 
+            //Application.Restart();
+
+            LoginView LoginView = new LoginView((LoginController)this.GetController(typeof(LoginController)));
+            if (LoginView.ShowDialog() == DialogResult.OK) //Als login dialog OK returnt dan MasterController uitvoeren
+            {
+                this.Visible = true;
+            }
+            else
+            {
+               Application.Exit();
+            }
+        }
     }
 }
