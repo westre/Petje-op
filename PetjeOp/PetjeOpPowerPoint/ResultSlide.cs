@@ -42,17 +42,19 @@ namespace PetjeOpPowerPoint {
             Dictionary<int, ChartData> distinctAnswers = new Dictionary<int, ChartData>();
 
             foreach (Result result in currentQuestionResults) {
-                if (!distinctAnswers.ContainsKey(result.answerID)) {
-                    ChartData cd = new ChartData();
-                    cd.Count = 1;
-                    cd.Result = result;
+                if(result.answerID != null) {
+                    if (!distinctAnswers.ContainsKey(result.answerID.Value)) {
+                        ChartData cd = new ChartData();
+                        cd.Count = 1;
+                        cd.Result = result;
 
-                    distinctAnswers.Add(result.answerID, cd);
-                }
-                else {
-                    ChartData cd = distinctAnswers[result.answerID];
-                    cd.Count++;
-                }
+                        distinctAnswers.Add(result.answerID.Value, cd);
+                    }
+                    else {
+                        ChartData cd = distinctAnswers[result.answerID.Value];
+                        cd.Count++;
+                    }
+                }  
             }
 
             // Pak hoogste waarde
