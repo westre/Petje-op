@@ -13,6 +13,7 @@ namespace PetjeOp.ViewResults.ChooseExam
     {
         private TeacherController Controller;
         private List<Exam> Exams;
+        
         public ChooseExamDialog(TeacherController Controller)
         {
             this.Controller = Controller;
@@ -22,19 +23,8 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
 
-            int count = 0;
-            // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
-            Exams = Controller.MasterController.DB.GetAllExams();
-
-            foreach (Exam ex in Exams)
-            {
-                //listBox1.Items.Add(ex);
-                listView1.Items.Add(ex.questionnaire.Name);
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
-                count++;
-            }
+            FillList();
+          
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
             List<Subject> subjects = Controller.MasterController.DB.GetSubjects();
@@ -75,6 +65,42 @@ namespace PetjeOp.ViewResults.ChooseExam
 
 
         }
+        public void FillList()
+        {
+            listView1.Items.Clear();
+            int count = 0;
+            // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
+            Exams = Controller.MasterController.DB.GetAllExams();
+
+            
+
+            foreach (Exam ex in Exams)
+            {
+                Console.WriteLine(ex);
+                listView1.Items.Add(ex.questionnaire.Name);
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
+                count++;
+            }
+            
+        }
+        public void FillListFilter(Exam ex, int count)
+        {
+
+
+           
+
+
+                listView1.Items.Add(ex.questionnaire.Name);
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
+                count++;
+
+
+            
+        }
 
         public virtual void btnOk_Click(object sender, EventArgs e)
         {
@@ -103,46 +129,48 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+           
 
-            foreach (Exam ex in Exams)
-            {
-                if (ex.starttime > dateTimePicker1.Value.Date && ex.starttime < dateTimePicker1.Value.Date.AddDays(1))
-                    listBox1.Items.Add(ex);
-            }
+            //foreach (Exam ex in Exams)
+            //{
+            //    if (ex.starttime > dateTimePicker1.Value.Date && ex.starttime < dateTimePicker1.Value.Date.AddDays(1))
+                    
+                    
+                    
+            //}
+            
         }
 
         private void cbSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+
+            listView1.Items.Clear();
 
 
             if (cbSubject.GetItemText(cbSubject.SelectedItem) == "Alle vakken")
             {
-                foreach (Exam ex in Exams)
-                {
-                    listBox1.Items.Add(ex);
-                }
+               // FillList();
             }
 
             else
             {
-
+                int count = 0;
                 foreach (Exam ex in Exams)
                 {
-                    if (ex.questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
-                    {
-                        listBox1.Items.Add(ex);
-                    }
+                    //if (ex.questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
+                    //{
+
+                    //    FillListFilter(ex, count);
+                    //}
 
                 }
+
             }
         }
 
         private void cbClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-
+            
             if (cbClass.GetItemText(cbClass.SelectedItem) == "Alle klassen")
             {
                 foreach (Exam ex in Exams)

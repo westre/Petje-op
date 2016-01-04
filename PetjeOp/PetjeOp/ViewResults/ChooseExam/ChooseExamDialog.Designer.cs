@@ -38,10 +38,10 @@
             this.btnResetDate = new System.Windows.Forms.Button();
             this.cbQuestionnaire = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chStarttime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chEndtime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listBox1
@@ -122,20 +122,37 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.chName,
+            this.chSubject,
+            this.chStarttime,
+            this.chEndtime});
             this.listView1.Location = new System.Drawing.Point(26, 357);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(606, 204);
+            this.listView1.Size = new System.Drawing.Size(631, 204);
+            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // chName
             // 
-            this.columnHeader1.Text = "Naam";
+            this.chName.Text = "Naam";
+            this.chName.Width = 200;
+            // 
+            // chSubject
+            // 
+            this.chSubject.Text = "Vak";
+            this.chSubject.Width = 160;
+            // 
+            // chStarttime
+            // 
+            this.chStarttime.Text = "Starttijd";
+            this.chStarttime.Width = 120;
+            // 
+            // chEndtime
+            // 
+            this.chEndtime.Text = "Eindtijd";
+            this.chEndtime.Width = 120;
             // 
             // ChooseExamDialog
             // 
@@ -170,9 +187,9 @@
         private System.Windows.Forms.Button btnResetDate;
         private System.Windows.Forms.ComboBox cbQuestionnaire;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader chName;
+        private System.Windows.Forms.ColumnHeader chSubject;
+        private System.Windows.Forms.ColumnHeader chStarttime;
+        private System.Windows.Forms.ColumnHeader chEndtime;
     }
 }

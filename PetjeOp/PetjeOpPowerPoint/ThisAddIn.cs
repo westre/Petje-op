@@ -54,7 +54,7 @@ namespace PetjeOpPowerPoint
 
         // Dit wordt geroepen wanneer er van slide wordt veranderd
         private void ProcessSlide(PowerPoint.Slide slide) {
-            Timer.Enabled = false;
+            Timer.Stop();
 
             // Is het een resultaten dia?
             if (slide.Tags["isResultSlide"] == "1") {
@@ -111,7 +111,12 @@ namespace PetjeOpPowerPoint
                 DL.Start();
 
                 // Zeg tegen de database dat we op een andere current question zitten, zodat de studentenomgeving ook wordt geupdatet
-                DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), int.Parse(slide.Tags["questionId"]));
+                if(slide.Tags["isResultSlide"] == "1") {
+                    DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), -1);
+                }
+                else if(slide.Tags["isResultSlide"] == "0") {
+                    DB.UpdateExamCurrentQuestion(int.Parse(slide.Tags["examId"]), int.Parse(slide.Tags["questionId"]));
+                }
             }
         }
 
@@ -121,11 +126,13 @@ namespace PetjeOpPowerPoint
             PowerPoint.Shape timerLabel = null;
 
             // Timer draait per seconde
+            Timer = new Timer();
             Timer.Interval = 1000;
             Timer.Tick += (t, args) => {
                 PowerPoint.Slide CurrentSlide = slide;
 
                 int secondsLeft = seconds - secondsPassed;
+
                 // Update tijd label
                 foreach (PowerPoint.Shape shape in CurrentSlide.Shapes) {
                     if (shape.Tags["timer"] == "1") {
@@ -161,13 +168,13 @@ namespace PetjeOpPowerPoint
                     }
 
                     // Stop de timer, aangezien het toch al klaar is
-                    Timer.Enabled = false;
+                    Timer.Stop();
                 }
                 secondsPassed++;
             };
-            
+
             // Start de timer!
-            Timer.Enabled = true;
+            Timer.Start();
         }
 
         // Event voor volgende slide in fullscreen
