@@ -29,7 +29,7 @@ namespace PetjeOp.QuestionnaireDetail
         //Wanneer het scherm geladen wordt, set dan de labels en vul de combobox.
         private void QuestionnaireDetailView_Load(object sender, EventArgs e)
         {
-            Controller.setLabels();
+            Controller.SetLabels();
             Controller.FillCbSelectQuestionnaire();
             Controller.FillCbSubjects();
         }
@@ -38,7 +38,7 @@ namespace PetjeOp.QuestionnaireDetail
         private void cbSelectQuestionnaire_SelectedIndexChanged(object sender, EventArgs e)
         {
             Controller.SetQuestionnaire((Questionnaire)cbSelectQuestionnaire.SelectedItem);
-            Controller.setLabels();
+            Controller.SetLabels();
             Controller.View.questionsView1.UpdateTreeView();
         }
 

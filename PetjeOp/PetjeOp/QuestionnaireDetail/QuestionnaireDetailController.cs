@@ -19,7 +19,6 @@ namespace PetjeOp {
             View = new QuestionnaireDetailView(this);
             Disabled = false;
         }
-
         
         public override UserControl GetView() {
             return View;
@@ -71,7 +70,7 @@ namespace PetjeOp {
         }
 
         //Set labeldata in het scherm, auteurdata, naamdata en vakdata van een vragenlijst.
-        public void setLabels()
+        public void SetLabels()
         {
             //Set de tekst van de labels naar de gegevens van de huidige questionnaire.
             View.lblAuthorData.Text = "(" + Model.Questionnaire.Author.TeacherNr + ") " + Model.Questionnaire.Author.FirstName + " " + Model.Questionnaire.Author.SurName;
@@ -130,7 +129,7 @@ namespace PetjeOp {
             View.btnCancelEdit.Hide();
             View.btnEdit.Show();
 
-            setLabels();
+            SetLabels();
         }
 
         //Update de Questionnaire in de database
