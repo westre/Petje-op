@@ -105,7 +105,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                     int seconds = int.Parse(addQuestionView1.tbSeconds.Text);
                     Question.TimeRestriction = new TimeSpan(0, 0, seconds);
                 }
-                catch (FormatException fe)
+                catch (FormatException)
                 {
                     Question.TimeRestriction = TimeSpan.Zero;
                 }
