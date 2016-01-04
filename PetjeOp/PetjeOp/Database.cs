@@ -540,7 +540,7 @@ namespace PetjeOp
              Exam exam = (from tblExam in db.tblExams
                          where tblExam.id == examID
                              select new Exam(tblExam.id, tblExam.questionnaire) {
-                             CurrenQuestion = tblExam.currentquestion
+                             CurrentQuestion = tblExam.currentquestion
                          }).FirstOrDefault();
 
             exam.questionnaire = this.GetQuestionnaire(exam.qstnn);

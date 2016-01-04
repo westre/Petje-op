@@ -16,7 +16,7 @@ namespace PetjeOp {
         public List<Result> results;
        
 
-        public int? CurrenQuestion { get; set; }
+        public int? CurrentQuestion { get; set; }
 
         public Exam(int ex, Questionnaire qu, DateTime? st, DateTime? et, int gnr)
         {
