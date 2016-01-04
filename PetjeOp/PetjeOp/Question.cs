@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 namespace PetjeOp
 {
     public abstract class Question : IComparable<Question>

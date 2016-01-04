@@ -69,7 +69,7 @@ namespace PetjeOp {
             {
                 if (this.View.VraagBox.SelectedIndex != -1)
                 {
-                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
+                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.Questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
 
                     tblResult result = new tblResult();
                     result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
@@ -92,11 +92,11 @@ namespace PetjeOp {
 
             this.Exam = MasterController.DB.GetExam(examID);
 
-            if (Exam.CurrenQuestion != null)
+            if (Exam.CurrentQuestion != null)
             {
 
 
-                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
+                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.Questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
 
                 if (MasterController.DB.QuestionContainsAnswerFromUser(Exam, ((Student)(MasterController.User)), question))
                 {

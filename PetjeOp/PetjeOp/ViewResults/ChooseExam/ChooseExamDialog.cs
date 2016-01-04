@@ -77,10 +77,10 @@ namespace PetjeOp.ViewResults.ChooseExam
             foreach (Exam ex in Exams)
             {
                 Console.WriteLine(ex);
-                listView1.Items.Add(ex.questionnaire.Name);
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
+                listView1.Items.Add(ex.Questionnaire.Name);
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
                 count++;
             }
             
@@ -92,10 +92,10 @@ namespace PetjeOp.ViewResults.ChooseExam
            
 
 
-                listView1.Items.Add(ex.questionnaire.Name);
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.questionnaire.Subject));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.starttime));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.endtime));
+                listView1.Items.Add(ex.Questionnaire.Name);
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
+                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
                 count++;
 
 
@@ -221,7 +221,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 foreach (Exam ex in Exams)
                 {
                     
-                    if (String.Format("{0}: {1}", ex.questionnaire.Subject, ex.questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
+                    if (String.Format("{0}: {1}", ex.Questionnaire.Subject, ex.Questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
                     {
                        
                         listBox1.Items.Add(ex);
