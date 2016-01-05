@@ -12,6 +12,7 @@ namespace PetjeOp {
         public DateTime Starttime { get; set; }
         public DateTime Endtime { get; set; }
         public int LectureInt { get; set; }
+        public Class Class { get; set; }
 
         public int? CurrentQuestion { get; set; }
 
