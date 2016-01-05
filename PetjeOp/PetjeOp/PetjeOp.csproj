@@ -102,6 +102,14 @@
     </Compile>
     <Compile Include="DatabaseListener.cs" />
     <Compile Include="Exam.cs" />
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherController.cs" />
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherModel.cs" />
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherView.Designer.cs">
+      <DependentUpon>ExamOverviewTeacherView.cs</DependentUpon>
+    </Compile>
     <Compile Include="IEnvironment.cs" />
     <Compile Include="Lecture.cs" />
     <Compile Include="Login\LoginController.cs" />
@@ -229,6 +237,9 @@
     <EmbeddedResource Include="ChooseExamDialogs\ChooseExamDetailsDialog.resx">
       <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExamOverviewTeacher\ExamOverviewTeacherView.resx">
+      <DependentUpon>ExamOverviewTeacherView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestionnaireOverview\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -307,6 +318,12 @@
     <Content Include="Resources\Inloggen.png" />
     <None Include="Resources\loadgif.gif" />
     <Content Include="Resources\Uitloggen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Calendar.NET\Calendar.NET.csproj">
+      <Project>{6cbc43b6-e950-49b2-b14a-563c50fcd5c3}</Project>
+      <Name>Calendar.NET</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

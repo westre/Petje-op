@@ -56,5 +56,9 @@ namespace PetjeOp {
         {
             Controller.GoToQuestionnaireOverview();
         }
+
+        private void ViewExamClick(object sender, EventArgs e) {
+            Controller.GoToExamOverview();
+        }
     }
 }
