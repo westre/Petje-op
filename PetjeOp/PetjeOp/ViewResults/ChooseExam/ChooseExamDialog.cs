@@ -51,8 +51,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 }
             }
             
-            FillList();
-          
+            
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
             List<Subject> subjects = Controller.MasterController.DB.GetSubjects();
@@ -79,7 +78,8 @@ namespace PetjeOp.ViewResults.ChooseExam
             }
             cbClass.SelectedIndex = 0;
             
-            
+            FillList();
+          
             
 
         }
@@ -134,6 +134,10 @@ namespace PetjeOp.ViewResults.ChooseExam
                 this.Close();
                 Controller.GoToResults();
             }
+            else
+            {
+                MessageBox.Show("Je hebt geen afnamemoment geselecteerd", "Foutmelding", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
 
         }
@@ -148,13 +152,14 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             listView1.Items.Clear();
-            int count = 0;
+            ApplyFilter();
+//            int count = 0;
             foreach (Exam ex in Exams)
             {
                 if (ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
                 {
-                    FillListFilter(ex, count);
-                    count++;
+//                    FillListFilter(ex, count);
+//                    count++;
 
 
                 }
@@ -240,9 +245,13 @@ namespace PetjeOp.ViewResults.ChooseExam
          }
 
 
-        private void btnResetDate_Click(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now;
+            cbSubject.SelectedIndex = 0;
+            cbClass.SelectedIndex = 0;
+            cbQuestionnaire.SelectedIndex = 0;
+
             listView1.Items.Clear();
 
             foreach (Exam ex in Exams)
@@ -327,7 +336,10 @@ namespace PetjeOp.ViewResults.ChooseExam
                     {
                         if(cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten" || String.Format("{0}: {1}", ex.Questionnaire.Subject, ex.Questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
                         {
-                            ExamFilter.Add(ex);
+                            if(ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
+                            {
+                                ExamFilter.Add(ex);
+                            }
                         }
                     }
                 }
