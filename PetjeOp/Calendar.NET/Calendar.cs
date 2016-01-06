@@ -542,9 +542,12 @@ namespace Calendar.NET
             }
         }
 
+        public delegate void CalendarClickDelegate(CalendarEvent calendarEvent, Point point);
+        public event CalendarClickDelegate CalendarItemClick;
+
         private void CalendarMouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right && AllowEditingEvents)
+            if (e.Button == MouseButtons.Left && AllowEditingEvents)
             {
                 if (_calendarView == CalendarViews.Month)
                 {
@@ -555,10 +558,14 @@ namespace Calendar.NET
 
                         if (z.EventArea.Contains(e.X, e.Y) && !z.Event.ReadOnlyEvent)
                         {
-                            _clickedEvent = z;
-                            _contextMenuStrip1.Show(this, e.Location);
-                            _eventTip.Visible = false;
-                            _eventTip.ShouldRender = false;
+                            //_clickedEvent = z;
+                            //_contextMenuStrip1.Show(this, e.Location);
+                            //_eventTip.Visible = false;
+                            //_eventTip.ShouldRender = false;
+
+                            if(CalendarItemClick != null) {
+                                CalendarItemClick(z, e.Location);
+                            }
                             break;
                         }
                     }
