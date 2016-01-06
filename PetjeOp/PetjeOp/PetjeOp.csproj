@@ -78,6 +78,10 @@
       <DependentUpon>QuestionsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Answer.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Database.cs">
+      <DependentUpon>Database.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentController.cs" />
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentModel.cs" />
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentView.cs">
@@ -94,7 +98,6 @@
     </Compile>
     <Compile Include="Class.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="Database.cs" />
     <Compile Include="Database.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -15,6 +15,7 @@ namespace PetjeOpPowerPoint
     public partial class Ribbon1
     {
         private Database DB;
+        public List<Exam> exams;
 
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
@@ -26,18 +27,31 @@ namespace PetjeOpPowerPoint
             emptyExams.Label = null;
             ddExams.Items.Add(emptyExams);
             // Vul de rest van de dropdown lijst met afnamemomenten uit de database
-            List<Exam> exams = DB.GetExams();
+            exams = DB.GetExams();
 
             foreach (Exam x in exams)
             {
                 Microsoft.Office.Tools.Ribbon.RibbonDropDownItem exam = this.Factory.CreateRibbonDropDownItem();
-                exam.Label = "AFNAMEMOMENT: " + x.questionnaire.Name + ", VAK: " + x.questionnaire.Subject +  ", STARTTIJD: " +  Convert.ToString(x.starttime) + ", EINDTIJD: " + Convert.ToString(x.endtime);
+                exam.Label = "AFNAMEMOMENT: " + x.Questionnaire.Name + ", VAK: " + x.Questionnaire.Subject +  ", STARTTIJD: " +  Convert.ToString(x.Starttime) + ", EINDTIJD: " + Convert.ToString(x.Endtime);
                 ddExams.Items.Add(exam);
                 
                 int index = ddExams.Items.IndexOf(exam);
                 ddExams.Items[index].Tag = x;              
             }
-            //////
+
+
+            List<Subject> subjects = DB.GetSubjects();
+            RibbonDropDownItem empty = Factory.CreateRibbonDropDownItem();
+            empty.Label = "Alles";
+            empty.Tag = null;
+            ddFilterVak.Items.Add(empty);
+
+            foreach (Subject subject in subjects) {
+                RibbonDropDownItem ribbonSubject = Factory.CreateRibbonDropDownItem();
+                ribbonSubject.Label = subject.Name;
+                ribbonSubject.Tag = subject;
+                ddFilterVak.Items.Add(ribbonSubject);
+            }
         }
        
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
@@ -115,7 +129,7 @@ namespace PetjeOpPowerPoint
                 btnAllQuestions.Visible = true;
                 // Het programma kijkt welk afnamemoment geselecteerd is en vult dan de vragenlijst met vragen in dat afnamemoment
                 Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-                Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
+                Questionnaire testquest = DB.GetQuestionnaire(chosen.Questionnaire.ID);
 
                 foreach (Question q in testquest.Questions)
                 {
@@ -132,7 +146,7 @@ namespace PetjeOpPowerPoint
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
         {
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.questionnaire.ID);
+            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.Questionnaire.ID);
 
             // Haal alle resultaten op die bij deze examen hoort
             List<Result> allResults = DB.GetResultsByExamId(chosen.Examnr);
@@ -237,6 +251,36 @@ namespace PetjeOpPowerPoint
                 button.Enabled = true;
             };
             timer.Enabled = true;
+        }
+
+        private void ddFilterVak_SelectionChanged(object sender, RibbonControlEventArgs e) {
+            // Button 'alle vragen toevoegen' wordt tijdelijk onzichtbaar totdat het programma weet dat er een afnamemoment is gekozen, en niet een leeg record
+            ddExams.Items.Clear();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExam = this.Factory.CreateRibbonDropDownItem();
+            // Ook hier wordt een leeg record aangemaakt bovenaan de dropdown lijst
+            emptyExam.Label = null;
+            ddExams.Items.Add(emptyExam);
+
+            Subject chosen = (Subject)ddFilterVak.SelectedItem.Tag;
+            if(chosen != null) {
+                foreach (Exam exam in exams) {
+                    if (chosen.Id == exam.Questionnaire.Subject.Id) {
+                        RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                        examRibbon.Label = "AFNAMEMOMENT: " + exam.Questionnaire.Name + ", STARTTIJD: " + Convert.ToString(exam.Starttime) + ", EINDTIJD: " + Convert.ToString(exam.Endtime);
+                        examRibbon.Tag = exam;
+                        ddExams.Items.Add(examRibbon);
+                    }
+                }
+            }
+            else {
+                foreach (Exam exam in exams) {
+                    RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                    examRibbon.Label =  "AFNAMEMOMENT: " + exam.Questionnaire.Name + ", VAK: " + exam.Questionnaire.Subject
+                                        + ", STARTTIJD: " + Convert.ToString(exam.Starttime) + ", EINDTIJD: " + Convert.ToString(exam.Endtime);
+                    examRibbon.Tag = exam;
+                    ddExams.Items.Add(examRibbon);
+                }
+            }
         }
     }
 }

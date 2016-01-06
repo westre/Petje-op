@@ -42,6 +42,11 @@ namespace PetjeOp {
             Controller.ShowExamDialog();
         }
 
+        public void Logout(object sender, EventArgs args)
+        {
+            Controller.MasterController.Logout();
+        }
+
         private void pbLogo_Click(object sender, EventArgs e)
         {
             Controller.GoToTeacherHome();

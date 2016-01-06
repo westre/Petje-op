@@ -15,19 +15,9 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         public MultipleChoiceQuestion Question { get; set; }
         public List<Answer> answers = new List<Answer>();
         public Answer correct;
-        //public AddQuestionnaireController Controller { get; set; }
         private int QuestionIndex { get; }
         public QuestionsView QuestionsView { get; set; }
         private bool UpdateView { get; set; }
-
-        /*Constructor voor het toevoegen van een vraag
-        public AddQuestionDialog(AddQuestionnaireController controller)
-        {
-            InitializeComponent();
-            addQuestionView1.SetQuestionDialog(this);
-            Controller = controller;
-            QuestionIndex = 0;
-        } */
 
         public AddQuestionDialog(QuestionsView qv)
         {
@@ -37,15 +27,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             QuestionIndex = 0;
             UpdateView = false;
         }
-
-        /*Constructor voor het wijzigen van een vraag
-        public AddQuestionDialog(AddQuestionnaireController controller, MultipleChoiceQuestion question,
-            int questionIndex) : this(controller)
-        {
-            QuestionIndex = questionIndex;
-            Question = question;
-            Text = btnAddQuestion.Text = "Vraag Wijzigen";
-        } */
 
         //Constructor voor het wijzigen van een vraag
         public AddQuestionDialog(QuestionsView qv, MultipleChoiceQuestion question, int questionIndex) : this(qv)
@@ -136,6 +117,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                             .Count + 1;
                 }
             }
+
             //Sluit het dialoog
             Close();
         }
@@ -155,8 +137,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
 
             if(Question != null && this.DialogResult == DialogResult.OK)
                 QuestionsView.AddDialogInformation(Question, update);
-
-
         }
         
         //Wanneer dialoog laadt
@@ -189,12 +169,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                     addQuestionView1.rbLimit.Checked = true;
                     addQuestionView1.tbSeconds.Text = Question.TimeRestriction.TotalSeconds.ToString();
                 }
-            }
-
-            if (Question != null)
-            {
-                //Valideer gegevens
-                //addQuestionView1.checkQuestionView();
             }
         }
     }

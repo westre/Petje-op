@@ -110,7 +110,7 @@ namespace PetjeOp.AddQuestionnaire
         }
 
         //Zet het vak naar het geselecteerde vak in de combobox.
-        public void setSubject()
+        public void SetSubject()
         {
             //Wanneer de selecteditem van de subject not null is, set het huidige subject in de model.
             if (View.cbSubjects.SelectedItem != null)

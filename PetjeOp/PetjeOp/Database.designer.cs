@@ -2423,7 +2423,7 @@ namespace PetjeOp
 		
 		private int _exam;
 		
-		private int _answer;
+		private System.Nullable<int> _answer;
 		
 		private int _question;
 		
@@ -2443,7 +2443,7 @@ namespace PetjeOp
     partial void OnstudentChanged();
     partial void OnexamChanging(int value);
     partial void OnexamChanged();
-    partial void OnanswerChanging(int value);
+    partial void OnanswerChanging(System.Nullable<int> value);
     partial void OnanswerChanged();
     partial void OnquestionChanging(int value);
     partial void OnquestionChanged();
@@ -2506,8 +2506,8 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_answer", DbType="Int NOT NULL")]
-		public int answer
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_answer", DbType="Int")]
+		public System.Nullable<int> answer
 		{
 			get
 			{
@@ -2581,7 +2581,7 @@ namespace PetjeOp
 					}
 					else
 					{
-						this._answer = default(int);
+						this._answer = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblAnswer");
 				}

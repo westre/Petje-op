@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace PetjeOp {
     public delegate void SetTextCallback();
+    public delegate void SecondThreadDel();
     public class AnswerQuestionnaireController : Controller{
         public AnswerQuestionnaireView View { get; set; }
         public AnswerQuestionnaireModel Model { get; set; }
@@ -17,22 +18,40 @@ namespace PetjeOp {
         private DatabaseListener resultListener = new DatabaseListener();
 
         private Thread demoThread;
+        private Thread secondThread;
         public AnswerQuestionnaireController(MasterController masterController) : base(masterController) {
             Model = new AnswerQuestionnaireModel();
             View = new AnswerQuestionnaireView(this);
             
-           changeListener.TrackedQuery = "SELECT * FROM exam";
            changeListener.OnChange += refreshQuestion;
-           resultListener.OnChange += refreshQuestion;
+           resultListener.OnChange += testFunction;
+        }
+        public void testFunction(SqlNotificationEventArgs eventArgs)
+        {
+            this.demoThread = new Thread(new ThreadStart(this.secondThreadFunction));
+
+            this.demoThread.Start();
         }
 
+        public void secondThreadFunction()
+        {
+            if (this.View.InvokeRequired)
+            {
+                SecondThreadDel d = new SecondThreadDel(secondThreadFunction);
+                this.View.Invoke(d);
+            }
+            else
+            {
+                setExam(Exam.Examnr);
+            }
+        }
         public void Init(int ExamID)
         {
             View.VraagBox.Items.Clear();
             setExam(ExamID);
             changeListener.TrackedQuery = "SELECT currentquestion FROM [dbo].[exam] WHERE id = " + ExamID;
             changeListener.Start();
-            resultListener.TrackedQuery = "SELECT answer FROM [dbo].[result] WHERE student = '" + ((Student)(MasterController.User)).StudentNr + "'";
+            resultListener.TrackedQuery = "SELECT student FROM [dbo].[result] WHERE student = '" + ((Student)(MasterController.User)).StudentNr + "'";
             resultListener.Start();
         }
 
@@ -49,7 +68,6 @@ namespace PetjeOp {
             this.demoThread = new Thread(new ThreadStart(this.ThreadProcSafe));
 
             this.demoThread.Start();
-            System.Console.WriteLine(eventArgs.Info);
         }
         private void ThreadProcSafe()
         {
@@ -60,29 +78,37 @@ namespace PetjeOp {
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
-            if (this.View.VraagBox.InvokeRequired)
+            if (this.View.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(SetText);
                 this.View.Invoke(d);
             }
             else
             {
-                if (this.View.VraagBox.SelectedIndex != -1)
+                if (Exam.CurrentQuestion != null)
                 {
-                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
-
+                    MultipleChoiceQuestion question = MasterController.DB.GetQuestion((int)Exam.CurrentQuestion);
                     tblResult result = new tblResult();
+                    if (this.View.VraagBox.SelectedIndex != -1)
+                    {
                     result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
+                    }
+                    else
+                    {
+                        result.answer = null;
+                    }
                     result.student = ((Student)(MasterController.User)).StudentNr;
                     result.exam = Exam.Examnr;
                     result.question = question.ID;
+
 
                     System.Console.WriteLine(result.answer + ", " + result.student + ", " + result.exam + ", " + result.question);
 
                     MasterController.DB.InsertResult(result);
                 }
+                
 
-                this.View.VraagBox.Items.Clear();
+                
                 setExam(Exam.Examnr);
             }
         }
@@ -92,12 +118,11 @@ namespace PetjeOp {
 
             this.Exam = MasterController.DB.GetExam(examID);
 
-            if (Exam.CurrenQuestion != null)
+            if (Exam.CurrentQuestion != null)
             {
-
-
-                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrenQuestion).ID);
-
+                this.View.VraagBox.Items.Clear();
+                MultipleChoiceQuestion question = MasterController.DB.GetQuestion(Exam.Questionnaire.Questions.SingleOrDefault(s => s.ID == Exam.CurrentQuestion).ID);
+                
                 if (MasterController.DB.QuestionContainsAnswerFromUser(Exam, ((Student)(MasterController.User)), question))
                 {
                     View.lblTitle_Results_Title.Text = "Deze vraag is al door u beantwoord...";

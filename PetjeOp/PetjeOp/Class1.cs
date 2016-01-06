@@ -10,7 +10,7 @@ namespace PetjeOp
 {
     // De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
     // Question q = masterController.DB.GetQuestion(id);
-    public class Database
+    public class Class1
     {
         // Initialiseren van de database connectie die vervolgens gebruikt wordt voor LinqtoSQL
         DatabaseDataContext db = new DatabaseDataContext();

@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DatabaseUnitTest.cs" />
+    <Compile Include="AddQuestionnaireUnitTest.cs" />
     <Compile Include="QuestionnaireDetailUnitTest.cs" />
     <Compile Include="QuestionnaireOverviewTest.cs" />
     <Compile Include="QuestionnaireUnitTest.cs" />
