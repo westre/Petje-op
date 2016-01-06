@@ -48,12 +48,12 @@ namespace PetjeOp {
                     EventLengthInHours = (float)difference,
                     CustomToolTipText =
                     "Vak: " + exam.Questionnaire.Subject.Name
-                    + "\n\nKlas " + exam.Lecture.Class
+                    + "\nKlas: " + exam.Lecture.Class
                     + "\n\nStart: " + exam.Starttime
                     + "\nEind: " + exam.Endtime
                     + "\nDuur: " + differenceMinutes + " minuten"
                     + "\n\nGemaakt door: " + exam.Questionnaire.Author
-                    + "\nWordt afgenomen door: " + exam.Lecture.Teacher,
+                    + "\nAfname door: " + exam.Lecture.Teacher,
                     Tag = exam
                 };
 
