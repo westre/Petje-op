@@ -934,6 +934,7 @@ namespace PetjeOp
             MessageBox.Show("Alle resultaten zijn verwijderd");
         }
 
+        // Deze functie wordt gebruikt om het database object tblQuestionnaire te converteren naar een Questionnaire object die vervolgens gebruikt kan worden in het programma
         public Questionnaire ConvertDbQuestionnaire(tblQuestionnaire dbQuestionnaire)
         {
             Teacher author = new Teacher() // Teacher object aanmaken
@@ -961,6 +962,7 @@ namespace PetjeOp
             return questionnaire;
         }
 
+        // Deze functie wordt gebruikt om het database object tblQuestion te converteren naar een MultipleChoiceQuestion object die vervolgens gebruikt kan worden in het programma
         public MultipleChoiceQuestion ConvertDbQuestion(tblQuestion dbQuestion)
         {
             MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description) // Questionnaire object aanmaken
@@ -985,6 +987,7 @@ namespace PetjeOp
             return question;
         }
 
+        // Deze functie wordt gebruikt om het database object tblAnswer te converteren naar een Answer object die vervolgens gebruikt kan worden in het programma
         public Answer ConvertDbAnswer(tblAnswer dbAnswer)
         {
             return new Answer(dbAnswer.id) // Answer object aanmaken en returnen
@@ -993,6 +996,7 @@ namespace PetjeOp
             };
         }
 
+        // Deze functie wordt gebruikt om het database object tblLecture te converteren naar een Lecture object die vervolgens gebruikt kan worden in het programma
         public Lecture ConvertDbLecture(tblLecture dbLecture)
         {
             Teacher teacher = new Teacher() // Teacher object aanmaken
