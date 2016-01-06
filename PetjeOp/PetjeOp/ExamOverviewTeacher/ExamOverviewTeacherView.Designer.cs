@@ -48,7 +48,7 @@
             this.clnExams.ShowDisabledEvents = false;
             this.clnExams.ShowEventTooltips = true;
             this.clnExams.ShowTodayButton = true;
-            this.clnExams.Size = new System.Drawing.Size(2356, 1134);
+            this.clnExams.Size = new System.Drawing.Size(2242, 1134);
             this.clnExams.TabIndex = 0;
             this.clnExams.TodayFont = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             // 
@@ -68,9 +68,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblExams);
             this.Controls.Add(this.clnExams);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ExamOverviewTeacherView";
-            this.Size = new System.Drawing.Size(2362, 1564);
+            this.Size = new System.Drawing.Size(2231, 1564);
             this.ResumeLayout(false);
             this.PerformLayout();
 
