@@ -63,5 +63,14 @@ namespace PetjeOp.ChooseExamDialogs
         {
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ExamOverviewTeacherController etc = (ExamOverviewTeacherController)Controller.MasterController.GetController(typeof(ExamOverviewTeacherController));
+            etc.Load();
+            Controller.MasterController.SetController(etc);
+
+            this.Close();
+        }
     }
 }
