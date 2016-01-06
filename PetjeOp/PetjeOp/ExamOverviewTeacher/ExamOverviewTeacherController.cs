@@ -15,6 +15,12 @@ namespace PetjeOp {
         public ExamOverviewTeacherController(MasterController masterController) : base(masterController) {
             Model = new ExamOverviewTeacherModel();
             View = new ExamOverviewTeacherView(this);
+
+            View.clnExams.CalendarItemClick += ClnExams_CalendarItemClick;
+        }
+
+        private void ClnExams_CalendarItemClick(CalendarEvent calendarEvent, Point point) {
+            MessageBox.Show("Clicked!");
         }
 
         public override UserControl GetView() {
