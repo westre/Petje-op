@@ -101,19 +101,19 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(200, 253);
+            this.btnEdit.Location = new System.Drawing.Point(254, 253);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.Size = new System.Drawing.Size(109, 23);
             this.btnEdit.TabIndex = 6;
-            this.btnEdit.Text = "Wijzig";
+            this.btnEdit.Text = "Wijziging toepassen";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(281, 253);
+            this.btnRemove.Location = new System.Drawing.Point(369, 253);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.Size = new System.Drawing.Size(109, 23);
             this.btnRemove.TabIndex = 7;
             this.btnRemove.Text = "Verwijder";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -142,41 +142,41 @@
             // 
             // btnStarttimeEdit
             // 
-            this.btnStarttimeEdit.Location = new System.Drawing.Point(248, 3);
+            this.btnStarttimeEdit.Location = new System.Drawing.Point(369, 72);
             this.btnStarttimeEdit.Name = "btnStarttimeEdit";
             this.btnStarttimeEdit.Size = new System.Drawing.Size(109, 23);
             this.btnStarttimeEdit.TabIndex = 10;
-            this.btnStarttimeEdit.Text = "Starttime edit";
+            this.btnStarttimeEdit.Text = "Wijzig starttijd";
             this.btnStarttimeEdit.UseVisualStyleBackColor = true;
             this.btnStarttimeEdit.Click += new System.EventHandler(this.btnStarttimeEdit_Click);
             // 
             // btnEndtimeEdit
             // 
-            this.btnEndtimeEdit.Location = new System.Drawing.Point(247, 32);
+            this.btnEndtimeEdit.Location = new System.Drawing.Point(369, 101);
             this.btnEndtimeEdit.Name = "btnEndtimeEdit";
             this.btnEndtimeEdit.Size = new System.Drawing.Size(109, 23);
             this.btnEndtimeEdit.TabIndex = 11;
-            this.btnEndtimeEdit.Text = "Endtime edit";
+            this.btnEndtimeEdit.Text = "Wijzig eindtijd";
             this.btnEndtimeEdit.UseVisualStyleBackColor = true;
             this.btnEndtimeEdit.Click += new System.EventHandler(this.btnEndtimeEdit_Click);
             // 
             // btnLectureEdit
             // 
-            this.btnLectureEdit.Location = new System.Drawing.Point(247, 61);
+            this.btnLectureEdit.Location = new System.Drawing.Point(369, 129);
             this.btnLectureEdit.Name = "btnLectureEdit";
             this.btnLectureEdit.Size = new System.Drawing.Size(109, 23);
             this.btnLectureEdit.TabIndex = 12;
-            this.btnLectureEdit.Text = "Lecture edit";
+            this.btnLectureEdit.Text = "Wijzig college";
             this.btnLectureEdit.UseVisualStyleBackColor = true;
             this.btnLectureEdit.Click += new System.EventHandler(this.btnLectureEdit_Click);
             // 
             // btnQuestionnaireEdit
             // 
-            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(247, 90);
+            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(369, 156);
             this.btnQuestionnaireEdit.Name = "btnQuestionnaireEdit";
             this.btnQuestionnaireEdit.Size = new System.Drawing.Size(109, 23);
             this.btnQuestionnaireEdit.TabIndex = 13;
-            this.btnQuestionnaireEdit.Text = "Questionnaire edit";
+            this.btnQuestionnaireEdit.Text = "Wijzig vragenlijst";
             this.btnQuestionnaireEdit.UseVisualStyleBackColor = true;
             this.btnQuestionnaireEdit.Click += new System.EventHandler(this.btnQuestionnaireEdit_Click);
             // 
@@ -199,7 +199,7 @@
             this.Controls.Add(this.lblEndtime);
             this.Controls.Add(this.lblStarttime);
             this.Name = "ExamOverviewTeacherDetailView";
-            this.Size = new System.Drawing.Size(360, 279);
+            this.Size = new System.Drawing.Size(481, 279);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 using Calendar.NET;
+using System.Drawing;
 
 namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
     public partial class ExamOverviewTeacherDetailDialog : Form {
         public CustomEvent Event { get; set; }
         public ExamOverviewTeacherController TeacherController { get; set; }
         public Exam Exam { get; set; }
+        private Exam LocallyEditedExam { get; set; }
 
         private enum DialogOption {
             START_TIME,
@@ -20,22 +22,27 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             Event = @event;
             Exam = (Exam)Event.Tag;
 
+            // Geen referenties naar het originele object
+            LocallyEditedExam = new Exam(Exam.Examnr, Exam.Questionnaire, Exam.Starttime, Exam.Endtime, Exam.Lecture);
+
             InitializeComponent();
 
             UpdateView();
+
+            MessageBox.Show("hey: " + Exam.Endtime);
         }
 
         private void UpdateView() {
-            double differenceMinutes = (Exam.Endtime - Exam.Starttime).TotalMinutes;
+            double differenceMinutes = (LocallyEditedExam.Endtime - LocallyEditedExam.Starttime).TotalMinutes;
 
-            examOverviewTeacherDetailView.lblTitle.Text = Exam.Questionnaire.Name;
-            examOverviewTeacherDetailView.lblStarttime.Text = "Starttijd: " + Exam.Starttime.ToString();
-            examOverviewTeacherDetailView.lblEndtime.Text = "Eindtijd: " + Exam.Endtime.ToString();
+            examOverviewTeacherDetailView.lblTitle.Text = LocallyEditedExam.Questionnaire.Name;
+            examOverviewTeacherDetailView.lblStarttime.Text = "Starttijd: " + LocallyEditedExam.Starttime.ToString();
+            examOverviewTeacherDetailView.lblEndtime.Text = "Eindtijd: " + LocallyEditedExam.Endtime.ToString();
             examOverviewTeacherDetailView.lblDuration.Text = "Looptijd: " + string.Format("{0:n2}", differenceMinutes) + " minuten";
-            examOverviewTeacherDetailView.lblSubject.Text = "Vak: " + Exam.Questionnaire.Subject.Name;
-            examOverviewTeacherDetailView.lblExecutedBy.Text = "Wordt afgenomen door: " + Exam.Lecture.Teacher;
-            examOverviewTeacherDetailView.lblPlannedInBy.Text = "Ingepland door: " + Exam.Questionnaire.Author;
-            examOverviewTeacherDetailView.lblForClass.Text = "Voor: " + Exam.Lecture.Class.Code;
+            examOverviewTeacherDetailView.lblSubject.Text = "Vak: " + LocallyEditedExam.Questionnaire.Subject.Name;
+            examOverviewTeacherDetailView.lblExecutedBy.Text = "Wordt afgenomen door: " + LocallyEditedExam.Lecture.Teacher;
+            examOverviewTeacherDetailView.lblPlannedInBy.Text = "Ingepland door: " + LocallyEditedExam.Questionnaire.Author;
+            examOverviewTeacherDetailView.lblForClass.Text = "Voor: " + LocallyEditedExam.Lecture.Class.Code;
         }
 
         private void ExamOverviewTeacherDetailDialog_Load(object sender, EventArgs e) {
@@ -43,7 +50,26 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
         }
 
         public void EditClicked() {
-            MessageBox.Show("EditClicked");
+            Exam = LocallyEditedExam;
+            Event.Tag = Exam;
+
+            TeacherController.MasterController.DB.UpdateExam(Exam);
+
+            int changeCount = 0;
+            foreach(Control control in examOverviewTeacherDetailView.Controls) {
+                if(control is Label) {
+                    if(!((Label)control).ForeColor.ToArgb().Equals(Color.Black.ToArgb())) {
+                        changeCount++;
+                    }
+                    ((Label)control).ForeColor = Color.Black;
+                }
+            }
+
+            string changes = "wijziging";
+            if (changeCount > 1 || changeCount == 0)
+                changes += "en";
+
+            MessageBox.Show(changeCount + " " + changes + " toegepast");
         }
 
         public void RemoveClicked() {
@@ -84,25 +110,40 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             timePicker.Format = DateTimePickerFormat.Time;
             timePicker.ShowUpDown = true;
 
+            if (timeOption == DialogOption.START_TIME) {
+                datePicker.MinDate = DateTime.Now;
+                datePicker.Value = LocallyEditedExam.Starttime;
+                timePicker.Value = LocallyEditedExam.Starttime;
+            }
+            else if(timeOption == DialogOption.END_TIME) {
+                datePicker.MinDate = LocallyEditedExam.Starttime;
+                datePicker.Value = LocallyEditedExam.Endtime;
+                timePicker.Value = LocallyEditedExam.Endtime;
+            }         
+
             Button confirmation = new Button() { Text = "OK", Left = 10, Width = 100, Top = 110 };
             confirmation.Click += (sender, e) => {
                 DateTime newDate = datePicker.Value.Date + timePicker.Value.TimeOfDay;
 
                 if (timeOption == DialogOption.START_TIME) {
-                    if(newDate > Exam.Endtime || newDate < DateTime.Now) {
+                    if(newDate > LocallyEditedExam.Endtime || newDate < DateTime.Now) {
                         MessageBox.Show("Ongeldige datum");
                     }
                     else {
-                        Exam.Starttime = newDate;
+                        LocallyEditedExam.Starttime = newDate;
+                        examOverviewTeacherDetailView.lblStarttime.ForeColor = Color.DarkOrange;
+                        examOverviewTeacherDetailView.lblDuration.ForeColor = Color.DarkOrange;
                         prompt.Close();
                     }
                 }
                 else if (timeOption == DialogOption.END_TIME) {
-                    if(newDate < Exam.Starttime) {
+                    if(newDate < LocallyEditedExam.Starttime) {
                         MessageBox.Show("Ongeldige datum");
                     }
                     else {
-                        Exam.Endtime = newDate;
+                        LocallyEditedExam.Endtime = newDate;
+                        examOverviewTeacherDetailView.lblEndtime.ForeColor = Color.DarkOrange;
+                        examOverviewTeacherDetailView.lblDuration.ForeColor = Color.DarkOrange;
                         prompt.Close();
                     }        
                 }
@@ -144,11 +185,14 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             confirmation.Click += (sender, e) => {
                 if(option == DialogOption.LECTURE) {
                     Lecture selectedLecture = (Lecture)listBox.SelectedItem;
-                    Exam.Lecture = selectedLecture;
+                    LocallyEditedExam.Lecture = selectedLecture;
+                    examOverviewTeacherDetailView.lblExecutedBy.ForeColor = Color.DarkOrange;
+                    examOverviewTeacherDetailView.lblForClass.ForeColor = Color.DarkOrange;
                 }
                 else if (option == DialogOption.QUESTIONNAIRE) {
                     Questionnaire selectedQuestionnaire = (Questionnaire)listBox.SelectedItem;
-                    Exam.Questionnaire = selectedQuestionnaire;
+                    LocallyEditedExam.Questionnaire = selectedQuestionnaire;
+                    examOverviewTeacherDetailView.lblTitle.ForeColor = Color.DarkOrange;
                 }
 
                 prompt.Close();

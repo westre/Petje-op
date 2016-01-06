@@ -934,6 +934,24 @@ namespace PetjeOp
             MessageBox.Show("Alle resultaten zijn verwijderd");
         }
 
+        public void UpdateExam(Exam updatedExam) {
+            try {
+                tblExam tblExam = (from exam in db.tblExams
+                                   where exam.id == updatedExam.Examnr
+                                   select exam).FirstOrDefault();
+
+                tblExam.questionnaire = updatedExam.Questionnaire.ID;
+                tblExam.lecture = updatedExam.Lecture.ID;
+                tblExam.starttime = updatedExam.Starttime;
+                tblExam.endtime = updatedExam.Endtime;
+
+                db.SubmitChanges();
+            }
+            catch (SqlException ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         // Deze functie wordt gebruikt om het database object tblQuestionnaire te converteren naar een Questionnaire object die vervolgens gebruikt kan worden in het programma
         public Questionnaire ConvertDbQuestionnaire(tblQuestionnaire dbQuestionnaire)
         {
