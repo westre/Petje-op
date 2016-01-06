@@ -123,7 +123,6 @@
             this.lblTitle_Logout_Title.Size = new System.Drawing.Size(83, 23);
             this.lblTitle_Logout_Title.TabIndex = 14;
             this.lblTitle_Logout_Title.Text = "Uitloggen";
-            this.lblTitle_Logout_Title.Click += new System.EventHandler(this.lblTitle_Logout_Title_Click);
             // 
             // pbIcon_Logout_Icon
             // 
