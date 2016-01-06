@@ -17,6 +17,8 @@ namespace PetjeOp
 
         public Boolean QuestionContainsAnswerFromUser(Exam Exam, Student student, Question Question)
         {
+            DataClasses1DataContext db = new DataClasses1DataContext();
+
             tblResult result = db.tblResults.SingleOrDefault(g => g.student == student.StudentNr && g.exam == Exam.Examnr && g.question == Question.ID);
 
             if (result != null)
