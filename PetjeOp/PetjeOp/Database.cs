@@ -219,17 +219,15 @@ namespace PetjeOp
         {
             try
             {
-                tblQuestionnaire updateQuestionnaire =
-                    db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID);
-                // Haalt questionnaire op uit DB
-                updateQuestionnaire.description = questionnaire.Name; // Wijzigt naam van questionnaire in DB
+                tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID); // Haalt questionnaire op uit DB
+                updateQuestionnaire.description = questionnaire.Name; // Wijzigingen toepassen
                 updateQuestionnaire.archived = questionnaire.Archived;
 
-                if (deletedQuestions != null)
+                if (deletedQuestions != null) // Als er vragen zijn verwijderd, bevinden deze zich niet meer in het object Questionnaire daarvoor is een aparte lijst meegegeven
                 {
                     foreach (MultipleChoiceQuestion delQuestion in deletedQuestions)
                     {
-                        DeleteMultipleChoiceQuestion(delQuestion.ID);
+                        DeleteMultipleChoiceQuestion(delQuestion.ID); // Verwijder de desbetreffende vraag
                     }
                 }
 
@@ -245,12 +243,10 @@ namespace PetjeOp
                         dbQuestion = updateQuestionnaire.tblQuestions.SingleOrDefault(q => q.id == question.ID);
                         dbQuestion.description = question.Description; // Wijzigt de vraag in DB
 
-                        foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList())
-                        // Doorloopt lijst van bijbehorende answers uit DB
+                        foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList()) // Doorloopt lijst van bijbehorende answers uit DB
                         {
                             tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
-                            Answer answer = question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer);
-                            // Haalt Answer op uit Question
+                            Answer answer = question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer); // Haalt Answer op uit Question
                             dbAnswer.description = answer.Description; // Wijzigt het antwoord in DB
                         }
                         dbQuestion.correctanswer = question.CorrectAnswer.ID;
@@ -260,13 +256,8 @@ namespace PetjeOp
                         updateQuestionnaire.tblQuestions.Add(dbQuestion);
                     }
                 }
-                db.SubmitChanges();
-                // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB      
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); }
         }
 
         public Student GetStudent(String code)
