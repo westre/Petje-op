@@ -987,25 +987,24 @@ namespace PetjeOp
 
         public Answer ConvertDbAnswer(tblAnswer dbAnswer)
         {
-            Answer answer = new Answer(dbAnswer.id)
+            return new Answer(dbAnswer.id) // Answer object aanmaken en returnen
             {
                 Description = dbAnswer.description
             };
-            return answer;
         }
 
         public Lecture ConvertDbLecture(tblLecture dbLecture)
         {
-            Teacher teacher = new Teacher()
+            Teacher teacher = new Teacher() // Teacher object aanmaken
             {
                 TeacherNr = dbLecture.tblTeacher.nr,
                 FirstName = dbLecture.tblTeacher.firstname,
                 SurName = dbLecture.tblTeacher.surname
             };
-            Class clas = new Class(dbLecture.@class);
-            Subject subject = new Subject(dbLecture.tblSubject.id, dbLecture.tblSubject.name);
+            Class clas = new Class(dbLecture.@class); // Class object aanmaken
+            Subject subject = new Subject(dbLecture.tblSubject.id, dbLecture.tblSubject.name); // Subject object aanmaken
 
-            Lecture lecture = new Lecture(dbLecture.id, teacher, clas, subject);
+            Lecture lecture = new Lecture(dbLecture.id, teacher, clas, subject); // Lecture aanmaken met bovenstaande aangemaakte objecten
             return lecture;
         }
     }
