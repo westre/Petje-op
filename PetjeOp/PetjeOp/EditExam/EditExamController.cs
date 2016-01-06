@@ -149,6 +149,14 @@ namespace PetjeOp {
             ((EditExamView)GetView()).lblExecutedBy.Text = "Wordt afgenomen door: " + Model.LocallyEditedExam.Lecture.Teacher;
             ((EditExamView)GetView()).lblPlannedInBy.Text = "Ingepland door: " + Model.LocallyEditedExam.Questionnaire.Author;
             ((EditExamView)GetView()).lblForClass.Text = "Voor: " + Model.LocallyEditedExam.Lecture.Class.Code;
+
+            List<Result> results = MasterController.DB.GetResultsByExamId(Model.LocallyEditedExam.Examnr);
+            if(results.Count == 0) {
+                ((EditExamView)GetView()).btnRemove.Enabled = true;
+            }
+            else {
+                ((EditExamView)GetView()).btnRemove.Enabled = false;
+            }
         }
 
         private void ShowListBoxDialog(string title, DialogOption option) {
