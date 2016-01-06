@@ -28,8 +28,6 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             InitializeComponent();
 
             UpdateView();
-
-            MessageBox.Show("hey: " + Exam.Endtime);
         }
 
         private void UpdateView() {
