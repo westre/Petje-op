@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.clnExams = new Calendar.NET.Calendar();
             this.lblExams = new System.Windows.Forms.Label();
+            this.btnAddExam = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // clnExams
@@ -62,10 +63,20 @@
             this.lblExams.TabIndex = 1;
             this.lblExams.Text = "Afnamemomenten";
             // 
+            // btnAddExam
+            // 
+            this.btnAddExam.Location = new System.Drawing.Point(20, 1214);
+            this.btnAddExam.Name = "btnAddExam";
+            this.btnAddExam.Size = new System.Drawing.Size(335, 75);
+            this.btnAddExam.TabIndex = 3;
+            this.btnAddExam.Text = "Afnamemoment Toevoegen";
+            this.btnAddExam.UseVisualStyleBackColor = true;
+            // 
             // ExamOverviewTeacherView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnAddExam);
             this.Controls.Add(this.lblExams);
             this.Controls.Add(this.clnExams);
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -80,5 +91,6 @@
 
         public Calendar.NET.Calendar clnExams;
         private System.Windows.Forms.Label lblExams;
+        private System.Windows.Forms.Button btnAddExam;
     }
 }
