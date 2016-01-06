@@ -595,6 +595,28 @@ namespace PetjeOp
                 }
             }
 
+        public List<Lecture> GetAllLectures()
+        {
+            try
+            {
+                List<Lecture> les = new List<Lecture>();
+
+                foreach (tblLecture tbllecture in db.tblLectures)
+                {
+                    Lecture le = new Lecture(tbllecture.teacher, tbllecture.id, tbllecture.@class, tbllecture.subject);
+
+                    les.Add(le);
+                }
+
+                return les;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message); return null;
+
+            }
+        }
+
         public Lecture GetLecture(int id)
         {
             try
@@ -643,8 +665,6 @@ namespace PetjeOp
                 {
                     Lecture l = new Lecture(tbllecture.teacher, tbllecture.id, tbllecture.@class, tbllecture.subject);
                     lc.Add(l);
-
-
                 }
 
                 foreach(Lecture l in lc)

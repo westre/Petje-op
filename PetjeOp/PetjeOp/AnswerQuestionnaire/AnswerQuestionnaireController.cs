@@ -91,7 +91,7 @@ namespace PetjeOp {
                     tblResult result = new tblResult();
                     if (this.View.VraagBox.SelectedIndex != -1)
                     {
-                        result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
+                    result.answer = question.AnswerOptions[this.View.VraagBox.SelectedIndex].ID;
                     }
                     else
                     {

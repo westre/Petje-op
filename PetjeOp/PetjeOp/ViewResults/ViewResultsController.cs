@@ -98,7 +98,7 @@ namespace PetjeOp {
         // hier ga je terug naar het toevoegen en inzien van vragenlijsten
         public void GoToMainMenu()
         {
-            Controller controller = MasterController.GetController(typeof(QuestionnaireOverviewController));
+            Controller controller = MasterController.GetController(typeof(TeacherHomeController));
             MasterController.SetController(controller);
         }
 
