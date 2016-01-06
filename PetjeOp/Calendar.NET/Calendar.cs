@@ -465,6 +465,15 @@ namespace Calendar.NET
             Refresh();
         }
 
+        /// <summary>
+        /// Removes all events from the calendar. Function added by Gerrit.
+        /// </summary>
+        public void ClearCalendar()
+        {
+            _events.Clear();
+            Refresh();
+        }
+
         private void CalendarLoad(object sender, EventArgs e)
         {
             if (Parent != null)

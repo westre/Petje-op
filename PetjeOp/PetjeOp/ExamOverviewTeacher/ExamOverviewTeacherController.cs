@@ -32,6 +32,7 @@ namespace PetjeOp {
         }
 
         public void Load() {
+            View.clnExams.ClearCalendar();
             List<Exam> exams = MasterController.DB.GetExamsByTeacher(((Teacher)MasterController.User).TeacherNr);
 
             foreach (Exam exam in exams) {
