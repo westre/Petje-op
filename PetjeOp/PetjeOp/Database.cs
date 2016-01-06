@@ -274,7 +274,7 @@ namespace PetjeOp
                     //Loop door alle antwoorden heen
                     foreach (Answer answer in question.AnswerOptions)
                     {
-                        Answer ans = GetAnswer(answer.Description);
+                        Answer ans = ConvertDbAnswer(GetAnswer(answer.Description));
                         if (ans == null)
                         {
                             ans = ConvertDbAnswer(AddAnswer(answer));
@@ -304,7 +304,7 @@ namespace PetjeOp
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
-        public dynamic GetAnswer(string answer, bool dbObject = false)
+        public tblAnswer GetAnswer(string answer)
         {
             try
             {
@@ -314,14 +314,7 @@ namespace PetjeOp
 
                 if (dbAnswer != null)
                 {
-                    if (dbObject)
-                    {
-                        return dbAnswer;
-                    }
-                    else
-                    {
-                        return ConvertDbAnswer(dbAnswer);
-                    }
+                    return dbAnswer;
                 }
 
                 return null;
@@ -333,7 +326,7 @@ namespace PetjeOp
         {
             try
             {
-                tblAnswer answerExist = GetAnswer(answer.Description, true);
+                tblAnswer answerExist = GetAnswer(answer.Description);
                 if (answerExist != null)
                 {
                     return answerExist;
@@ -389,27 +382,41 @@ namespace PetjeOp
         {
             try
             {
-                tblQuestion question = new tblQuestion();
-                question.description = createdQuestion.Description;
-                question.correctanswer = createdQuestion.CorrectAnswer.ID;
-                question.questionnaire = questionnaireId;
-                question.questionindex = createdQuestion.QuestionIndex;
+                tblQuestion question = new tblQuestion()
+                {
+                    description = createdQuestion.Description,
+                    questionnaire = questionnaireId,
+                    questionindex = createdQuestion.QuestionIndex
+                };
 
                 if (createdQuestion.TimeRestriction != TimeSpan.Zero)
                 {
                     question.timerestriction = createdQuestion.TimeRestriction.Ticks;
                 }
 
+                List<tblAnswer> dbAnswers = new List<tblAnswer>();
+
+                foreach (Answer answer in createdQuestion.AnswerOptions)
+                {
+                    tblAnswer newAnswer = AddAnswer(answer);
+                    dbAnswers.Add(newAnswer);
+                    if (answer == createdQuestion.CorrectAnswer)
+                    {
+                        question.correctanswer = newAnswer.id;
+                    }
+                }
+
                 db.tblQuestions.InsertOnSubmit(question);
                 db.SubmitChanges();
 
+                foreach (tblAnswer dbAnswer in dbAnswers)
+                {
+                    LinkAnswerToQuestion(question.id, ConvertDbAnswer(dbAnswer));
+                }
+
                 return question;
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
         public void LinkAnswerToQuestion(int questionid, Answer answer)
