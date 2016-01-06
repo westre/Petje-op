@@ -48,7 +48,7 @@ namespace PetjeOp {
                     + "\nEind: " + exam.Endtime.ToString() 
                     + "\nDuur: " + differenceMinutes + " minuten"
                     + "\n\nGemaakt door: " + exam.Questionnaire.Author
-                    + "\nWordt afgenomen door: " + exam.Lecture.ClassString
+                    + "\nWordt afgenomen door: " + exam.Lecture.Class
                 };
 
                 View.clnExams.AddEvent(customEvent);

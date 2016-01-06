@@ -507,8 +507,9 @@ namespace Calendar.NET
                         if (z.Event.IgnoreTimeComponent == false)
                             _eventTip.EventToolTipText += "\n" + z.Event.Date.ToShortTimeString();
                     }
-                    
-                    _eventTip.Location = new Point(e.X + 5, e.Y - _eventTip.CalculateSize().Height);
+
+                    //_eventTip.Location = new Point(e.X + 5, e.Y - _eventTip.CalculateSize().Height);
+                    _eventTip.Location = new Point(e.X + 5, e.Y);
                     _eventTip.ShouldRender = true;
                     _eventTip.Visible = true;
 
