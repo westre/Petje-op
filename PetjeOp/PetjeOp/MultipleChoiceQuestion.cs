@@ -7,7 +7,7 @@ namespace PetjeOp
     {
         // ******************************************************************** // 
         // Een lijst, die alle antwoord-opties bevat. Deze antwoord-opties
-        // bevatten een "Description en een "RightAnswer" veld.
+        // bevatten een "Description en een "CorrectAnswer" veld.
         // ******************************************************************** // 
         public List<Answer> AnswerOptions { get; set; }
 
@@ -15,6 +15,7 @@ namespace PetjeOp
         public MultipleChoiceQuestion(String description) : base(description)
         {
             AnswerOptions = new List<Answer>();
+            base.ID = -1;
         }
 
         // Voegt een antwoord-optie toe aan de "MultipleChoiceQuestion" lijst.

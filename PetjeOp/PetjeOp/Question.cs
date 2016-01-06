@@ -63,7 +63,6 @@ namespace PetjeOp
                 System.Console.WriteLine(Media.Name + ", " + Media.Url + ", " + Media.Type);
             }
         }
-
         public int CompareTo(Question q)
         {
             return QuestionIndex.CompareTo(q.QuestionIndex);

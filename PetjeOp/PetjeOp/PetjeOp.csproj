@@ -78,6 +78,10 @@
       <DependentUpon>QuestionsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Answer.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Database.cs">
+      <DependentUpon>Database.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentController.cs" />
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentModel.cs" />
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentView.cs">
@@ -94,7 +98,6 @@
     </Compile>
     <Compile Include="Class.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="Database.cs" />
     <Compile Include="Database.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,6 +106,18 @@
     <Compile Include="DatabaseListener.cs" />
     <Compile Include="Exam.cs" />
     <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherController.cs" />
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherDetail\ExamOverviewTeacherDetailDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherDetail\ExamOverviewTeacherDetailDialog.Designer.cs">
+      <DependentUpon>ExamOverviewTeacherDetailDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherDetail\ExamOverviewTeacherDetailView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherDetail\ExamOverviewTeacherDetailView.Designer.cs">
+      <DependentUpon>ExamOverviewTeacherDetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherModel.cs" />
     <Compile Include="ExamOverviewTeacher\ExamOverviewTeacherView.cs">
       <SubType>UserControl</SubType>
@@ -237,6 +252,9 @@
     <EmbeddedResource Include="ChooseExamDialogs\ChooseExamDetailsDialog.resx">
       <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExamOverviewTeacher\ExamOverviewTeacherDetail\ExamOverviewTeacherDetailView.resx">
+      <DependentUpon>ExamOverviewTeacherDetailView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExamOverviewTeacher\ExamOverviewTeacherView.resx">
       <DependentUpon>ExamOverviewTeacherView.cs</DependentUpon>
     </EmbeddedResource>
@@ -325,6 +343,7 @@
       <Name>Calendar.NET</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

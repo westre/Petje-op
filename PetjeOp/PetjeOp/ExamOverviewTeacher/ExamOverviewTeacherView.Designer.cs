@@ -29,7 +29,7 @@
             // 
             // clnExams
             // 
-            this.clnExams.AllowEditingEvents = false;
+            this.clnExams.AllowEditingEvents = true;
             this.clnExams.CalendarDate = new System.DateTime(2016, 1, 5, 19, 51, 3, 51);
             this.clnExams.CalendarView = Calendar.NET.CalendarViews.Month;
             this.clnExams.DateHeaderFont = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);

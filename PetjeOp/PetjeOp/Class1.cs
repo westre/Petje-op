@@ -10,7 +10,7 @@ namespace PetjeOp
 {
     // De MasterController wordt altijd meegegeven, gebruik is bijv. alsvolgt:
     // Question q = masterController.DB.GetQuestion(id);
-    public class Database
+    public class Class1
     {
         // Initialiseren van de database connectie die vervolgens gebruikt wordt voor LinqtoSQL
         DatabaseDataContext db = new DatabaseDataContext();
@@ -149,26 +149,87 @@ namespace PetjeOp
 
                 if (dbQuestionnaire != null)
                 {
-                    return ConvertDbQuestionnaire(dbQuestionnaire);
+                    // Als de query gelukt is
+                    Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description);
+                    // Maak een questionnaire object aan
+                    questionnaire.ID = dbQuestionnaire.id; // Geef het id mee vanuit de database
+                    questionnaire.Subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name);
+                    // Set het subject van de vragenlijst
+
+                    Teacher author = new Teacher(); // Teacher object aanmaken voor Autheur
+                    author.TeacherNr = dbQuestionnaire.tblTeacher.nr;
+                    author.FirstName = dbQuestionnaire.tblTeacher.firstname;
+                    author.SurName = dbQuestionnaire.tblTeacher.surname;
+
+                    questionnaire.Author = author; // Set auteur van de vragenlijst
+                    questionnaire.Archived = dbQuestionnaire.archived;
+
+                    // Loop door alle questions binnen die questionnaire
+                    foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
+                    {
+                        MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description); // 
+
+                        question.ID = dbQuestion.id;
+                        question.QuestionIndex = dbQuestion.questionindex;
+                        if (dbQuestion.timerestriction != null)
+                        {
+                            question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
+                        }
+                        else
+                        {
+                            question.TimeRestriction = TimeSpan.Zero;
+                        }
+
+
+                        List<Answer> answerOptions = new List<Answer>();
+
+                        foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
+                        {
+                            // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
+                            tblAnswer tblAnswer = dbAnswerOption.tblAnswer;
+
+                            Answer answer = new Answer(tblAnswer.description);
+                            answer.ID = tblAnswer.id;
+                            answerOptions.Add(answer);
+
+                            if (dbQuestion.correctanswer == answer.ID)
+                            {
+                                question.CorrectAnswer = answer;
+                            }
+                        }
+
+                        // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
+                        question.AnswerOptions = answerOptions;
+
+                        // Voeg vragen toe aan onze questionnaire
+                        questionnaire.Questions.Add(question);
+                    }
+                    return questionnaire;
                 }
                 return null;
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
         public void UpdateQuestionnaire(Questionnaire questionnaire, List<Question> deletedQuestions = null)
         {
             try
             {
-                tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID); // Haalt questionnaire op uit DB
-                updateQuestionnaire.description = questionnaire.Name; // Wijzigingen toepassen
+                tblQuestionnaire updateQuestionnaire =
+                    db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID);
+                // Haalt questionnaire op uit DB
+                updateQuestionnaire.description = questionnaire.Name; // Wijzigt naam van questionnaire in DB
                 updateQuestionnaire.archived = questionnaire.Archived;
 
-                if (deletedQuestions != null) // Als er vragen zijn verwijderd, bevinden deze zich niet meer in het object Questionnaire daarvoor is een aparte lijst meegegeven
+                if (deletedQuestions != null)
                 {
                     foreach (MultipleChoiceQuestion delQuestion in deletedQuestions)
                     {
-                        DeleteMultipleChoiceQuestion(delQuestion.ID); // Verwijder de desbetreffende vraag
+                        DeleteMultipleChoiceQuestion(delQuestion.ID);
                     }
                 }
 
@@ -184,10 +245,12 @@ namespace PetjeOp
                         dbQuestion = updateQuestionnaire.tblQuestions.SingleOrDefault(q => q.id == question.ID);
                         dbQuestion.description = question.Description; // Wijzigt de vraag in DB
 
-                        foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList()) // Doorloopt lijst van bijbehorende answers uit DB
+                        foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList())
+                        // Doorloopt lijst van bijbehorende answers uit DB
                         {
                             tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
-                            Answer answer = question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer); // Haalt Answer op uit Question
+                            Answer answer = question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer);
+                            // Haalt Answer op uit Question
                             dbAnswer.description = answer.Description; // Wijzigt het antwoord in DB
                         }
                         dbQuestion.correctanswer = question.CorrectAnswer.ID;
@@ -197,8 +260,13 @@ namespace PetjeOp
                         updateQuestionnaire.tblQuestions.Add(dbQuestion);
                     }
                 }
+                db.SubmitChanges();
+                // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB      
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public Student GetStudent(String code)
@@ -260,92 +328,105 @@ namespace PetjeOp
         {
             try
             {
-                tblQuestionnaire dbQuestionnaire = new tblQuestionnaire()
-                {
-                    author = questionnaire.Author.TeacherNr,
-                    description = questionnaire.Name,
-                    subject = questionnaire.Subject.Id
-                };
-                questionnaire.ID = dbQuestionnaire.id;
+                tblQuestionnaire tblQuestionnaire = new tblQuestionnaire();
+
+                tblQuestionnaire.author = teacher.TeacherNr; // test data
+                tblQuestionnaire.description = questionnaire.Name;
+                tblQuestionnaire.subject = questionnaire.Subject.Id;
+                db.tblQuestionnaires.InsertOnSubmit(tblQuestionnaire);
+                db.SubmitChanges();
+
+                questionnaire.ID = tblQuestionnaire.id;
+                questionnaire.Author = teacher;
 
                 //Loop door alle vragen heen
-                foreach (MultipleChoiceQuestion question in questionnaire.Questions)
+                foreach (MultipleChoiceQuestion q in questionnaire.Questions)
                 {
                     //Loop door alle antwoorden heen
-                    foreach (Answer answer in question.AnswerOptions)
+                    foreach (Answer answer in q.AnswerOptions)
                     {
-                        Answer ans = ConvertDbAnswer(GetAnswer(answer.Description));
+                        Answer ans = GetAnswer(answer.Description);
                         if (ans == null)
                         {
-                            ans = ConvertDbAnswer(AddAnswer(answer));
+                            ans = AddAnswer(answer.Description.ToString());
                         }
 
-                        if (question.CorrectAnswer == answer)
+                        if (q.CorrectAnswer == answer)
                         {
-                            question.CorrectAnswer = ans;
+                            q.CorrectAnswer = ans;
                         }
+
                         // Synchroniseer onze offline answer met primary key van DB
                         answer.ID = ans.ID;
                     }
-                    tblQuestion dbQuestion = AddMultipleChoiceQuestion(question, questionnaire.ID);
 
-                    // Nu kunnen we door answers heen loopen aangezien we nu een ID hebben van Question
-                    foreach (Answer answer in question.AnswerOptions)
+                    tblQuestion dbQuestion = AddMultipleChoiceQuestion(q, questionnaire.ID);
+                    tblQuestionnaire.tblQuestions.Add(dbQuestion);
+                    // Synchroniseer onze offline dbQuestion met primary key van DB
+                    q.ID = dbQuestion.id;
+
+                    // Nu kunnen we er door heen loopen aangezien we nu een ID hebben van Question
+                    foreach (Answer answer in q.AnswerOptions)
                     {
-                        LinkAnswerToQuestion(dbQuestion.id, answer);
+                        LinkAnswerToQuestion(q, answer);
                     }
-                    dbQuestionnaire.tblQuestions.Add(dbQuestion);
                 }
 
-                db.tblQuestionnaires.InsertOnSubmit(dbQuestionnaire);
-                db.SubmitChanges();
                 return questionnaire;
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-        }
-
-        public tblAnswer GetAnswer(string answer)
-        {
-            try
+            catch (SqlException ex)
             {
-                tblAnswer dbAnswer = (from answers in db.tblAnswers
-                                      where answers.description.ToString().Equals(answer)
-                                      select answers).FirstOrDefault();
-
-                if (dbAnswer != null)
-                {
-                    return dbAnswer;
-                }
-
+                MessageBox.Show(ex.Message);
                 return null;
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
-        public tblAnswer AddAnswer(Answer answer)
+        public Answer GetAnswer(string answer)
         {
             try
             {
-                tblAnswer answerExist = GetAnswer(answer.Description);
-                if (answerExist != null)
-                {
-                    return answerExist;
-                }
-                else
-                {
-                    db = new DatabaseDataContext();
-                    tblAnswer createAnswer = new tblAnswer()
-                    {
-                        description = answer.Description
-                    };
-                    db.tblAnswers.InsertOnSubmit(createAnswer);
-                    db.SubmitChanges();
+                tblAnswer foundAnswer = (from answers in db.tblAnswers
+                                         where answers.description.ToString().Equals(answer)
+                                         select answers).FirstOrDefault();
 
-                    return createAnswer;
-                }
+                if (foundAnswer != null)
+                {
+                    Console.WriteLine("Found answer: " + foundAnswer.description.ToString());
 
+                    Answer retrievedAnswer = new Answer(foundAnswer.description);
+                    retrievedAnswer.ID = foundAnswer.id;
+
+                    return retrievedAnswer;
+                }
+                return null;
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public Answer AddAnswer(string receivedAnswer)
+        {
+            try
+            {
+                tblAnswer answer = new tblAnswer();
+                answer.description = receivedAnswer;
+
+                db.tblAnswers.InsertOnSubmit(answer);
+                db.SubmitChanges();
+
+                return new Answer(answer.description)
+                {
+                    ID = answer.id
+                };
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
         public void DeleteMultipleChoiceQuestion(int id)
@@ -382,57 +463,46 @@ namespace PetjeOp
         {
             try
             {
-                tblQuestion question = new tblQuestion()
-                {
-                    description = createdQuestion.Description,
-                    questionnaire = questionnaireId,
-                    questionindex = createdQuestion.QuestionIndex
-                };
+                tblQuestion question = new tblQuestion();
+                question.description = createdQuestion.Description;
+                question.correctanswer = createdQuestion.CorrectAnswer.ID;
+                question.questionnaire = questionnaireId;
+                question.questionindex = createdQuestion.QuestionIndex;
 
                 if (createdQuestion.TimeRestriction != TimeSpan.Zero)
                 {
                     question.timerestriction = createdQuestion.TimeRestriction.Ticks;
                 }
 
-                List<tblAnswer> dbAnswers = new List<tblAnswer>();
-
-                foreach (Answer answer in createdQuestion.AnswerOptions)
-                {
-                    tblAnswer newAnswer = AddAnswer(answer);
-                    dbAnswers.Add(newAnswer);
-                    if (answer == createdQuestion.CorrectAnswer)
-                    {
-                        question.correctanswer = newAnswer.id;
-                    }
-                }
-
                 db.tblQuestions.InsertOnSubmit(question);
                 db.SubmitChanges();
 
-                foreach (tblAnswer dbAnswer in dbAnswers)
-                {
-                    LinkAnswerToQuestion(question.id, ConvertDbAnswer(dbAnswer));
-                }
-
                 return question;
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
-        public void LinkAnswerToQuestion(int questionid, Answer answer)
+        public void LinkAnswerToQuestion(MultipleChoiceQuestion refQuestion, Answer refAnswer)
         {
             try
             {
                 //Of dus zo:
                 tblAnsweroption answerOption = new tblAnsweroption // Maak item aan om toe te voegen
                 {
-                    question = questionid,
-                    answer = answer.ID
+                    question = refQuestion.ID,
+                    answer = refAnswer.ID
                 };
                 db.tblAnsweroptions.InsertOnSubmit(answerOption); // Geef opdracht om bovenstaande item toe te voegen
                 db.SubmitChanges(); // Voer veranderingen door
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DeleteLinkAnswerToQuestion(int questionId)
@@ -517,35 +587,6 @@ namespace PetjeOp
                 return exams;
             }
             catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-        }
-
-        public List<Exam> GetExamsByTeacher(string teacherId)
-        {
-            try
-            {
-                List<Exam> exams = new List<Exam>();
-
-                foreach (tblExam tblExam in db.tblExams)
-                {
-                    Lecture lecture = GetLecture(tblExam.lecture);
-
-                    if (lecture.Teacher.TeacherNr == teacherId)
-                    {
-                        Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
-
-                        Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value,
-                            lecture);
-
-                        exams.Add(exam);
-                    } 
-                }
-
-                return exams;
-            } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;
@@ -696,7 +737,6 @@ namespace PetjeOp
         {
             try
             {
-
                 Exam exam = (from tblExam in db.tblExams
                              where tblExam.id == examID
                              select new Exam(tblExam.id, GetQuestionnaire(tblExam.questionnaire))
@@ -935,65 +975,6 @@ namespace PetjeOp
             }
 
             MessageBox.Show("Alle resultaten zijn verwijderd");
-        }
-
-        public Questionnaire ConvertDbQuestionnaire(tblQuestionnaire dbQuestionnaire)
-        {
-            Teacher author = new Teacher()
-            {
-                TeacherNr = dbQuestionnaire.tblTeacher.nr,
-                FirstName = dbQuestionnaire.tblTeacher.firstname,
-                SurName = dbQuestionnaire.tblTeacher.surname
-            };
-            Subject subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name);
-            Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.id)
-            {
-                Name = dbQuestionnaire.description,
-                Author = author,
-                Subject = subject,
-                Archived = dbQuestionnaire.archived
-            };
-            // Loop door alle questions binnen die questionnaire
-            foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
-            {
-                Question question = ConvertDbQuestion(dbQuestion);
-
-                // Voeg vragen toe aan onze questionnaire
-                questionnaire.Questions.Add(question);
-            }
-            return questionnaire;
-        }
-
-        public MultipleChoiceQuestion ConvertDbQuestion(tblQuestion dbQuestion)
-        {
-            MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description)
-            {
-                ID = dbQuestion.id,
-                QuestionIndex = dbQuestion.questionindex
-            };
-            if (dbQuestion.timerestriction != null)
-                question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
-            else
-                question.TimeRestriction = TimeSpan.Zero;
-            foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
-            {
-                Answer answer = ConvertDbAnswer(dbAnswerOption.tblAnswer);
-                question.AnswerOptions.Add(answer);
-                if (dbQuestion.correctanswer == answer.ID)
-                {
-                    question.CorrectAnswer = answer;
-                }
-            }
-            return question;
-        }
-
-        public Answer ConvertDbAnswer(tblAnswer dbAnswer)
-        {
-            Answer answer = new Answer(dbAnswer.id)
-            {
-                Description = dbAnswer.description
-            };
-            return answer;
         }
     }
 }

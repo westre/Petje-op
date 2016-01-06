@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Calendar.NET
 {
-    internal class CalendarEvent
+    public class CalendarEvent
     {
         public Rectangle EventArea
         {

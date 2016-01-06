@@ -41,6 +41,12 @@ namespace PetjeOp
             //Creëer database instantie
             DB = new Database();
             DB.AnswerCleanup();
+            MultipleChoiceQuestion question = DB.GetQuestion(1);
+            Console.WriteLine(question.Description + "::(" + question.ID + ")::" + question.QuestionIndex);
+            foreach (Answer answer in question.AnswerOptions)
+            {
+                Console.WriteLine(answer.Description + "::(" + answer.ID + ")");
+            }
 
             Resize += MasterController_Resize;
 

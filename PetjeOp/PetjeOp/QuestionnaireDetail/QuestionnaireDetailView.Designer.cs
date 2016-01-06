@@ -126,7 +126,7 @@
             this.lblShowQuestionnaire.AutoSize = true;
             this.lblShowQuestionnaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShowQuestionnaire.Location = new System.Drawing.Point(11, 19);
-            this.lblShowQuestionnaire.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblShowQuestionnaire.Margin = new System.Windows.Forms.Padding(2);
             this.lblShowQuestionnaire.Name = "lblShowQuestionnaire";
             this.lblShowQuestionnaire.Size = new System.Drawing.Size(308, 29);
             this.lblShowQuestionnaire.TabIndex = 26;
@@ -210,7 +210,7 @@
             // tbNameEdit
             // 
             this.tbNameEdit.Location = new System.Drawing.Point(104, 120);
-            this.tbNameEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbNameEdit.Margin = new System.Windows.Forms.Padding(2);
             this.tbNameEdit.Name = "tbNameEdit";
             this.tbNameEdit.Size = new System.Drawing.Size(232, 20);
             this.tbNameEdit.TabIndex = 45;
@@ -221,7 +221,7 @@
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(362, 139);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(108, 26);
             this.btnEdit.TabIndex = 48;
@@ -233,7 +233,7 @@
             // 
             this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(362, 139);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(108, 26);
             this.btnSave.TabIndex = 49;
@@ -245,7 +245,7 @@
             // btnCancelEdit
             // 
             this.btnCancelEdit.Location = new System.Drawing.Point(474, 139);
-            this.btnCancelEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelEdit.Name = "btnCancelEdit";
             this.btnCancelEdit.Size = new System.Drawing.Size(108, 26);
             this.btnCancelEdit.TabIndex = 50;
@@ -259,7 +259,7 @@
             this.cbSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSubject.FormattingEnabled = true;
             this.cbSubject.Location = new System.Drawing.Point(104, 145);
-            this.cbSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbSubject.Margin = new System.Windows.Forms.Padding(2);
             this.cbSubject.Name = "cbSubject";
             this.cbSubject.Size = new System.Drawing.Size(232, 21);
             this.cbSubject.TabIndex = 51;
