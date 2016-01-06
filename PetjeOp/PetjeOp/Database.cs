@@ -553,9 +553,7 @@ namespace PetjeOp
 
                 foreach (tblLecture tbllecture in db.tblLectures)
                 {
-                    Lecture le = new Lecture(tbllecture.teacher, tbllecture.id, tbllecture.@class, tbllecture.subject);
-
-                    les.Add(le);
+                    les.Add(ConvertDbLecture(tbllecture));
                 }
 
                 return les;
@@ -614,13 +612,12 @@ namespace PetjeOp
                 List<Lecture> lc = new List<Lecture>();
                 foreach (tblLecture tbllecture in db.tblLectures)
                 {
-                    Lecture l = new Lecture(tbllecture.teacher, tbllecture.id, tbllecture.@class, tbllecture.subject);
-                    lc.Add(l);
+                    lc.Add(ConvertDbLecture(tbllecture));
                 }
 
                 foreach (Lecture l in lc)
                 {
-                    if (l.ClassString == cs)
+                    if (l.Class.Code == cs)
                     {
                         foreach (Exam x in exams)
                         {
@@ -910,24 +907,24 @@ namespace PetjeOp
 
         public Questionnaire ConvertDbQuestionnaire(tblQuestionnaire dbQuestionnaire)
         {
-            Teacher author = new Teacher()
+            Teacher author = new Teacher() // Teacher object aanmaken
             {
                 TeacherNr = dbQuestionnaire.tblTeacher.nr,
                 FirstName = dbQuestionnaire.tblTeacher.firstname,
                 SurName = dbQuestionnaire.tblTeacher.surname
             };
-            Subject subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name);
-            Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.id)
+            Subject subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name); // Subject object aanmaken
+            Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.id) // Questionnaire object aanmaken
             {
                 Name = dbQuestionnaire.description,
-                Author = author,
-                Subject = subject,
+                Author = author, // Teacher object koppelen
+                Subject = subject, // Subject object koppelen
                 Archived = dbQuestionnaire.archived
             };
             // Loop door alle questions binnen die questionnaire
             foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
             {
-                Question question = ConvertDbQuestion(dbQuestion);
+                Question question = ConvertDbQuestion(dbQuestion); // Converteert database object naar Question
 
                 // Voeg vragen toe aan onze questionnaire
                 questionnaire.Questions.Add(question);
@@ -937,23 +934,24 @@ namespace PetjeOp
 
         public MultipleChoiceQuestion ConvertDbQuestion(tblQuestion dbQuestion)
         {
-            MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description)
+            MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description) // Questionnaire object aanmaken
             {
                 ID = dbQuestion.id,
                 QuestionIndex = dbQuestion.questionindex
             };
-            if (dbQuestion.timerestriction != null)
-                question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
+
+            if (dbQuestion.timerestriction != null) // Checkt als timerestriction is ingeschakeld
+                question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction); // Converteert deze naar C#'s TimeSpan
             else
-                question.TimeRestriction = TimeSpan.Zero;
+                question.TimeRestriction = TimeSpan.Zero; // Zo niet wordt de TimeSpan op nul gezet
+
+            // Doorloop alle antwoordopties die gekoppeld zijn aan een vraag
             foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
             {
-                Answer answer = ConvertDbAnswer(dbAnswerOption.tblAnswer);
-                question.AnswerOptions.Add(answer);
+                Answer answer = ConvertDbAnswer(dbAnswerOption.tblAnswer); // Converteerd database object naar Answer
+                question.AnswerOptions.Add(answer); // Voegt het antwoord toe als antwoordoptie aan het Question object
                 if (dbQuestion.correctanswer == answer.ID)
-                {
-                    question.CorrectAnswer = answer;
-                }
+                    question.CorrectAnswer = answer; // Als het database object ook het correcte antwoord is van de Question wordt deze als correct question ingesteld
             }
             return question;
         }
@@ -965,6 +963,21 @@ namespace PetjeOp
                 Description = dbAnswer.description
             };
             return answer;
+        }
+
+        public Lecture ConvertDbLecture(tblLecture dbLecture)
+        {
+            Teacher teacher = new Teacher()
+            {
+                TeacherNr = dbLecture.tblTeacher.nr,
+                FirstName = dbLecture.tblTeacher.firstname,
+                SurName = dbLecture.tblTeacher.surname
+            };
+            Class clas = new Class(dbLecture.@class);
+            Subject subject = new Subject(dbLecture.tblSubject.id, dbLecture.tblSubject.name);
+
+            Lecture lecture = new Lecture(dbLecture.id, teacher, clas, subject);
+            return lecture;
         }
     }
 }

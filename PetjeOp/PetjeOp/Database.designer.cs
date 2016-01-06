@@ -66,7 +66,7 @@ namespace PetjeOp
     #endregion
 		
 		public DatabaseDataContext() : 
-				base(global::PetjeOp.Properties.Settings.Default.kbs2ConnectionString, mappingSource)
+				base(global::PetjeOp.Properties.Settings.Default.kbs2ConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}

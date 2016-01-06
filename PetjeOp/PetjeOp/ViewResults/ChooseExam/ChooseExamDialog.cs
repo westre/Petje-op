@@ -37,13 +37,13 @@ namespace PetjeOp.ViewResults.ChooseExam
                 
                     if(le.ID == ex.Lecture.ID)
                     {
-                        Console.WriteLine(le.ClassString);
+                        Console.WriteLine(le.Class.Code);
                         ex.Lecture = le;
                     }
 
                 foreach(Class cls in Classes)
                 {
-                    if(cls.Code == ex.Lecture.ClassString)
+                    if(cls.Code == ex.Lecture.Class.Code)
                     {
                         Console.WriteLine(cls.Code);
                         ex.Class = cls;
