@@ -574,6 +574,35 @@ namespace PetjeOp
             }
         }
 
+        public List<Exam> GetExamsByTeacher(string teacherId)
+        {
+            try
+            {
+                List<Exam> exams = new List<Exam>();
+
+                foreach (tblExam tblExam in db.tblExams)
+                {
+                    Lecture lecture = GetLecture(tblExam.lecture);
+
+                    if (lecture.Teacher.TeacherNr == teacherId)
+                    {
+                        Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
+
+                        Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value,
+                            lecture);
+
+                        exams.Add(exam);
+                    } 
+                }
+
+                return exams;
+            } catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
         public List<Class> GetAllClasses()
         {
             try

@@ -8,11 +8,11 @@ namespace PetjeOp
     public class Lecture
     {
         public int ID { get; set; }
-        private Teacher Teacher { get; set; }
+        public Teacher Teacher { get; set; }
         public Class Class { get; set; }
         public Subject Subject { get; set; }
 
-        private string TeacherString { get; set; }
+        public string TeacherString { get; set; }
         public string ClassString { get; set; }
         public int SubjectInt { get; set; }
 

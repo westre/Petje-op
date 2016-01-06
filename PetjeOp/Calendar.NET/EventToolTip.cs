@@ -91,7 +91,7 @@ namespace Calendar.NET
 
             _shouldRender = false;
             _eventToolTipBorderColor = Color.Black;
-            _eventToolTipColor = Color.Yellow;
+            _eventToolTipColor = Color.FromArgb(215, 165, 0);
             _eventToolTipFont = new Font("Arial", 10, FontStyle.Regular);
             _eventToolTipText = "";
             _eventToolTipTextColor = Color.Black;
