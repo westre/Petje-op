@@ -13,8 +13,12 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             InitializeComponent();
         }
 
-        private void lblSubject_Click(object sender, EventArgs e) {
+        private void btnEdit_Click(object sender, EventArgs e) {
+            ((ExamOverviewTeacherDetailDialog)Parent).EditClicked();
+        }
 
+        private void btnRemove_Click(object sender, EventArgs e) {
+            ((ExamOverviewTeacherDetailDialog)Parent).RemoveClicked();
         }
     }
 }

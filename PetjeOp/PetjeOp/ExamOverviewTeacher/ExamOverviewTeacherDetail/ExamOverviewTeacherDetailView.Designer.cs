@@ -31,13 +31,15 @@
             this.lblExecutedBy = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.lblForClass = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStarttime
             // 
             this.lblStarttime.AutoSize = true;
             this.lblStarttime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStarttime.Location = new System.Drawing.Point(-4, 58);
+            this.lblStarttime.Location = new System.Drawing.Point(-4, 101);
             this.lblStarttime.Name = "lblStarttime";
             this.lblStarttime.Size = new System.Drawing.Size(65, 18);
             this.lblStarttime.TabIndex = 0;
@@ -47,7 +49,7 @@
             // 
             this.lblEndtime.AutoSize = true;
             this.lblEndtime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEndtime.Location = new System.Drawing.Point(-4, 86);
+            this.lblEndtime.Location = new System.Drawing.Point(-4, 129);
             this.lblEndtime.Name = "lblEndtime";
             this.lblEndtime.Size = new System.Drawing.Size(63, 18);
             this.lblEndtime.TabIndex = 1;
@@ -57,7 +59,7 @@
             // 
             this.lblDuration.AutoSize = true;
             this.lblDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuration.Location = new System.Drawing.Point(-3, 29);
+            this.lblDuration.Location = new System.Drawing.Point(-3, 72);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(64, 18);
             this.lblDuration.TabIndex = 2;
@@ -67,18 +69,17 @@
             // 
             this.lblSubject.AutoSize = true;
             this.lblSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubject.Location = new System.Drawing.Point(-3, 0);
+            this.lblSubject.Location = new System.Drawing.Point(-3, 43);
             this.lblSubject.Name = "lblSubject";
             this.lblSubject.Size = new System.Drawing.Size(41, 18);
             this.lblSubject.TabIndex = 3;
             this.lblSubject.Text = "Vak: ";
-            this.lblSubject.Click += new System.EventHandler(this.lblSubject_Click);
             // 
             // lblPlannedInBy
             // 
             this.lblPlannedInBy.AutoSize = true;
             this.lblPlannedInBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlannedInBy.Location = new System.Drawing.Point(-4, 114);
+            this.lblPlannedInBy.Location = new System.Drawing.Point(-4, 157);
             this.lblPlannedInBy.Name = "lblPlannedInBy";
             this.lblPlannedInBy.Size = new System.Drawing.Size(105, 18);
             this.lblPlannedInBy.TabIndex = 4;
@@ -88,7 +89,7 @@
             // 
             this.lblExecutedBy.AutoSize = true;
             this.lblExecutedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExecutedBy.Location = new System.Drawing.Point(-4, 143);
+            this.lblExecutedBy.Location = new System.Drawing.Point(-4, 186);
             this.lblExecutedBy.Name = "lblExecutedBy";
             this.lblExecutedBy.Size = new System.Drawing.Size(162, 18);
             this.lblExecutedBy.TabIndex = 5;
@@ -102,6 +103,7 @@
             this.btnEdit.TabIndex = 6;
             this.btnEdit.Text = "Wijzig";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnRemove
             // 
@@ -111,11 +113,35 @@
             this.btnRemove.TabIndex = 7;
             this.btnRemove.Text = "Verwijder";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // lblForClass
+            // 
+            this.lblForClass.AutoSize = true;
+            this.lblForClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblForClass.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblForClass.Location = new System.Drawing.Point(-3, 217);
+            this.lblForClass.Name = "lblForClass";
+            this.lblForClass.Size = new System.Drawing.Size(40, 18);
+            this.lblForClass.TabIndex = 8;
+            this.lblForClass.Text = "Voor";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(-3, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(40, 18);
+            this.lblTitle.TabIndex = 9;
+            this.lblTitle.Text = "Title";
             // 
             // ExamOverviewTeacherDetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lblForClass);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblExecutedBy);
@@ -141,5 +167,7 @@
         public System.Windows.Forms.Label lblExecutedBy;
         public System.Windows.Forms.Button btnEdit;
         public System.Windows.Forms.Button btnRemove;
+        public System.Windows.Forms.Label lblForClass;
+        public System.Windows.Forms.Label lblTitle;
     }
 }

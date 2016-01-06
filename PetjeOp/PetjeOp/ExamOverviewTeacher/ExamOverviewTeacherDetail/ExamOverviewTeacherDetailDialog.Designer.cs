@@ -1,4 +1,6 @@
-﻿namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
+﻿using System;
+
+namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
     partial class ExamOverviewTeacherDetailDialog {
         /// <summary>
         /// Required designer variable.

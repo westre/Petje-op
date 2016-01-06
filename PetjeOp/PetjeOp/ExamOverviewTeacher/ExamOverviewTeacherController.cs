@@ -23,7 +23,7 @@ namespace PetjeOp {
         private void ClnExams_CalendarItemClick(CalendarEvent calendarEvent, Point point) {
             if(calendarEvent.Event is CustomEvent) {
                 ExamOverviewTeacherDetailDialog dialog = new ExamOverviewTeacherDetailDialog(this, (CustomEvent)calendarEvent.Event);
-                dialog.ShowDialog();
+                dialog.Show();
             }
         }
 
