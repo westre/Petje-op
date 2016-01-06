@@ -66,32 +66,38 @@ namespace PetjeOp
         public tblQuestion AddMultipleChoiceQuestion(MultipleChoiceQuestion createdQuestion, int questionnaireId)
         {
             try
-            {
+            {                
                 tblQuestion question = new tblQuestion()
                 {
                     description = createdQuestion.Description,
                     questionnaire = questionnaireId,
                     questionindex = createdQuestion.QuestionIndex
                 };
-
-
+                
                 if (createdQuestion.TimeRestriction != TimeSpan.Zero)
                 {
                     question.timerestriction = createdQuestion.TimeRestriction.Ticks;
                 }
 
+                List<tblAnswer> dbAnswers = new List<tblAnswer>();
+
                 foreach (Answer answer in createdQuestion.AnswerOptions)
                 {
                     tblAnswer newAnswer = AddAnswer(answer);
+                    dbAnswers.Add(newAnswer);
                     if (answer == createdQuestion.CorrectAnswer)
                     {
                         question.correctanswer = newAnswer.id;
                     }
-                    LinkAnswerToQuestion(question.id, ConvertDbAnswer(newAnswer));
                 }
 
                 db.tblQuestions.InsertOnSubmit(question);
                 db.SubmitChanges();
+
+                foreach (tblAnswer dbAnswer in dbAnswers)
+                {
+                    LinkAnswerToQuestion(question.id, ConvertDbAnswer(dbAnswer));
+                }
 
                 return question;
             }
@@ -109,6 +115,7 @@ namespace PetjeOp
                 }
                 else
                 {
+                    db = new DatabaseDataContext();
                     tblAnswer createAnswer = new tblAnswer()
                     {
                         description = answer.Description
@@ -145,10 +152,6 @@ namespace PetjeOp
                     if (question.ID == -1)
                     {
                         dbQuestion = AddMultipleChoiceQuestion(question, questionnaire.ID);
-                        foreach (Answer answer in question.AnswerOptions)
-                        {
-                            LinkAnswerToQuestion(dbQuestion.id, answer);
-                        }
                     }
                     else
                     {
@@ -168,7 +171,6 @@ namespace PetjeOp
                         updateQuestionnaire.tblQuestions.Add(dbQuestion);
                     }
                 }
-                db.SubmitChanges(); // Waar alle Magic happens, alle bovenstaande wijzigingen worden doorgevoerd in de DB      
             //}
             //catch (SqlException ex) { MessageBox.Show(ex.Message); }
         }
@@ -399,10 +401,11 @@ namespace PetjeOp
                 {
                     if (dbAnswer.tblAnsweroptions.Count == 0) // Als een antwoordt geen relatie meer heeft met een answeroption
                     {
-                        db.tblAnswers.DeleteOnSubmit(dbAnswer); // dan wordt het antwoordt verwijderd.
+                        db.tblAnswers.DeleteOnSubmit(dbAnswer);
+                        db.SubmitChanges();  // dan wordt het antwoordt verwijderd.
                     }
                 }
-                db.SubmitChanges(); // Voert de wijziginen uit
+                // Voert de wijziginen uit
             }
             catch (SqlException ex) { MessageBox.Show(ex.Message); }
         }

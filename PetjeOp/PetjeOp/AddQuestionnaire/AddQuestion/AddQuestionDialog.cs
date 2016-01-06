@@ -59,6 +59,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         //Functie voor afhandeling van klik op 'Vraag Toevoegen'
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
+            answers = new List<Answer>();
             if (!UpdateView) {
                 Question = new MultipleChoiceQuestion(addQuestionView1.tbQuestion.Text);
             }
@@ -66,8 +67,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
             //Loop voor alle ingevoerde antwoorden
             foreach (var item in addQuestionView1.clbAnswers.Items)
             {
-                Answer ans = null;
-
+                Answer ans = (Answer) item;
                 if (!UpdateView || Question.GetAnswer(item.ToString()) == null) {
                     //Maak een antwoordobject aan
                     ans = new Answer(item.ToString());
@@ -75,8 +75,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                     answers.Add(ans);
                     ans.ID = -1;
                 }
-
-                correct = ans;
             }
 
             //Voeg antwoorden toe aan het vraagobject
@@ -176,7 +174,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 //Vul CheckedListBox met antwoorden
                 foreach (Answer a in Question.AnswerOptions)
                 {
-                    int addedIndex = addQuestionView1.clbAnswers.Items.Add(a.Description);
+                    int addedIndex = addQuestionView1.clbAnswers.Items.Add(a);
 
                     if (a.Equals(Question.CorrectAnswer))
                     {

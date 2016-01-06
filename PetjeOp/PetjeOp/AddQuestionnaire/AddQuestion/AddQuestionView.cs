@@ -27,7 +27,7 @@ namespace PetjeOp.AddQuestionnaire
             if (tbAnswer.Text != null)
             {
                 //Voeg antwoord toe aan lijst
-                clbAnswers.Items.Add(tbAnswer.Text.Trim());
+                clbAnswers.Items.Add(new Answer(tbAnswer.Text.Trim()));
                 checkQuestionView();
                 tbAnswer.Clear();
             }
@@ -75,7 +75,6 @@ namespace PetjeOp.AddQuestionnaire
         //Knop om antwoord toe te voegen aan- en uitzetten
         private void tbAnswer_TextChanged(object sender, EventArgs e)
         {
-
             if (tbAnswer.Text.Count() > 0)
             {
                 if (CheckIfDuplicate(tbAnswer.Text))
@@ -87,7 +86,6 @@ namespace PetjeOp.AddQuestionnaire
                 {
                     btnAddAnswer.Enabled = false;
                     lblDuplicate.Text = "Geen dubbele antwoorden!";
-                    Console.WriteLine("Dit werkt!");
                 }
             }
             else
@@ -95,9 +93,6 @@ namespace PetjeOp.AddQuestionnaire
                 btnAddAnswer.Enabled = false;
                 lblDuplicate.Text = "";
             }
-
-
-
         }
 
         //Valideer de ingevoerde gegevens

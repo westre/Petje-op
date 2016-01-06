@@ -51,5 +51,10 @@ namespace PetjeOp {
         {
             Controller.GoToQuestionnaireOverview();
         }
+
+        private void lblTitle_Logout_Title_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }
