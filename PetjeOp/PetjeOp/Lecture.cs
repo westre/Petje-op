@@ -19,5 +19,9 @@ namespace PetjeOp
             this.Class = Class;
             Subject = subject;
         }
+
+        public override string ToString() {
+            return Class.Code + " - " + Teacher.TeacherNr;
+        }
     }
 }

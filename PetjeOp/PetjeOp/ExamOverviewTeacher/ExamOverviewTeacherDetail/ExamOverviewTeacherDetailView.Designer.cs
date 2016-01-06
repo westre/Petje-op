@@ -33,6 +33,10 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.lblForClass = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnStarttimeEdit = new System.Windows.Forms.Button();
+            this.btnEndtimeEdit = new System.Windows.Forms.Button();
+            this.btnLectureEdit = new System.Windows.Forms.Button();
+            this.btnQuestionnaireEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblStarttime
@@ -136,10 +140,54 @@
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Title";
             // 
+            // btnStarttimeEdit
+            // 
+            this.btnStarttimeEdit.Location = new System.Drawing.Point(248, 3);
+            this.btnStarttimeEdit.Name = "btnStarttimeEdit";
+            this.btnStarttimeEdit.Size = new System.Drawing.Size(109, 23);
+            this.btnStarttimeEdit.TabIndex = 10;
+            this.btnStarttimeEdit.Text = "Starttime edit";
+            this.btnStarttimeEdit.UseVisualStyleBackColor = true;
+            this.btnStarttimeEdit.Click += new System.EventHandler(this.btnStarttimeEdit_Click);
+            // 
+            // btnEndtimeEdit
+            // 
+            this.btnEndtimeEdit.Location = new System.Drawing.Point(247, 32);
+            this.btnEndtimeEdit.Name = "btnEndtimeEdit";
+            this.btnEndtimeEdit.Size = new System.Drawing.Size(109, 23);
+            this.btnEndtimeEdit.TabIndex = 11;
+            this.btnEndtimeEdit.Text = "Endtime edit";
+            this.btnEndtimeEdit.UseVisualStyleBackColor = true;
+            this.btnEndtimeEdit.Click += new System.EventHandler(this.btnEndtimeEdit_Click);
+            // 
+            // btnLectureEdit
+            // 
+            this.btnLectureEdit.Location = new System.Drawing.Point(247, 61);
+            this.btnLectureEdit.Name = "btnLectureEdit";
+            this.btnLectureEdit.Size = new System.Drawing.Size(109, 23);
+            this.btnLectureEdit.TabIndex = 12;
+            this.btnLectureEdit.Text = "Lecture edit";
+            this.btnLectureEdit.UseVisualStyleBackColor = true;
+            this.btnLectureEdit.Click += new System.EventHandler(this.btnLectureEdit_Click);
+            // 
+            // btnQuestionnaireEdit
+            // 
+            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(247, 90);
+            this.btnQuestionnaireEdit.Name = "btnQuestionnaireEdit";
+            this.btnQuestionnaireEdit.Size = new System.Drawing.Size(109, 23);
+            this.btnQuestionnaireEdit.TabIndex = 13;
+            this.btnQuestionnaireEdit.Text = "Questionnaire edit";
+            this.btnQuestionnaireEdit.UseVisualStyleBackColor = true;
+            this.btnQuestionnaireEdit.Click += new System.EventHandler(this.btnQuestionnaireEdit_Click);
+            // 
             // ExamOverviewTeacherDetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnQuestionnaireEdit);
+            this.Controls.Add(this.btnLectureEdit);
+            this.Controls.Add(this.btnEndtimeEdit);
+            this.Controls.Add(this.btnStarttimeEdit);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblForClass);
             this.Controls.Add(this.btnRemove);
@@ -169,5 +217,9 @@
         public System.Windows.Forms.Button btnRemove;
         public System.Windows.Forms.Label lblForClass;
         public System.Windows.Forms.Label lblTitle;
+        public System.Windows.Forms.Button btnStarttimeEdit;
+        public System.Windows.Forms.Button btnEndtimeEdit;
+        public System.Windows.Forms.Button btnLectureEdit;
+        public System.Windows.Forms.Button btnQuestionnaireEdit;
     }
 }
