@@ -109,7 +109,7 @@
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
             this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Logout_Background.TabIndex = 15;
-            this.pnlButton_Logout_Background.Click += new System.EventHandler(Logout);
+            this.pnlButton_Logout_Background.Click += new System.EventHandler(this.Logout);
             // 
             // lblTitle_Logout_Title
             // 
@@ -164,6 +164,7 @@
             this.pnlButton_Agenda_Background.Name = "pnlButton_Agenda_Background";
             this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Agenda_Background.TabIndex = 15;
+            this.pnlButton_Agenda_Background.Click += new System.EventHandler(this.ViewExamClick);
             // 
             // pbIcon_Agenda_Icon
             // 
