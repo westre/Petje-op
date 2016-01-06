@@ -126,6 +126,7 @@
             this.btnGoToExams.TabIndex = 9;
             this.btnGoToExams.Text = "Ga naar agenda";
             this.btnGoToExams.UseVisualStyleBackColor = true;
+            this.btnGoToExams.Click += new System.EventHandler(this.btnGoToExams_Click);
             // 
             // label1
             // 

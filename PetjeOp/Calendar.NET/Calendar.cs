@@ -355,6 +355,7 @@ namespace Calendar.NET
             // 
             // _btnToday
             // 
+            this._btnToday.AutoSize = true;
             this._btnToday.BackColor = System.Drawing.Color.Transparent;
             this._btnToday.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this._btnToday.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -364,6 +365,7 @@ namespace Calendar.NET
             this._btnToday.HighlightBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this._btnToday.HighlightButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
             this._btnToday.Location = new System.Drawing.Point(19, 20);
+            this._btnToday.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._btnToday.Name = "_btnToday";
             this._btnToday.Size = new System.Drawing.Size(72, 29);
             this._btnToday.TabIndex = 0;
@@ -372,6 +374,7 @@ namespace Calendar.NET
             // 
             // _btnLeft
             // 
+            this._btnLeft.AutoSize = true;
             this._btnLeft.BackColor = System.Drawing.Color.Transparent;
             this._btnLeft.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this._btnLeft.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -381,6 +384,7 @@ namespace Calendar.NET
             this._btnLeft.HighlightBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this._btnLeft.HighlightButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
             this._btnLeft.Location = new System.Drawing.Point(98, 20);
+            this._btnLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._btnLeft.Name = "_btnLeft";
             this._btnLeft.Size = new System.Drawing.Size(42, 29);
             this._btnLeft.TabIndex = 1;
@@ -389,6 +393,7 @@ namespace Calendar.NET
             // 
             // _btnRight
             // 
+            this._btnRight.AutoSize = true;
             this._btnRight.BackColor = System.Drawing.Color.Transparent;
             this._btnRight.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this._btnRight.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -398,6 +403,7 @@ namespace Calendar.NET
             this._btnRight.HighlightBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this._btnRight.HighlightButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
             this._btnRight.Location = new System.Drawing.Point(138, 20);
+            this._btnRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._btnRight.Name = "_btnRight";
             this._btnRight.Size = new System.Drawing.Size(42, 29);
             this._btnRight.TabIndex = 2;
@@ -406,15 +412,16 @@ namespace Calendar.NET
             // 
             // _contextMenuStrip1
             // 
+            this._contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this._contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._miProperties});
             this._contextMenuStrip1.Name = "_contextMenuStrip1";
-            this._contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
+            this._contextMenuStrip1.Size = new System.Drawing.Size(238, 42);
             // 
             // _miProperties
             // 
             this._miProperties.Name = "_miProperties";
-            this._miProperties.Size = new System.Drawing.Size(136, 22);
+            this._miProperties.Size = new System.Drawing.Size(237, 38);
             this._miProperties.Text = "Properties...";
             this._miProperties.Click += new System.EventHandler(this.MenuItemPropertiesClick);
             // 
@@ -423,6 +430,7 @@ namespace Calendar.NET
             this.Controls.Add(this._btnRight);
             this.Controls.Add(this._btnLeft);
             this.Controls.Add(this._btnToday);
+            this.DoubleBuffered = true;
             this.Name = "Calendar";
             this.Size = new System.Drawing.Size(512, 440);
             this.Load += new System.EventHandler(this.CalendarLoad);
@@ -430,9 +438,9 @@ namespace Calendar.NET
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarMouseClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CalendarMouseMove);
             this.Resize += new System.EventHandler(this.CalendarResize);
-            this.DoubleBuffered = true;
             this._contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -910,13 +918,13 @@ namespace Calendar.NET
             Graphics g = Graphics.FromImage(bmp);
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-            SizeF sunSize = g.MeasureString("Sun", _dayOfWeekFont);
-            SizeF monSize = g.MeasureString("Mon", _dayOfWeekFont);
-            SizeF tueSize = g.MeasureString("Tue", _dayOfWeekFont);
-            SizeF wedSize = g.MeasureString("Wed", _dayOfWeekFont);
-            SizeF thuSize = g.MeasureString("Thu", _dayOfWeekFont);
-            SizeF friSize = g.MeasureString("Fri", _dayOfWeekFont);
-            SizeF satSize = g.MeasureString("Sat", _dayOfWeekFont);
+            SizeF sunSize = g.MeasureString("Zondag", _dayOfWeekFont);
+            SizeF monSize = g.MeasureString("Maandag", _dayOfWeekFont);
+            SizeF tueSize = g.MeasureString("Dinsdag", _dayOfWeekFont);
+            SizeF wedSize = g.MeasureString("Woensdag", _dayOfWeekFont);
+            SizeF thuSize = g.MeasureString("Donderdag", _dayOfWeekFont);
+            SizeF friSize = g.MeasureString("Vrijdag", _dayOfWeekFont);
+            SizeF satSize = g.MeasureString("Zaterdag", _dayOfWeekFont);
             SizeF dateHeaderSize = g.MeasureString(
                 _calendarDate.ToString("MMMM") + " " + _calendarDate.Year.ToString(CultureInfo.InvariantCulture), _dateHeaderFont);
             int headerSpacing = Max(sunSize.Height, monSize.Height, tueSize.Height, wedSize.Height, thuSize.Height, friSize.Height,
@@ -1024,24 +1032,24 @@ namespace Calendar.NET
             xStart = MarginSize + ((cellWidth - (int)sunSize.Width) / 2);
             yStart = MarginSize + controlsSpacing;
 
-            g.DrawString("Sun", _dayOfWeekFont, Brushes.Black, xStart, yStart);
+            g.DrawString("Zondag", _dayOfWeekFont, Brushes.Black, xStart, yStart);
             xStart = MarginSize + ((cellWidth - (int)monSize.Width) / 2) + cellWidth;
-            g.DrawString("Mon", _dayOfWeekFont, Brushes.Black, xStart, yStart);
+            g.DrawString("Maandag", _dayOfWeekFont, Brushes.Black, xStart, yStart);
 
             xStart = MarginSize + ((cellWidth - (int)tueSize.Width) / 2) + cellWidth * 2;
-            g.DrawString("Tue", _dayOfWeekFont, Brushes.Black, xStart, yStart);
+            g.DrawString("Dinsdag", _dayOfWeekFont, Brushes.Black, xStart, yStart);
 
             xStart = MarginSize + ((cellWidth - (int)wedSize.Width) / 2) + cellWidth * 3;
-            g.DrawString("Wed", _dayOfWeekFont, Brushes.Black, xStart, yStart);
+            g.DrawString("Woensdag", _dayOfWeekFont, Brushes.Black, xStart, yStart);
 
             xStart = MarginSize + ((cellWidth - (int)thuSize.Width) / 2) + cellWidth * 4;
-            g.DrawString("Thu", _dayOfWeekFont, Brushes.Black, xStart, yStart);
+            g.DrawString("Donderdag", _dayOfWeekFont, Brushes.Black, xStart, yStart);
 
             xStart = MarginSize + ((cellWidth - (int)friSize.Width) / 2) + cellWidth * 5;
-            g.DrawString("Fri", _dayOfWeekFont, Brushes.Black, xStart, yStart);
+            g.DrawString("Vrijdag", _dayOfWeekFont, Brushes.Black, xStart, yStart);
 
             xStart = MarginSize + ((cellWidth - (int)satSize.Width) / 2) + cellWidth * 6;
-            g.DrawString("Sat", _dayOfWeekFont, Brushes.Black, xStart, yStart);
+            g.DrawString("Zaterdag", _dayOfWeekFont, Brushes.Black, xStart, yStart);
 
             if (_showDateInHeader)
             {
