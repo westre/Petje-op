@@ -13,28 +13,8 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             InitializeComponent();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e) {
-            ((ExamOverviewTeacherDetailDialog)Parent).EditClicked();
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e) {
-            ((ExamOverviewTeacherDetailDialog)Parent).RemoveClicked();
-        }
-
-        private void btnStarttimeEdit_Click(object sender, EventArgs e) {
-            ((ExamOverviewTeacherDetailDialog)Parent).StartTimeEdit();
-        }
-
-        private void btnEndtimeEdit_Click(object sender, EventArgs e) {
-            ((ExamOverviewTeacherDetailDialog)Parent).EndTimeEdit();
-        }
-
-        private void btnLectureEdit_Click(object sender, EventArgs e) {
-            ((ExamOverviewTeacherDetailDialog)Parent).LectureEdit();
-        }
-
-        private void btnQuestionnaireEdit_Click(object sender, EventArgs e) {
-            ((ExamOverviewTeacherDetailDialog)Parent).QuestionnaireEdit();
+        private void btnEditExam_Click(object sender, EventArgs e) {
+            ((ExamOverviewTeacherDetailDialog)Parent).EditExam();
         }
     }
 }

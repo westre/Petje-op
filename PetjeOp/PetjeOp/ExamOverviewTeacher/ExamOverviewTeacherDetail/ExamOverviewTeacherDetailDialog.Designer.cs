@@ -32,14 +32,14 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             // 
             this.examOverviewTeacherDetailView.Location = new System.Drawing.Point(12, 12);
             this.examOverviewTeacherDetailView.Name = "examOverviewTeacherDetailView";
-            this.examOverviewTeacherDetailView.Size = new System.Drawing.Size(488, 278);
+            this.examOverviewTeacherDetailView.Size = new System.Drawing.Size(319, 281);
             this.examOverviewTeacherDetailView.TabIndex = 0;
             // 
             // ExamOverviewTeacherDetailDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 302);
+            this.ClientSize = new System.Drawing.Size(343, 305);
             this.Controls.Add(this.examOverviewTeacherDetailView);
             this.Name = "ExamOverviewTeacherDetailDialog";
             this.Text = "ExamOverviewTeacherDetailDialog";

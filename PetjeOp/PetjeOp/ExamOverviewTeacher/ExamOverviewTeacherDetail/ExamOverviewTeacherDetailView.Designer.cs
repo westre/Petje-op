@@ -29,14 +29,9 @@
             this.lblSubject = new System.Windows.Forms.Label();
             this.lblPlannedInBy = new System.Windows.Forms.Label();
             this.lblExecutedBy = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.lblForClass = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnStarttimeEdit = new System.Windows.Forms.Button();
-            this.btnEndtimeEdit = new System.Windows.Forms.Button();
-            this.btnLectureEdit = new System.Windows.Forms.Button();
-            this.btnQuestionnaireEdit = new System.Windows.Forms.Button();
+            this.btnEditExam = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblStarttime
@@ -99,26 +94,6 @@
             this.lblExecutedBy.TabIndex = 5;
             this.lblExecutedBy.Text = "Wordt afgenomen door";
             // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(254, 253);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(109, 23);
-            this.btnEdit.TabIndex = 6;
-            this.btnEdit.Text = "Wijziging toepassen";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(369, 253);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(109, 23);
-            this.btnRemove.TabIndex = 7;
-            this.btnRemove.Text = "Verwijder";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
             // lblForClass
             // 
             this.lblForClass.AutoSize = true;
@@ -140,58 +115,23 @@
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Title";
             // 
-            // btnStarttimeEdit
+            // btnEditExam
             // 
-            this.btnStarttimeEdit.Location = new System.Drawing.Point(369, 72);
-            this.btnStarttimeEdit.Name = "btnStarttimeEdit";
-            this.btnStarttimeEdit.Size = new System.Drawing.Size(109, 23);
-            this.btnStarttimeEdit.TabIndex = 10;
-            this.btnStarttimeEdit.Text = "Wijzig starttijd";
-            this.btnStarttimeEdit.UseVisualStyleBackColor = true;
-            this.btnStarttimeEdit.Click += new System.EventHandler(this.btnStarttimeEdit_Click);
-            // 
-            // btnEndtimeEdit
-            // 
-            this.btnEndtimeEdit.Location = new System.Drawing.Point(369, 101);
-            this.btnEndtimeEdit.Name = "btnEndtimeEdit";
-            this.btnEndtimeEdit.Size = new System.Drawing.Size(109, 23);
-            this.btnEndtimeEdit.TabIndex = 11;
-            this.btnEndtimeEdit.Text = "Wijzig eindtijd";
-            this.btnEndtimeEdit.UseVisualStyleBackColor = true;
-            this.btnEndtimeEdit.Click += new System.EventHandler(this.btnEndtimeEdit_Click);
-            // 
-            // btnLectureEdit
-            // 
-            this.btnLectureEdit.Location = new System.Drawing.Point(369, 129);
-            this.btnLectureEdit.Name = "btnLectureEdit";
-            this.btnLectureEdit.Size = new System.Drawing.Size(109, 23);
-            this.btnLectureEdit.TabIndex = 12;
-            this.btnLectureEdit.Text = "Wijzig college";
-            this.btnLectureEdit.UseVisualStyleBackColor = true;
-            this.btnLectureEdit.Click += new System.EventHandler(this.btnLectureEdit_Click);
-            // 
-            // btnQuestionnaireEdit
-            // 
-            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(369, 156);
-            this.btnQuestionnaireEdit.Name = "btnQuestionnaireEdit";
-            this.btnQuestionnaireEdit.Size = new System.Drawing.Size(109, 23);
-            this.btnQuestionnaireEdit.TabIndex = 13;
-            this.btnQuestionnaireEdit.Text = "Wijzig vragenlijst";
-            this.btnQuestionnaireEdit.UseVisualStyleBackColor = true;
-            this.btnQuestionnaireEdit.Click += new System.EventHandler(this.btnQuestionnaireEdit_Click);
+            this.btnEditExam.Location = new System.Drawing.Point(227, 217);
+            this.btnEditExam.Name = "btnEditExam";
+            this.btnEditExam.Size = new System.Drawing.Size(75, 23);
+            this.btnEditExam.TabIndex = 14;
+            this.btnEditExam.Text = "Wijzigen";
+            this.btnEditExam.UseVisualStyleBackColor = true;
+            this.btnEditExam.Click += new System.EventHandler(this.btnEditExam_Click);
             // 
             // ExamOverviewTeacherDetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnQuestionnaireEdit);
-            this.Controls.Add(this.btnLectureEdit);
-            this.Controls.Add(this.btnEndtimeEdit);
-            this.Controls.Add(this.btnStarttimeEdit);
+            this.Controls.Add(this.btnEditExam);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblForClass);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblExecutedBy);
             this.Controls.Add(this.lblPlannedInBy);
             this.Controls.Add(this.lblSubject);
@@ -199,7 +139,7 @@
             this.Controls.Add(this.lblEndtime);
             this.Controls.Add(this.lblStarttime);
             this.Name = "ExamOverviewTeacherDetailView";
-            this.Size = new System.Drawing.Size(481, 279);
+            this.Size = new System.Drawing.Size(307, 245);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,13 +153,8 @@
         public System.Windows.Forms.Label lblSubject;
         public System.Windows.Forms.Label lblPlannedInBy;
         public System.Windows.Forms.Label lblExecutedBy;
-        public System.Windows.Forms.Button btnEdit;
-        public System.Windows.Forms.Button btnRemove;
         public System.Windows.Forms.Label lblForClass;
         public System.Windows.Forms.Label lblTitle;
-        public System.Windows.Forms.Button btnStarttimeEdit;
-        public System.Windows.Forms.Button btnEndtimeEdit;
-        public System.Windows.Forms.Button btnLectureEdit;
-        public System.Windows.Forms.Button btnQuestionnaireEdit;
+        private System.Windows.Forms.Button btnEditExam;
     }
 }

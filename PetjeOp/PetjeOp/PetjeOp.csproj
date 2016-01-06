@@ -81,6 +81,14 @@
     <Compile Include="Database.cs">
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
+    <Compile Include="EditExam\EditExamController.cs" />
+    <Compile Include="EditExam\EditExamModel.cs" />
+    <Compile Include="EditExam\EditExamView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditExam\EditExamView.Designer.cs">
+      <DependentUpon>EditExamView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentController.cs" />
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentModel.cs" />
     <Compile Include="ExamOverviewStudent\ExamOverviewStudentView.cs">
@@ -241,6 +249,9 @@
     </None>
     <EmbeddedResource Include="AddQuestionnaire\QuestionsView.resx">
       <DependentUpon>QuestionsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditExam\EditExamView.resx">
+      <DependentUpon>EditExamView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExamOverviewStudent\ExamOverviewStudentView.resx">
       <DependentUpon>ExamOverviewStudentView.cs</DependentUpon>
