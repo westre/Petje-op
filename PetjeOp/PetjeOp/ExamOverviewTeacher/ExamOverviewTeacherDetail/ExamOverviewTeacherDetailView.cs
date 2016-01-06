@@ -12,5 +12,9 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
         public ExamOverviewTeacherDetailView() {
             InitializeComponent();
         }
+
+        private void lblSubject_Click(object sender, EventArgs e) {
+
+        }
     }
 }

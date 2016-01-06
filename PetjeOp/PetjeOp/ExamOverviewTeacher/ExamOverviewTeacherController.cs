@@ -1,4 +1,5 @@
 ﻿using Calendar.NET;
+using PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,7 +21,10 @@ namespace PetjeOp {
         }
 
         private void ClnExams_CalendarItemClick(CalendarEvent calendarEvent, Point point) {
-            MessageBox.Show("Clicked!");
+            if(calendarEvent.Event is CustomEvent) {
+                ExamOverviewTeacherDetailDialog dialog = new ExamOverviewTeacherDetailDialog(this, (CustomEvent)calendarEvent.Event);
+                dialog.ShowDialog();
+            }
         }
 
         public override UserControl GetView() {
@@ -48,7 +52,8 @@ namespace PetjeOp {
                     + "\nEind: " + exam.Endtime.ToString() 
                     + "\nDuur: " + differenceMinutes + " minuten"
                     + "\n\nGemaakt door: " + exam.Questionnaire.Author
-                    + "\nWordt afgenomen door: " + exam.Lecture.Class
+                    + "\nWordt afgenomen door: " + exam.Lecture.Class,
+                    Tag = exam
                 };
 
                 View.clnExams.AddEvent(customEvent);

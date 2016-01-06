@@ -252,6 +252,9 @@
     <EmbeddedResource Include="ChooseExamDialogs\ChooseExamDetailsDialog.resx">
       <DependentUpon>ChooseExamDetailsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExamOverviewTeacher\ExamOverviewTeacherDetail\ExamOverviewTeacherDetailDialog.resx">
+      <DependentUpon>ExamOverviewTeacherDetailDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExamOverviewTeacher\ExamOverviewTeacherDetail\ExamOverviewTeacherDetailView.resx">
       <DependentUpon>ExamOverviewTeacherDetailView.cs</DependentUpon>
     </EmbeddedResource>

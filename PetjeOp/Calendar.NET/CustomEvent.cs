@@ -97,6 +97,11 @@ namespace Calendar.NET
             set;
         }
 
+        public object Tag {
+            get;
+            set;
+        }
+
         /// <summary>
         /// CustomEvent Constructor
         /// </summary>
