@@ -976,5 +976,65 @@ namespace PetjeOp
 
             MessageBox.Show("Alle resultaten zijn verwijderd");
         }
+
+        public Questionnaire ConvertDbQuestionnaire(tblQuestionnaire dbQuestionnaire)
+        {
+            Teacher author = new Teacher()
+            {
+                TeacherNr = dbQuestionnaire.tblTeacher.nr,
+                FirstName = dbQuestionnaire.tblTeacher.firstname,
+                SurName = dbQuestionnaire.tblTeacher.surname
+            };
+            Subject subject = new Subject(1, "");
+            Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.id)
+            {
+                Name = dbQuestionnaire.description,
+                Author = author,
+                Subject = subject,
+                Archived = dbQuestionnaire.archived
+            };
+            // Loop door alle questions binnen die questionnaire
+            foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
+            {
+                Question question = ConvertDbQuestion(dbQuestion);
+
+                // Voeg vragen toe aan onze questionnaire
+                questionnaire.Questions.Add(question);
+            }
+            return questionnaire;
+        }
+
+        public MultipleChoiceQuestion ConvertDbQuestion(tblQuestion dbQuestion)
+        {
+            MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description)
+            {
+                ID = dbQuestion.id,
+                QuestionIndex = dbQuestion.questionindex
+            };
+            if (dbQuestion.timerestriction != null)
+                question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
+            else
+                question.TimeRestriction = TimeSpan.Zero;
+            foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
+            {
+                Answer answer = ConvertDbAnswer(dbAnswerOption.tblAnswer);
+                question.AnswerOptions.Add(answer);
+                if (dbQuestion.correctanswer == answer.ID)
+                {
+                    question.CorrectAnswer = answer;
+                }
+            }
+            return question;
+        }
+
+        public Answer ConvertDbAnswer(tblAnswer dbAnswer)
+        {
+            Answer answer = new Answer(dbAnswer.id)
+            {
+                Description = dbAnswer.description
+            };
+            return answer;
+        }
     }
+}
 }
