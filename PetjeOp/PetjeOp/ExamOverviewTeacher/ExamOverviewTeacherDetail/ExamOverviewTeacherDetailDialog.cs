@@ -21,7 +21,7 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             examOverviewTeacherDetailView.lblEndtime.Text = "Eindtijd: " + Exam.Endtime.ToString();
             examOverviewTeacherDetailView.lblDuration.Text = "Looptijd: " + differenceMinutes + " minuten";
             examOverviewTeacherDetailView.lblSubject.Text = "Vak: " + Exam.Questionnaire.Subject.Name;
-            examOverviewTeacherDetailView.lblExecutedBy.Text = "Wordt afgenomen door: " + Exam.Lecture.Class;
+            examOverviewTeacherDetailView.lblExecutedBy.Text = "Wordt afgenomen door: " + Exam.Lecture.Teacher;
             examOverviewTeacherDetailView.lblPlannedInBy.Text = "Ingepland door: " + Exam.Questionnaire.Author;
         }
 

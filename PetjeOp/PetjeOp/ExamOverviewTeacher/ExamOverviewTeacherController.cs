@@ -32,7 +32,7 @@ namespace PetjeOp {
         }
 
         public void Load() {
-            List<Exam> exams = MasterController.DB.GetExams();
+            List<Exam> exams = MasterController.DB.GetExamsByTeacher(((Teacher)MasterController.User).TeacherNr);
 
             foreach (Exam exam in exams) {
                 double difference = (exam.Endtime - exam.Starttime).TotalHours;
@@ -43,7 +43,7 @@ namespace PetjeOp {
                     EventText = exam.Questionnaire.Name,
                     EventFont = new Font("Verdana", 8, FontStyle.Regular),
                     Enabled = true,
-                    EventColor = Color.FromArgb(255, 0, 0),
+                    EventColor = Color.FromArgb(0, 65, 150),
                     EventTextColor = Color.White,
                     EventLengthInHours = (float)difference,
                     CustomToolTipText =
@@ -52,7 +52,7 @@ namespace PetjeOp {
                     + "\nEind: " + exam.Endtime.ToString() 
                     + "\nDuur: " + differenceMinutes + " minuten"
                     + "\n\nGemaakt door: " + exam.Questionnaire.Author
-                    + "\nWordt afgenomen door: " + exam.Lecture.Class,
+                    + "\nWordt afgenomen door: " + exam.Lecture.Teacher,
                     Tag = exam
                 };
 

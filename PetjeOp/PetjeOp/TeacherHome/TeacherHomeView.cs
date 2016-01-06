@@ -35,5 +35,10 @@ namespace PetjeOp {
             //Ga naar vragenlijsten
             Controller.GoToQuestionnaires();
         }
+
+        private void btnGoToExams_Click(object sender, EventArgs e)
+        {
+            Controller.GoToExamOverview();
+        }
     }
 }
