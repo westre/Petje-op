@@ -916,7 +916,7 @@ namespace PetjeOp
                 FirstName = dbQuestionnaire.tblTeacher.firstname,
                 SurName = dbQuestionnaire.tblTeacher.surname
             };
-            Subject subject = new Subject(1, "");
+            Subject subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name);
             Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.id)
             {
                 Name = dbQuestionnaire.description,
