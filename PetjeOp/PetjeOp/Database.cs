@@ -149,70 +149,11 @@ namespace PetjeOp
 
                 if (dbQuestionnaire != null)
                 {
-                    // Als de query gelukt is
-                    Questionnaire questionnaire = new Questionnaire(dbQuestionnaire.description);
-                    // Maak een questionnaire object aan
-                    questionnaire.ID = dbQuestionnaire.id; // Geef het id mee vanuit de database
-                    questionnaire.Subject = new Subject(dbQuestionnaire.tblSubject.id, dbQuestionnaire.tblSubject.name);
-                    // Set het subject van de vragenlijst
-
-                    Teacher author = new Teacher(); // Teacher object aanmaken voor Autheur
-                    author.TeacherNr = dbQuestionnaire.tblTeacher.nr;
-                    author.FirstName = dbQuestionnaire.tblTeacher.firstname;
-                    author.SurName = dbQuestionnaire.tblTeacher.surname;
-
-                    questionnaire.Author = author; // Set auteur van de vragenlijst
-                    questionnaire.Archived = dbQuestionnaire.archived;
-
-                    // Loop door alle questions binnen die questionnaire
-                    foreach (tblQuestion dbQuestion in dbQuestionnaire.tblQuestions)
-                    {
-                        MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description); // 
-
-                        question.ID = dbQuestion.id;
-                        question.QuestionIndex = dbQuestion.questionindex;
-                        if (dbQuestion.timerestriction != null)
-                        {
-                            question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
-                        }
-                        else
-                        {
-                            question.TimeRestriction = TimeSpan.Zero;
-                        }
-
-
-                        List<Answer> answerOptions = new List<Answer>();
-
-                        foreach (tblAnsweroption dbAnswerOption in dbQuestion.tblAnsweroptions)
-                        {
-                            // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                            tblAnswer tblAnswer = dbAnswerOption.tblAnswer;
-
-                            Answer answer = new Answer(tblAnswer.description);
-                            answer.ID = tblAnswer.id;
-                            answerOptions.Add(answer);
-
-                            if (dbQuestion.correctanswer == answer.ID)
-                            {
-                                question.CorrectAnswer = answer;
-                            }
-                        }
-
-                        // Voeg answeroptions (die desalniettemin volledige Answer objecten zijn) toe
-                        question.AnswerOptions = answerOptions;
-
-                        // Voeg vragen toe aan onze questionnaire
-                        questionnaire.Questions.Add(question);
-                    }
-                    return questionnaire;
+                    return ConvertDbQuestionnaire(dbQuestionnaire);
                 }
                 return null;
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
         public void UpdateQuestionnaire(Questionnaire questionnaire, List<Question> deletedQuestions = null)
@@ -719,6 +660,7 @@ namespace PetjeOp
         {
             try
             {
+
                 Exam exam = (from tblExam in db.tblExams
                              where tblExam.id == examID
                              select new Exam(tblExam.id, GetQuestionnaire(tblExam.questionnaire))
