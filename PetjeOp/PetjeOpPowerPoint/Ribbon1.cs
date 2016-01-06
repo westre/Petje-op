@@ -79,9 +79,9 @@ namespace PetjeOpPowerPoint
 
                 textBox.TextFrame.TextRange.InsertAfter(answers);
 
-                PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
-                winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
-                winQWatermark.TextFrame.TextRange.Font.Size = 10;
+                //PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
+                //winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
+                //winQWatermark.TextFrame.TextRange.Font.Size = 10;
 
                 // volgende slide
                 PowerPoint.Slide resultSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
@@ -224,8 +224,16 @@ namespace PetjeOpPowerPoint
             if (CurrentSlide.Tags["isResultSlide"] == "0") {
                 DB.DeleteResults(int.Parse(CurrentSlide.Tags["examId"]), int.Parse(CurrentSlide.Tags["questionId"]));
 
-                if(CurrentSlide.Tags["isClosed"] == "1") {
+                if (CurrentSlide.Tags["isClosed"] == "1" && CurrentSlide.Tags["timeRestriction"] != "-1") {
                     Globals.ThisAddIn.StartTimedSlide(CurrentSlide, int.Parse(CurrentSlide.Tags["timeRestriction"]));
+                }
+                else if (CurrentSlide.Tags["isClosed"] == "1" && CurrentSlide.Tags["timeRestriction"] == "-1") {
+                    // Update tijd label
+                    foreach (PowerPoint.Shape shape in CurrentSlide.Shapes) {
+                        if (shape.Tags["timer"] == "1") {
+                            shape.Delete();
+                        }
+                    }
                 }
             }
         }
