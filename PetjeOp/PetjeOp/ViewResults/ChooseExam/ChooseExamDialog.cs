@@ -25,11 +25,15 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         private void ChooseExamDialog_Load(object sender, EventArgs e)
         {
+            // Begin door de benodigde gegevens uit de database te halen
             Classes = Controller.MasterController.DB.GetAllClasses();
             Lectures = Controller.MasterController.DB.GetAllLectures();
             Exams = Controller.MasterController.DB.GetAllExams();
+
+            // Alvast een lijst maken voor het filteren van afnamemomenten
             ExamFilter = new List<Exam>();
 
+            // Vul de afnamemomenten met de juiste Class en Lecture
             foreach(Exam ex in Exams)
             {
                 Console.WriteLine(ex.Lecture.ID);
@@ -50,8 +54,6 @@ namespace PetjeOp.ViewResults.ChooseExam
                     }
                 }
             }
-            
-            
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
             List<Subject> subjects = Controller.MasterController.DB.GetSubjects();
@@ -67,11 +69,11 @@ namespace PetjeOp.ViewResults.ChooseExam
             cbSubject.SelectedIndex = 0;
             
             // hier worden de klassen toegevoegd aan de lijst met klassen
-            List<Class> cs = Controller.MasterController.DB.GetAllClasses();
+  //          List<Class> cs = Controller.MasterController.DB.GetAllClasses();
 
             cbClass.Items.Add("Alle klassen");
 
-            foreach (Class c in cs)
+            foreach (Class c in Classes)
             {
                 cbClass.Items.Add(c);
                 cbClass.Sorted = true;
@@ -138,8 +140,6 @@ namespace PetjeOp.ViewResults.ChooseExam
             {
                 MessageBox.Show("Je hebt geen afnamemoment geselecteerd", "Foutmelding", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -147,24 +147,10 @@ namespace PetjeOp.ViewResults.ChooseExam
             this.Close();
         }
 
-      
-
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             listView1.Items.Clear();
             ApplyFilter();
-//            int count = 0;
-            foreach (Exam ex in Exams)
-            {
-                if (ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
-                {
-//                    FillListFilter(ex, count);
-//                    count++;
-
-
-                }
-
-            }
         }
 
         private void cbSubject_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,26 +161,12 @@ namespace PetjeOp.ViewResults.ChooseExam
             ApplyFilter();
 
             if (cbSubject.GetItemText(cbSubject.SelectedItem) == "Alle vakken")
-            {
-//                FillList();
-                
+            {           
                 FillQuestionnaire();
-
             }
 
             else
             {
-//                int count = 0;
-                foreach (Exam ex in Exams)
-                {
-                    if (ex.Questionnaire.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem))
-                    {
-
-//                        FillListFilter(ex, count);
-//                        count++;
-                    }
-
-                }
                 List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
                 cbQuestionnaire.Items.Clear();
                 
@@ -205,7 +177,6 @@ namespace PetjeOp.ViewResults.ChooseExam
                         
                         cbQuestionnaire.Items.Add(q);
                         cbQuestionnaire.Sorted = true;
-                       
                     }
 
                 
@@ -218,30 +189,6 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listView1.Items.Clear();
             ApplyFilter();
-            /*if (cbClass.GetItemText(cbClass.SelectedItem) == "Alle klassen")
-            {
-                foreach (Exam ex in Exams)
-                {
-                    FillList();
-
-                }
-            }
-
-            else
-            {
-                int count = 0;
-                
-                List<Exam> cse = Controller.MasterController.DB.GetExamByClass(cbClass.GetItemText(cbClass.SelectedItem));
-                foreach (Exam ex in cse)
-                    {
-
-
-                        FillListFilter(ex, count);
-                        count++;
-
-                }
-
-            }*/
          }
 
 
@@ -264,31 +211,6 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listView1.Items.Clear();
             ApplyFilter();
-
-            
-            /*if (cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten")
-            {
-                foreach (Exam ex in Exams)
-                {
-
-                    FillList();
-                }
-            }
-
-            else
-            {
-                int count = 0;
-                foreach (Exam ex in Exams)
-                {
-
-                    if (String.Format("{0}: {1}", ex.Questionnaire.Subject, ex.Questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
-                    {
-
-                        FillListFilter(ex, count);
-                        count++;
-                    }
-                }
-            }*/
         }
 
         private void listView1_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
@@ -336,7 +258,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                     {
                         if(cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem) == "Alle vragenlijsten" || String.Format("{0}: {1}", ex.Questionnaire.Subject, ex.Questionnaire.Name) == cbQuestionnaire.GetItemText(cbQuestionnaire.SelectedItem))
                         {
-                            if(ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
+                            if(checkBox_Date.Checked || ex.Starttime > dateTimePicker1.Value.Date && ex.Starttime < dateTimePicker1.Value.Date.AddDays(1))
                             {
                                 ExamFilter.Add(ex);
                             }
@@ -350,6 +272,12 @@ namespace PetjeOp.ViewResults.ChooseExam
                 count++;
             }
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            ApplyFilter();
         }
     }
     }

@@ -45,6 +45,7 @@
             this.lblSubject = new System.Windows.Forms.Label();
             this.lblClass = new System.Windows.Forms.Label();
             this.lblQuestionnaire = new System.Windows.Forms.Label();
+            this.checkBox_Date = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnOk
@@ -70,7 +71,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "DD-MM-YYYY";
-            this.dateTimePicker1.Location = new System.Drawing.Point(318, 12);
+            this.dateTimePicker1.Location = new System.Drawing.Point(127, 140);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(339, 20);
             this.dateTimePicker1.TabIndex = 3;
@@ -79,7 +80,7 @@
             // cbSubject
             // 
             this.cbSubject.FormattingEnabled = true;
-            this.cbSubject.Location = new System.Drawing.Point(318, 53);
+            this.cbSubject.Location = new System.Drawing.Point(127, 9);
             this.cbSubject.Name = "cbSubject";
             this.cbSubject.Size = new System.Drawing.Size(339, 21);
             this.cbSubject.TabIndex = 4;
@@ -88,7 +89,7 @@
             // cbClass
             // 
             this.cbClass.FormattingEnabled = true;
-            this.cbClass.Location = new System.Drawing.Point(318, 95);
+            this.cbClass.Location = new System.Drawing.Point(127, 50);
             this.cbClass.Name = "cbClass";
             this.cbClass.Size = new System.Drawing.Size(339, 21);
             this.cbClass.TabIndex = 5;
@@ -107,7 +108,7 @@
             // cbQuestionnaire
             // 
             this.cbQuestionnaire.FormattingEnabled = true;
-            this.cbQuestionnaire.Location = new System.Drawing.Point(318, 140);
+            this.cbQuestionnaire.Location = new System.Drawing.Point(127, 95);
             this.cbQuestionnaire.Name = "cbQuestionnaire";
             this.cbQuestionnaire.Size = new System.Drawing.Size(339, 21);
             this.cbQuestionnaire.TabIndex = 7;
@@ -155,7 +156,7 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblDate.Location = new System.Drawing.Point(12, 12);
+            this.lblDate.Location = new System.Drawing.Point(13, 146);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(38, 13);
             this.lblDate.TabIndex = 9;
@@ -165,7 +166,7 @@
             // 
             this.lblSubject.AutoSize = true;
             this.lblSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblSubject.Location = new System.Drawing.Point(12, 53);
+            this.lblSubject.Location = new System.Drawing.Point(13, 12);
             this.lblSubject.Name = "lblSubject";
             this.lblSubject.Size = new System.Drawing.Size(26, 13);
             this.lblSubject.TabIndex = 10;
@@ -175,7 +176,7 @@
             // 
             this.lblClass.AutoSize = true;
             this.lblClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblClass.Location = new System.Drawing.Point(12, 95);
+            this.lblClass.Location = new System.Drawing.Point(13, 53);
             this.lblClass.Name = "lblClass";
             this.lblClass.Size = new System.Drawing.Size(27, 13);
             this.lblClass.TabIndex = 11;
@@ -185,17 +186,29 @@
             // 
             this.lblQuestionnaire.AutoSize = true;
             this.lblQuestionnaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblQuestionnaire.Location = new System.Drawing.Point(12, 140);
+            this.lblQuestionnaire.Location = new System.Drawing.Point(13, 98);
             this.lblQuestionnaire.Name = "lblQuestionnaire";
             this.lblQuestionnaire.Size = new System.Drawing.Size(55, 13);
             this.lblQuestionnaire.TabIndex = 12;
             this.lblQuestionnaire.Text = "Vragenlijst";
+            // 
+            // checkBox_Date
+            // 
+            this.checkBox_Date.AutoSize = true;
+            this.checkBox_Date.Location = new System.Drawing.Point(501, 142);
+            this.checkBox_Date.Name = "checkBox_Date";
+            this.checkBox_Date.Size = new System.Drawing.Size(93, 17);
+            this.checkBox_Date.TabIndex = 13;
+            this.checkBox_Date.Text = "Negeer datum";
+            this.checkBox_Date.UseVisualStyleBackColor = true;
+            this.checkBox_Date.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // ChooseExamDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 537);
+            this.Controls.Add(this.checkBox_Date);
             this.Controls.Add(this.lblQuestionnaire);
             this.Controls.Add(this.lblClass);
             this.Controls.Add(this.lblSubject);
@@ -234,5 +247,6 @@
         private System.Windows.Forms.Label lblSubject;
         private System.Windows.Forms.Label lblClass;
         private System.Windows.Forms.Label lblQuestionnaire;
+        private System.Windows.Forms.CheckBox checkBox_Date;
     }
 }
