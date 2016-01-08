@@ -36,12 +36,10 @@ namespace PetjeOp.ViewResults.ChooseExam
             // Vul de afnamemomenten met de juiste Class en Lecture
             foreach(Exam ex in Exams)
             {
-                Console.WriteLine(ex.Lecture.ID);
                 foreach(Lecture le in Lectures)
                 
                     if(le.ID == ex.Lecture.ID)
                     {
-                        Console.WriteLine(le.Class.Code);
                         ex.Lecture = le;
                     }
 
@@ -49,7 +47,6 @@ namespace PetjeOp.ViewResults.ChooseExam
                 {
                     if(cls.Code == ex.Lecture.Class.Code)
                     {
-                        Console.WriteLine(cls.Code);
                         ex.Class = cls;
                     }
                 }
@@ -86,22 +83,20 @@ namespace PetjeOp.ViewResults.ChooseExam
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
             foreach (Exam ex in Exams)
             {
-                Console.WriteLine(ex);
-                
                 ListViewItem item = listView1.Items.Add(ex.Questionnaire.Name);
                 item.SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
                 item.SubItems.Add(Convert.ToString(ex.Starttime));
                 item.SubItems.Add(Convert.ToString(ex.Endtime));
                 item.Tag = ex;
-            } 
+            }
         }
-        public void FillListFilter(Exam ex, int count)
+        public void FillListFilter(Exam ex)
         {
                 listView1.Items.Add(ex.Questionnaire.Name);
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
-                listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
-                listView1.Items[count].Tag = ex;
+                listView1.Items[listView1.Items.Count - 1].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
+                listView1.Items[listView1.Items.Count - 1].SubItems.Add(Convert.ToString(ex.Starttime));
+                listView1.Items[listView1.Items.Count - 1].SubItems.Add(Convert.ToString(ex.Endtime));
+                listView1.Items[listView1.Items.Count - 1].Tag = ex;
         }
 
         public virtual void btnOk_Click(object sender, EventArgs e)
@@ -136,7 +131,6 @@ namespace PetjeOp.ViewResults.ChooseExam
         private void cbSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
             listView1.Items.Clear();
-            Console.WriteLine(cbQuestionnaire.SelectedItem);
             ApplyFilter();
 
             if (cbSubject.GetItemText(cbSubject.SelectedItem) == "Alle vakken")
@@ -174,6 +168,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             cbSubject.SelectedIndex = 0;
             cbClass.SelectedIndex = 0;
             cbQuestionnaire.SelectedIndex = 0;
+            checkBox_Date.Checked = true;
             listView1.Items.Clear();
 
             foreach (Exam ex in Exams)
@@ -186,11 +181,6 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listView1.Items.Clear();
             ApplyFilter();
-        }
-
-        private void listView1_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
-        {
-            listView1.Sort();
         }
 
         private void FillQuestionnaire()
@@ -218,7 +208,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         }
         private void ApplyFilter()
         {
-            int count = 0;
+            listView1.Sorting = SortOrder.None;
             ExamFilter.Clear();
 
             foreach (Exam ex in Exams)
@@ -239,9 +229,9 @@ namespace PetjeOp.ViewResults.ChooseExam
             }
             foreach(Exam ex in ExamFilter)
             {
-                FillListFilter(ex, count);
-                count++;
+                FillListFilter(ex);
             }
+            listView1.Sorting = SortOrder.Ascending;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
