@@ -128,8 +128,8 @@ namespace PetjeOp {
 
         private void listviewname_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
-            e.Cancel = true;
-            e.NewWidth = lbExams.Columns[e.ColumnIndex].Width;
+            //e.Cancel = true;
+            //e.NewWidth = lbExams.Columns[e.ColumnIndex].Width;
         }
 
         #endregion
