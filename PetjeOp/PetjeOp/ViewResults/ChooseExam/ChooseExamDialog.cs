@@ -69,8 +69,6 @@ namespace PetjeOp.ViewResults.ChooseExam
             cbSubject.SelectedIndex = 0;
             
             // hier worden de klassen toegevoegd aan de lijst met klassen
-  //          List<Class> cs = Controller.MasterController.DB.GetAllClasses();
-
             cbClass.Items.Add("Alle klassen");
 
             foreach (Class c in Classes)
@@ -79,20 +77,13 @@ namespace PetjeOp.ViewResults.ChooseExam
                 cbClass.Sorted = true;
             }
             cbClass.SelectedIndex = 0;
-            
             FillList();
-          
-            
-
         }
         public void FillList()
         {
             listView1.Items.Clear();
             
             // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
-
-            
-
             foreach (Exam ex in Exams)
             {
                 Console.WriteLine(ex);
@@ -102,26 +93,15 @@ namespace PetjeOp.ViewResults.ChooseExam
                 item.SubItems.Add(Convert.ToString(ex.Starttime));
                 item.SubItems.Add(Convert.ToString(ex.Endtime));
                 item.Tag = ex;
-                
-            }
-            
+            } 
         }
         public void FillListFilter(Exam ex, int count)
         {
-
-
-
-
-                
                 listView1.Items.Add(ex.Questionnaire.Name);
                 listView1.Items[count].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
                 listView1.Items[count].SubItems.Add(Convert.ToString(ex.Starttime));
                 listView1.Items[count].SubItems.Add(Convert.ToString(ex.Endtime));
                 listView1.Items[count].Tag = ex;
-               
-
-
-            
         }
 
         public virtual void btnOk_Click(object sender, EventArgs e)
@@ -155,7 +135,6 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         private void cbSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             listView1.Items.Clear();
             Console.WriteLine(cbQuestionnaire.SelectedItem);
             ApplyFilter();
@@ -164,7 +143,6 @@ namespace PetjeOp.ViewResults.ChooseExam
             {           
                 FillQuestionnaire();
             }
-
             else
             {
                 List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
@@ -178,8 +156,6 @@ namespace PetjeOp.ViewResults.ChooseExam
                         cbQuestionnaire.Items.Add(q);
                         cbQuestionnaire.Sorted = true;
                     }
-
-                
                 }
                 cbQuestionnaire.SelectedIndex =0;
             }
@@ -198,7 +174,6 @@ namespace PetjeOp.ViewResults.ChooseExam
             cbSubject.SelectedIndex = 0;
             cbClass.SelectedIndex = 0;
             cbQuestionnaire.SelectedIndex = 0;
-
             listView1.Items.Clear();
 
             foreach (Exam ex in Exams)
@@ -230,7 +205,6 @@ namespace PetjeOp.ViewResults.ChooseExam
             {
                 cbQuestionnaire.Items.Add(q);
                 cbQuestionnaire.Sorted = true;
-
             }
             cbQuestionnaire.SelectedIndex = 0;
         }
@@ -240,10 +214,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             if(listView1.SelectedItems.Count > 0)
             {
                 Exam exam = (Exam)listView1.SelectedItems[0].Tag;
-
-                Console.WriteLine(exam.Examnr);
             }
-            
         }
         private void ApplyFilter()
         {
@@ -271,7 +242,6 @@ namespace PetjeOp.ViewResults.ChooseExam
                 FillListFilter(ex, count);
                 count++;
             }
-
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -280,4 +250,4 @@ namespace PetjeOp.ViewResults.ChooseExam
             ApplyFilter();
         }
     }
-    }
+}
