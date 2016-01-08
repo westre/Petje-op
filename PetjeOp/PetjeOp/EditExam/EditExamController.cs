@@ -63,7 +63,18 @@ namespace PetjeOp {
         }
 
         public void RemoveClicked() {
-            MessageBox.Show("RemoveClicked");
+            List<Result> results = MasterController.DB.GetResultsByExamId(Model.LocallyEditedExam.Examnr);
+            if (results.Count == 0) {
+                MasterController.DB.DeleteExam(Model.Exam.Examnr);
+                MessageBox.Show("Afnamemoment is verwijderd");
+
+                ExamOverviewTeacherController cont = (ExamOverviewTeacherController)MasterController.GetController(typeof(ExamOverviewTeacherController));
+                cont.Load();
+                MasterController.SetController(cont);
+            }
+            else {
+                MessageBox.Show("Kan niet worden verwijderd, er zijn resultaten gevonden!");
+            }
         }
 
         public override UserControl GetView() {

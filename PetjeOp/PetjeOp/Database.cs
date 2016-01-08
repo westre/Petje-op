@@ -900,6 +900,22 @@ namespace PetjeOp
             MessageBox.Show("Alle resultaten zijn verwijderd");
         }
 
+        public void DeleteExam(int id) {
+            try {
+                tblExam tblExam = (from exam in db.tblExams
+                                    where exam.id == id
+                                    select exam).FirstOrDefault();
+
+                if (tblExam != null) {
+                    db.tblExams.DeleteOnSubmit(tblExam);
+                    db.SubmitChanges();
+                }
+            }
+            catch (SqlException ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void UpdateExam(Exam updatedExam) {
             try {
                 tblExam tblExam = (from exam in db.tblExams

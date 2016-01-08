@@ -33,16 +33,18 @@
             this.lblExams.AutoSize = true;
             this.lblExams.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExams.Location = new System.Drawing.Point(0, 0);
+            this.lblExams.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExams.Name = "lblExams";
-            this.lblExams.Size = new System.Drawing.Size(418, 55);
+            this.lblExams.Size = new System.Drawing.Size(208, 29);
             this.lblExams.TabIndex = 1;
             this.lblExams.Text = "Afnamemomenten";
             // 
             // btnAddExam
             // 
-            this.btnAddExam.Location = new System.Drawing.Point(22, 1290);
+            this.btnAddExam.Location = new System.Drawing.Point(11, 671);
+            this.btnAddExam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddExam.Name = "btnAddExam";
-            this.btnAddExam.Size = new System.Drawing.Size(335, 75);
+            this.btnAddExam.Size = new System.Drawing.Size(168, 39);
             this.btnAddExam.TabIndex = 3;
             this.btnAddExam.Text = "Afnamemoment Toevoegen";
             this.btnAddExam.UseVisualStyleBackColor = true;
@@ -59,8 +61,7 @@
             this.clnExams.DimDisabledEvents = true;
             this.clnExams.HighlightCurrentDay = true;
             this.clnExams.LoadPresetHolidays = false;
-            this.clnExams.Location = new System.Drawing.Point(0, 61);
-            this.clnExams.Margin = new System.Windows.Forms.Padding(6);
+            this.clnExams.Location = new System.Drawing.Point(0, 32);
             this.clnExams.Name = "clnExams";
             this.clnExams.ShowArrowControls = true;
             this.clnExams.ShowDashedBorderOnDisabledEvents = true;
@@ -68,20 +69,19 @@
             this.clnExams.ShowDisabledEvents = false;
             this.clnExams.ShowEventTooltips = true;
             this.clnExams.ShowTodayButton = true;
-            this.clnExams.Size = new System.Drawing.Size(2242, 1220);
+            this.clnExams.Size = new System.Drawing.Size(1121, 634);
             this.clnExams.TabIndex = 0;
             this.clnExams.TodayFont = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             // 
             // ExamOverviewTeacherView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnAddExam);
             this.Controls.Add(this.lblExams);
             this.Controls.Add(this.clnExams);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ExamOverviewTeacherView";
-            this.Size = new System.Drawing.Size(2231, 1564);
+            this.Size = new System.Drawing.Size(1433, 813);
             this.ResumeLayout(false);
             this.PerformLayout();
 
