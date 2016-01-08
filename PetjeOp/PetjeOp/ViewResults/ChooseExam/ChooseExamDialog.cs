@@ -16,6 +16,8 @@ namespace PetjeOp.ViewResults.ChooseExam
         private List<Class> Classes;
         private List<Lecture> Lectures;
         private List<Exam> ExamFilter;
+        private List<Subject> Subjects;
+        private List<Questionnaire> Questionnaires;
 
         public ChooseExamDialog(TeacherController Controller)
         {
@@ -29,6 +31,8 @@ namespace PetjeOp.ViewResults.ChooseExam
             Classes = Controller.MasterController.DB.GetAllClasses();
             Lectures = Controller.MasterController.DB.GetAllLectures();
             Exams = Controller.MasterController.DB.GetAllExams();
+            Subjects = Controller.MasterController.DB.GetSubjects();
+            Questionnaires = Controller.MasterController.DB.GetAllQuestionnaires();
 
             // Alvast een lijst maken voor het filteren van afnamemomenten
             ExamFilter = new List<Exam>();
@@ -53,19 +57,18 @@ namespace PetjeOp.ViewResults.ChooseExam
             }
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
-            List<Subject> subjects = Controller.MasterController.DB.GetSubjects();
-            
+            // het eerste item in de lijst is een standaard string waardoor niets gefilterd wordt
             cbSubject.Items.Add("Alle vakken");
             
-            foreach (Subject sb in subjects)
+            foreach (Subject sb in Subjects)
             {
                 cbSubject.Items.Add(sb);
                 cbSubject.Sorted = true;
             }
-            
             cbSubject.SelectedIndex = 0;
-            
+
             // hier worden de klassen toegevoegd aan de lijst met klassen
+            // ook hier is het eerste item in de lijst een standaard string waardoor niets gefilterd wordt
             cbClass.Items.Add("Alle klassen");
 
             foreach (Class c in Classes)
@@ -73,6 +76,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                 cbClass.Items.Add(c);
                 cbClass.Sorted = true;
             }
+
             cbClass.SelectedIndex = 0;
             FillList();
         }
@@ -80,7 +84,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         {
             listView1.Items.Clear();
             
-            // hier worden de afnamemomenten toegevoegd aan de lijst in het dialog
+            // hier worden alle afnamemomenten in een lijst toegevoegd aan de listview, deze functie wordt alleen aangeroepen bij het openen van het scherm en het resetten van de filters
             foreach (Exam ex in Exams)
             {
                 ListViewItem item = listView1.Items.Add(ex.Questionnaire.Name);
@@ -92,6 +96,7 @@ namespace PetjeOp.ViewResults.ChooseExam
         }
         public void FillListFilter(Exam ex)
         {
+            // deze functie voegt één afnamemoment toe aan de listview, wordt aangeroepen in de filter functie voor elk afnamemoment dat door de filters heen komt
                 listView1.Items.Add(ex.Questionnaire.Name);
                 listView1.Items[listView1.Items.Count - 1].SubItems.Add(Convert.ToString(ex.Questionnaire.Subject));
                 listView1.Items[listView1.Items.Count - 1].SubItems.Add(Convert.ToString(ex.Starttime));
@@ -101,7 +106,8 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         public virtual void btnOk_Click(object sender, EventArgs e)
         {
-            // hier kun je op OK klikken als je een afnamemoment hebt gekozen
+            // Wanneer je op OK klikt nadat je een afnamemoment hebt gekozen, gaat het programma door naar de resultaten voor dat afnamemoment
+            // Als er geen afnamemoment geselecteerd is krijg je een melding
             if (listView1.SelectedItems.Count > 0)
             {
                 Controller.x = (Exam)listView1.SelectedItems[0].Tag;
@@ -133,17 +139,20 @@ namespace PetjeOp.ViewResults.ChooseExam
             listView1.Items.Clear();
             ApplyFilter();
 
+            // Wanneer het geselecteerde item in de lijst met vakken verandert, wordt de lijst met vragenlijsten ook meteen bijgewerkt
+            // Wanneer er geen filter voor vak is gekozen, worden alle vragenlijsten toegevoegd aan de lijst met vragenlijsten
+            // Wanneer er wel een filter is gekozen, kijkt de applicatie welke vragenlijsten er bij dat vak horen, en voegt het deze vervolgens toe aan de lijst met vragenlijsten
             if (cbSubject.GetItemText(cbSubject.SelectedItem) == "Alle vakken")
             {           
                 FillQuestionnaire();
             }
             else
             {
-                List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
                 cbQuestionnaire.Items.Clear();
-                
+                // ook hier is het eerste item in de lijst een standaard string waardoor niets gefilterd wordt
                 cbQuestionnaire.Items.Add("Alle vragenlijsten");
-                foreach (Questionnaire q in qtn)
+
+                foreach (Questionnaire q in Questionnaires)
                 {
                     if(q.Subject.Name == cbSubject.GetItemText(cbSubject.SelectedItem)){
                         
@@ -151,6 +160,7 @@ namespace PetjeOp.ViewResults.ChooseExam
                         cbQuestionnaire.Sorted = true;
                     }
                 }
+
                 cbQuestionnaire.SelectedIndex =0;
             }
         }
@@ -164,6 +174,7 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            // Alle filters worden ge-reset en de listview wordt gevuld met alle afnamemomenten
             dateTimePicker1.Value = DateTime.Now;
             cbSubject.SelectedIndex = 0;
             cbClass.SelectedIndex = 0;
@@ -185,17 +196,17 @@ namespace PetjeOp.ViewResults.ChooseExam
 
         private void FillQuestionnaire()
         {
-            // hier worden de vragenlijsten toegevoegd aan de lijst met vragenlijsten
+            // hier worden alle vragenlijsten toegevoegd aan de lijst met vragenlijsten
             cbQuestionnaire.Items.Clear();
-            List<Questionnaire> qtn = Controller.MasterController.DB.GetAllQuestionnaires();
-
+            // ook hier is het eerste item in de lijst een standaard string waardoor niets gefilterd wordt
             cbQuestionnaire.Items.Add("Alle vragenlijsten");
 
-            foreach (Questionnaire q in qtn)
+            foreach (Questionnaire q in Questionnaires)
             {
                 cbQuestionnaire.Items.Add(q);
                 cbQuestionnaire.Sorted = true;
             }
+
             cbQuestionnaire.SelectedIndex = 0;
         }
 
@@ -208,7 +219,11 @@ namespace PetjeOp.ViewResults.ChooseExam
         }
         private void ApplyFilter()
         {
+            // Functie om de afnamemomenten die voldoen aan de filters in de listview te zetten, wordt elke keer dat een filter verandert aangeroepen
+            // Sorteren van de lijst wordt tijdelijk uitgezet, omdat de lijst anders gesorteerd wordt voordat de subitems worden toegevoegd
             listView1.Sorting = SortOrder.None;
+
+            // De lijst met gefilterde afnamemomenten wordt leeggehaald, en opnieuw gevuld met de afnamemomenten die voldoen aan de filters
             ExamFilter.Clear();
 
             foreach (Exam ex in Exams)
@@ -227,10 +242,12 @@ namespace PetjeOp.ViewResults.ChooseExam
                     }
                 }
             }
+            // Lijst met gefilterde afnamemomenten wordt toegevoegd aan de listview
             foreach(Exam ex in ExamFilter)
             {
                 FillListFilter(ex);
             }
+            // Sorteren van de lijst wordt hier weer aangezet
             listView1.Sorting = SortOrder.Ascending;
         }
 
