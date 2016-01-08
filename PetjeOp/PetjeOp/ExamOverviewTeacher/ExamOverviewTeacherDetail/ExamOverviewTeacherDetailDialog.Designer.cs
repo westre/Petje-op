@@ -25,24 +25,28 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExamOverviewTeacherDetailDialog));
             this.examOverviewTeacherDetailView = new PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail.ExamOverviewTeacherDetailView();
             this.SuspendLayout();
             // 
             // examOverviewTeacherDetailView
             // 
-            this.examOverviewTeacherDetailView.Location = new System.Drawing.Point(12, 12);
+            this.examOverviewTeacherDetailView.Location = new System.Drawing.Point(24, 23);
+            this.examOverviewTeacherDetailView.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.examOverviewTeacherDetailView.Name = "examOverviewTeacherDetailView";
-            this.examOverviewTeacherDetailView.Size = new System.Drawing.Size(319, 281);
+            this.examOverviewTeacherDetailView.Size = new System.Drawing.Size(638, 540);
             this.examOverviewTeacherDetailView.TabIndex = 0;
             // 
             // ExamOverviewTeacherDetailDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 305);
+            this.ClientSize = new System.Drawing.Size(686, 587);
             this.Controls.Add(this.examOverviewTeacherDetailView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "ExamOverviewTeacherDetailDialog";
-            this.Text = "ExamOverviewTeacherDetailDialog";
+            this.Text = "Details Afnamemoment";
             this.Load += new System.EventHandler(this.ExamOverviewTeacherDetailDialog_Load);
             this.ResumeLayout(false);
 
