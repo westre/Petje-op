@@ -29,7 +29,7 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             examOverviewTeacherDetailView.lblTitle.Text = LocallyEditedExam.Questionnaire.Name;
             examOverviewTeacherDetailView.lblStarttime.Text = "Starttijd: " + LocallyEditedExam.Starttime.ToString();
             examOverviewTeacherDetailView.lblEndtime.Text = "Eindtijd: " + LocallyEditedExam.Endtime.ToString();
-            examOverviewTeacherDetailView.lblDuration.Text = "Looptijd: " + string.Format("{0:n2}", differenceMinutes) + " minuten";
+            examOverviewTeacherDetailView.lblDuration.Text = "Looptijd: " + string.Format("{0:n0}", differenceMinutes) + " minuten";
             examOverviewTeacherDetailView.lblSubject.Text = "Vak: " + LocallyEditedExam.Questionnaire.Subject.Name;
             examOverviewTeacherDetailView.lblExecutedBy.Text = "Wordt afgenomen door: " + LocallyEditedExam.Lecture.Teacher;
             examOverviewTeacherDetailView.lblPlannedInBy.Text = "Ingepland door: " + LocallyEditedExam.Questionnaire.Author;
