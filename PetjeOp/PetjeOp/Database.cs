@@ -201,6 +201,7 @@ namespace PetjeOp
             catch (SqlException ex) { MessageBox.Show(ex.Message); }
         }
 
+        // Haal studentgegevens op met behulp van de studentcode
         public Student GetStudent(String code)
         {
             try
@@ -523,6 +524,7 @@ namespace PetjeOp
             }
         }
 
+        // Haal alle afnamemomenten op die gegeven worden door een specifieke docent
         public List<Exam> GetExamsByTeacher(string teacherId)
         {
             try
@@ -552,6 +554,7 @@ namespace PetjeOp
             }
         }
 
+        // Haal alle klassen op
         public List<Class> GetAllClasses()
         {
             try
@@ -574,6 +577,7 @@ namespace PetjeOp
             }
         }
 
+        // Haal alle lectures op
         public List<Lecture> GetAllLectures()
         {
             try
@@ -594,6 +598,7 @@ namespace PetjeOp
             }
         }
 
+        // Haal een specifieke lecture op met behulp van een ID
         public Lecture GetLecture(int id)
         {
             try
@@ -620,50 +625,7 @@ namespace PetjeOp
             }
         }
 
-        public List<Exam> GetExamByClass(string cs)
-        {
-            try
-            {
-                List<Exam> filteredExams = new List<Exam>();
-                List<Exam> exams = new List<Exam>();
-
-                foreach (tblExam tblExam in db.tblExams)
-                {
-                    Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
-
-
-                    Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value, tblExam.lecture);
-
-                    exams.Add(exam);
-
-
-                }
-                List<Lecture> lc = new List<Lecture>();
-                foreach (tblLecture tbllecture in db.tblLectures)
-                {
-                    lc.Add(ConvertDbLecture(tbllecture));
-                }
-
-                foreach (Lecture l in lc)
-                {
-                    if (l.Class.Code == cs)
-                    {
-                        foreach (Exam x in exams)
-                        {
-                            if (x.LectureInt == l.ID)
-                            {
-
-                                filteredExams.Add(x);
-                            }
-                        }
-                    }
-                }
-                return filteredExams;
-            }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
-        }
-
-
+        // Haal alle afnamemomenten op die gebruik maken van een specifieke vragenlijst
         public List<Exam> GetExamsByQuestionnaire(Questionnaire q)
         {
             try
@@ -714,6 +676,7 @@ namespace PetjeOp
             }
         }
 
+        // Haal alle examens op
         public List<Exam> GetExams()
         {
             try
@@ -763,6 +726,7 @@ namespace PetjeOp
             }
         }
 
+        // Haal alle vakken op
         public List<Subject> GetSubjects()
         {
             try
@@ -784,7 +748,8 @@ namespace PetjeOp
                 return null;
             }
         }
-
+        
+        // Haal de naam van een specifiek vak op met behulp van het ID
         public Subject GetSubject(int id)
         {
             try
@@ -806,6 +771,7 @@ namespace PetjeOp
             }
         }
 
+        // Haal alle docenten op
         public List<Teacher> GetTeachers()
         {
             try
@@ -899,7 +865,7 @@ namespace PetjeOp
             }
         }
 
-        // Haal resultaten op van examen
+        // Haal resultaten op van een examen via het ID
         public List<Result> GetResultsByExamId(int id)
         {
             db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);

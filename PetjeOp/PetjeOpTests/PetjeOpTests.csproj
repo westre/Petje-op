@@ -56,7 +56,6 @@
     <Compile Include="AddQuestionnaireUnitTest.cs" />
     <Compile Include="QuestionnaireDetailUnitTest.cs" />
     <Compile Include="QuestionnaireOverviewTest.cs" />
-    <Compile Include="QuestionnaireUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
