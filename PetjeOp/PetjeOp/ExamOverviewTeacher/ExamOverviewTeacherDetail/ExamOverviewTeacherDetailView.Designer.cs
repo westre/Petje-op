@@ -155,6 +155,6 @@
         public System.Windows.Forms.Label lblExecutedBy;
         public System.Windows.Forms.Label lblForClass;
         public System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnEditExam;
+        public System.Windows.Forms.Button btnEditExam;
     }
 }
