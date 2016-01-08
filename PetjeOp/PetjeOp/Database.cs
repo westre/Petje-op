@@ -33,7 +33,7 @@ namespace PetjeOp
         {
             tblStudent student = db.tblStudents.SingleOrDefault(g => g.nr == StudentNR);
 
-            List<tblExam> exams = db.tblExams.Where(g => g.tblLecture.@class == student.@class).ToList();
+            List<tblExam> exams = db.tblExams.Where(g => g.tblLecture.@class == student.@class && g.starttime <= DateTime.Now && g.endtime >= DateTime.Now).ToList();
 
             return exams;
         }
