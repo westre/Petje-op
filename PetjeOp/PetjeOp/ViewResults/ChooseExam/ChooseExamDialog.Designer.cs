@@ -125,11 +125,9 @@
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(645, 314);
-            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // chName
@@ -195,6 +193,8 @@
             // checkBox_Date
             // 
             this.checkBox_Date.AutoSize = true;
+            this.checkBox_Date.Checked = true;
+            this.checkBox_Date.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_Date.Location = new System.Drawing.Point(501, 142);
             this.checkBox_Date.Name = "checkBox_Date";
             this.checkBox_Date.Size = new System.Drawing.Size(93, 17);
