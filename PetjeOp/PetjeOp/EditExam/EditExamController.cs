@@ -58,6 +58,7 @@ namespace PetjeOp {
 
         internal void ClassChanged() {
             if(((EditExamView)GetView()).cbClass.SelectedItem != null) {
+                Model.LocallyEditedExam.Lecture.Class = (Class)((EditExamView)GetView()).cbClass.SelectedItem;
                 ((EditExamView)GetView()).lblForClass.Text = "Klas: " + ((EditExamView)GetView()).cbClass.SelectedItem;
             }
             
@@ -65,6 +66,7 @@ namespace PetjeOp {
 
         internal void SubjectChanged() {
             if(((EditExamView)GetView()).cbSubject.SelectedItem != null) {
+                Model.LocallyEditedExam.Lecture.Subject = (Subject)((EditExamView)GetView()).cbSubject.SelectedItem;
                 ((EditExamView)GetView()).lblSubject.Text = "Vak: " + ((EditExamView)GetView()).cbSubject.SelectedItem;
             }
         }
