@@ -49,9 +49,6 @@ namespace PetjeOp {
 
                 Subscribed = true;
             }
-            else {
-                Console.WriteLine("ERROR: Geen tracked query gevonden");
-            }
         }
         public void Stop()
         {
