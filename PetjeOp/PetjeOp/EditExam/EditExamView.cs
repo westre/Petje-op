@@ -47,5 +47,13 @@ namespace PetjeOp {
             Controller.GetAllData();
             Controller.FillSubjectsCb();
         }
+
+        private void ClassSelectedIndexChanged(object sender, EventArgs e) {
+            Controller.ClassChanged();
+        }
+
+        private void SubjectSelectedIndexChanged(object sender, EventArgs e) {
+            Controller.SubjectChanged();
+        }
     }
 }

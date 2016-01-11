@@ -30,13 +30,10 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             examOverviewTeacherDetailView.lblStarttime.Text = "Starttijd: " + LocallyEditedExam.Starttime.ToString();
             examOverviewTeacherDetailView.lblEndtime.Text = "Eindtijd: " + LocallyEditedExam.Endtime.ToString();
             examOverviewTeacherDetailView.lblDuration.Text = "Looptijd: " + string.Format("{0:n0}", differenceMinutes) + " minuten";
-            examOverviewTeacherDetailView.lblSubject.Text = "Vak: " + LocallyEditedExam.Questionnaire.Subject.Name;
+            examOverviewTeacherDetailView.lblSubject.Text = "Vak: " + LocallyEditedExam.Lecture.Subject.Name;
             examOverviewTeacherDetailView.lblExecutedBy.Text = "Wordt afgenomen door: " + LocallyEditedExam.Lecture.Teacher;
             examOverviewTeacherDetailView.lblPlannedInBy.Text = "Ingepland door: " + LocallyEditedExam.Questionnaire.Author;
             examOverviewTeacherDetailView.lblForClass.Text = "Voor: " + LocallyEditedExam.Lecture.Class.Code;
-
-            Console.WriteLine("ST: " + LocallyEditedExam.Starttime);
-            Console.WriteLine("NOW: " + DateTime.Now);
 
             if (LocallyEditedExam.Starttime < DateTime.Now)
                 examOverviewTeacherDetailView.btnEditExam.Enabled = false;
@@ -52,6 +49,8 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             mmc.Model.Event = Event;
             mmc.Model.Exam = (Exam)Event.Tag;
             // Geen referenties naar het originele object
+
+            //MessageBox.Show("ID: " + Exam.Lecture.ID);
             mmc.Model.LocallyEditedExam = new Exam(Exam.Examnr, Exam.Questionnaire, Exam.Starttime, Exam.Endtime, Exam.Lecture);
 
             mmc.Init();

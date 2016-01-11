@@ -39,8 +39,6 @@
             this.lblEditExam = new System.Windows.Forms.Label();
             this.cbClass = new System.Windows.Forms.ComboBox();
             this.cbSubject = new System.Windows.Forms.ComboBox();
-            this.lblClassDropdown = new System.Windows.Forms.Label();
-            this.lblSubjectDropdown = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -126,7 +124,7 @@
             // 
             // btnQuestionnaireEdit
             // 
-            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(427, 121);
+            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(462, 60);
             this.btnQuestionnaireEdit.Name = "btnQuestionnaireEdit";
             this.btnQuestionnaireEdit.Size = new System.Drawing.Size(109, 23);
             this.btnQuestionnaireEdit.TabIndex = 23;
@@ -136,7 +134,7 @@
             // 
             // btnEndtimeEdit
             // 
-            this.btnEndtimeEdit.Location = new System.Drawing.Point(427, 92);
+            this.btnEndtimeEdit.Location = new System.Drawing.Point(462, 180);
             this.btnEndtimeEdit.Name = "btnEndtimeEdit";
             this.btnEndtimeEdit.Size = new System.Drawing.Size(109, 23);
             this.btnEndtimeEdit.TabIndex = 21;
@@ -146,7 +144,7 @@
             // 
             // btnStarttimeEdit
             // 
-            this.btnStarttimeEdit.Location = new System.Drawing.Point(427, 63);
+            this.btnStarttimeEdit.Location = new System.Drawing.Point(462, 151);
             this.btnStarttimeEdit.Name = "btnStarttimeEdit";
             this.btnStarttimeEdit.Size = new System.Drawing.Size(109, 23);
             this.btnStarttimeEdit.TabIndex = 20;
@@ -156,7 +154,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(427, 366);
+            this.btnRemove.Location = new System.Drawing.Point(577, 366);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(109, 23);
             this.btnRemove.TabIndex = 19;
@@ -166,7 +164,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(312, 366);
+            this.btnEdit.Location = new System.Drawing.Point(462, 366);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(109, 23);
             this.btnEdit.TabIndex = 18;
@@ -188,43 +186,25 @@
             // cbClass
             // 
             this.cbClass.FormattingEnabled = true;
-            this.cbClass.Location = new System.Drawing.Point(312, 312);
+            this.cbClass.Location = new System.Drawing.Point(462, 268);
             this.cbClass.Name = "cbClass";
             this.cbClass.Size = new System.Drawing.Size(221, 21);
             this.cbClass.TabIndex = 28;
+            this.cbClass.SelectedIndexChanged += new System.EventHandler(this.ClassSelectedIndexChanged);
             // 
             // cbSubject
             // 
             this.cbSubject.FormattingEnabled = true;
-            this.cbSubject.Location = new System.Drawing.Point(312, 339);
+            this.cbSubject.Location = new System.Drawing.Point(462, 94);
             this.cbSubject.Name = "cbSubject";
             this.cbSubject.Size = new System.Drawing.Size(221, 21);
             this.cbSubject.TabIndex = 29;
-            // 
-            // lblClassDropdown
-            // 
-            this.lblClassDropdown.AutoSize = true;
-            this.lblClassDropdown.Location = new System.Drawing.Point(274, 315);
-            this.lblClassDropdown.Name = "lblClassDropdown";
-            this.lblClassDropdown.Size = new System.Drawing.Size(30, 13);
-            this.lblClassDropdown.TabIndex = 30;
-            this.lblClassDropdown.Text = "Klas:";
-            // 
-            // lblSubjectDropdown
-            // 
-            this.lblSubjectDropdown.AutoSize = true;
-            this.lblSubjectDropdown.Location = new System.Drawing.Point(274, 342);
-            this.lblSubjectDropdown.Name = "lblSubjectDropdown";
-            this.lblSubjectDropdown.Size = new System.Drawing.Size(29, 13);
-            this.lblSubjectDropdown.TabIndex = 31;
-            this.lblSubjectDropdown.Text = "Vak:";
+            this.cbSubject.SelectedIndexChanged += new System.EventHandler(this.SubjectSelectedIndexChanged);
             // 
             // EditExamView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblSubjectDropdown);
-            this.Controls.Add(this.lblClassDropdown);
             this.Controls.Add(this.cbSubject);
             this.Controls.Add(this.cbClass);
             this.Controls.Add(this.lblEditExam);
@@ -242,7 +222,7 @@
             this.Controls.Add(this.lblEndtime);
             this.Controls.Add(this.lblStarttime);
             this.Name = "EditExamView";
-            this.Size = new System.Drawing.Size(582, 425);
+            this.Size = new System.Drawing.Size(709, 425);
             this.Load += new System.EventHandler(this.EditExamView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -267,7 +247,5 @@
         private System.Windows.Forms.Label lblEditExam;
         public System.Windows.Forms.ComboBox cbClass;
         public System.Windows.Forms.ComboBox cbSubject;
-        private System.Windows.Forms.Label lblClassDropdown;
-        private System.Windows.Forms.Label lblSubjectDropdown;
     }
 }
