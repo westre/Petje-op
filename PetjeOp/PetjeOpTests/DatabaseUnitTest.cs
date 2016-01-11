@@ -45,16 +45,6 @@ namespace PetjeOpTests {
         }
 
         [TestMethod]
-        public void TestUpdateQuestionnaire()
-        {
-            Questionnaire questionnaire = db.GetQuestionnaire(1023);
-            questionnaire.Name = "NewName";
-            db.UpdateQuestionnaire(questionnaire);
-            questionnaire = db.GetQuestionnaire(1023);
-            Assert.AreEqual(questionnaire.Name, "NewName");
-        }
-
-        [TestMethod]
         public void TestGetStudent()
         {
             Student student = db.GetStudent("1111111");
