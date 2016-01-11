@@ -101,8 +101,8 @@ namespace PetjeOpPowerPoint {
                     foreach (Answer answer in multipleChoiceQuestion.AnswerOptions) {
                         // Answer gevonden, is tevens geen correct answer
                         if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID != answer.ID) {
-                            int offset = answer.Description.Length * 5;
-
+                            //int offset = answer.Description.Length * 5;
+                            int offset = 0;
                             // Aantal karakters minder dan 10, geef het horizontaal weer
                             if (answer.Description.Length <= 10)
                                 resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = answer.Description;
@@ -115,8 +115,8 @@ namespace PetjeOpPowerPoint {
                         }
                         // Answer gevonden, is tevens correct answer
                         else if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID == answer.ID) {
-                            int offset = question.CorrectAnswer.Description.Length * 5;
-
+                            //int offset = question.CorrectAnswer.Description.Length * 5;
+                            int offset = 0;
                             // Aantal karakters minder dan 10, geef het horizontaal weer
                             if (question.CorrectAnswer.Description.Length <= 10)
                                 resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = answer.Description;
