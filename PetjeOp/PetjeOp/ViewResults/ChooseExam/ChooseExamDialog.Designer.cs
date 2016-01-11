@@ -82,6 +82,7 @@
             // 
             // cbSubject
             // 
+            this.cbSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSubject.FormattingEnabled = true;
             this.cbSubject.Location = new System.Drawing.Point(254, 17);
             this.cbSubject.Margin = new System.Windows.Forms.Padding(6);
@@ -92,6 +93,7 @@
             // 
             // cbClass
             // 
+            this.cbClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbClass.FormattingEnabled = true;
             this.cbClass.Location = new System.Drawing.Point(254, 96);
             this.cbClass.Margin = new System.Windows.Forms.Padding(6);
@@ -113,6 +115,7 @@
             // 
             // cbQuestionnaire
             // 
+            this.cbQuestionnaire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbQuestionnaire.FormattingEnabled = true;
             this.cbQuestionnaire.Location = new System.Drawing.Point(254, 183);
             this.cbQuestionnaire.Margin = new System.Windows.Forms.Padding(6);

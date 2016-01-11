@@ -59,10 +59,10 @@
             this.viewPanel.AutoSize = true;
             this.viewPanel.BackColor = System.Drawing.SystemColors.Control;
             this.viewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.viewPanel.Location = new System.Drawing.Point(0, 113);
-            this.viewPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.viewPanel.Location = new System.Drawing.Point(0, 59);
+            this.viewPanel.Margin = new System.Windows.Forms.Padding(2);
             this.viewPanel.Name = "viewPanel";
-            this.viewPanel.Size = new System.Drawing.Size(7464, 3200);
+            this.viewPanel.Size = new System.Drawing.Size(3732, 1664);
             this.viewPanel.TabIndex = 4;
             // 
             // pnlHeader
@@ -80,9 +80,8 @@
             this.pnlHeader.Controls.Add(this.lblArrow);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(6);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(7464, 113);
+            this.pnlHeader.Size = new System.Drawing.Size(3732, 59);
             this.pnlHeader.TabIndex = 2;
             // 
             // lblHome
@@ -90,10 +89,10 @@
             this.lblHome.AutoSize = true;
             this.lblHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHome.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblHome.Location = new System.Drawing.Point(314, 85);
-            this.lblHome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHome.Location = new System.Drawing.Point(157, 44);
+            this.lblHome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHome.Name = "lblHome";
-            this.lblHome.Size = new System.Drawing.Size(68, 25);
+            this.lblHome.Size = new System.Drawing.Size(35, 13);
             this.lblHome.TabIndex = 16;
             this.lblHome.Text = "Home";
             // 
@@ -105,10 +104,10 @@
             this.pnlButton_Logout_Background.Controls.Add(this.lblTitle_Logout_Title);
             this.pnlButton_Logout_Background.Controls.Add(this.pbIcon_Logout_Icon);
             this.pnlButton_Logout_Background.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(2212, 23);
-            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlButton_Logout_Background.Location = new System.Drawing.Point(1106, 12);
+            this.pnlButton_Logout_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Logout_Background.Name = "pnlButton_Logout_Background";
-            this.pnlButton_Logout_Background.Size = new System.Drawing.Size(330, 77);
+            this.pnlButton_Logout_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Logout_Background.TabIndex = 15;
             this.pnlButton_Logout_Background.Click += new System.EventHandler(this.Logout);
             // 
@@ -118,10 +117,10 @@
             this.lblTitle_Logout_Title.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle_Logout_Title.Font = new System.Drawing.Font("Calibri", 14F);
             this.lblTitle_Logout_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_Logout_Title.Location = new System.Drawing.Point(122, 17);
-            this.lblTitle_Logout_Title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle_Logout_Title.Location = new System.Drawing.Point(61, 9);
+            this.lblTitle_Logout_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle_Logout_Title.Name = "lblTitle_Logout_Title";
-            this.lblTitle_Logout_Title.Size = new System.Drawing.Size(170, 46);
+            this.lblTitle_Logout_Title.Size = new System.Drawing.Size(83, 23);
             this.lblTitle_Logout_Title.TabIndex = 14;
             this.lblTitle_Logout_Title.Text = "Uitloggen";
             // 
@@ -130,10 +129,10 @@
             this.pbIcon_Logout_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_Logout_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Logout_Icon;
             this.pbIcon_Logout_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(60, 17);
-            this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(4);
+            this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(30, 9);
+            this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Logout_Icon.Name = "pbIcon_Logout_Icon";
-            this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(42, 48);
+            this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(21, 25);
             this.pbIcon_Logout_Icon.TabIndex = 4;
             this.pbIcon_Logout_Icon.TabStop = false;
             // 
@@ -143,10 +142,10 @@
             this.pbLogo.BackgroundImage = global::PetjeOp.Properties.Resources.WinQ_Logo;
             this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbLogo.Location = new System.Drawing.Point(16, 13);
-            this.pbLogo.Margin = new System.Windows.Forms.Padding(4);
+            this.pbLogo.Location = new System.Drawing.Point(8, 7);
+            this.pbLogo.Margin = new System.Windows.Forms.Padding(2);
             this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(300, 96);
+            this.pbLogo.Size = new System.Drawing.Size(150, 50);
             this.pbLogo.TabIndex = 0;
             this.pbLogo.TabStop = false;
             this.pbLogo.Click += new System.EventHandler(this.pbLogo_Click);
@@ -159,10 +158,10 @@
             this.pnlButton_Agenda_Background.Controls.Add(this.pbIcon_Agenda_Icon);
             this.pnlButton_Agenda_Background.Controls.Add(this.lblTitle_Agenda_Title);
             this.pnlButton_Agenda_Background.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlButton_Agenda_Background.Location = new System.Drawing.Point(1142, 23);
-            this.pnlButton_Agenda_Background.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlButton_Agenda_Background.Location = new System.Drawing.Point(571, 12);
+            this.pnlButton_Agenda_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Agenda_Background.Name = "pnlButton_Agenda_Background";
-            this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(330, 77);
+            this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Agenda_Background.TabIndex = 15;
             this.pnlButton_Agenda_Background.Click += new System.EventHandler(this.ViewExamClick);
             this.pnlButton_Agenda_Background.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlButton_Agenda_Background_Paint);
@@ -172,10 +171,10 @@
             this.pbIcon_Agenda_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_Agenda_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Agenda_Icon;
             this.pbIcon_Agenda_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_Agenda_Icon.Location = new System.Drawing.Point(72, 19);
-            this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(4);
+            this.pbIcon_Agenda_Icon.Location = new System.Drawing.Point(36, 10);
+            this.pbIcon_Agenda_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Agenda_Icon.Name = "pbIcon_Agenda_Icon";
-            this.pbIcon_Agenda_Icon.Size = new System.Drawing.Size(50, 42);
+            this.pbIcon_Agenda_Icon.Size = new System.Drawing.Size(25, 22);
             this.pbIcon_Agenda_Icon.TabIndex = 5;
             this.pbIcon_Agenda_Icon.TabStop = false;
             this.pbIcon_Agenda_Icon.Click += new System.EventHandler(this.pbIcon_Agenda_Icon_Click);
@@ -186,10 +185,10 @@
             this.lblTitle_Agenda_Title.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle_Agenda_Title.Font = new System.Drawing.Font("Calibri", 14F);
             this.lblTitle_Agenda_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_Agenda_Title.Location = new System.Drawing.Point(130, 15);
-            this.lblTitle_Agenda_Title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle_Agenda_Title.Location = new System.Drawing.Point(65, 8);
+            this.lblTitle_Agenda_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle_Agenda_Title.Name = "lblTitle_Agenda_Title";
-            this.lblTitle_Agenda_Title.Size = new System.Drawing.Size(137, 46);
+            this.lblTitle_Agenda_Title.Size = new System.Drawing.Size(68, 23);
             this.lblTitle_Agenda_Title.TabIndex = 13;
             this.lblTitle_Agenda_Title.Text = "Agenda";
             this.lblTitle_Agenda_Title.Click += new System.EventHandler(this.lblTitle_Agenda_Title_Click);
@@ -202,10 +201,10 @@
             this.pnlButton_Result_Background.Controls.Add(this.pbIcon_Results_Icon);
             this.pnlButton_Result_Background.Controls.Add(this.lblTitle_Results_Title);
             this.pnlButton_Result_Background.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlButton_Result_Background.Location = new System.Drawing.Point(466, 23);
-            this.pnlButton_Result_Background.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlButton_Result_Background.Location = new System.Drawing.Point(233, 12);
+            this.pnlButton_Result_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_Result_Background.Name = "pnlButton_Result_Background";
-            this.pnlButton_Result_Background.Size = new System.Drawing.Size(330, 77);
+            this.pnlButton_Result_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Result_Background.TabIndex = 14;
             this.pnlButton_Result_Background.Click += new System.EventHandler(this.ResultClick);
             // 
@@ -214,10 +213,10 @@
             this.pbIcon_Results_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_Results_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_Results_Icon;
             this.pbIcon_Results_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_Results_Icon.Location = new System.Drawing.Point(44, 19);
-            this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(4);
+            this.pbIcon_Results_Icon.Location = new System.Drawing.Point(22, 10);
+            this.pbIcon_Results_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Results_Icon.Name = "pbIcon_Results_Icon";
-            this.pbIcon_Results_Icon.Size = new System.Drawing.Size(36, 38);
+            this.pbIcon_Results_Icon.Size = new System.Drawing.Size(18, 20);
             this.pbIcon_Results_Icon.TabIndex = 7;
             this.pbIcon_Results_Icon.TabStop = false;
             this.pbIcon_Results_Icon.Click += new System.EventHandler(this.ResultClick);
@@ -228,10 +227,10 @@
             this.lblTitle_Results_Title.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle_Results_Title.Font = new System.Drawing.Font("Calibri", 14F);
             this.lblTitle_Results_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_Results_Title.Location = new System.Drawing.Point(112, 15);
-            this.lblTitle_Results_Title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle_Results_Title.Location = new System.Drawing.Point(56, 8);
+            this.lblTitle_Results_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle_Results_Title.Name = "lblTitle_Results_Title";
-            this.lblTitle_Results_Title.Size = new System.Drawing.Size(186, 46);
+            this.lblTitle_Results_Title.Size = new System.Drawing.Size(91, 23);
             this.lblTitle_Results_Title.TabIndex = 4;
             this.lblTitle_Results_Title.Text = "Resultaten";
             this.lblTitle_Results_Title.Click += new System.EventHandler(this.ResultClick);
@@ -244,10 +243,10 @@
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.pbIcon_QuestionnaireOverview_Icon);
             this.pnlButton_QuestionnaireOverview_Background.Controls.Add(this.lblTitle_QuestionnaireOverview_Title);
             this.pnlButton_QuestionnaireOverview_Background.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlButton_QuestionnaireOverview_Background.Location = new System.Drawing.Point(804, 23);
-            this.pnlButton_QuestionnaireOverview_Background.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlButton_QuestionnaireOverview_Background.Location = new System.Drawing.Point(402, 12);
+            this.pnlButton_QuestionnaireOverview_Background.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButton_QuestionnaireOverview_Background.Name = "pnlButton_QuestionnaireOverview_Background";
-            this.pnlButton_QuestionnaireOverview_Background.Size = new System.Drawing.Size(330, 77);
+            this.pnlButton_QuestionnaireOverview_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_QuestionnaireOverview_Background.TabIndex = 15;
             this.pnlButton_QuestionnaireOverview_Background.Click += new System.EventHandler(this.pnlButton_QuestionnaireOverview_Background_Click);
             // 
@@ -256,12 +255,13 @@
             this.pbIcon_QuestionnaireOverview_Icon.BackColor = System.Drawing.Color.Transparent;
             this.pbIcon_QuestionnaireOverview_Icon.BackgroundImage = global::PetjeOp.Properties.Resources.Button_QuestionnaireOverview_Icon;
             this.pbIcon_QuestionnaireOverview_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIcon_QuestionnaireOverview_Icon.Location = new System.Drawing.Point(34, 19);
-            this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(4);
+            this.pbIcon_QuestionnaireOverview_Icon.Location = new System.Drawing.Point(17, 10);
+            this.pbIcon_QuestionnaireOverview_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_QuestionnaireOverview_Icon.Name = "pbIcon_QuestionnaireOverview_Icon";
-            this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(42, 40);
+            this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(21, 21);
             this.pbIcon_QuestionnaireOverview_Icon.TabIndex = 6;
             this.pbIcon_QuestionnaireOverview_Icon.TabStop = false;
+            this.pbIcon_QuestionnaireOverview_Icon.Click += new System.EventHandler(this.pbIcon_QuestionnaireOverview_Icon_Click);
             // 
             // lblTitle_QuestionnaireOverview_Title
             // 
@@ -269,35 +269,35 @@
             this.lblTitle_QuestionnaireOverview_Title.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle_QuestionnaireOverview_Title.Font = new System.Drawing.Font("Calibri", 14F);
             this.lblTitle_QuestionnaireOverview_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(41)))), ((int)(((byte)(98)))));
-            this.lblTitle_QuestionnaireOverview_Title.Location = new System.Drawing.Point(84, 15);
-            this.lblTitle_QuestionnaireOverview_Title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle_QuestionnaireOverview_Title.Location = new System.Drawing.Point(42, 8);
+            this.lblTitle_QuestionnaireOverview_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle_QuestionnaireOverview_Title.Name = "lblTitle_QuestionnaireOverview_Title";
-            this.lblTitle_QuestionnaireOverview_Title.Size = new System.Drawing.Size(222, 46);
+            this.lblTitle_QuestionnaireOverview_Title.Size = new System.Drawing.Size(111, 23);
             this.lblTitle_QuestionnaireOverview_Title.TabIndex = 12;
             this.lblTitle_QuestionnaireOverview_Title.Text = "Vragenlijsten";
+            this.lblTitle_QuestionnaireOverview_Title.Click += new System.EventHandler(this.lblTitle_QuestionnaireOverview_Title_Click);
             // 
             // lblArrow
             // 
             this.lblArrow.AutoSize = true;
             this.lblArrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrow.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblArrow.Location = new System.Drawing.Point(324, 62);
-            this.lblArrow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblArrow.Location = new System.Drawing.Point(162, 32);
+            this.lblArrow.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblArrow.Name = "lblArrow";
-            this.lblArrow.Size = new System.Drawing.Size(28, 33);
+            this.lblArrow.Size = new System.Drawing.Size(15, 18);
             this.lblArrow.TabIndex = 17;
             this.lblArrow.Text = "↰";
             // 
             // TeacherView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.viewPanel);
             this.Controls.Add(this.pnlHeader);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "TeacherView";
-            this.Size = new System.Drawing.Size(7464, 3313);
+            this.Size = new System.Drawing.Size(3732, 1723);
             this.Load += new System.EventHandler(this.TeacherView_Load);
             this.Resize += new System.EventHandler(this.logOutBtn);
             this.pnlHeader.ResumeLayout(false);
