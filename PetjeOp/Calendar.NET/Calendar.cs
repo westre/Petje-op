@@ -365,9 +365,9 @@ namespace Calendar.NET
             this._btnToday.HighlightBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this._btnToday.HighlightButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
             this._btnToday.Location = new System.Drawing.Point(19, 20);
-            this._btnToday.Margin = new Padding(6, 6, 6, 100);
+            this._btnToday.Margin = new Padding(6, 6, 6, 6);
             this._btnToday.Name = "_btnToday";
-            this._btnToday.Size = new System.Drawing.Size(107, 52);
+            this._btnToday.Size = new System.Drawing.Size(72, 29);
             this._btnToday.TabIndex = 0;
             this._btnToday.TextColor = System.Drawing.Color.Black;
             this._btnToday.ButtonClicked += new CoolButton.ButtonClickedArgs(this.BtnTodayButtonClicked);
@@ -383,10 +383,10 @@ namespace Calendar.NET
             this._btnLeft.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(144)))), ((int)(((byte)(254)))));
             this._btnLeft.HighlightBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this._btnLeft.HighlightButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-            this._btnLeft.Location = new System.Drawing.Point(138, 20);
-            this._btnLeft.Margin = new Padding(6, 6, 6, 100);
+            this._btnLeft.Location = new System.Drawing.Point(98, 20);
+            this._btnLeft.Margin = new Padding(6, 6, 6, 6);
             this._btnLeft.Name = "_btnLeft";
-            this._btnLeft.Size = new System.Drawing.Size(52, 52);
+            this._btnLeft.Size = new System.Drawing.Size(42, 29);
             this._btnLeft.TabIndex = 1;
             this._btnLeft.TextColor = System.Drawing.Color.Black;
             this._btnLeft.ButtonClicked += new CoolButton.ButtonClickedArgs(this.BtnLeftButtonClicked);
@@ -403,10 +403,10 @@ namespace Calendar.NET
             this._btnRight.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(144)))), ((int)(((byte)(254)))));
             this._btnRight.HighlightBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this._btnRight.HighlightButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-            this._btnRight.Location = new System.Drawing.Point(202, 20);
-            this._btnRight.Margin = new Padding(6,6,6,100);
+            this._btnRight.Location = new System.Drawing.Point(138, 20);
+            this._btnRight.Margin = new Padding(6,6,6,6);
             this._btnRight.Name = "_btnRight";
-            this._btnRight.Size = new System.Drawing.Size(52, 52);
+            this._btnRight.Size = new System.Drawing.Size(42, 29);
             this._btnRight.TabIndex = 2;
             this._btnRight.TextColor = System.Drawing.Color.Black;
             this._btnRight.ButtonClicked += new CoolButton.ButtonClickedArgs(this.BtnRightButtonClicked);
@@ -417,12 +417,12 @@ namespace Calendar.NET
             this._contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._miProperties});
             this._contextMenuStrip1.Name = "_contextMenuStrip1";
-            this._contextMenuStrip1.Size = new System.Drawing.Size(213, 40);
+            this._contextMenuStrip1.Size = new System.Drawing.Size(238, 42);
             // 
             // _miProperties
             // 
             this._miProperties.Name = "_miProperties";
-            this._miProperties.Size = new System.Drawing.Size(212, 36);
+            this._miProperties.Size = new System.Drawing.Size(237, 38);
             this._miProperties.Text = "Properties...";
             this._miProperties.Click += new System.EventHandler(this.MenuItemPropertiesClick);
             // 
@@ -924,7 +924,7 @@ namespace Calendar.NET
         {
             _calendarDays.Clear();
             _calendarEvents.Clear();
-            var bmp = new Bitmap(ClientSize.Width, ClientSize.Height + 30);
+            var bmp = new Bitmap(ClientSize.Width, ClientSize.Height);
             Graphics g = Graphics.FromImage(bmp);
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -949,7 +949,6 @@ namespace Calendar.NET
             int startWeek = ((int)startWeekEnum) + 1;
             int rogueDays = startWeek - 1;
 
-            controlsSpacing += 30;
             yStart += headerSpacing + controlsSpacing;
 
             int counter = 1;
