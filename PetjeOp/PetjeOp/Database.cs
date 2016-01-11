@@ -87,47 +87,7 @@ namespace PetjeOp
                 // null staat immers voor een niet geslaagde query of een query zonder resultaten
                 if (dbQuestion != null)
                 {
-                    // Hier wordt een nieuwe vraag aangemaakt via de contstructor van MultipleChoiceQuestion
-                    // De description wordt hieraan meegegeven, die met de query is opgehaald
-                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(dbQuestion.description);
-                    question.ID = id;
-                    // Vervolgens wordt het ID van het Question object toegevoegd, dit is hetzelfde ID dan degene in de database
-
-                    List<Answer> answerOptions = new List<Answer>();
-                    // Lijst met answeropties wordt aangemaakt, welke straks gevult wordt
-                    List<tblAnsweroption> dbAnsweroption = dbQuestion.tblAnsweroptions.ToList();
-                    // Lijst met tblAnsweropties, welke straks doorlopen wordt
-
-                    if (dbQuestion.timerestriction != null)
-                    {
-                        question.TimeRestriction = TimeSpan.FromTicks((long)dbQuestion.timerestriction);
-                    }
-                    else
-                    {
-                        question.TimeRestriction = TimeSpan.Zero;
-                    }
-
-                    foreach (tblAnsweroption dbAnswerOption in dbAnsweroption)
-                    {
-                        // Doorloopt de antwoordopties die een foreign key naar de geselecteerde question in de database hebben
-                        // Doordat we data hebben van onze answeroption, kunnen we nu ook de gehele vraag halen
-                        tblAnswer tblAnswer = dbAnswerOption.tblAnswer; // Cast antwoordtabel in variable
-
-                        Answer answer = new Answer(tblAnswer.description); // Maakt een nieuw antwoord aan
-                        answer.ID = tblAnswer.id; // Werkt het id bij naar degene die ook in de database gebruikt wordt
-
-                        if (dbQuestion.correctanswer == tblAnswer.id)
-                        {
-                            question.CorrectAnswer = answer;
-                        }
-                        answerOptions.Add(answer);
-                        // Voegt het antwoord object toe aan de lijst van antwoordopties die straks toegevoegd wordt aan de vraag
-                    }
-
-                    // Voegt de lijst met antwoord opties toe aan de vraag
-                    question.AnswerOptions = answerOptions;
-
-                    return question;
+                    return ConvertDbQuestion(dbQuestion); // Returnt MultipleChoiceQuestion object
                 }
                 // Als de query gefaalt is return null, deze wordt later opgevangen
                 return null;
@@ -156,14 +116,17 @@ namespace PetjeOp
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
-        public void UpdateQuestionnaire(Questionnaire questionnaire, List<Question> deletedQuestions = null)
+        // Methode voor het updaten van een questionnaire in de database
+        // Het Questionnaire object wordt meegegeven en eventueel een lijst met verwijderde vragen zodat deze verwijderd kunnen worden uit de database
+        public void UpdateQuestionnaire(Questionnaire questionnaire, List<Question> deletedQuestions = null, List<Answer> deletedAnswers = null)
         {
+            db = new DatabaseDataContext(); // Refresh database cache
             try
             {
                 tblQuestionnaire updateQuestionnaire = db.tblQuestionnaires.SingleOrDefault(q => q.id == questionnaire.ID); // Haalt questionnaire op uit DB
                 updateQuestionnaire.description = questionnaire.Name; // Wijzigingen toepassen
                 updateQuestionnaire.archived = questionnaire.Archived;
-
+                db.SubmitChanges();
                 if (deletedQuestions != null) // Als er vragen zijn verwijderd, bevinden deze zich niet meer in het object Questionnaire daarvoor is een aparte lijst meegegeven
                 {
                     foreach (MultipleChoiceQuestion delQuestion in deletedQuestions)
@@ -172,31 +135,58 @@ namespace PetjeOp
                     }
                 }
 
-                foreach (MultipleChoiceQuestion question in questionnaire.Questions)
+                if (deletedAnswers != null) // Als er antwoorden zijn verwijderd, bevinden deze zich niet meer in het object Question daarvoor is een aparte lijst meegegeven
+                {
+                    foreach (Answer delAnswer in deletedAnswers)
+                    {
+                        DeleteLinkAnswerToQuestion(delAnswer); // Verwijder het desbetreffende antwoord
+                    }
+                }
+
+                foreach (MultipleChoiceQuestion question in questionnaire.Questions) // Doorloopt alle vragen in de questionnaire
                 {
                     tblQuestion dbQuestion = null;
-                    if (question.ID == -1)
+                    if (question.ID == -1) // Als de vraag een nieuwe betreft heeft deze standaard een ID van -1
                     {
-                        dbQuestion = AddMultipleChoiceQuestion(question, questionnaire.ID);
+                        dbQuestion = AddMultipleChoiceQuestion(question, questionnaire.ID); // De vraag wordt dan aangemaakt in de database
                     }
                     else
                     {
-                        dbQuestion = updateQuestionnaire.tblQuestions.SingleOrDefault(q => q.id == question.ID);
-                        dbQuestion.description = question.Description; // Wijzigt de vraag in DB
-
-                        foreach (tblAnsweroption dbLinkAnwser in dbQuestion.tblAnsweroptions.ToList()) // Doorloopt lijst van bijbehorende answers uit DB
+                        dbQuestion = updateQuestionnaire.tblQuestions.SingleOrDefault(q => q.id == question.ID); // Haalt de desbetreffende vraag op uit de DB
+                        dbQuestion.description = question.Description; // Wijzigt de vraag in DB  
+                        db.SubmitChanges();
+                        foreach (Answer answer in question.AnswerOptions)
                         {
-                            tblAnswer dbAnswer = dbLinkAnwser.tblAnswer;
-                            Answer answer = question.AnswerOptions.Single(a => a.ID == dbLinkAnwser.answer); // Haalt Answer op uit Question
-                            dbAnswer.description = answer.Description; // Wijzigt het antwoord in DB
-                        }
-                        dbQuestion.correctanswer = question.CorrectAnswer.ID;
+                            if (answer.ID == -1)
+                            {
+                                Answer tempAnswer = new Answer(AddAnswer(answer).id)
+                                {
+                                    Description = answer.Description
+                                }; // Voegt antwoord toe in database als deze nog niet bestaat
+
+                                dbQuestion.tblAnsweroptions.Add(LinkAnswerToQuestion(question.ID, tempAnswer)); // Koppelt antwoord aan de vraag in de database
+                                if (answer == question.CorrectAnswer)
+                                {
+                                    dbQuestion.correctanswer = tempAnswer.ID;
+                                    db.SubmitChanges();
+                                    question.CorrectAnswer = tempAnswer;                                    
+                                }
+                            }
+                            else
+                            {
+                                if (answer == question.CorrectAnswer)
+                                {
+                                    dbQuestion.correctanswer = answer.ID;
+                                    db.SubmitChanges();
+                                }
+                            }
+                        }                       
                     }
                     if (dbQuestion != null)
                     {
                         updateQuestionnaire.tblQuestions.Add(dbQuestion);
                     }
-                }
+                }                
             }
             catch (SqlException ex) { MessageBox.Show(ex.Message); }
         }
@@ -260,46 +250,20 @@ namespace PetjeOp
         {
             try
             {
-                tblQuestionnaire dbQuestionnaire = new tblQuestionnaire()
+                tblQuestionnaire dbQuestionnaire = new tblQuestionnaire() // Maak database object aan
                 {
                     author = questionnaire.Author.TeacherNr,
                     description = questionnaire.Name,
                     subject = questionnaire.Subject.Id
                 };
-                questionnaire.ID = dbQuestionnaire.id;
+                db.tblQuestionnaires.InsertOnSubmit(dbQuestionnaire); // Insert questionnaire in database
+                db.SubmitChanges(); 
 
-                //Loop door alle vragen heen
-                foreach (MultipleChoiceQuestion question in questionnaire.Questions)
-                {
-                    //Loop door alle antwoorden heen
-                    foreach (Answer answer in question.AnswerOptions)
-                    {
-                        Answer ans = ConvertDbAnswer(GetAnswer(answer.Description));
-                        if (ans == null)
-                        {
-                            ans = ConvertDbAnswer(AddAnswer(answer));
-                        }
+                questionnaire.ID = dbQuestionnaire.id; // Pas het ID aan van het Questionnaire object
 
-                        if (question.CorrectAnswer == answer)
-                        {
-                            question.CorrectAnswer = ans;
-                        }
-                        // Synchroniseer onze offline answer met primary key van DB
-                        answer.ID = ans.ID;
-                    }
-                    tblQuestion dbQuestion = AddMultipleChoiceQuestion(question, questionnaire.ID);
+                UpdateQuestionnaire(questionnaire); // Maak vervolgens gebruik van de update questionnaire functie om de overige data toe te voegen
 
-                    // Nu kunnen we door answers heen loopen aangezien we nu een ID hebben van Question
-                    foreach (Answer answer in question.AnswerOptions)
-                    {
-                        LinkAnswerToQuestion(dbQuestion.id, answer);
-                    }
-                    dbQuestionnaire.tblQuestions.Add(dbQuestion);
-                }
-
-                db.tblQuestionnaires.InsertOnSubmit(dbQuestionnaire);
-                db.SubmitChanges();
-                return questionnaire;
+                return GetQuestionnaire(dbQuestionnaire.id); // Return het aangemaakte questionnaire object
             }
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
@@ -333,7 +297,6 @@ namespace PetjeOp
                 }
                 else
                 {
-                    db = new DatabaseDataContext();
                     tblAnswer createAnswer = new tblAnswer()
                     {
                         description = answer.Description
@@ -419,7 +382,7 @@ namespace PetjeOp
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
-        public void LinkAnswerToQuestion(int questionid, Answer answer)
+        public tblAnsweroption LinkAnswerToQuestion(int questionid, Answer answer)
         {
             try
             {
@@ -431,8 +394,9 @@ namespace PetjeOp
                 };
                 db.tblAnsweroptions.InsertOnSubmit(answerOption); // Geef opdracht om bovenstaande item toe te voegen
                 db.SubmitChanges(); // Voer veranderingen door
+                return answerOption;
             }
-            catch (SqlException ex) { MessageBox.Show(ex.Message); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
         private void DeleteLinkAnswerToQuestion(int questionId)
@@ -440,6 +404,26 @@ namespace PetjeOp
             try
             {
                 List<tblAnsweroption> answerOptions = db.tblAnsweroptions.Where(q => q.question == questionId).ToList();
+                // Selecteer item op id
+                foreach (tblAnsweroption dbAnswerOption in answerOptions)
+                {
+                    db.tblAnsweroptions.DeleteOnSubmit(dbAnswerOption);
+                }
+
+                // Geef opdracht om bovenstaande item te verwijderen
+                db.SubmitChanges(); // Voer veranderingen door
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DeleteLinkAnswerToQuestion(Answer answer)
+        {
+            try
+            {
+                List<tblAnsweroption> answerOptions = db.tblAnsweroptions.Where(q => q.answer == answer.ID).ToList();
                 // Selecteer item op id
                 foreach (tblAnsweroption dbAnswerOption in answerOptions)
                 {
@@ -477,6 +461,7 @@ namespace PetjeOp
 
         public List<Questionnaire> GetAllQuestionnaires()
         {
+            db = new DatabaseDataContext(); // Refresh database cache
             try
             {
                 List<Questionnaire> questionnaires = new List<Questionnaire>();
@@ -999,6 +984,7 @@ namespace PetjeOp
             {
                 Answer answer = ConvertDbAnswer(dbAnswerOption.tblAnswer); // Converteerd database object naar Answer
                 question.AnswerOptions.Add(answer); // Voegt het antwoord toe als antwoordoptie aan het Question object
+
                 if (dbQuestion.correctanswer == answer.ID)
                     question.CorrectAnswer = answer; // Als het database object ook het correcte antwoord is van de Question wordt deze als correct question ingesteld
             }

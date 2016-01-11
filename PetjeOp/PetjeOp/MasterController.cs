@@ -41,18 +41,9 @@ namespace PetjeOp
 
             //Creëer database instantie
             DB = new Database();
-            DB.AnswerCleanup();
-            MultipleChoiceQuestion question = DB.GetQuestion(1);
-            Console.WriteLine(question.Description + "::(" + question.ID + ")::" + question.QuestionIndex);
-            foreach (Answer answer in question.AnswerOptions)
-            {
-                Console.WriteLine(answer.Description + "::(" + answer.ID + ")");
-            }
+            DB.AnswerCleanup();           
 
-            Resize += MasterController_Resize;
-
-            // We beginnen met deze view, verander dit niet!
-            //mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());                
+            Resize += MasterController_Resize;            
         }
 
         // Deze functie wordt gebruikt om een bepaald type controller uit de lijst van Controllers op te halen

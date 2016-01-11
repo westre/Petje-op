@@ -10,6 +10,7 @@ namespace PetjeOp {
         public Questionnaire Questionnaire { get; set; }
         public List<Questionnaire> Questionnaires { get; set; }
         public List<Question> DeletedQuestions { get; set; }
+        public List<Answer> DeletedAnswers { get; set; }
         public List<Subject> Subjects { get; set; }
     }
 }
