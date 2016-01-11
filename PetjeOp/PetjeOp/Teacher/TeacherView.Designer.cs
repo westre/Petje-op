@@ -133,7 +133,7 @@
             this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(30, 9);
             this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Logout_Icon.Name = "pbIcon_Logout_Icon";
-            this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(42, 48);
+            this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(25, 25);
             this.pbIcon_Logout_Icon.Click += new System.EventHandler(this.Logout);
             this.pbIcon_Logout_Icon.TabIndex = 4;
             this.pbIcon_Logout_Icon.TabStop = false;

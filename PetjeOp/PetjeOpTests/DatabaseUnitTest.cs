@@ -30,25 +30,25 @@ namespace PetjeOpTests {
         [TestMethod]
         public void TestGetQuestionnaire()
         {
-            Questionnaire questionnaire = db.GetQuestionnaire(23);
+            Questionnaire questionnaire = db.GetQuestionnaire(5);
             Assert.IsNotNull(questionnaire, "Questionnaire is null");
         }
 
         [TestMethod]
         public void TestGetQuestion()   
         {
-            Question question = db.GetQuestion(2);
+            Question question = db.GetQuestion(1);
             Assert.IsNotNull(question, "Questionnaire is null");
         }
 
         [TestMethod]
         public void TestUpdateQuestionnaire()
         {
-            Questionnaire questionnaire = db.GetQuestionnaire(23);
+            Questionnaire questionnaire = db.GetQuestionnaire(1023);
             questionnaire.Name = "NewName";
             db.UpdateQuestionnaire(questionnaire);
-            questionnaire = db.GetQuestionnaire(2);
-            Assert.Equals(questionnaire.Name, "NewName");
+            questionnaire = db.GetQuestionnaire(1023);
+            Assert.AreEqual(questionnaire.Name, "NewName");
 
         }
     }

@@ -474,6 +474,14 @@ namespace Calendar.NET
             Refresh();
         }
 
+        /// <summary>
+        /// Counts events for testing purposes. Function added by Gerrit.
+        /// </summary>
+        public int CountEvents()
+        {
+            return _events.Count;
+        }
+
         private void CalendarLoad(object sender, EventArgs e)
         {
             if (Parent != null)
