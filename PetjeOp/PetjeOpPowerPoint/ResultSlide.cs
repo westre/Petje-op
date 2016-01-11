@@ -126,7 +126,7 @@ namespace PetjeOpPowerPoint {
                                 labelShape.TextEffect.Text = question.CorrectAnswer.Description;
                                 labelShape.Rotation = 315f;
                             }
-                            resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = question.CorrectAnswer.Description;
+                            //resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = question.CorrectAnswer.Description;
                         }
                     }
                 }
