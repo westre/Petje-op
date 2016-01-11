@@ -41,7 +41,7 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 629);
+            this.ClientSize = new System.Drawing.Size(919, 629);
             this.Controls.Add(this.examOverviewTeacherDetailView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
