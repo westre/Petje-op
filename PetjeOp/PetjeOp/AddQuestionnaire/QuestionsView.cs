@@ -96,6 +96,7 @@ namespace PetjeOp.AddQuestionnaire
 
         private void btnDeleteQuestion_Click(object sender, EventArgs e)
         {
+            
             Questionnaire tempQuestionnaire = new Questionnaire(-1);
 
             if (AddQuestionnaireController != null)
@@ -106,40 +107,42 @@ namespace PetjeOp.AddQuestionnaire
             {
                 tempQuestionnaire = QuestionnaireDetailController.Model.Questionnaire;
             }
-
-            //Dialoog voor bevestiging
-            DialogResult dr = MessageBox.Show("Weet u zeker dat u deze vraag wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
-            //Als er op OK geklikt is, verwijder antwoord uit lijst
-            if (dr == DialogResult.Yes)
+            if (tvQuestions.SelectedNode != null)
             {
-                MultipleChoiceQuestion q = (MultipleChoiceQuestion) tvQuestions.SelectedNode.Tag;
+                //Dialoog voor bevestiging
+                DialogResult dr = MessageBox.Show("Weet u zeker dat u deze vraag wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
-                int index = tempQuestionnaire.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
-                tempQuestionnaire.Questions.RemoveAt(index);
-                
-                int newQuestionIndex = 1;
-                foreach (Question question in tempQuestionnaire.Questions)
+                //Als er op OK geklikt is, verwijder antwoord uit lijst
+                if (dr == DialogResult.Yes)
                 {
-                    question.QuestionIndex = newQuestionIndex++;
-                }
+                    MultipleChoiceQuestion q = (MultipleChoiceQuestion)tvQuestions.SelectedNode.Tag;
 
-                UpdateTreeView();
-                DisableEditDeleteButtons();
+                    int index = tempQuestionnaire.Questions.FindIndex(ql => ql.QuestionIndex == q.QuestionIndex);
+                    tempQuestionnaire.Questions.RemoveAt(index);
 
-                if (AddQuestionnaireController != null)
-                {
-                    AddQuestionnaireController.Model.Questionnaire = tempQuestionnaire;
-                    AddQuestionnaireController.CheckButtons();
-                }
-                if (QuestionnaireDetailController != null)
-                {
-                    if(QuestionnaireDetailController.Model.DeletedQuestions == null)
+                    int newQuestionIndex = 1;
+                    foreach (Question question in tempQuestionnaire.Questions)
                     {
-                        QuestionnaireDetailController.Model.DeletedQuestions = new List<Question>();
+                        question.QuestionIndex = newQuestionIndex++;
                     }
-                    QuestionnaireDetailController.Model.Questionnaire = tempQuestionnaire;
-                    QuestionnaireDetailController.Model.DeletedQuestions.Add(q);
+
+                    UpdateTreeView();
+                    DisableEditDeleteButtons();
+
+                    if (AddQuestionnaireController != null)
+                    {
+                        AddQuestionnaireController.Model.Questionnaire = tempQuestionnaire;
+                        AddQuestionnaireController.CheckButtons();
+                    }
+                    if (QuestionnaireDetailController != null)
+                    {
+                        if (QuestionnaireDetailController.Model.DeletedQuestions == null)
+                        {
+                            QuestionnaireDetailController.Model.DeletedQuestions = new List<Question>();
+                        }
+                        QuestionnaireDetailController.Model.Questionnaire = tempQuestionnaire;
+                        QuestionnaireDetailController.Model.DeletedQuestions.Add(q);
+                    }
                 }
             }
         }
