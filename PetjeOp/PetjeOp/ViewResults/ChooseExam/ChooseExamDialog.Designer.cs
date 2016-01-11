@@ -51,7 +51,7 @@
             // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(1002, 965);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(6);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(150, 44);
             this.btnOk.TabIndex = 1;
@@ -62,7 +62,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(1164, 965);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(150, 44);
             this.btnCancel.TabIndex = 2;
@@ -74,7 +74,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "DD-MM-YYYY";
             this.dateTimePicker1.Location = new System.Drawing.Point(254, 269);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(6);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(674, 31);
             this.dateTimePicker1.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             this.cbSubject.FormattingEnabled = true;
             this.cbSubject.Location = new System.Drawing.Point(254, 17);
-            this.cbSubject.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cbSubject.Margin = new System.Windows.Forms.Padding(6);
             this.cbSubject.Name = "cbSubject";
             this.cbSubject.Size = new System.Drawing.Size(674, 33);
             this.cbSubject.TabIndex = 4;
@@ -94,7 +94,7 @@
             // 
             this.cbClass.FormattingEnabled = true;
             this.cbClass.Location = new System.Drawing.Point(254, 96);
-            this.cbClass.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cbClass.Margin = new System.Windows.Forms.Padding(6);
             this.cbClass.Name = "cbClass";
             this.cbClass.Size = new System.Drawing.Size(674, 33);
             this.cbClass.TabIndex = 5;
@@ -103,7 +103,7 @@
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(24, 971);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(6);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(206, 38);
             this.btnReset.TabIndex = 6;
@@ -115,7 +115,7 @@
             // 
             this.cbQuestionnaire.FormattingEnabled = true;
             this.cbQuestionnaire.Location = new System.Drawing.Point(254, 183);
-            this.cbQuestionnaire.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cbQuestionnaire.Margin = new System.Windows.Forms.Padding(6);
             this.cbQuestionnaire.Name = "cbQuestionnaire";
             this.cbQuestionnaire.Size = new System.Drawing.Size(674, 33);
             this.cbQuestionnaire.TabIndex = 7;
@@ -129,7 +129,7 @@
             this.chStarttime,
             this.chEndtime});
             this.listView1.Location = new System.Drawing.Point(24, 350);
-            this.listView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.listView1.Margin = new System.Windows.Forms.Padding(6);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1286, 600);
@@ -141,22 +141,22 @@
             // chName
             // 
             this.chName.Text = "Naam";
-            this.chName.Width = 354;
+            this.chName.Width = 225;
             // 
             // chSubject
             // 
             this.chSubject.Text = "Vak";
-            this.chSubject.Width = 347;
+            this.chSubject.Width = 206;
             // 
             // chStarttime
             // 
             this.chStarttime.Text = "Starttijd";
-            this.chStarttime.Width = 303;
+            this.chStarttime.Width = 165;
             // 
             // chEndtime
             // 
             this.chEndtime.Text = "Eindtijd";
-            this.chEndtime.Width = 279;
+            this.chEndtime.Width = 173;
             // 
             // lblDate
             // 
@@ -208,7 +208,7 @@
             this.checkBox_Date.Checked = true;
             this.checkBox_Date.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_Date.Location = new System.Drawing.Point(1002, 273);
-            this.checkBox_Date.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.checkBox_Date.Margin = new System.Windows.Forms.Padding(6);
             this.checkBox_Date.Name = "checkBox_Date";
             this.checkBox_Date.Size = new System.Drawing.Size(179, 29);
             this.checkBox_Date.TabIndex = 13;
@@ -235,7 +235,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ChooseExamDialog";
             this.Text = "Kies een afnamemoment";
             this.Load += new System.EventHandler(this.ChooseExamDialog_Load);

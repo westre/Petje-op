@@ -32,19 +32,19 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             // examOverviewTeacherDetailView
             // 
             this.examOverviewTeacherDetailView.Location = new System.Drawing.Point(24, 23);
-            this.examOverviewTeacherDetailView.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.examOverviewTeacherDetailView.Margin = new System.Windows.Forms.Padding(12);
             this.examOverviewTeacherDetailView.Name = "examOverviewTeacherDetailView";
-            this.examOverviewTeacherDetailView.Size = new System.Drawing.Size(638, 540);
+            this.examOverviewTeacherDetailView.Size = new System.Drawing.Size(876, 593);
             this.examOverviewTeacherDetailView.TabIndex = 0;
             // 
             // ExamOverviewTeacherDetailDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 587);
+            this.ClientSize = new System.Drawing.Size(869, 629);
             this.Controls.Add(this.examOverviewTeacherDetailView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ExamOverviewTeacherDetailDialog";
             this.Text = "Details Afnamemoment";
             this.Load += new System.EventHandler(this.ExamOverviewTeacherDetailDialog_Load);
