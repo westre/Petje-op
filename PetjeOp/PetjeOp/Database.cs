@@ -676,32 +676,6 @@ namespace PetjeOp
             }
         }
 
-        // Haal alle examens op
-        public List<Exam> GetExams()
-        {
-            try
-            {
-                List<Exam> exams = new List<Exam>();
-
-                foreach (tblExam tblExam in db.tblExams)
-                {
-                    Questionnaire questionnaire = GetQuestionnaire(tblExam.questionnaire);
-
-                    Exam exam = new Exam(tblExam.id, questionnaire, tblExam.starttime.Value, tblExam.endtime.Value,
-                        GetLecture(tblExam.lecture));
-
-                    exams.Add(exam);
-                }
-
-                return exams;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-        }
-
         public void UpdateExamCurrentQuestion(int examId, int questionId)
         {
             try
