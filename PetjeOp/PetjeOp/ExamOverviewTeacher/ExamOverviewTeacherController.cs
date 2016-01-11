@@ -31,14 +31,19 @@ namespace PetjeOp {
             return View;
         }
 
+        //Laad de calendar view
         public void Load() {
+            //Eerst leegmaken
             View.clnExams.ClearCalendar();
+
+            //Exams ophalen
             List<Exam> exams = MasterController.DB.GetExamsByTeacher(((Teacher)MasterController.User).TeacherNr);
 
             foreach (Exam exam in exams) {
                 double difference = (exam.Endtime - exam.Starttime).TotalHours;
                 double differenceMinutes = (exam.Endtime - exam.Starttime).TotalMinutes;
 
+                //Toevoegen als CustomEvent
                 CustomEvent customEvent = new CustomEvent {
                     Date = exam.Starttime,
                     EventText = exam.Questionnaire.Name,
@@ -58,10 +63,12 @@ namespace PetjeOp {
                     Tag = exam
                 };
 
+                //Voeg toe aan kalender
                 View.clnExams.AddEvent(customEvent);
             }
         }
 
+        //Ga naar AddExamController
         public void GoToAddExamController()
         {
             AddExamController aec = (AddExamController)MasterController.GetController(typeof(AddExamController));
