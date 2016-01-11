@@ -145,42 +145,44 @@ namespace PetjeOpPowerPoint
         // dit is de functionaliteit achter de knop 'Alle vragen toevoegen'
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
         {
-            Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.Questionnaire.ID);
+           
+                Exam chosen = (Exam)ddExams.SelectedItem.Tag;
+                Questionnaire questionnaire = DB.GetQuestionnaire(chosen.Questionnaire.ID);
 
-            // Haal alle resultaten op die bij deze examen hoort
-            List<Result> allResults = DB.GetResultsByExamId(chosen.Examnr);
+                // Haal alle resultaten op die bij deze examen hoort
+                List<Result> allResults = DB.GetResultsByExamId(chosen.Examnr);
 
-            foreach (Question q in questionnaire.Questions)
-            {
-                PowerPoint.Slide questionSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-                PowerPoint.Shape questionTextBox = questionSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
+                foreach (Question q in questionnaire.Questions)
+                {
+                    PowerPoint.Slide questionSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+                    PowerPoint.Shape questionTextBox = questionSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, 200, 100, 500, 50);
 
-                questionTextBox.TextFrame.TextRange.InsertAfter(q.Description);
-                questionTextBox.TextFrame.TextRange.Font.Size = 30;
-                questionTextBox.TextFrame.TextRange.InsertAfter("\n\n");
+                    questionTextBox.TextFrame.TextRange.InsertAfter(q.Description);
+                    questionTextBox.TextFrame.TextRange.Font.Size = 30;
+                    questionTextBox.TextFrame.TextRange.InsertAfter("\n\n");
 
-                questionSlide.Tags.Add("isResultSlide", "0");
-                questionSlide.Tags.Add("questionId", q.ID.ToString());
-                questionSlide.Tags.Add("examId", chosen.Examnr.ToString());
-                questionSlide.Tags.Add("isClosed", "0");
+                    questionSlide.Tags.Add("isResultSlide", "0");
+                    questionSlide.Tags.Add("questionId", q.ID.ToString());
+                    questionSlide.Tags.Add("examId", chosen.Examnr.ToString());
+                    questionSlide.Tags.Add("isClosed", "0");
 
-                string answers = GetFormattedAnswers(q.ID);
-                questionTextBox.TextFrame.TextRange.InsertAfter(answers);
+                    string answers = GetFormattedAnswers(q.ID);
+                    questionTextBox.TextFrame.TextRange.InsertAfter(answers);
 
-                PowerPoint.Shape winQWatermark = questionSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
-                winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
-                winQWatermark.TextFrame.TextRange.Font.Size = 10;
+                    PowerPoint.Shape winQWatermark = questionSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
+                    winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
+                    winQWatermark.TextFrame.TextRange.Font.Size = 10;
 
-                // volgende slide
-                PowerPoint.Slide resultSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-                resultSlide.Tags.Add("isResultSlide", "1");
-                resultSlide.Tags.Add("questionId", q.ID.ToString());
-                resultSlide.Tags.Add("examId", chosen.Examnr.ToString());
+                    // volgende slide
+                    PowerPoint.Slide resultSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
+                    resultSlide.Tags.Add("isResultSlide", "1");
+                    resultSlide.Tags.Add("questionId", q.ID.ToString());
+                    resultSlide.Tags.Add("examId", chosen.Examnr.ToString());
 
-                //ResultSlide.Add(allResults, q.ID, resultSlide);
-                ResultSlide.Add(allResults, q, resultSlide);
-            }
+                    //ResultSlide.Add(allResults, q.ID, resultSlide);
+                    ResultSlide.Add(allResults, q, resultSlide);
+                }
+            
         }
 
         private void btnSlideInfo_Click(object sender, RibbonControlEventArgs e) {
@@ -264,6 +266,10 @@ namespace PetjeOpPowerPoint
         private void ddFilterVak_SelectionChanged(object sender, RibbonControlEventArgs e) {
             // Button 'alle vragen toevoegen' wordt tijdelijk onzichtbaar totdat het programma weet dat er een afnamemoment is gekozen, en niet een leeg record
             ddExams.Items.Clear();
+            ddQuestions.Items.Clear();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyQuestions = this.Factory.CreateRibbonDropDownItem();
+            emptyQuestions.Label = null;
+            ddQuestions.Items.Add(emptyQuestions);
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem emptyExam = this.Factory.CreateRibbonDropDownItem();
             // Ook hier wordt een leeg record aangemaakt bovenaan de dropdown lijst
             emptyExam.Label = null;

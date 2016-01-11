@@ -61,5 +61,11 @@ namespace PetjeOp {
                 View.clnExams.AddEvent(customEvent);
             }
         }
+
+        public void GoToAddExamController()
+        {
+            AddExamController aec = (AddExamController)MasterController.GetController(typeof(AddExamController));
+            MasterController.SetController(aec);
+        }
     }
 }

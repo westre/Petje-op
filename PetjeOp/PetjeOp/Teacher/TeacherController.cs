@@ -42,9 +42,16 @@ namespace PetjeOp {
             vrc.ShowResults(vrc.ex);
         }
 
-        public void GoToQuestionnaireOverview() {
+        public void GoToQuestionnaireOverview()
+        {
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             MasterController.SetController(qoc);
+        }
+
+        public void GoToAddExamController()
+        {
+            AddExamController aoc = (AddExamController) MasterController.GetController(typeof (AddExamController));
+            MasterController.SetController(aoc);
         }
 
         public void GoToExamOverview() {

@@ -10,5 +10,7 @@ namespace PetjeOp {
         public CustomEvent Event { get; set; }
         public Exam Exam { get; set; }
         public Exam LocallyEditedExam { get; set; }
+        public List<Subject> Subjects { get; set; }
+        public List<Class> Classes { get; set; }
     }
 }

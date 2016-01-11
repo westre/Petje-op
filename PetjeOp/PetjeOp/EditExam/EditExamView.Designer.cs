@@ -32,12 +32,15 @@
             this.lblEndtime = new System.Windows.Forms.Label();
             this.lblStarttime = new System.Windows.Forms.Label();
             this.btnQuestionnaireEdit = new System.Windows.Forms.Button();
-            this.btnLectureEdit = new System.Windows.Forms.Button();
             this.btnEndtimeEdit = new System.Windows.Forms.Button();
             this.btnStarttimeEdit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.lblEditExam = new System.Windows.Forms.Label();
+            this.cbClass = new System.Windows.Forms.ComboBox();
+            this.cbSubject = new System.Windows.Forms.ComboBox();
+            this.lblClassDropdown = new System.Windows.Forms.Label();
+            this.lblSubjectDropdown = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -57,9 +60,9 @@
             this.lblForClass.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblForClass.Location = new System.Drawing.Point(32, 267);
             this.lblForClass.Name = "lblForClass";
-            this.lblForClass.Size = new System.Drawing.Size(40, 18);
+            this.lblForClass.Size = new System.Drawing.Size(41, 18);
             this.lblForClass.TabIndex = 16;
-            this.lblForClass.Text = "Voor";
+            this.lblForClass.Text = "Klas:";
             // 
             // lblExecutedBy
             // 
@@ -67,9 +70,9 @@
             this.lblExecutedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExecutedBy.Location = new System.Drawing.Point(31, 236);
             this.lblExecutedBy.Name = "lblExecutedBy";
-            this.lblExecutedBy.Size = new System.Drawing.Size(162, 18);
+            this.lblExecutedBy.Size = new System.Drawing.Size(166, 18);
             this.lblExecutedBy.TabIndex = 15;
-            this.lblExecutedBy.Text = "Wordt afgenomen door";
+            this.lblExecutedBy.Text = "Wordt afgenomen door:";
             // 
             // lblPlannedInBy
             // 
@@ -77,9 +80,9 @@
             this.lblPlannedInBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlannedInBy.Location = new System.Drawing.Point(31, 207);
             this.lblPlannedInBy.Name = "lblPlannedInBy";
-            this.lblPlannedInBy.Size = new System.Drawing.Size(105, 18);
+            this.lblPlannedInBy.Size = new System.Drawing.Size(109, 18);
             this.lblPlannedInBy.TabIndex = 14;
-            this.lblPlannedInBy.Text = "Ingepland door";
+            this.lblPlannedInBy.Text = "Ingepland door:";
             // 
             // lblSubject
             // 
@@ -107,9 +110,9 @@
             this.lblEndtime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEndtime.Location = new System.Drawing.Point(31, 179);
             this.lblEndtime.Name = "lblEndtime";
-            this.lblEndtime.Size = new System.Drawing.Size(63, 18);
+            this.lblEndtime.Size = new System.Drawing.Size(59, 18);
             this.lblEndtime.TabIndex = 11;
-            this.lblEndtime.Text = "Eind tijd:";
+            this.lblEndtime.Text = "Eindtijd:";
             // 
             // lblStarttime
             // 
@@ -117,29 +120,19 @@
             this.lblStarttime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStarttime.Location = new System.Drawing.Point(31, 151);
             this.lblStarttime.Name = "lblStarttime";
-            this.lblStarttime.Size = new System.Drawing.Size(65, 18);
+            this.lblStarttime.Size = new System.Drawing.Size(61, 18);
             this.lblStarttime.TabIndex = 10;
-            this.lblStarttime.Text = "Start tijd:";
+            this.lblStarttime.Text = "Starttijd:";
             // 
             // btnQuestionnaireEdit
             // 
-            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(427, 147);
+            this.btnQuestionnaireEdit.Location = new System.Drawing.Point(427, 121);
             this.btnQuestionnaireEdit.Name = "btnQuestionnaireEdit";
             this.btnQuestionnaireEdit.Size = new System.Drawing.Size(109, 23);
             this.btnQuestionnaireEdit.TabIndex = 23;
             this.btnQuestionnaireEdit.Text = "Wijzig vragenlijst";
             this.btnQuestionnaireEdit.UseVisualStyleBackColor = true;
             this.btnQuestionnaireEdit.Click += new System.EventHandler(this.btnQuestionnaireEdit_Click);
-            // 
-            // btnLectureEdit
-            // 
-            this.btnLectureEdit.Location = new System.Drawing.Point(427, 120);
-            this.btnLectureEdit.Name = "btnLectureEdit";
-            this.btnLectureEdit.Size = new System.Drawing.Size(109, 23);
-            this.btnLectureEdit.TabIndex = 22;
-            this.btnLectureEdit.Text = "Wijzig college";
-            this.btnLectureEdit.UseVisualStyleBackColor = true;
-            this.btnLectureEdit.Click += new System.EventHandler(this.btnLectureEdit_Click);
             // 
             // btnEndtimeEdit
             // 
@@ -163,7 +156,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(427, 266);
+            this.btnRemove.Location = new System.Drawing.Point(427, 366);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(109, 23);
             this.btnRemove.TabIndex = 19;
@@ -173,7 +166,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(312, 266);
+            this.btnEdit.Location = new System.Drawing.Point(312, 366);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(109, 23);
             this.btnEdit.TabIndex = 18;
@@ -192,13 +185,50 @@
             this.lblEditExam.TabIndex = 27;
             this.lblEditExam.Text = "Afnamemoment wijzigen";
             // 
+            // cbClass
+            // 
+            this.cbClass.FormattingEnabled = true;
+            this.cbClass.Location = new System.Drawing.Point(312, 312);
+            this.cbClass.Name = "cbClass";
+            this.cbClass.Size = new System.Drawing.Size(221, 21);
+            this.cbClass.TabIndex = 28;
+            // 
+            // cbSubject
+            // 
+            this.cbSubject.FormattingEnabled = true;
+            this.cbSubject.Location = new System.Drawing.Point(312, 339);
+            this.cbSubject.Name = "cbSubject";
+            this.cbSubject.Size = new System.Drawing.Size(221, 21);
+            this.cbSubject.TabIndex = 29;
+            // 
+            // lblClassDropdown
+            // 
+            this.lblClassDropdown.AutoSize = true;
+            this.lblClassDropdown.Location = new System.Drawing.Point(274, 315);
+            this.lblClassDropdown.Name = "lblClassDropdown";
+            this.lblClassDropdown.Size = new System.Drawing.Size(30, 13);
+            this.lblClassDropdown.TabIndex = 30;
+            this.lblClassDropdown.Text = "Klas:";
+            // 
+            // lblSubjectDropdown
+            // 
+            this.lblSubjectDropdown.AutoSize = true;
+            this.lblSubjectDropdown.Location = new System.Drawing.Point(274, 342);
+            this.lblSubjectDropdown.Name = "lblSubjectDropdown";
+            this.lblSubjectDropdown.Size = new System.Drawing.Size(29, 13);
+            this.lblSubjectDropdown.TabIndex = 31;
+            this.lblSubjectDropdown.Text = "Vak:";
+            // 
             // EditExamView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblSubjectDropdown);
+            this.Controls.Add(this.lblClassDropdown);
+            this.Controls.Add(this.cbSubject);
+            this.Controls.Add(this.cbClass);
             this.Controls.Add(this.lblEditExam);
             this.Controls.Add(this.btnQuestionnaireEdit);
-            this.Controls.Add(this.btnLectureEdit);
             this.Controls.Add(this.btnEndtimeEdit);
             this.Controls.Add(this.btnStarttimeEdit);
             this.Controls.Add(this.btnRemove);
@@ -213,6 +243,7 @@
             this.Controls.Add(this.lblStarttime);
             this.Name = "EditExamView";
             this.Size = new System.Drawing.Size(582, 425);
+            this.Load += new System.EventHandler(this.EditExamView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,11 +260,14 @@
         public System.Windows.Forms.Label lblEndtime;
         public System.Windows.Forms.Label lblStarttime;
         public System.Windows.Forms.Button btnQuestionnaireEdit;
-        public System.Windows.Forms.Button btnLectureEdit;
         public System.Windows.Forms.Button btnEndtimeEdit;
         public System.Windows.Forms.Button btnStarttimeEdit;
         public System.Windows.Forms.Button btnRemove;
         public System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label lblEditExam;
+        public System.Windows.Forms.ComboBox cbClass;
+        public System.Windows.Forms.ComboBox cbSubject;
+        private System.Windows.Forms.Label lblClassDropdown;
+        private System.Windows.Forms.Label lblSubjectDropdown;
     }
 }

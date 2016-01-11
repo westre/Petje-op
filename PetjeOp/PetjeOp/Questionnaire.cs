@@ -15,13 +15,6 @@ namespace PetjeOp
         public Teacher Author { get; set;  }
         public bool Archived { get; set; }
 
-        // Constructor voor de klasse maakt alvast een lege lijst van vragen aan
-        public Questionnaire(string n)
-        {
-            Name = n;
-            Questions = new List<Question>();
-        }
-
         public Questionnaire(int id) {
             ID = id;
             Name = "";
@@ -32,6 +25,5 @@ namespace PetjeOp
         {
             return String.Format("{0}: {1}", Subject, Name);
         }
-
     }
 }

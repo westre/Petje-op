@@ -35,15 +35,17 @@ namespace PetjeOp
             Controllers.Add(new QuestionnaireOverviewController(this));
             Controllers.Add(new AnswerQuestionnaireController(this));
             Controllers.Add(new TeacherHomeController(this));
+            Controllers.Add(new AddExamController(this));
+
             Controllers.Add(new ExamOverviewStudentController(this));
             Controllers.Add(new ExamOverviewTeacherController(this));
             Controllers.Add(new EditExamController(this));
 
             //Creëer database instantie
             DB = new Database();
-            DB.AnswerCleanup();           
+            DB.AnswerCleanup();
 
-            Resize += MasterController_Resize;            
+            Resize += MasterController_Resize;
         }
 
         // Deze functie wordt gebruikt om een bepaald type controller uit de lijst van Controllers op te halen
