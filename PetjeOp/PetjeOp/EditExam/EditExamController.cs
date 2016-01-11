@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,6 +34,7 @@ namespace PetjeOp {
         {
             View.cbSubject.Items.Clear();
             View.cbClass.Items.Clear();
+
             foreach (Subject s in Model.Subjects)
             {
                 View.cbSubject.Items.Add(s);
@@ -54,6 +56,19 @@ namespace PetjeOp {
             ShowListBoxDialog("Lecture", DialogOption.LECTURE);
         }
 
+        internal void ClassChanged() {
+            if(((EditExamView)GetView()).cbClass.SelectedItem != null) {
+                ((EditExamView)GetView()).lblForClass.Text = "Klas: " + ((EditExamView)GetView()).cbClass.SelectedItem;
+            }
+            
+        }
+
+        internal void SubjectChanged() {
+            if(((EditExamView)GetView()).cbSubject.SelectedItem != null) {
+                ((EditExamView)GetView()).lblSubject.Text = "Vak: " + ((EditExamView)GetView()).cbSubject.SelectedItem;
+            }
+        }
+
         public void QuestionnaireEdit() {
             ShowListBoxDialog("Questionnaire", DialogOption.QUESTIONNAIRE);
         }
@@ -61,9 +76,18 @@ namespace PetjeOp {
         public void EditClicked()
         {
             Class newClass = (Class)View.cbClass.SelectedItem;
+            if (View.cbClass.SelectedItem == null) {
+                newClass = Model.LocallyEditedExam.Lecture.Class;
+            }
+            
             Subject newSubject = (Subject)View.cbSubject.SelectedItem;
+            if (View.cbSubject.SelectedItem == null) {
+                newSubject = Model.LocallyEditedExam.Lecture.Subject;
+            }
+
             Lecture newLecture = new Lecture(0, (Teacher)MasterController.User, newClass, newSubject);
             Lecture dbLecture = MasterController.DB.CheckLecture(newLecture);
+
             if (dbLecture != null)
             {
                 newLecture = dbLecture;
@@ -99,7 +123,8 @@ namespace PetjeOp {
             if (changeCount > 1 || changeCount == 0)
                 changes += "en";
 
-            MessageBox.Show(changeCount + " " + changes + " toegepast");
+            //MessageBox.Show(changeCount + " " + changes + " toegepast");
+            MessageBox.Show("Wijziging toegepast");
         }
 
         public void RemoveClicked() {
@@ -160,8 +185,8 @@ namespace PetjeOp {
                     }
                     else {
                         Model.LocallyEditedExam.Starttime = newDate;
-                        ((EditExamView)GetView()).lblStarttime.ForeColor = Color.DarkOrange;
-                        ((EditExamView)GetView()).lblDuration.ForeColor = Color.DarkOrange;
+                        //((EditExamView)GetView()).lblStarttime.ForeColor = Color.DarkOrange;
+                        //((EditExamView)GetView()).lblDuration.ForeColor = Color.DarkOrange;
                         prompt.Close();
                     }
                 }
@@ -171,8 +196,8 @@ namespace PetjeOp {
                     }
                     else {
                         Model.LocallyEditedExam.Endtime = newDate;
-                        ((EditExamView)GetView()).lblEndtime.ForeColor = Color.DarkOrange;
-                        ((EditExamView)GetView()).lblDuration.ForeColor = Color.DarkOrange;
+                        //((EditExamView)GetView()).lblEndtime.ForeColor = Color.DarkOrange;
+                        //((EditExamView)GetView()).lblDuration.ForeColor = Color.DarkOrange;
                         prompt.Close();
                     }
                 }
@@ -196,12 +221,28 @@ namespace PetjeOp {
             ((EditExamView)GetView()).lblStarttime.Text = "Starttijd: " + Model.LocallyEditedExam.Starttime.ToString();
             ((EditExamView)GetView()).lblEndtime.Text = "Eindtijd: " + Model.LocallyEditedExam.Endtime.ToString();
             ((EditExamView)GetView()).lblDuration.Text = "Looptijd: " + string.Format("{0:n2}", differenceMinutes) + " minuten";
-            ((EditExamView)GetView()).lblSubject.Text = "Vak: " + Model.LocallyEditedExam.Questionnaire.Subject.Name;
+            ((EditExamView)GetView()).lblSubject.Text = "Vak: " + Model.LocallyEditedExam.Lecture.Subject;
             ((EditExamView)GetView()).lblExecutedBy.Text = "Wordt afgenomen door: " + Model.LocallyEditedExam.Lecture.Teacher;
             ((EditExamView)GetView()).lblPlannedInBy.Text = "Ingepland door: " + Model.LocallyEditedExam.Questionnaire.Author;
             ((EditExamView)GetView()).lblForClass.Text = "Voor: " + Model.LocallyEditedExam.Lecture.Class.Code;
 
-            List<Result> results = MasterController.DB.GetResultsByExamId(Model.LocallyEditedExam.Examnr);
+            ((EditExamView)GetView()).cbClass.Text = Model.LocallyEditedExam.Lecture.Class.Code;
+            for (int index = 0; index < ((EditExamView)GetView()).cbClass.Items.Count; index++) {
+                Class tempClass = (Class)((EditExamView)GetView()).cbClass.Items[index];
+                if (tempClass.Code == Model.LocallyEditedExam.Lecture.Class.Code) {
+                    ((EditExamView)GetView()).cbClass.SelectedIndex = index;
+                }
+            }
+
+            ((EditExamView)GetView()).cbSubject.Text = Model.LocallyEditedExam.Lecture.Subject.Name;
+            for(int index = 0; index < ((EditExamView)GetView()).cbSubject.Items.Count; index++) {
+                Subject tempSubject = (Subject)((EditExamView)GetView()).cbSubject.Items[index];
+                if(tempSubject.Id == Model.LocallyEditedExam.Lecture.Subject.Id) {
+                    ((EditExamView)GetView()).cbSubject.SelectedIndex = index;
+                }
+            }
+            
+            List <Result> results = MasterController.DB.GetResultsByExamId(Model.LocallyEditedExam.Examnr);
             if(results.Count == 0) {
                 ((EditExamView)GetView()).btnRemove.Enabled = true;
             }
@@ -236,13 +277,13 @@ namespace PetjeOp {
                 if (option == DialogOption.LECTURE) {
                     Lecture selectedLecture = (Lecture)listBox.SelectedItem;
                     Model.LocallyEditedExam.Lecture = selectedLecture;
-                    ((EditExamView)GetView()).lblExecutedBy.ForeColor = Color.DarkOrange;
-                    ((EditExamView)GetView()).lblForClass.ForeColor = Color.DarkOrange;
+                    //((EditExamView)GetView()).lblExecutedBy.ForeColor = Color.DarkOrange;
+                    //((EditExamView)GetView()).lblForClass.ForeColor = Color.DarkOrange;
                 }
                 else if (option == DialogOption.QUESTIONNAIRE) {
                     Questionnaire selectedQuestionnaire = (Questionnaire)listBox.SelectedItem;
                     Model.LocallyEditedExam.Questionnaire = selectedQuestionnaire;
-                    ((EditExamView)GetView()).lblTitle.ForeColor = Color.DarkOrange;
+                    //((EditExamView)GetView()).lblTitle.ForeColor = Color.DarkOrange;
                 }
 
                 prompt.Close();
