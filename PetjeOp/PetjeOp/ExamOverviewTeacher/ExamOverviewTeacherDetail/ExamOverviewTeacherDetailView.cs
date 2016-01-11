@@ -16,5 +16,10 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
         private void btnEditExam_Click(object sender, EventArgs e) {
             ((ExamOverviewTeacherDetailDialog)Parent).EditExam();
         }
+
+        private void lblPlannedInBy_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

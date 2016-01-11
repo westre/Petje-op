@@ -38,29 +38,32 @@
             // 
             this.lblStarttime.AutoSize = true;
             this.lblStarttime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStarttime.Location = new System.Drawing.Point(-4, 101);
+            this.lblStarttime.Location = new System.Drawing.Point(-8, 194);
+            this.lblStarttime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblStarttime.Name = "lblStarttime";
-            this.lblStarttime.Size = new System.Drawing.Size(65, 18);
+            this.lblStarttime.Size = new System.Drawing.Size(124, 36);
             this.lblStarttime.TabIndex = 0;
-            this.lblStarttime.Text = "Start tijd:";
+            this.lblStarttime.Text = "Starttijd:";
             // 
             // lblEndtime
             // 
             this.lblEndtime.AutoSize = true;
             this.lblEndtime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEndtime.Location = new System.Drawing.Point(-4, 129);
+            this.lblEndtime.Location = new System.Drawing.Point(-8, 248);
+            this.lblEndtime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblEndtime.Name = "lblEndtime";
-            this.lblEndtime.Size = new System.Drawing.Size(63, 18);
+            this.lblEndtime.Size = new System.Drawing.Size(123, 36);
             this.lblEndtime.TabIndex = 1;
-            this.lblEndtime.Text = "Eind tijd:";
+            this.lblEndtime.Text = "Eindtijd:";
             // 
             // lblDuration
             // 
             this.lblDuration.AutoSize = true;
             this.lblDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuration.Location = new System.Drawing.Point(-3, 72);
+            this.lblDuration.Location = new System.Drawing.Point(-6, 138);
+            this.lblDuration.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(64, 18);
+            this.lblDuration.Size = new System.Drawing.Size(130, 36);
             this.lblDuration.TabIndex = 2;
             this.lblDuration.Text = "Looptijd:";
             // 
@@ -68,9 +71,10 @@
             // 
             this.lblSubject.AutoSize = true;
             this.lblSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubject.Location = new System.Drawing.Point(-3, 43);
+            this.lblSubject.Location = new System.Drawing.Point(-6, 83);
+            this.lblSubject.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSubject.Name = "lblSubject";
-            this.lblSubject.Size = new System.Drawing.Size(41, 18);
+            this.lblSubject.Size = new System.Drawing.Size(83, 36);
             this.lblSubject.TabIndex = 3;
             this.lblSubject.Text = "Vak: ";
             // 
@@ -78,48 +82,54 @@
             // 
             this.lblPlannedInBy.AutoSize = true;
             this.lblPlannedInBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlannedInBy.Location = new System.Drawing.Point(-4, 157);
+            this.lblPlannedInBy.Location = new System.Drawing.Point(-8, 302);
+            this.lblPlannedInBy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPlannedInBy.Name = "lblPlannedInBy";
-            this.lblPlannedInBy.Size = new System.Drawing.Size(105, 18);
+            this.lblPlannedInBy.Size = new System.Drawing.Size(224, 36);
             this.lblPlannedInBy.TabIndex = 4;
-            this.lblPlannedInBy.Text = "Ingepland door";
+            this.lblPlannedInBy.Text = "Ingepland door:";
+            this.lblPlannedInBy.Click += new System.EventHandler(this.lblPlannedInBy_Click);
             // 
             // lblExecutedBy
             // 
             this.lblExecutedBy.AutoSize = true;
             this.lblExecutedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExecutedBy.Location = new System.Drawing.Point(-4, 186);
+            this.lblExecutedBy.Location = new System.Drawing.Point(-8, 358);
+            this.lblExecutedBy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblExecutedBy.Name = "lblExecutedBy";
-            this.lblExecutedBy.Size = new System.Drawing.Size(162, 18);
+            this.lblExecutedBy.Size = new System.Drawing.Size(328, 36);
             this.lblExecutedBy.TabIndex = 5;
-            this.lblExecutedBy.Text = "Wordt afgenomen door";
+            this.lblExecutedBy.Text = "Wordt afgenomen door:";
             // 
             // lblForClass
             // 
             this.lblForClass.AutoSize = true;
             this.lblForClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForClass.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblForClass.Location = new System.Drawing.Point(-3, 217);
+            this.lblForClass.Location = new System.Drawing.Point(-6, 417);
+            this.lblForClass.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblForClass.Name = "lblForClass";
-            this.lblForClass.Size = new System.Drawing.Size(40, 18);
+            this.lblForClass.Size = new System.Drawing.Size(81, 36);
             this.lblForClass.TabIndex = 8;
-            this.lblForClass.Text = "Voor";
+            this.lblForClass.Text = "Klas:";
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(-3, 0);
+            this.lblTitle.Location = new System.Drawing.Point(-6, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(40, 18);
+            this.lblTitle.Size = new System.Drawing.Size(76, 36);
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Title";
             // 
             // btnEditExam
             // 
-            this.btnEditExam.Location = new System.Drawing.Point(227, 217);
+            this.btnEditExam.Location = new System.Drawing.Point(660, 542);
+            this.btnEditExam.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnEditExam.Name = "btnEditExam";
-            this.btnEditExam.Size = new System.Drawing.Size(75, 23);
+            this.btnEditExam.Size = new System.Drawing.Size(150, 44);
             this.btnEditExam.TabIndex = 14;
             this.btnEditExam.Text = "Wijzigen";
             this.btnEditExam.UseVisualStyleBackColor = true;
@@ -127,7 +137,7 @@
             // 
             // ExamOverviewTeacherDetailView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnEditExam);
             this.Controls.Add(this.lblTitle);
@@ -138,8 +148,9 @@
             this.Controls.Add(this.lblDuration);
             this.Controls.Add(this.lblEndtime);
             this.Controls.Add(this.lblStarttime);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "ExamOverviewTeacherDetailView";
-            this.Size = new System.Drawing.Size(307, 245);
+            this.Size = new System.Drawing.Size(816, 592);
             this.ResumeLayout(false);
             this.PerformLayout();
 
