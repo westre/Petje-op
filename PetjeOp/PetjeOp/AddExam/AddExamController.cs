@@ -76,58 +76,58 @@ namespace PetjeOp {
 
         public void CheckLabels()
         {
-            bool SubjectValidation= false;
-            bool QuestionnaireValidation = false;
-            bool ClassValidation = false;
-            bool BegintimeValidation = false;
-            bool EndtimeValidation = false;
+            bool subjectValidation= false;
+            bool questionnaireValidation = false;
+            bool classValidation = false;
+            bool begintimeValidation = false;
+            bool endtimeValidation = false;
 
             if (View.cbSubjects.SelectedIndex != -1)
             {
-                SubjectValidation = true;
+                subjectValidation = true;
                 View.lblSubjectError.Text = "";
             }
             else
             {
-                SubjectValidation = false;
+                subjectValidation = false;
                 View.lblSubjectError.Text = "Selecteer een onderwerp!";
             }
             if (View.cbClasses.SelectedIndex != -1)
             {
-                ClassValidation = true;
+                classValidation = true;
                 View.lblClassError.Text = "";
             }
             else
             {
-                ClassValidation = false;
+                classValidation = false;
                 View.lblClassError.Text = "Selecteer een klas!";
             }
             if (View.cbQuestionnaires.SelectedIndex != -1)
             {
-                QuestionnaireValidation = true;
+                questionnaireValidation = true;
                 View.lblQuestionnaireError.Text = "";
             }
             else
             {
-                QuestionnaireValidation = false;
+                questionnaireValidation = false;
                 View.lblQuestionnaireError.Text = "Selecteer een vragenlijst!";
             }
 
             if (View.dtpStarttimeDate.Value.Year > DateTime.Now.Year)
             {
-                BegintimeValidation = true;
+                begintimeValidation = true;
                 View.lblStarttimeError.Text = "";
             }else if (View.dtpStarttimeDate.Value.Year == DateTime.Now.Year &&
                 View.dtpStarttimeDate.Value.Month > DateTime.Now.Month)
             {
-                BegintimeValidation = true;
+                begintimeValidation = true;
                 View.lblStarttimeError.Text = "";
             }
             else if (View.dtpStarttimeDate.Value.Year == DateTime.Now.Year &&
                View.dtpStarttimeDate.Value.Month == DateTime.Now.Month &&
                View.dtpStarttimeDate.Value.Day > DateTime.Now.Day)
             {
-                BegintimeValidation = true;
+                begintimeValidation = true;
                 View.lblStarttimeError.Text = "";
             }
             else if (View.dtpStarttimeDate.Value.Year == DateTime.Now.Year &&
@@ -136,18 +136,18 @@ namespace PetjeOp {
             {
                 if (View.dtpStarttimeTime.Value.TimeOfDay > DateTime.Now.TimeOfDay)
                 {
-                    BegintimeValidation = true;
+                    begintimeValidation = true;
                     View.lblStarttimeError.Text = "";
                 }
                 else
                 {
-                    BegintimeValidation = false;
+                    begintimeValidation = false;
                     View.lblStarttimeError.Text = "Selecteer een goede tijd!";
                 }
             }
             else
             {
-                BegintimeValidation = false;
+                begintimeValidation = false;
                 View.lblStarttimeError.Text = "Selecteer een goede tijd!";
             }
 
@@ -155,23 +155,23 @@ namespace PetjeOp {
             {
                 if (View.dtpStarttimeTime.Value.AddHours(1).TimeOfDay > View.dtpEndtimeTime.Value.TimeOfDay)
                 {
-                    EndtimeValidation = false;
+                    endtimeValidation = false;
                     View.lblEndtimeError.Text = "Een les duurt minimaal een uur!";
                 }
                 else
                 {
-                    EndtimeValidation = true;
+                    endtimeValidation = true;
                     View.lblEndtimeError.Text = "";
                 }
             }
             else
             {
-                EndtimeValidation = false;
+                endtimeValidation = false;
                 View.lblEndtimeError.Text = "Selecteer een goede tijd!";
             }
 
-            if (SubjectValidation && QuestionnaireValidation && ClassValidation && BegintimeValidation &&
-                EndtimeValidation)
+            if (subjectValidation && questionnaireValidation && classValidation && begintimeValidation &&
+                endtimeValidation)
             {
                 View.btnSaveExam.Enabled = true;
             }

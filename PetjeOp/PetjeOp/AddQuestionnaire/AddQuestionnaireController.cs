@@ -57,7 +57,7 @@ namespace PetjeOp.AddQuestionnaire
             //Kijk of er een vragenlijstnaam is ingevuld.
             if (!View.tbQuestionnaireName.Text.Any())
             {
-                View.lblQuestionaireNameError.Text = "Vul een vraagnaam in!";
+                View.lblQuestionaireNameError.Text = "Vul een vragenlijstnaam in!";
                 nameCheck = false;
             }
             else
