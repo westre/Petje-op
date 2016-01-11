@@ -65,9 +65,7 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                 //Controleer of het antwoord het correcte antwoord is
                 if (addQuestionView1.clbAnswers.CheckedItems.Contains(item)) {
                     //Stel het correcte antwoord gelijk aan het huidge antwoord in de loop
-                    if (UpdateView) {
-                        correct = Question.GetAnswer(item.ToString());
-                    }
+                    correct = Question.GetAnswer(item.ToString());
                 }
             }
 
@@ -117,7 +115,6 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
                             .Count + 1;
                 }
             }
-
             //Sluit het dialoog
             Close();
         }
@@ -127,6 +124,22 @@ namespace PetjeOp.AddQuestionnaire.AddQuestion
         {
             //Sluit dialoog
             Close();
+        }
+
+        public void DeleteAnswer(Answer answer)
+        {
+            if (QuestionsView.ParentController is QuestionnaireDetailController)
+            {
+                if (((QuestionnaireDetailController)QuestionsView.ParentController).Model.DeletedAnswers == null)
+                {
+                    ((QuestionnaireDetailController)QuestionsView.ParentController).Model.DeletedAnswers = new List<Answer>();
+                }
+                ((QuestionnaireDetailController)QuestionsView.ParentController).Model.DeletedAnswers.Add(answer);
+            }
+            if(Question != null)
+            {
+                Question.AnswerOptions.Remove(answer);  
+            }                      
         }
 
         //Wanneer dialoog sluit

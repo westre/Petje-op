@@ -45,6 +45,8 @@ namespace PetjeOp.AddQuestionnaire
             //Dialoog voor bevestiging
             DialogResult dr = MessageBox.Show("Weet u zeker dat u dit antwoord wilt verwijderen?", "Let op", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
+            ((AddQuestionDialog)Parent).DeleteAnswer((Answer)clbAnswers.SelectedItem);
+
             //Als er op OK geklikt is, verwijder antwoord uit lijst
             if (dr == DialogResult.Yes)
             {

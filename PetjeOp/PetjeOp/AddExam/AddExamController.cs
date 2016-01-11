@@ -23,6 +23,7 @@ namespace PetjeOp {
             return View;
         }
 
+        //Alle data ophalen uit de database en stop ze in de model
         public void GetAllData()
         {
             Model.Subjects = MasterController.DB.GetSubjects();
@@ -30,6 +31,7 @@ namespace PetjeOp {
             Model.Classes = MasterController.DB.GetAllClasses();
         }
 
+        //Vul de subjects combobox met data uit de model
         public void FillSubjectsCb()
         {
             View.cbSubjects.Items.Clear();
@@ -39,6 +41,7 @@ namespace PetjeOp {
             }
         }
 
+        //Vul de questionnaires & class combobox met data uit de model
         public void FillQuestionnaireAndClassCb()
         {
 
@@ -58,6 +61,7 @@ namespace PetjeOp {
             }
         }
 
+        //Check if comboboxes enabled kunnen zijn, als er iets geselecteerd is: enabled = true.
         public bool CheckIfCbEnabled()
         {
             if (View.cbSubjects.SelectedIndex == -1)
@@ -74,104 +78,111 @@ namespace PetjeOp {
             }
         }
 
+        //Check errorlabels/buttons
         public void CheckLabels()
         {
-            bool SubjectValidation= false;
-            bool QuestionnaireValidation = false;
-            bool ClassValidation = false;
-            bool BegintimeValidation = false;
-            bool EndtimeValidation = false;
+            bool subjectValidation= false;
+            bool questionnaireValidation = false;
+            bool classValidation = false;
+            bool begintimeValidation = false;
+            bool endtimeValidation = false;
 
+            //Controleer of er een subject geselecteerd is.
             if (View.cbSubjects.SelectedIndex != -1)
             {
-                SubjectValidation = true;
+                subjectValidation = true;
                 View.lblSubjectError.Text = "";
             }
             else
             {
-                SubjectValidation = false;
+                subjectValidation = false;
                 View.lblSubjectError.Text = "Selecteer een onderwerp!";
             }
+
+            //Controleer of er een klas geselecteerd is.
             if (View.cbClasses.SelectedIndex != -1)
             {
-                ClassValidation = true;
+                classValidation = true;
                 View.lblClassError.Text = "";
             }
             else
             {
-                ClassValidation = false;
+                classValidation = false;
                 View.lblClassError.Text = "Selecteer een klas!";
             }
+
+            //Controleer of er een vragenlijst geselecteerd is.
             if (View.cbQuestionnaires.SelectedIndex != -1)
             {
-                QuestionnaireValidation = true;
+                questionnaireValidation = true;
                 View.lblQuestionnaireError.Text = "";
             }
             else
             {
-                QuestionnaireValidation = false;
+                questionnaireValidation = false;
                 View.lblQuestionnaireError.Text = "Selecteer een vragenlijst!";
             }
 
+            //Check of de waardes van de datetimepicker
             if (View.dtpStarttimeDate.Value.Year > DateTime.Now.Year)
             {
-                BegintimeValidation = true;
+                begintimeValidation = true;
                 View.lblStarttimeError.Text = "";
             }else if (View.dtpStarttimeDate.Value.Year == DateTime.Now.Year &&
                 View.dtpStarttimeDate.Value.Month > DateTime.Now.Month)
             {
-                BegintimeValidation = true;
+                begintimeValidation = true;
                 View.lblStarttimeError.Text = "";
             }
             else if (View.dtpStarttimeDate.Value.Year == DateTime.Now.Year &&
                View.dtpStarttimeDate.Value.Month == DateTime.Now.Month &&
                View.dtpStarttimeDate.Value.Day > DateTime.Now.Day)
             {
-                BegintimeValidation = true;
+                begintimeValidation = true;
                 View.lblStarttimeError.Text = "";
             }
             else if (View.dtpStarttimeDate.Value.Year == DateTime.Now.Year &&
                      View.dtpStarttimeDate.Value.Month == DateTime.Now.Month &&
                      View.dtpStarttimeDate.Value.Day == DateTime.Now.Day)
             {
-                if (View.dtpStarttimeTime.Value.TimeOfDay > DateTime.Now.TimeOfDay)
+                if (View.dtpStarttimeTime.Value.TimeOfDay >= DateTime.Now.TimeOfDay)
                 {
-                    BegintimeValidation = true;
+                    begintimeValidation = true;
                     View.lblStarttimeError.Text = "";
                 }
                 else
                 {
-                    BegintimeValidation = false;
+                    begintimeValidation = false;
                     View.lblStarttimeError.Text = "Selecteer een goede tijd!";
                 }
             }
             else
             {
-                BegintimeValidation = false;
+                begintimeValidation = false;
                 View.lblStarttimeError.Text = "Selecteer een goede tijd!";
             }
 
             if (View.dtpEndtimeTime.Value.TimeOfDay > View.dtpStarttimeTime.Value.TimeOfDay)
             {
-                if (View.dtpStarttimeTime.Value.AddHours(1).TimeOfDay > View.dtpEndtimeTime.Value.TimeOfDay)
+                if (View.dtpStarttimeTime.Value.AddHours(1).TimeOfDay >= View.dtpEndtimeTime.Value.TimeOfDay)
                 {
-                    EndtimeValidation = false;
-                    View.lblEndtimeError.Text = "Een les duurt minimaal een uur!";
+                    endtimeValidation = false;
+                    View.lblEndtimeError.Text = "Een les duurt langer dan een uur!";
                 }
                 else
                 {
-                    EndtimeValidation = true;
+                    endtimeValidation = true;
                     View.lblEndtimeError.Text = "";
                 }
             }
             else
             {
-                EndtimeValidation = false;
+                endtimeValidation = false;
                 View.lblEndtimeError.Text = "Selecteer een goede tijd!";
             }
 
-            if (SubjectValidation && QuestionnaireValidation && ClassValidation && BegintimeValidation &&
-                EndtimeValidation)
+            if (subjectValidation && questionnaireValidation && classValidation && begintimeValidation &&
+                endtimeValidation)
             {
                 View.btnSaveExam.Enabled = true;
             }
@@ -184,9 +195,7 @@ namespace PetjeOp {
         public void SaveExam()
         {
             Lecture selectedLecture = new Lecture(0, (Teacher)MasterController.User, (Class)View.cbClasses.SelectedItem, (Subject)View.cbSubjects.SelectedItem);
-
             Lecture dbLecture = MasterController.DB.CheckLecture(selectedLecture);
-
             if (dbLecture != null)
             {
                 selectedLecture = dbLecture;
@@ -204,7 +213,6 @@ namespace PetjeOp {
             DateTime selectedStartTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpStarttimeTime.Value.Hour, View.dtpStarttimeTime.Value.Minute, View.dtpStarttimeTime.Value.Second);
             DateTime selectedEndTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpEndtimeTime.Value.Hour, View.dtpEndtimeTime.Value.Minute, View.dtpEndtimeTime.Value.Second);
             Exam currentExam = new Exam(0, selectedQuestionnaire,selectedStartTime, selectedEndTime, selectedLecture);
-            MessageBox.Show("LectureID: " + selectedLecture.ID);
             MasterController.DB.AddExam(currentExam);
             MessageBox.Show("De data is succesvol toegevoegd!");
             ClearControls();

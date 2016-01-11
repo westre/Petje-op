@@ -28,7 +28,7 @@ namespace PetjeOp {
                 View.lbExams.Items.Add(new ListViewItem(new[] {
                                                                 exam.tblQuestionnaire.description,
                                                                 (exam.tblLecture.tblTeacher.firstname + " " + exam.tblLecture.tblTeacher.surname),
-                                                                exam.tblLecture.@class,
+                                                                exam.tblLecture.tblSubject.name,
                                                                 exam.starttime.ToString(),
                                                                 exam.endtime.ToString(),
                                                                 (exam.currentquestion != null ? "Running..." : "Not Running...")}));

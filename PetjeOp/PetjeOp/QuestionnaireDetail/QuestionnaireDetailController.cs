@@ -135,7 +135,9 @@ namespace PetjeOp {
         //Update de Questionnaire in de database
         public void SaveQuestionnaire()
         {
-            MasterController.DB.UpdateQuestionnaire(Model.Questionnaire, Model.DeletedQuestions);
+            MasterController.DB.UpdateQuestionnaire(Model.Questionnaire, Model.DeletedQuestions, Model.DeletedAnswers);
+            Model.DeletedAnswers = null;
+            Model.DeletedQuestions = null;
         }
 
         //Kijk of de ErrorProvider(s) een error bevatten

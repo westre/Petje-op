@@ -41,15 +41,11 @@ namespace PetjeOp
             Controllers.Add(new ExamOverviewTeacherController(this));
             Controllers.Add(new EditExamController(this));
 
-            //Creëer database instantie
+            //Creëer databaseinstantie
             DB = new Database();
             DB.AnswerCleanup();
-            
 
             Resize += MasterController_Resize;
-
-            // We beginnen met deze view, verander dit niet!
-            //mainPanel.Controls.Add(GetController(typeof(LoginController)).GetView());                
         }
 
         // Deze functie wordt gebruikt om een bepaald type controller uit de lijst van Controllers op te halen
