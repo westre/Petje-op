@@ -123,6 +123,7 @@
             this.lblTitle_Logout_Title.Name = "lblTitle_Logout_Title";
             this.lblTitle_Logout_Title.Size = new System.Drawing.Size(170, 46);
             this.lblTitle_Logout_Title.TabIndex = 14;
+            this.lblTitle_Logout_Title.Click += new System.EventHandler(this.Logout);
             this.lblTitle_Logout_Title.Text = "Uitloggen";
             // 
             // pbIcon_Logout_Icon
@@ -134,6 +135,7 @@
             this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(4);
             this.pbIcon_Logout_Icon.Name = "pbIcon_Logout_Icon";
             this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(42, 48);
+            this.pbIcon_Logout_Icon.Click += new System.EventHandler(this.Logout);
             this.pbIcon_Logout_Icon.TabIndex = 4;
             this.pbIcon_Logout_Icon.TabStop = false;
             // 
