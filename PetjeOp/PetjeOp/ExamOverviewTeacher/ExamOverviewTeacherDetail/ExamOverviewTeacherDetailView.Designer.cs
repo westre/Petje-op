@@ -41,9 +41,9 @@
             this.lblStarttime.Location = new System.Drawing.Point(-8, 194);
             this.lblStarttime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblStarttime.Name = "lblStarttime";
-            this.lblStarttime.Size = new System.Drawing.Size(132, 36);
+            this.lblStarttime.Size = new System.Drawing.Size(124, 36);
             this.lblStarttime.TabIndex = 0;
-            this.lblStarttime.Text = "Start tijd:";
+            this.lblStarttime.Text = "Starttijd:";
             // 
             // lblEndtime
             // 
@@ -52,9 +52,9 @@
             this.lblEndtime.Location = new System.Drawing.Point(-8, 248);
             this.lblEndtime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblEndtime.Name = "lblEndtime";
-            this.lblEndtime.Size = new System.Drawing.Size(131, 36);
+            this.lblEndtime.Size = new System.Drawing.Size(123, 36);
             this.lblEndtime.TabIndex = 1;
-            this.lblEndtime.Text = "Eind tijd:";
+            this.lblEndtime.Text = "Eindtijd:";
             // 
             // lblDuration
             // 
