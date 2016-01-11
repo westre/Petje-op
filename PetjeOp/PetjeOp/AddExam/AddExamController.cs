@@ -194,7 +194,7 @@ namespace PetjeOp {
             else
             {
                 tblLecture newLecture = MasterController.DB.AddLecture(selectedLecture);
-                selectedLecture = newLecture;
+                //selectedLecture = newLecture;
                 //Lecture newActualLecture = new Lecture(newLecture.id, newLecture.tblTeacher, newLecture.@class, new);
             }
             Questionnaire selectedQuestionnaire = (Questionnaire)View.cbQuestionnaires.SelectedItem;
