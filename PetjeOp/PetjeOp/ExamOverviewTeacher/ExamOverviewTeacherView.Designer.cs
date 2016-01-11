@@ -41,7 +41,7 @@
             // 
             // btnAddExam
             // 
-            this.btnAddExam.Location = new System.Drawing.Point(11, 671);
+            this.btnAddExam.Location = new System.Drawing.Point(318, 17);
             this.btnAddExam.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddExam.Name = "btnAddExam";
             this.btnAddExam.Size = new System.Drawing.Size(168, 39);
