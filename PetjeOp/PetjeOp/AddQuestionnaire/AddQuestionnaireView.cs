@@ -33,6 +33,7 @@ namespace PetjeOp.AddQuestionnaire
         {
             Controller.SetSubject();
             Controller.SaveQuestionnaire();
+            MessageBox.Show("Vragenlijst toegevoegd!");
         }
 
         private void AddQuestionnaireView_Load(object sender, EventArgs e)

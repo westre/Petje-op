@@ -81,6 +81,8 @@ namespace PetjeOp.QuestionnaireDetail
         private void btnSaveQuestionnaire_Click(object sender, EventArgs e)
         {
             Controller.SaveQuestionnaire();
+            MessageBox.Show("Vragenlijst toegevoegd!");
+            Controller.GoToQuestionnaireOverview();
         }
 
         private void tbNameEdit_KeyPress(object sender, KeyPressEventArgs e)

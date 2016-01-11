@@ -23,6 +23,7 @@ namespace PetjeOp {
             return View;
         }
 
+        //Alle data ophalen uit de database en stop ze in de model
         public void GetAllData()
         {
             Model.Subjects = MasterController.DB.GetSubjects();
@@ -30,6 +31,7 @@ namespace PetjeOp {
             Model.Classes = MasterController.DB.GetAllClasses();
         }
 
+        //Vul de subjects combobox met data uit de model
         public void FillSubjectsCb()
         {
             View.cbSubjects.Items.Clear();
@@ -39,6 +41,7 @@ namespace PetjeOp {
             }
         }
 
+        //Vul de questionnaires & class combobox met data uit de model
         public void FillQuestionnaireAndClassCb()
         {
 
@@ -58,6 +61,7 @@ namespace PetjeOp {
             }
         }
 
+        //Check if comboboxes enabled kunnen zijn, als er iets geselecteerd is: enabled = true.
         public bool CheckIfCbEnabled()
         {
             if (View.cbSubjects.SelectedIndex == -1)
@@ -74,6 +78,7 @@ namespace PetjeOp {
             }
         }
 
+        //Check errorlabels/buttons
         public void CheckLabels()
         {
             bool subjectValidation= false;
@@ -82,6 +87,7 @@ namespace PetjeOp {
             bool begintimeValidation = false;
             bool endtimeValidation = false;
 
+            //Controleer of er een subject geselecteerd is.
             if (View.cbSubjects.SelectedIndex != -1)
             {
                 subjectValidation = true;
@@ -92,6 +98,8 @@ namespace PetjeOp {
                 subjectValidation = false;
                 View.lblSubjectError.Text = "Selecteer een onderwerp!";
             }
+
+            //Controleer of er een klas geselecteerd is.
             if (View.cbClasses.SelectedIndex != -1)
             {
                 classValidation = true;
@@ -102,6 +110,8 @@ namespace PetjeOp {
                 classValidation = false;
                 View.lblClassError.Text = "Selecteer een klas!";
             }
+
+            //Controleer of er een vragenlijst geselecteerd is.
             if (View.cbQuestionnaires.SelectedIndex != -1)
             {
                 questionnaireValidation = true;
@@ -113,6 +123,7 @@ namespace PetjeOp {
                 View.lblQuestionnaireError.Text = "Selecteer een vragenlijst!";
             }
 
+            //Check of de waardes van de datetimepicker
             if (View.dtpStarttimeDate.Value.Year > DateTime.Now.Year)
             {
                 begintimeValidation = true;
@@ -184,9 +195,7 @@ namespace PetjeOp {
         public void SaveExam()
         {
             Lecture selectedLecture = new Lecture(0, (Teacher)MasterController.User, (Class)View.cbClasses.SelectedItem, (Subject)View.cbSubjects.SelectedItem);
-
             Lecture dbLecture = MasterController.DB.CheckLecture(selectedLecture);
-
             if (dbLecture != null)
             {
                 selectedLecture = dbLecture;
