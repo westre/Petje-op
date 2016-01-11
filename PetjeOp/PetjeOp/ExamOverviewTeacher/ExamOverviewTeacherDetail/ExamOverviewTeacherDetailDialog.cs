@@ -35,9 +35,6 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             examOverviewTeacherDetailView.lblPlannedInBy.Text = "Vragenlijst gemaakt door: " + LocallyEditedExam.Questionnaire.Author;
             examOverviewTeacherDetailView.lblForClass.Text = "Voor: " + LocallyEditedExam.Lecture.Class.Code;
 
-            Console.WriteLine("ST: " + LocallyEditedExam.Starttime);
-            Console.WriteLine("NOW: " + DateTime.Now);
-
             if (LocallyEditedExam.Starttime < DateTime.Now)
                 examOverviewTeacherDetailView.btnEditExam.Enabled = false;
         }
