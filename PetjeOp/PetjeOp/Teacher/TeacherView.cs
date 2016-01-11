@@ -75,5 +75,15 @@ namespace PetjeOp {
         {
 
         }
+
+        private void lblTitle_QuestionnaireOverview_Title_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireOverview();
+        }
+
+        private void pbIcon_QuestionnaireOverview_Icon_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireOverview();
+        }
     }
 }
