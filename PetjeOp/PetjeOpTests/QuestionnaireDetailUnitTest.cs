@@ -63,7 +63,7 @@ namespace PetjeOpTests
         public void CheckSelectSubject()
         {
             qdc.FillCbSubjects();
-            List<Subject> subjects = qdc.MasterController.DB.GetSubjects();
+            List<Subject> subjects = qdc.MasterController.DB.GetAllSubjects();
             Subject s = subjects[1];
             qdc.SelectSubject(s);
 
@@ -78,7 +78,7 @@ namespace PetjeOpTests
             qdc.View.tbNameEdit.Text = "Test";
 
             qdc.FillCbSubjects();
-            List<Subject> subjects = qdc.MasterController.DB.GetSubjects();
+            List<Subject> subjects = qdc.MasterController.DB.GetAllSubjects();
             Subject s = subjects[1];
             qdc.SelectSubject(s);
 

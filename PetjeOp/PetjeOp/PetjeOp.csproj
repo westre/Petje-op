@@ -51,6 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddExam\AddExamController.cs" />
+    <Compile Include="AddExam\AddExamModel.cs" />
+    <Compile Include="AddExam\AddExamView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddExam\AddExamView.Designer.cs">
+      <DependentUpon>AddExamView.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddQuestionnaire\AddQuestionnaireController.cs" />
     <Compile Include="AddQuestionnaire\AddQuestionnaireModel.cs" />
     <Compile Include="AddQuestionnaire\AddQuestionnaireView.cs">
@@ -205,6 +213,9 @@
     <Compile Include="ViewResults\ViewResultsView.Designer.cs">
       <DependentUpon>ViewResultsView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddExam\AddExamView.resx">
+      <DependentUpon>AddExamView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddQuestionnaire\AddQuestionnaireView.resx">
       <DependentUpon>AddQuestionnaireView.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +319,7 @@
     <None Include="Resources\loadgif.gif" />
     <Content Include="Resources\Uitloggen.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

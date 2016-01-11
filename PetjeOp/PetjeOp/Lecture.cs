@@ -7,8 +7,8 @@ namespace PetjeOp
 {
     public class Lecture
     {
-        int ID { get; set; }
-        private Teacher Teacher { get; set; }
+        public int ID { get; set; }
+        public Teacher Teacher { get; set; }
         public Class Class { get; set; }
         public Subject Subject { get; set; }
 

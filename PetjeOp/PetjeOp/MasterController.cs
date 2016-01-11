@@ -35,6 +35,7 @@ namespace PetjeOp
             Controllers.Add(new QuestionnaireOverviewController(this));
             Controllers.Add(new AnswerQuestionnaireController(this));
             Controllers.Add(new TeacherHomeController(this));
+            Controllers.Add(new AddExamController(this));
 
             Controllers.Add(new ExamOverviewStudentController(this));
 

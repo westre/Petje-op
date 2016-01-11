@@ -96,7 +96,7 @@ namespace PetjeOp {
         {
             View.cbSubject.Items.Clear();
 
-            Model.Subjects = MasterController.DB.GetSubjects();
+            Model.Subjects = MasterController.DB.GetAllSubjects();
 
             foreach (Subject s in Model.Subjects)
             {

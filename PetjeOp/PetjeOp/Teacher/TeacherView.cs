@@ -56,5 +56,10 @@ namespace PetjeOp {
         {
             Controller.GoToQuestionnaireOverview();
         }
+
+        private void pnlButton_Agenda_Background_Click(object sender, MouseEventArgs e)
+        {
+            Controller.GoToAddExamController();
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace PetjeOp.Questionnaires
             Model.AllQuestionnaires = MasterController.DB.GetAllQuestionnaires();
 
             //Vraag Subjects op
-            Model.Subjects = MasterController.DB.GetSubjects();
+            Model.Subjects = MasterController.DB.GetAllSubjects();
 
             //Vraag Teachers op
             Model.Teachers = MasterController.DB.GetTeachers();

@@ -27,7 +27,7 @@ namespace PetjeOp.ViewResults.ChooseExam
           
 
             // hier worden de subjects toegevoegd aan de lijst met subjects
-            List<Subject> subjects = Controller.MasterController.DB.GetSubjects();
+            List<Subject> subjects = Controller.MasterController.DB.GetAllSubjects();
 
             cbSubject.Items.Add("Alle vakken");
 
