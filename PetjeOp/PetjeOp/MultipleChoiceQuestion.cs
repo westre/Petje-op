@@ -39,15 +39,6 @@ namespace PetjeOp
             AnswerOptions.RemoveAt(Option);
         }
 
-        // Print de vraag in de console met de antwoorden.             
-        public void PrintQuestion()
-        {
-            System.Console.WriteLine(this.ID + ", " + this.Description + ":");
-            foreach (Answer Option in this.AnswerOptions)
-            {
-                System.Console.WriteLine(Option.ID + ", " + Option.Description);
-            }
-        }
         public override string ToString()
         {
             return Description;

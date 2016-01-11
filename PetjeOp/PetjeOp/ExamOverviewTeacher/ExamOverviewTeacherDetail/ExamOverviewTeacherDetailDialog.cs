@@ -32,11 +32,8 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             examOverviewTeacherDetailView.lblDuration.Text = "Looptijd: " + string.Format("{0:n0}", differenceMinutes) + " minuten";
             examOverviewTeacherDetailView.lblSubject.Text = "Vak: " + LocallyEditedExam.Questionnaire.Subject.Name;
             examOverviewTeacherDetailView.lblExecutedBy.Text = "Wordt afgenomen door: " + LocallyEditedExam.Lecture.Teacher;
-            examOverviewTeacherDetailView.lblPlannedInBy.Text = "Ingepland door: " + LocallyEditedExam.Questionnaire.Author;
+            examOverviewTeacherDetailView.lblPlannedInBy.Text = "Vragenlijst gemaakt door: " + LocallyEditedExam.Questionnaire.Author;
             examOverviewTeacherDetailView.lblForClass.Text = "Voor: " + LocallyEditedExam.Lecture.Class.Code;
-
-            Console.WriteLine("ST: " + LocallyEditedExam.Starttime);
-            Console.WriteLine("NOW: " + DateTime.Now);
 
             if (LocallyEditedExam.Starttime < DateTime.Now)
                 examOverviewTeacherDetailView.btnEditExam.Enabled = false;

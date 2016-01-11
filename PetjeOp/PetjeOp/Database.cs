@@ -49,11 +49,10 @@ namespace PetjeOp
                 db.SubmitChanges();
                 db.Refresh(RefreshMode.OverwriteCurrentValues, db.tblResults);
             }
-            catch (Exception)
+            catch (SqlException)
             {
-                System.Console.WriteLine("Kon antwoord niet opslaan");
-            }
-            
+
+            }         
         }
 
         // Deze functie controlleert of er geen Results zijn voor een Exam van een bepaalde Questionnaire

@@ -30,10 +30,6 @@ namespace PetjeOp {
         // hier worden de resultaten weergegeven
         public void ShowResults(Exam ex)
         {
-            foreach (Question question in ex.Questionnaire.Questions)
-            {
-                Console.WriteLine(question.Description);
-            }
             View.listQuestions.Items.Clear();
             ClearChart();
             AddQuestionsToList(ex.Questionnaire.Questions);

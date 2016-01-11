@@ -41,7 +41,7 @@ namespace PetjeOp
             Controllers.Add(new ExamOverviewTeacherController(this));
             Controllers.Add(new EditExamController(this));
 
-            //Creëer database instantie
+            //Creëer databaseinstantie
             DB = new Database();
             DB.AnswerCleanup();
 
