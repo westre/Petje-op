@@ -420,6 +420,41 @@ namespace PetjeOp
             catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
         }
 
+        public tblExam AddExam(Exam createdExam)
+        {
+            try
+            {
+                tblExam exam = new tblExam();
+                exam.starttime = createdExam.Starttime;
+                exam.endtime = createdExam.Endtime;
+                exam.id = createdExam.Examnr;
+                exam.questionnaire = createdExam.Questionnaire.ID;
+                exam.lecture = createdExam.Lecture.ID;
+
+                db.tblExams.InsertOnSubmit(exam);
+                db.SubmitChanges();
+
+                return exam;
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+        }
+        public tblLecture AddLecture(Lecture Lecture)
+        {
+            try
+            {
+                tblLecture lecture = new tblLecture();
+                lecture.@class = Lecture.Class.Code;
+                lecture.subject = Lecture.Subject.Id;
+                lecture.teacher = Lecture.Teacher.TeacherNr;
+
+                db.tblLectures.InsertOnSubmit(lecture);
+                db.SubmitChanges();
+
+                return lecture;
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); return null; }
+        }
+
         public void LinkAnswerToQuestion(int questionid, Answer answer)
         {
             try
@@ -625,7 +660,33 @@ namespace PetjeOp
             }
         }
 
-        // Haal alle afnamemomenten op die gebruik maken van een specifieke vragenlijst
+        public Lecture CheckLecture(Lecture lecture)
+        {
+
+            try
+            {
+                foreach (tblLecture tblLecture in db.tblLectures)
+                {
+                    if (tblLecture.subject == lecture.Subject.Id && tblLecture.@class == lecture.Class.Code && tblLecture.tblTeacher.nr == lecture.Teacher.TeacherNr)
+                    {
+                        int lectureId = tblLecture.id;
+                        Teacher lectureTeacher = GetTeacher(tblLecture.teacher);
+                        Class lectureClass = new Class(tblLecture.@class);
+                        Subject lectureSubject = GetSubject(tblLecture.subject);
+
+                        return new Lecture(lectureId, lectureTeacher, lectureClass, lectureSubject);
+                    }
+                }
+
+                return null;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
         public List<Exam> GetExamsByQuestionnaire(Questionnaire q)
         {
             try

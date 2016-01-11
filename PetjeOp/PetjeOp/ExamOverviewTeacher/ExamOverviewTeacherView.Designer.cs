@@ -42,12 +42,13 @@
             // btnAddExam
             // 
             this.btnAddExam.Location = new System.Drawing.Point(11, 671);
-            this.btnAddExam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddExam.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddExam.Name = "btnAddExam";
             this.btnAddExam.Size = new System.Drawing.Size(168, 39);
             this.btnAddExam.TabIndex = 3;
             this.btnAddExam.Text = "Afnamemoment Toevoegen";
             this.btnAddExam.UseVisualStyleBackColor = true;
+            this.btnAddExam.Click += new System.EventHandler(this.btnAddExam_Click);
             // 
             // clnExams
             // 

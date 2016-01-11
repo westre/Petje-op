@@ -35,6 +35,8 @@ namespace PetjeOp
             Controllers.Add(new QuestionnaireOverviewController(this));
             Controllers.Add(new AnswerQuestionnaireController(this));
             Controllers.Add(new TeacherHomeController(this));
+            Controllers.Add(new AddExamController(this));
+
             Controllers.Add(new ExamOverviewStudentController(this));
             Controllers.Add(new ExamOverviewTeacherController(this));
             Controllers.Add(new EditExamController(this));
@@ -42,12 +44,7 @@ namespace PetjeOp
             //Creëer database instantie
             DB = new Database();
             DB.AnswerCleanup();
-            MultipleChoiceQuestion question = DB.GetQuestion(1);
-            Console.WriteLine(question.Description + "::(" + question.ID + ")::" + question.QuestionIndex);
-            foreach (Answer answer in question.AnswerOptions)
-            {
-                Console.WriteLine(answer.Description + "::(" + answer.ID + ")");
-            }
+            
 
             Resize += MasterController_Resize;
 

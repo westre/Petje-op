@@ -41,5 +41,11 @@ namespace PetjeOp {
         private void btnRemove_Click(object sender, EventArgs e) {
             Controller.RemoveClicked();
         }
+
+        private void EditExamView_Load(object sender, EventArgs e)
+        {
+            Controller.GetAllData();
+            Controller.FillSubjectsCb();
+        }
     }
 }

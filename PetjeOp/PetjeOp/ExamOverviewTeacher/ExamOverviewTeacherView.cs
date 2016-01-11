@@ -17,5 +17,10 @@ namespace PetjeOp {
             InitializeComponent();
             Controller = controller;         
         }
+
+        private void btnAddExam_Click(object sender, EventArgs e)
+        {
+            Controller.GoToAddExamController();
+        }
     }
 }

@@ -23,6 +23,25 @@ namespace PetjeOp {
             View = new EditExamView(this);
         }
 
+        public void GetAllData()
+        {
+            Model.Subjects = MasterController.DB.GetSubjects();
+            Model.Classes = MasterController.DB.GetAllClasses();
+        }
+
+        public void FillSubjectsCb()
+        {
+            View.cbSubject.Items.Clear();
+            View.cbClass.Items.Clear();
+            foreach (Subject s in Model.Subjects)
+            {
+                View.cbSubject.Items.Add(s);
+            }
+            foreach (Class c in Model.Classes)
+            {
+                View.cbClass.Items.Add(c);
+            }
+        }
         public void StartTimeEdit() {
             ShowDateTimeDialog("Starttime", DialogOption.START_TIME);
         }
@@ -39,7 +58,28 @@ namespace PetjeOp {
             ShowListBoxDialog("Questionnaire", DialogOption.QUESTIONNAIRE);
         }
 
-        public void EditClicked() {
+        public void EditClicked()
+        {
+            Class newClass = (Class)View.cbClass.SelectedItem;
+            Subject newSubject = (Subject)View.cbSubject.SelectedItem;
+            Lecture newLecture = new Lecture(0, (Teacher)MasterController.User, newClass, newSubject);
+            Lecture dbLecture = MasterController.DB.CheckLecture(newLecture);
+            if (dbLecture != null)
+            {
+                newLecture = dbLecture;
+            }
+            else
+            {
+                tblLecture tblLecture = MasterController.DB.AddLecture(newLecture);
+                Teacher newTeacher = new Teacher(tblLecture.tblTeacher.nr, tblLecture.tblTeacher.firstname, tblLecture.tblTeacher.surname);
+                Class newActualClass = new Class(tblLecture.@class);
+                Subject newActualSubject = new Subject(tblLecture.tblSubject.id, tblLecture.tblSubject.name);
+                Lecture newActualLecture = new Lecture(tblLecture.id, newTeacher, newActualClass, newActualSubject);
+                newLecture = newActualLecture;
+            }
+
+            Model.LocallyEditedExam.Lecture = newLecture;
+
             Model.Exam = Model.LocallyEditedExam;
             Model.Event.Tag = Model.Exam;
 
