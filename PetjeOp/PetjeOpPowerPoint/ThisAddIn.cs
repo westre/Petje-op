@@ -80,33 +80,38 @@ namespace PetjeOpPowerPoint
                 // Tijdsrestrictie variabel
                 int seconds = (int)question.TimeRestriction.TotalSeconds;
 
-                // Heeft de vraag in kwestie een tijdsrestrictie?
-                if (question.TimeRestriction != TimeSpan.Zero) {
-                    // De vraag is niet gesloten
-                    if(slide.Tags["isClosed"] == "0") {
+                
+                // De vraag is niet gesloten
+                if(slide.Tags["isClosed"] == "0") {
+                    // Heeft de vraag in kwestie een tijdsrestrictie?
+                    if (question.TimeRestriction != TimeSpan.Zero) {
                         // Voeg een tag toe om het makkelijker te maken
                         slide.Tags.Add("timeRestriction", seconds.ToString());
 
                         // Start de timer
                         StartTimedSlide(slide, seconds);
                     }
-                    // De vraag is gesloten
-                    else if(slide.Tags["isClosed"] == "1") {
-                        // Verwijder timer label
-                        foreach (PowerPoint.Shape shape in CurrentSlide.Shapes) {
-                            if (shape.Tags["timer"] == "1") {
-                                shape.Delete();
-                            }
-                        }
-
-                        // Voeg een gesloten label toe
-                        PowerPoint.Shape timerLabel = CurrentSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 150, 10, 150, 100);
-                        timerLabel.TextFrame.TextRange.InsertAfter("Al gesteld");
-                        timerLabel.TextFrame.TextRange.Font.Size = 28;
-                        timerLabel.TextFrame.TextRange.Font.Color.RGB = BGR(Color.Red);
-                        timerLabel.Tags.Add("timer", "1");
-                    }
+                        
                 }
+                // De vraag is gesloten
+                else if(slide.Tags["isClosed"] == "1") {
+                    // Verwijder timer label
+                    foreach (PowerPoint.Shape shape in CurrentSlide.Shapes) {
+                        if (shape.Tags["timer"] == "1") {
+                            shape.Delete();
+                        }
+                    }
+
+                    // Voeg een gesloten label toe
+                    PowerPoint.Shape timerLabel = CurrentSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 150, 10, 150, 100);
+                    timerLabel.TextFrame.TextRange.Font.Size = 28;
+                    timerLabel.TextFrame.TextRange.Font.Color.RGB = BGR(Color.Red);
+                    timerLabel.TextFrame.TextRange.InsertAfter("Al gesteld");                    
+                    timerLabel.Tags.Add("timer", "1");
+                }
+
+                slide.Tags.Add("isClosed", "1");
+
             }
 
             // Resultaat updaten
@@ -146,9 +151,9 @@ namespace PetjeOpPowerPoint
                 }
 
                 // Update tijd label
-                timerLabel = CurrentSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, 10, 100, 100);
-                timerLabel.TextFrame.TextRange.InsertAfter(secondsLeft.ToString());
+                timerLabel = CurrentSlide.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, 10, 100, 100);          
                 timerLabel.TextFrame.TextRange.Font.Size = 28;
+                timerLabel.TextFrame.TextRange.InsertAfter(secondsLeft.ToString());
                 timerLabel.Tags.Add("timer", "1");
 
                 // Tijd is op

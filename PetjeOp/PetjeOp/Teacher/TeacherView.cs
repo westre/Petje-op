@@ -61,5 +61,34 @@ namespace PetjeOp {
         {
             Controller.GoToAddExamController();
         }
+
+        private void ViewExamClick(object sender, EventArgs e) {
+            Controller.GoToExamOverview();
+        }
+
+        private void lblTitle_Agenda_Title_Click(object sender, EventArgs e)
+        {
+            Controller.GoToExamOverview();
+        }
+
+        private void pbIcon_Agenda_Icon_Click(object sender, EventArgs e)
+        {
+            Controller.GoToExamOverview();
+        }
+
+        private void pnlButton_Agenda_Background_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblTitle_QuestionnaireOverview_Title_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireOverview();
+        }
+
+        private void pbIcon_QuestionnaireOverview_Icon_Click(object sender, EventArgs e)
+        {
+            Controller.GoToQuestionnaireOverview();
+        }
     }
 }

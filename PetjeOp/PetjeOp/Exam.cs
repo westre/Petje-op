@@ -11,6 +11,8 @@ namespace PetjeOp {
         public Lecture Lecture { get; set; }
         public DateTime Starttime { get; set; }
         public DateTime Endtime { get; set; }
+        public int LectureInt { get; set; }
+        public Class Class { get; set; }
 
         public int? CurrentQuestion { get; set; }
 
@@ -27,6 +29,15 @@ namespace PetjeOp {
             Starttime = starttime;
             Endtime = endtime;
             Lecture = lecture;
+        }
+
+        public Exam(int id, Questionnaire questionnaire, DateTime starttime, DateTime endtime, int li)
+        {
+            Examnr = id;
+            Questionnaire = questionnaire;
+            Starttime = starttime;
+            Endtime = endtime;
+            LectureInt = li;
         }
 
         /*

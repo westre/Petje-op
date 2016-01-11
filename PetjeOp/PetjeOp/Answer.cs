@@ -15,5 +15,10 @@ namespace PetjeOp
         {
             this.ID = ID;
         }
+
+        public override string ToString()
+        {
+            return this.Description;
+        }
     }
 }

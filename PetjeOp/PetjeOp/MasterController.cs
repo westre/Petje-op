@@ -38,10 +38,13 @@ namespace PetjeOp
             Controllers.Add(new AddExamController(this));
 
             Controllers.Add(new ExamOverviewStudentController(this));
+            Controllers.Add(new ExamOverviewTeacherController(this));
+            Controllers.Add(new EditExamController(this));
 
             //Creëer database instantie
             DB = new Database();
             DB.AnswerCleanup();
+            
 
             Resize += MasterController_Resize;
 

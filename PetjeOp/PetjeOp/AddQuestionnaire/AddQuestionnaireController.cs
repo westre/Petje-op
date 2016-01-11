@@ -102,7 +102,7 @@ namespace PetjeOp.AddQuestionnaire
         public void AddSubjects()
         {
 
-            Model.Subjects = MasterController.DB.GetAllSubjects();
+            Model.Subjects = MasterController.DB.GetSubjects();
             foreach (Subject subject in Model.Subjects)
             {
                 View.cbSubjects.Items.Add(subject);

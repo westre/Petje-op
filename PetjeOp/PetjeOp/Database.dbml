@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="kbs2" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="kbs2" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=176.31.253.42,119;Initial Catalog=kbs2;Persist Security Info=True;User ID=jonaham" SettingsObjectName="PetjeOp.Properties.Settings" SettingsPropertyName="kbs2ConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.teacher" Member="tblTeachers">
     <Type Name="tblTeacher">
@@ -18,7 +18,7 @@
   </Table>
   <Table Name="dbo.lecture" Member="tblLectures">
     <Type Name="tblLecture">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="teacher" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="class" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="subject" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -109,7 +109,7 @@
     <Type Name="tblResult">
       <Column Name="student" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="exam" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="answer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="answer" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="question" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="tblAnswer_tblResult" Member="tblAnswer" ThisKey="answer" OtherKey="id" Type="tblAnswer" IsForeignKey="true" />
       <Association Name="tblExam_tblResult" Member="tblExam" ThisKey="exam" OtherKey="id" Type="tblExam" IsForeignKey="true" />

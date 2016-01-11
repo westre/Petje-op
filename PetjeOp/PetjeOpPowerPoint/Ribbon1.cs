@@ -32,7 +32,7 @@ namespace PetjeOpPowerPoint
             foreach (Exam x in exams)
             {
                 Microsoft.Office.Tools.Ribbon.RibbonDropDownItem exam = this.Factory.CreateRibbonDropDownItem();
-                exam.Label = "AFNAMEMOMENT: " + x.questionnaire.Name + ", VAK: " + x.questionnaire.Subject +  ", STARTTIJD: " +  Convert.ToString(x.starttime) + ", EINDTIJD: " + Convert.ToString(x.endtime);
+                exam.Label = "AFNAMEMOMENT: " + x.Questionnaire.Name + ", VAK: " + x.Questionnaire.Subject +  ", STARTTIJD: " +  Convert.ToString(x.Starttime) + ", EINDTIJD: " + Convert.ToString(x.Endtime);
                 ddExams.Items.Add(exam);
                 
                 int index = ddExams.Items.IndexOf(exam);
@@ -79,9 +79,9 @@ namespace PetjeOpPowerPoint
 
                 textBox.TextFrame.TextRange.InsertAfter(answers);
 
-                PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
-                winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
-                winQWatermark.TextFrame.TextRange.Font.Size = 10;
+                //PowerPoint.Shape winQWatermark = currentSld.Shapes.AddTextbox(Office.MsoTextOrientation.msoTextOrientationHorizontal, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Width - 100, Globals.ThisAddIn.Application.ActivePresentation.SlideMaster.Height - 50, 100, 100);
+                //winQWatermark.TextFrame.TextRange.InsertAfter("Toegevoegd door WinQ plugin v1.0");
+                //winQWatermark.TextFrame.TextRange.Font.Size = 10;
 
                 // volgende slide
                 PowerPoint.Slide resultSlide = Globals.ThisAddIn.Application.ActivePresentation.Slides.Add(Globals.ThisAddIn.Application.ActivePresentation.Slides.Count + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
@@ -129,7 +129,7 @@ namespace PetjeOpPowerPoint
                 btnAllQuestions.Visible = true;
                 // Het programma kijkt welk afnamemoment geselecteerd is en vult dan de vragenlijst met vragen in dat afnamemoment
                 Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-                Questionnaire testquest = DB.GetQuestionnaire(chosen.questionnaire.ID);
+                Questionnaire testquest = DB.GetQuestionnaire(chosen.Questionnaire.ID);
 
                 foreach (Question q in testquest.Questions)
                 {
@@ -146,7 +146,7 @@ namespace PetjeOpPowerPoint
         private void btnAllQuestions_Click(object sender, RibbonControlEventArgs e)
         {
             Exam chosen = (Exam)ddExams.SelectedItem.Tag;
-            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.questionnaire.ID);
+            Questionnaire questionnaire = DB.GetQuestionnaire(chosen.Questionnaire.ID);
 
             // Haal alle resultaten op die bij deze examen hoort
             List<Result> allResults = DB.GetResultsByExamId(chosen.Examnr);
@@ -224,8 +224,16 @@ namespace PetjeOpPowerPoint
             if (CurrentSlide.Tags["isResultSlide"] == "0") {
                 DB.DeleteResults(int.Parse(CurrentSlide.Tags["examId"]), int.Parse(CurrentSlide.Tags["questionId"]));
 
-                if(CurrentSlide.Tags["isClosed"] == "1") {
+                if (CurrentSlide.Tags["isClosed"] == "1" && CurrentSlide.Tags["timeRestriction"] != "-1") {
                     Globals.ThisAddIn.StartTimedSlide(CurrentSlide, int.Parse(CurrentSlide.Tags["timeRestriction"]));
+                }
+                else if (CurrentSlide.Tags["isClosed"] == "1" && CurrentSlide.Tags["timeRestriction"] == "-1") {
+                    // Update tijd label
+                    foreach (PowerPoint.Shape shape in CurrentSlide.Shapes) {
+                        if (shape.Tags["timer"] == "1") {
+                            shape.Delete();
+                        }
+                    }
                 }
             }
         }
@@ -264,9 +272,9 @@ namespace PetjeOpPowerPoint
             Subject chosen = (Subject)ddFilterVak.SelectedItem.Tag;
             if(chosen != null) {
                 foreach (Exam exam in exams) {
-                    if (chosen.Id == exam.questionnaire.Subject.Id) {
-                        Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
-                        examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
+                    if (chosen.Id == exam.Questionnaire.Subject.Id) {
+                        RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                        examRibbon.Label = "AFNAMEMOMENT: " + exam.Questionnaire.Name + ", STARTTIJD: " + Convert.ToString(exam.Starttime) + ", EINDTIJD: " + Convert.ToString(exam.Endtime);
                         examRibbon.Tag = exam;
                         ddExams.Items.Add(examRibbon);
                     }
@@ -274,8 +282,9 @@ namespace PetjeOpPowerPoint
             }
             else {
                 foreach (Exam exam in exams) {
-                    Microsoft.Office.Tools.Ribbon.RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
-                    examRibbon.Label = "AFNAMEMOMENT: " + exam.questionnaire.Name + ", VAK: " + exam.questionnaire.Subject + ", STARTTIJD: " + Convert.ToString(exam.starttime) + ", EINDTIJD: " + Convert.ToString(exam.endtime);
+                    RibbonDropDownItem examRibbon = this.Factory.CreateRibbonDropDownItem();
+                    examRibbon.Label =  "AFNAMEMOMENT: " + exam.Questionnaire.Name + ", VAK: " + exam.Questionnaire.Subject
+                                        + ", STARTTIJD: " + Convert.ToString(exam.Starttime) + ", EINDTIJD: " + Convert.ToString(exam.Endtime);
                     examRibbon.Tag = exam;
                     ddExams.Items.Add(examRibbon);
                 }

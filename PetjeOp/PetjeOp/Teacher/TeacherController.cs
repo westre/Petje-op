@@ -54,6 +54,12 @@ namespace PetjeOp {
             MasterController.SetController(aoc);
         }
 
+        public void GoToExamOverview() {
+            ExamOverviewTeacherController etc = (ExamOverviewTeacherController)MasterController.GetController(typeof(ExamOverviewTeacherController));
+            etc.Load();
+            MasterController.SetController(etc);
+        }
+
         public Panel GetHeaderPanel() {
             return View.pnlHeader;
         }

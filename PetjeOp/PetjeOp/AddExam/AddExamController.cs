@@ -25,7 +25,7 @@ namespace PetjeOp {
 
         public void GetAllData()
         {
-            Model.Subjects = MasterController.DB.GetAllSubjects();
+            Model.Subjects = MasterController.DB.GetSubjects();
             Model.Questionnaires = MasterController.DB.GetAllQuestionnaires();
             Model.Classes = MasterController.DB.GetAllClasses();
         }
@@ -194,14 +194,30 @@ namespace PetjeOp {
             else
             {
                 tblLecture newLecture = MasterController.DB.AddLecture(selectedLecture);
-                //selectedLecture = newLecture;
-                //Lecture newActualLecture = new Lecture(newLecture.id, newLecture.tblTeacher, newLecture.@class, new);
+                Teacher newTeacher = new Teacher(newLecture.tblTeacher.nr, newLecture.tblTeacher.firstname, newLecture.tblTeacher.surname);
+                Class newClass = new Class(newLecture.@class);
+                Subject newSubject = new Subject(newLecture.tblSubject.id, newLecture.tblSubject.name);
+                Lecture newActualLecture = new Lecture(newLecture.id, newTeacher, newClass, newSubject);
+                selectedLecture = newActualLecture;
             }
             Questionnaire selectedQuestionnaire = (Questionnaire)View.cbQuestionnaires.SelectedItem;
             DateTime selectedStartTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpStarttimeTime.Value.Hour, View.dtpStarttimeTime.Value.Minute, View.dtpStarttimeTime.Value.Second);
             DateTime selectedEndTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpEndtimeTime.Value.Hour, View.dtpEndtimeTime.Value.Minute, View.dtpEndtimeTime.Value.Second);
             Exam currentExam = new Exam(0, selectedQuestionnaire,selectedStartTime, selectedEndTime, selectedLecture);
+            MessageBox.Show("LectureID: " + selectedLecture.ID);
             MasterController.DB.AddExam(currentExam);
+            MessageBox.Show("De data is succesvol toegevoegd!");
+            ClearControls();
+        }
+
+        public void ClearControls()
+        {
+            View.cbSubjects.SelectedIndex = -1;
+            View.cbClasses.SelectedIndex = -1;
+            View.cbQuestionnaires.SelectedIndex = -1;
+            View.dtpEndtimeTime.Value = DateTime.Now;
+            View.dtpStarttimeTime.Value = DateTime.Now;
+            View.dtpStarttimeDate.Value = DateTime.Now;
         }
     }
 }

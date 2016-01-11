@@ -122,6 +122,7 @@
             this.lblTitle_Logout_Title.Name = "lblTitle_Logout_Title";
             this.lblTitle_Logout_Title.Size = new System.Drawing.Size(83, 23);
             this.lblTitle_Logout_Title.TabIndex = 14;
+            this.lblTitle_Logout_Title.Click += new System.EventHandler(this.Logout);
             this.lblTitle_Logout_Title.Text = "Uitloggen";
             // 
             // pbIcon_Logout_Icon
@@ -132,7 +133,8 @@
             this.pbIcon_Logout_Icon.Location = new System.Drawing.Point(30, 9);
             this.pbIcon_Logout_Icon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon_Logout_Icon.Name = "pbIcon_Logout_Icon";
-            this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(21, 25);
+            this.pbIcon_Logout_Icon.Size = new System.Drawing.Size(42, 48);
+            this.pbIcon_Logout_Icon.Click += new System.EventHandler(this.Logout);
             this.pbIcon_Logout_Icon.TabIndex = 4;
             this.pbIcon_Logout_Icon.TabStop = false;
             // 
@@ -163,7 +165,8 @@
             this.pnlButton_Agenda_Background.Name = "pnlButton_Agenda_Background";
             this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Agenda_Background.TabIndex = 15;
-            this.pnlButton_Agenda_Background.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlButton_Agenda_Background_Click);
+            this.pnlButton_Agenda_Background.Click += new System.EventHandler(this.ViewExamClick);
+            this.pnlButton_Agenda_Background.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlButton_Agenda_Background_Paint);
             // 
             // pbIcon_Agenda_Icon
             // 
@@ -176,7 +179,7 @@
             this.pbIcon_Agenda_Icon.Size = new System.Drawing.Size(25, 22);
             this.pbIcon_Agenda_Icon.TabIndex = 5;
             this.pbIcon_Agenda_Icon.TabStop = false;
-            this.pbIcon_Agenda_Icon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlButton_Agenda_Background_Click);
+            this.pbIcon_Agenda_Icon.Click += new System.EventHandler(this.pbIcon_Agenda_Icon_Click);
             // 
             // lblTitle_Agenda_Title
             // 
@@ -190,7 +193,7 @@
             this.lblTitle_Agenda_Title.Size = new System.Drawing.Size(68, 23);
             this.lblTitle_Agenda_Title.TabIndex = 13;
             this.lblTitle_Agenda_Title.Text = "Agenda";
-            this.lblTitle_Agenda_Title.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlButton_Agenda_Background_Click);
+            this.lblTitle_Agenda_Title.Click += new System.EventHandler(this.lblTitle_Agenda_Title_Click);
             // 
             // pnlButton_Result_Background
             // 
@@ -260,7 +263,7 @@
             this.pbIcon_QuestionnaireOverview_Icon.Size = new System.Drawing.Size(21, 21);
             this.pbIcon_QuestionnaireOverview_Icon.TabIndex = 6;
             this.pbIcon_QuestionnaireOverview_Icon.TabStop = false;
-            this.pbIcon_QuestionnaireOverview_Icon.Click += new System.EventHandler(this.pnlButton_QuestionnaireOverview_Background_Click);
+            this.pbIcon_QuestionnaireOverview_Icon.Click += new System.EventHandler(this.pbIcon_QuestionnaireOverview_Icon_Click);
             // 
             // lblTitle_QuestionnaireOverview_Title
             // 
@@ -274,7 +277,7 @@
             this.lblTitle_QuestionnaireOverview_Title.Size = new System.Drawing.Size(111, 23);
             this.lblTitle_QuestionnaireOverview_Title.TabIndex = 12;
             this.lblTitle_QuestionnaireOverview_Title.Text = "Vragenlijsten";
-            this.lblTitle_QuestionnaireOverview_Title.Click += new System.EventHandler(this.pnlButton_QuestionnaireOverview_Background_Click);
+            this.lblTitle_QuestionnaireOverview_Title.Click += new System.EventHandler(this.lblTitle_QuestionnaireOverview_Title_Click);
             // 
             // lblArrow
             // 

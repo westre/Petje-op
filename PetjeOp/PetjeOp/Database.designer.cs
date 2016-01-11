@@ -23,7 +23,7 @@ namespace PetjeOp
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="kbs2")]
-	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
+	public partial class DatabaseDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -65,31 +65,31 @@ namespace PetjeOp
     partial void DeletetblResult(tblResult instance);
     #endregion
 		
-		public DataClasses1DataContext() : 
+		public DatabaseDataContext() : 
 				base(global::PetjeOp.Properties.Settings.Default.kbs2ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(string connection) : 
+		public DatabaseDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(System.Data.IDbConnection connection) : 
+		public DatabaseDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DatabaseDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DatabaseDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -513,7 +513,7 @@ namespace PetjeOp
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -2423,7 +2423,7 @@ namespace PetjeOp
 		
 		private int _exam;
 		
-		private int _answer;
+		private System.Nullable<int> _answer;
 		
 		private int _question;
 		
@@ -2443,7 +2443,7 @@ namespace PetjeOp
     partial void OnstudentChanged();
     partial void OnexamChanging(int value);
     partial void OnexamChanged();
-    partial void OnanswerChanging(int value);
+    partial void OnanswerChanging(System.Nullable<int> value);
     partial void OnanswerChanged();
     partial void OnquestionChanging(int value);
     partial void OnquestionChanged();
@@ -2506,8 +2506,8 @@ namespace PetjeOp
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_answer", DbType="Int NOT NULL")]
-		public int answer
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_answer", DbType="Int")]
+		public System.Nullable<int> answer
 		{
 			get
 			{
@@ -2581,7 +2581,7 @@ namespace PetjeOp
 					}
 					else
 					{
-						this._answer = default(int);
+						this._answer = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblAnswer");
 				}
