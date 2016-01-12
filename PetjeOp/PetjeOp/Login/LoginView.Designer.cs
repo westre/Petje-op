@@ -55,7 +55,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(312, 108);
             this.pictureBox2.TabIndex = 6;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.DoubleClick += new System.EventHandler(this.pictureBox2_DoubleClick);
             // 
             // PnlLogin
             // 

@@ -53,11 +53,5 @@ namespace PetjeOp.Login
         {
             this.ActiveControl = txtLoginCode; //Zorgt ervoor dat je direct bij het starten van de applicatie kan typen in dit textbox
         }
-
-        private void pictureBox2_DoubleClick(object sender, EventArgs e)
-        {
-            Controller.MasterController.User = Controller.MasterController.DB.GetStudent("1111111");
-            Controller.AnswerQuestion(1);
-        }
     }
 }
