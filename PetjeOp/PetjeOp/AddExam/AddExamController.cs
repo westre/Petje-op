@@ -145,7 +145,7 @@ namespace PetjeOp {
                      View.dtpStarttimeDate.Value.Month == DateTime.Now.Month &&
                      View.dtpStarttimeDate.Value.Day == DateTime.Now.Day)
             {
-                if (View.dtpStarttimeTime.Value.TimeOfDay > DateTime.Now.TimeOfDay)
+                if (View.dtpStarttimeTime.Value.TimeOfDay >= DateTime.Now.TimeOfDay)
                 {
                     begintimeValidation = true;
                     View.lblStarttimeError.Text = "";
@@ -164,10 +164,10 @@ namespace PetjeOp {
 
             if (View.dtpEndtimeTime.Value.TimeOfDay > View.dtpStarttimeTime.Value.TimeOfDay)
             {
-                if (View.dtpStarttimeTime.Value.AddHours(1).TimeOfDay > View.dtpEndtimeTime.Value.TimeOfDay)
+                if (View.dtpStarttimeTime.Value.AddHours(1).TimeOfDay >= View.dtpEndtimeTime.Value.TimeOfDay)
                 {
                     endtimeValidation = false;
-                    View.lblEndtimeError.Text = "Een les duurt minimaal een uur!";
+                    View.lblEndtimeError.Text = "Een les duurt langer dan een uur!";
                 }
                 else
                 {
@@ -213,7 +213,6 @@ namespace PetjeOp {
             DateTime selectedStartTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpStarttimeTime.Value.Hour, View.dtpStarttimeTime.Value.Minute, View.dtpStarttimeTime.Value.Second);
             DateTime selectedEndTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpEndtimeTime.Value.Hour, View.dtpEndtimeTime.Value.Minute, View.dtpEndtimeTime.Value.Second);
             Exam currentExam = new Exam(0, selectedQuestionnaire,selectedStartTime, selectedEndTime, selectedLecture);
-            MessageBox.Show("LectureID: " + selectedLecture.ID);
             MasterController.DB.AddExam(currentExam);
             MessageBox.Show("De data is succesvol toegevoegd!");
             ClearControls();

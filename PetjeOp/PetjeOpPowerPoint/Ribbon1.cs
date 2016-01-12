@@ -27,7 +27,7 @@ namespace PetjeOpPowerPoint
             emptyExams.Label = null;
             ddExams.Items.Add(emptyExams);
             // Vul de rest van de dropdown lijst met afnamemomenten uit de database
-            exams = DB.GetExams();
+            exams = DB.GetAllExams();
 
             foreach (Exam x in exams)
             {
