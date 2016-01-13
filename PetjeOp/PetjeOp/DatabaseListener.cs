@@ -17,7 +17,7 @@ namespace PetjeOp {
 
         private SqlDependency dependency;
         public DatabaseListener() {
-            ConnectionString = "Data Source=176.31.253.42,119;Initial Catalog=kbs2;User ID=kbs2_live;Password=12";
+            ConnectionString = Properties.Settings.Default.kbs2ConnectionLiveString;
 
             // Altijd zeker van zijn
             SqlDependency.Stop(ConnectionString);

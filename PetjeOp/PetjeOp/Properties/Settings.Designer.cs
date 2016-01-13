@@ -33,5 +33,15 @@ namespace PetjeOp.Properties {
                 return ((string)(this["kbs2ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=176.31.253.42,119;Initial Catalog=kbs2;User ID=kbs2_live;Password=12")]
+        public string kbs2ConnectionLiveString {
+            get {
+                return ((string)(this["kbs2ConnectionLiveString"]));
+            }
+        }
     }
 }
