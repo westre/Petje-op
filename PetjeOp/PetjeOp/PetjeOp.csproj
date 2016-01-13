@@ -154,7 +154,6 @@
     <Compile Include="MasterController.Designer.cs">
       <DependentUpon>MasterController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Media.cs" />
     <Compile Include="MultipleChoiceQuestion.cs" />
     <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireController.cs" />
     <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireModel.cs" />
@@ -163,14 +162,6 @@
     </Compile>
     <Compile Include="AnswerQuestionnaire\AnswerQuestionnaireView.Designer.cs">
       <DependentUpon>AnswerQuestionnaireView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MVC Template\JOUWKLASSEController.cs" />
-    <Compile Include="MVC Template\JOUWKLASSEModel.cs" />
-    <Compile Include="MVC Template\JOUWKLASSEView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MVC Template\JOUWKLASSEView.Designer.cs">
-      <DependentUpon>JOUWKLASSEView.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestionnaireOverview\LoadingDialog.cs">
       <SubType>Form</SubType>
@@ -353,7 +344,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MVC Template\Handleiding.txt" />
     <Content Include="Resources\Button_Login_Icon.png" />
     <Content Include="Resources\Inloggen.png" />
     <None Include="Resources\loadgif.gif" />

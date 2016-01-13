@@ -54,6 +54,7 @@ namespace PetjeOpPowerPoint
             }
         }
        
+        // Drop down event afgevuurd
         private void ddQuestions_SelectionChanged(object sender, RibbonControlEventArgs e)
         {
             if (ddQuestions.SelectedItemIndex != 0)
@@ -185,6 +186,7 @@ namespace PetjeOpPowerPoint
             
         }
 
+        // Wanneer de gebruiker op Dia informatie klikt
         private void btnSlideInfo_Click(object sender, RibbonControlEventArgs e) {
             PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
 
@@ -220,6 +222,7 @@ namespace PetjeOpPowerPoint
             }
         }
 
+        // Wanneer de gebruiker op Opnieuw vraag stellen klikt
         private void btnReset_Click(object sender, RibbonControlEventArgs e) {
             PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
 
@@ -263,6 +266,7 @@ namespace PetjeOpPowerPoint
             timer.Enabled = true;
         }
 
+        // Voor het filteren
         private void ddFilterVak_SelectionChanged(object sender, RibbonControlEventArgs e) {
             // Button 'alle vragen toevoegen' wordt tijdelijk onzichtbaar totdat het programma weet dat er een afnamemoment is gekozen, en niet een leeg record
             ddExams.Items.Clear();
