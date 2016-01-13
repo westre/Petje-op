@@ -17,28 +17,11 @@ namespace PetjeOp {
             InitializeComponent();
         }
 
-        private void btnStudentLogin_Click(object sender, EventArgs e) {
-
-        }
-
-        private void btnLoginTeacher_Click(object sender, EventArgs e) {
-
-        }
         private void VraagBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (e.NewValue == CheckState.Checked)
                 for (int ix = 0; ix < VraagBox.Items.Count; ++ix)
                     if (e.Index != ix) VraagBox.SetItemChecked(ix, false);
-        }
-
-        private void viewPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblTitle_Results_Title_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

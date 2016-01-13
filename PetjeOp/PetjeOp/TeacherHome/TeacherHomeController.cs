@@ -41,6 +41,7 @@ namespace PetjeOp
             ((TeacherController)MasterController.ActiveParentContainer).GoToQuestionnaireOverview();
         }
 
+        //Ga naar de ExamOverview
         public void GoToExamOverview()
         {
             ExamOverviewTeacherController etc = (ExamOverviewTeacherController)MasterController.GetController(typeof(ExamOverviewTeacherController));

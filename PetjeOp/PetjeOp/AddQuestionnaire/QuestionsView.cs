@@ -315,6 +315,7 @@ namespace PetjeOp.AddQuestionnaire
             UpdateTreeView();
         }
 
+        //Zet de controls uit
         public void DisableView()
         {
             Disabled = true;
@@ -323,6 +324,7 @@ namespace PetjeOp.AddQuestionnaire
             tvQuestions.Enabled = false;
         }
 
+        //Zet de controls aan
         public void EnableView()
         {
             Disabled = false;

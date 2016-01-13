@@ -10,10 +10,7 @@ namespace PetjeOp
         public string FirstName { get; set; }
         public string SurName { get; set; }
 
-        public Person()
-        {
-            
-        }
+        public Person(){ }
 
         public Person(string firstName, string surName)
         {

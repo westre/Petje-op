@@ -36,6 +36,7 @@ namespace PetjeOp {
             Controller.GoToQuestionnaires();
         }
 
+        //Wanneer er op de Examsknop wordt geklikt, ga naar de ExamOverview
         private void btnGoToExams_Click(object sender, EventArgs e)
         {
             Controller.GoToExamOverview();

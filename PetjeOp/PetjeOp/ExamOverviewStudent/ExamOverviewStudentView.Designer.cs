@@ -48,7 +48,6 @@ namespace PetjeOp {
             this.viewPanel.Name = "viewPanel";
             this.viewPanel.Size = new System.Drawing.Size(788, 428);
             this.viewPanel.TabIndex = 4;
-            this.viewPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.viewPanel_Paint);
             // 
             // lbExams
             // 

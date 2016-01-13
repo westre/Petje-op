@@ -19,14 +19,17 @@ namespace PetjeOp {
             return View;
         }
 
+        //Haal de viewpanel op..
         public Panel GetViewPanel() {
             return View.viewPanel;
         }
 
+        //Haal de headerpanel op.
         public Panel GetHeaderPanel() {
             return View.pnlHeader;
         }
 
+        //Haal de logoutbutton op.
         public Panel GetLogoutButton() {
             return View.pnlButton_Logout_Background;
         }

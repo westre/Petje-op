@@ -12,10 +12,7 @@ namespace PetjeOp {
         public ExamOverviewStudentView View { get; set; }
         public ExamOverviewStudentModel Model { get; set; }
         public Exam Exam { get; set; }
-        private DatabaseListener changeListener = new DatabaseListener();
-        private DatabaseListener resultListener = new DatabaseListener();
-
-        private Thread demoThread;
+        
         public ExamOverviewStudentController(MasterController masterController) : base(masterController) {
             Model = new ExamOverviewStudentModel();
             View = new ExamOverviewStudentView(this);
@@ -23,6 +20,7 @@ namespace PetjeOp {
 
         public void Init()
         {
+            //Leeg de listbox en vul deze weer met nieuwe gegevens uit de database.
             View.lbExams.Items.Clear();
             foreach(tblExam exam in MasterController.DB.GetExamsOfStudent(((Student)(MasterController.User)).StudentNr)){
                 View.lbExams.Items.Add(new ListViewItem(new[] {

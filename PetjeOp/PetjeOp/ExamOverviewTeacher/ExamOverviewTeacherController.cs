@@ -16,10 +16,10 @@ namespace PetjeOp {
         public ExamOverviewTeacherController(MasterController masterController) : base(masterController) {
             Model = new ExamOverviewTeacherModel();
             View = new ExamOverviewTeacherView(this);
-
             View.clnExams.CalendarItemClick += ClnExams_CalendarItemClick;
         }
 
+        //Wanneer er op een calendar item is geklikt, open een dialog met de gegevens van deze exam.
         private void ClnExams_CalendarItemClick(CalendarEvent calendarEvent, Point point) {
             if(calendarEvent.Event is CustomEvent) {
                 ExamOverviewTeacherDetailDialog dialog = new ExamOverviewTeacherDetailDialog(this, (CustomEvent)calendarEvent.Event);

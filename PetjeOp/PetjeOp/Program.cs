@@ -14,7 +14,8 @@ namespace PetjeOp {
         static void Main()
         {
             // Zorgt ervoor dat de applicatie werkt op HiDPI-schermen
-            if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
+            if (Environment.OSVersion.Version.Major >= 6)
+                SetProcessDPIAware();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

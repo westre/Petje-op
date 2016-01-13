@@ -47,7 +47,6 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ExamOverviewTeacherDetailDialog";
             this.Text = "Details Afnamemoment";
-            this.Load += new System.EventHandler(this.ExamOverviewTeacherDetailDialog_Load);
             this.ResumeLayout(false);
 
         }

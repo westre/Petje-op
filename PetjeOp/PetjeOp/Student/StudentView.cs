@@ -18,13 +18,5 @@ namespace PetjeOp {
 
             Controller = controller;
         }
-
-        private void btnStudentLogin_Click(object sender, EventArgs e) {
-
-        }
-
-        private void btnLoginTeacher_Click(object sender, EventArgs e) {
-
-        }
     }
 }

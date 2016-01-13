@@ -189,7 +189,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             }
 
         private void cbQuestionnaire_SelectedIndexChanged(object sender, EventArgs e)
-                    {
+        {
             listView1.Items.Clear();
             ApplyFilter();
         }
@@ -251,6 +251,7 @@ namespace PetjeOp.ViewResults.ChooseExam
             listView1.Sorting = SortOrder.Ascending;
             }
 
+        //Wanneer checkbox1 van waarde veranderd, clear de listview en voeg de filter toe.
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
             {
             listView1.Items.Clear();

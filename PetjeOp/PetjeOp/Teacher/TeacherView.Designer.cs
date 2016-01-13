@@ -166,7 +166,6 @@
             this.pnlButton_Agenda_Background.Size = new System.Drawing.Size(165, 40);
             this.pnlButton_Agenda_Background.TabIndex = 15;
             this.pnlButton_Agenda_Background.Click += new System.EventHandler(this.ViewExamClick);
-            this.pnlButton_Agenda_Background.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlButton_Agenda_Background_Paint);
             // 
             // pbIcon_Agenda_Icon
             // 
@@ -300,7 +299,6 @@
             this.Controls.Add(this.pnlHeader);
             this.Name = "TeacherView";
             this.Size = new System.Drawing.Size(3732, 1723);
-            this.Load += new System.EventHandler(this.TeacherView_Load);
             this.Resize += new System.EventHandler(this.logOutBtn);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();

@@ -47,7 +47,6 @@ namespace PetjeOp {
             this.lblTitle_Results_Title.TabIndex = 4;
             this.lblTitle_Results_Title.Text = "test text";
             this.lblTitle_Results_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTitle_Results_Title.Click += new System.EventHandler(this.lblTitle_Results_Title_Click);
             // 
             // viewPanel
             // 
@@ -60,7 +59,6 @@ namespace PetjeOp {
             this.viewPanel.Name = "viewPanel";
             this.viewPanel.Size = new System.Drawing.Size(788, 428);
             this.viewPanel.TabIndex = 4;
-            this.viewPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.viewPanel_Paint);
             // 
             // VraagBox
             // 

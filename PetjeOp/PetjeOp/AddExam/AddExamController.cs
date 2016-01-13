@@ -123,7 +123,8 @@ namespace PetjeOp {
                 View.lblQuestionnaireError.Text = "Selecteer een vragenlijst!";
             }
 
-            //Check of de waardes van de datetimepicker
+            //Check of de waardes van de datetimepicker correct zijn, stap voor stap zodat je niets terug in de tijd kan selecteren.
+            //Dit om bugs te voorkomen die je zou kunnen krijgen als je wacht na je een tijd hebt geselecteerd, het moet altijd later dan "nu" zijn.
             if (View.dtpStarttimeDate.Value.Year > DateTime.Now.Year)
             {
                 begintimeValidation = true;
@@ -145,6 +146,7 @@ namespace PetjeOp {
                      View.dtpStarttimeDate.Value.Month == DateTime.Now.Month &&
                      View.dtpStarttimeDate.Value.Day == DateTime.Now.Day)
             {
+                //Check of de tijd van nu meer is dan de tijd van 'nu'
                 if (View.dtpStarttimeTime.Value.TimeOfDay >= DateTime.Now.TimeOfDay)
                 {
                     begintimeValidation = true;
@@ -162,8 +164,10 @@ namespace PetjeOp {
                 View.lblStarttimeError.Text = "Selecteer een goede tijd!";
             }
 
+            //Kijk of de eindtijd later is dan de starttijd.
             if (View.dtpEndtimeTime.Value.TimeOfDay > View.dtpStarttimeTime.Value.TimeOfDay)
             {
+                //Check of de les minimaal een uur duurt.
                 if (View.dtpStarttimeTime.Value.AddHours(1).TimeOfDay >= View.dtpEndtimeTime.Value.TimeOfDay)
                 {
                     endtimeValidation = false;
@@ -181,6 +185,9 @@ namespace PetjeOp {
                 View.lblEndtimeError.Text = "Selecteer een goede tijd!";
             }
 
+            //Kijk of alle validaties kloppen.
+            //Zo ja: Opslagknop beschikbaar.
+            //Zo nee: Opslagknop niet beschikbaar.
             if (subjectValidation && questionnaireValidation && classValidation && begintimeValidation &&
                 endtimeValidation)
             {
@@ -192,10 +199,14 @@ namespace PetjeOp {
             }
         }
 
+        //Opslaan van een exam.
         public void SaveExam()
         {
+            //Maak een nieuwe lecture aan met de gegevens uit de form.
             Lecture selectedLecture = new Lecture(0, (Teacher)MasterController.User, (Class)View.cbClasses.SelectedItem, (Subject)View.cbSubjects.SelectedItem);
+            //Kijk of de lecture al in de database staat.
             Lecture dbLecture = MasterController.DB.CheckLecture(selectedLecture);
+            //Als de lecture al in de database staat, selecteer deze. Zo niet: Maak een nieuwe lecture aan.
             if (dbLecture != null)
             {
                 selectedLecture = dbLecture;
@@ -209,23 +220,32 @@ namespace PetjeOp {
                 Lecture newActualLecture = new Lecture(newLecture.id, newTeacher, newClass, newSubject);
                 selectedLecture = newActualLecture;
             }
+            //Maak gegevens aan om een nieuwe exam te maken. (lecture was hier een deel van)
             Questionnaire selectedQuestionnaire = (Questionnaire)View.cbQuestionnaires.SelectedItem;
             DateTime selectedStartTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpStarttimeTime.Value.Hour, View.dtpStarttimeTime.Value.Minute, View.dtpStarttimeTime.Value.Second);
             DateTime selectedEndTime = new DateTime(View.dtpStarttimeDate.Value.Year, View.dtpStarttimeDate.Value.Month, View.dtpStarttimeDate.Value.Day, View.dtpEndtimeTime.Value.Hour, View.dtpEndtimeTime.Value.Minute, View.dtpEndtimeTime.Value.Second);
+            //Maak de nieuwe exam aan met alle hiervoor gemaakte gegevens.
             Exam currentExam = new Exam(0, selectedQuestionnaire,selectedStartTime, selectedEndTime, selectedLecture);
+            //Voeg de exam toe aan de database.
             MasterController.DB.AddExam(currentExam);
+            //Laat een dialoogvenster zien dat de gebruiker er op wijst dat zijn data succesvol is toegevoegd.
             MessageBox.Show("De data is succesvol toegevoegd!");
             ClearControls();
+            
         }
 
+        //Clear alle controls, zet alle çomboboxes op de standaardwaarde en zet alle datetimepickers op de huidige tijd.
         public void ClearControls()
         {
             View.cbSubjects.SelectedIndex = -1;
             View.cbClasses.SelectedIndex = -1;
             View.cbQuestionnaires.SelectedIndex = -1;
             View.dtpEndtimeTime.Value = DateTime.Now;
+            View.dtpEndtimeTime.MinDate = DateTime.Now;
             View.dtpStarttimeTime.Value = DateTime.Now;
+            View.dtpStarttimeTime.MinDate = DateTime.Now;
             View.dtpStarttimeDate.Value = DateTime.Now;
+            View.dtpStarttimeDate.MinDate = DateTime.Now;
         }
     }
 }

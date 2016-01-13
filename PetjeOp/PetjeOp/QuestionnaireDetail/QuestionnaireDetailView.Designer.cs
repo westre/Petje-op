@@ -216,7 +216,6 @@
             this.tbNameEdit.TabIndex = 45;
             this.tbNameEdit.Visible = false;
             this.tbNameEdit.TextChanged += new System.EventHandler(this.tbNameEdit_TextChanged);
-            this.tbNameEdit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNameEdit_KeyPress);
             // 
             // btnEdit
             // 

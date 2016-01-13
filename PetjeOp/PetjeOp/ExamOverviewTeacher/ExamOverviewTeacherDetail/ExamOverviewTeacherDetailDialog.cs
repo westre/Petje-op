@@ -15,17 +15,16 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             Event = @event;
             Exam = (Exam)Event.Tag;
 
-            // Geen referenties naar het originele object
+            //Stop de gegevens van de geselecteerde exam in een nieuw object, zodat deze wel bewaard blijven.
             LocallyEditedExam = new Exam(Exam.Examnr, Exam.Questionnaire, Exam.Starttime, Exam.Endtime, Exam.Lecture);
-
             InitializeComponent();
-
             UpdateView();
         }
 
         private void UpdateView() {
             double differenceMinutes = (LocallyEditedExam.Endtime - LocallyEditedExam.Starttime).TotalMinutes;
 
+            //Zet de tekst van alle labels naar correcte gegevens uit de model.
             examOverviewTeacherDetailView.lblTitle.Text = LocallyEditedExam.Questionnaire.Name;
             examOverviewTeacherDetailView.lblStarttime.Text = "Starttijd: " + LocallyEditedExam.Starttime.ToString();
             examOverviewTeacherDetailView.lblEndtime.Text = "Eindtijd: " + LocallyEditedExam.Endtime.ToString();
@@ -35,28 +34,19 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
             examOverviewTeacherDetailView.lblPlannedInBy.Text = "Vragenlijst gemaakt door: " + LocallyEditedExam.Questionnaire.Author;
             examOverviewTeacherDetailView.lblForClass.Text = "Voor: " + LocallyEditedExam.Lecture.Class.Code;
 
+            //Wanneer de starttijd kleiner is dan de datum van nu, kan je de exam niet meer verbeteren.
             if (LocallyEditedExam.Starttime < DateTime.Now)
                 examOverviewTeacherDetailView.btnEditExam.Enabled = false;
         }
 
-        private void ExamOverviewTeacherDetailDialog_Load(object sender, EventArgs e) {
-
-        }
-
         public void EditExam() {
+            //Wanneer er een examgeedit moet worden, maak een nieuwe controller aan, geef deze de gegevens mee en set dan de controller.
             EditExamController mmc = (EditExamController)TeacherController.MasterController.GetController(typeof(EditExamController));
-
             mmc.Model.Event = Event;
             mmc.Model.Exam = (Exam)Event.Tag;
-            // Geen referenties naar het originele object
-
-            //MessageBox.Show("ID: " + Exam.Lecture.ID);
             mmc.Model.LocallyEditedExam = new Exam(Exam.Examnr, Exam.Questionnaire, Exam.Starttime, Exam.Endtime, Exam.Lecture);
-
             mmc.Init();
-
             TeacherController.MasterController.SetController(mmc);
-
             Close();
         }
     }

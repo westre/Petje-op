@@ -19,73 +19,52 @@ namespace PetjeOp {
             Controller = controller;
         }
 
-        private void btnStudentLogin_Click(object sender, EventArgs e) {
-
-        }
-
-        private void btnLoginTeacher_Click(object sender, EventArgs e) {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            Controller.ShowExamDialog();
-
-        }
-
-        private void TeacherView_Load(object sender, EventArgs e) {
-
-        }
-
         private void ResultClick(object sender, EventArgs e) {
             Controller.ShowExamDialog();
         }
 
+        //Log uit
         public void Logout(object sender, EventArgs args)
         {
             Controller.MasterController.Logout();
         }
 
+        //Wanneer er op het logo wordt geklikt, ga naar teacher home
         private void pbLogo_Click(object sender, EventArgs e)
         {
             Controller.GoToTeacherHome();
         }
 
+        //Wanneer er op de QuestionnaireOverview knop wordt geklikt, ga hier naar toe.
         private void pnlButton_QuestionnaireOverview_Background_Click(object sender, EventArgs e)
         {
             Controller.GoToQuestionnaireOverview();
         }
 
-        private void pnlButton_Agenda_Background_Click(object sender, MouseEventArgs e)
-        {
-            Controller.GoToAddExamController();
-        }
-
+        //Wanneer er op de ViewExamButton wordt geklikt, ga hier naar toe.
         private void ViewExamClick(object sender, EventArgs e) {
             Controller.GoToExamOverview();
         }
 
+        //Wanneer er op de Agenda knop wordt gedrukt, ga hier naar toe
         private void lblTitle_Agenda_Title_Click(object sender, EventArgs e)
         {
             Controller.GoToExamOverview();
         }
 
+        //Wanneer er op de Agenda knop wordt gedrukt, ga hier naar toe
         private void pbIcon_Agenda_Icon_Click(object sender, EventArgs e)
         {
             Controller.GoToExamOverview();
         }
 
-        private void pnlButton_Agenda_Background_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        //Wanneer er op de Questionnaire knop wordt gedrukt, ga hier naar toe
         private void lblTitle_QuestionnaireOverview_Title_Click(object sender, EventArgs e)
         {
             Controller.GoToQuestionnaireOverview();
         }
 
+        //Wanneer er op de Questionnaire knop wordt gedrukt, ga hier naar toe
         private void pbIcon_QuestionnaireOverview_Icon_Click(object sender, EventArgs e)
         {
             Controller.GoToQuestionnaireOverview();

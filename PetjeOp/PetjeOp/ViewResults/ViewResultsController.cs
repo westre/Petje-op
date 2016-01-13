@@ -43,12 +43,11 @@ namespace PetjeOp {
 
                 View.listQuestions.Items.Add(q);
             }
-
         }
+
         // hier wordt de grafiek leeggemaakt
         public void ClearChart()
         {
-          
             View.series1.Points.Clear();
             View.label1.Text = "";
             View.chartArea1.BackColor = System.Drawing.SystemColors.Control;
@@ -58,38 +57,43 @@ namespace PetjeOp {
         // hier wordt de grafiek gevuld met data
         public void ShowChart()
         {
-
+            //Leeg eerst de grafiek.
             ClearChart();
+            //Check of er een item in de lijst is geselecteerd.
             if (View.listQuestions.SelectedItem != null) {
-            Question chosen = (Question)View.listQuestions.SelectedItem;
-            View.chartArea1.BackColor = System.Drawing.SystemColors.Window;
-            View.label1.Text = chosen.Description;
+                //Zo ja, maak een question aan met de huidige geselecteerde question
+                Question chosen = (Question)View.listQuestions.SelectedItem;
+                //Zet de huidige kleur
+                View.chartArea1.BackColor = System.Drawing.SystemColors.Window;
+                //Zet de tekst naar de beschrijving van de gekozen question.
+                View.label1.Text = chosen.Description;
+                //Haal alle antwoorden van de gekozen vraag uit de database.
+                List<Answer> answers = this.MasterController.DB.GetAnswersByQuestion(chosen.ID);
 
-
-
-            List<Answer> answers = this.MasterController.DB.GetAnswersByQuestion(chosen.ID);
-
-            foreach (Answer answer in answers)
-            {
-
-                List<Result> results = this.MasterController.DB.GetResultByAnswer(chosen.ID, answer.ID, ex.Examnr);
-                double amount = results.Count();
-                System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
-                dataPoint1.AxisLabel = Convert.ToString(this.MasterController.DB.GetDescriptionByAnswer(answer.ID));
-                if (answer.ID == chosen.CorrectAnswer.ID)
+                //Voer dit uit voor elk antwoord.
+                foreach (Answer answer in answers)
                 {
-                    dataPoint1.Color = Color.Green;
+                    //Haal alle leerlingAntwoorden op die bij dit antwoord horen.
+                    List<Result> results = this.MasterController.DB.GetResultByAnswer(chosen.ID, answer.ID, ex.Examnr);
+                    //Tel hoeveel leerlingen dit antwoord hebben gegeven.
+                    double amount = results.Count;
+                    //Maak een point aan naar hoeveel mensen dit antwoord hebben gegeven.
+                    System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, amount);
+                    //Print de beschrijving van dit antwoord aan de onderkant van de as.
+                    dataPoint1.AxisLabel = Convert.ToString(this.MasterController.DB.GetDescriptionByAnswer(answer.ID));
+                    //Wanneer het het goede antwoord is, kleur de balk groen, zo niet, kleur de balk rood.
+                    if (answer.ID == chosen.CorrectAnswer.ID)
+                    {
+                        dataPoint1.Color = Color.Green;
+                    }
+                    else
+                    {
+                        dataPoint1.Color = Color.Red;
+                    }
+                    //Kleur het daadwerkelijke punt.
+                    View.series1.Points.Add(dataPoint1);
                 }
-                else
-                {
-                    dataPoint1.Color = Color.Red;
-                }
-
-
-                View.series1.Points.Add(dataPoint1);
-
             }
-        }
         }
         // hier ga je terug naar het toevoegen en inzien van vragenlijsten
         public void GoToMainMenu()

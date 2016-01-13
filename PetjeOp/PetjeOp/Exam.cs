@@ -39,13 +39,6 @@ namespace PetjeOp {
             Endtime = endtime;
             LectureInt = li;
         }
-
-        /*
-        public override string ToString()
-        {
-            return "VRAGENLIJST : " + questionnaire.Name + ", VAK : "  + questionnaire.Subject + ", BEGIN : " + starttime + ", EIND : " + endtime;
-        }
-        */
     }
 
 }

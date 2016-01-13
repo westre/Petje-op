@@ -77,6 +77,7 @@ namespace PetjeOp.AddQuestionnaire
                 subjectCheck = true;
             }
 
+            //Kijk of er genoeg vragen zijn toegevoegd
             if (!View.questionsView1.ValidateQuestions())
             {
                 View.lblNoQuestionsInQuestionaire.Text = "Voeg vragen toe";
@@ -88,6 +89,7 @@ namespace PetjeOp.AddQuestionnaire
                 questionsCheck = true;
             }
 
+            //Als aan alle voorwaarden zijn voldaan, enable de opslaanknop
             if (nameCheck && subjectCheck && questionsCheck)
             {
                 View.btnSaveQuestionnaire.Enabled = true;

@@ -23,17 +23,7 @@ namespace PetjeOp.Login
             pbLoading.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
-        private void btnVraagOverzicht_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
-        {
-            Controller.QuestionnaireDetail();
-        }
-
-        private void btnAnswerQuestion_Click(object sender, EventArgs e) //Tijdelijk, moet nog worden verwijderd!
-        {
-            Controller.MasterController.User = Controller.MasterController.DB.GetStudent("1111111");
-            Controller.AnswerQuestion(1);
-        }
-
+        //Zorg ervoor dat je ook inlogd wanneer je op enter klikt.
         private void LoginCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -42,10 +32,10 @@ namespace PetjeOp.Login
             }
         }
 
+        //Zorg ervoor dat er ingelogd wordt op het moment dat je op inloggen klikt en laat dan een laadanimatie zien.
         private void LoginBtn_Click(object sender, EventArgs e)
         {
             Controller.BackgroundWorker.RunWorkerAsync();
-
             pbLoading.Show();            
         }
 

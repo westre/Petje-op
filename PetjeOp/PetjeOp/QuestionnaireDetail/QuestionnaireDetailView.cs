@@ -49,6 +49,9 @@ namespace PetjeOp.QuestionnaireDetail
             ExamsDialog.ShowDialog();
         }
 
+        //Wanneer er op de editknop geklikt wordt, laat textboxes zien zodat de gebruiker deze ook kan aanpassen.
+        //Selecteer ook de subject van de huidige questionnaire.
+        //Laat ook alle knoppen zien die gebruikt moeten kunnen worden om te bewerken.
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
@@ -62,6 +65,7 @@ namespace PetjeOp.QuestionnaireDetail
             btnCancelEdit.Show();
         }
 
+        //Hide alle controls en reset alle data.
         private void btnCancelEdit_Click(object sender, EventArgs e)
         {
             tbNameEdit.Hide();
@@ -73,6 +77,7 @@ namespace PetjeOp.QuestionnaireDetail
             btnCancelEdit.Hide();
         }
 
+        //Wanneer er op de opslaanknop geklikt wordt.
         private void btnSave_Click(object sender, EventArgs e)
         {
             Controller.SaveQuestionnaireDetails();
@@ -85,11 +90,7 @@ namespace PetjeOp.QuestionnaireDetail
             Controller.GoToQuestionnaireOverview();
         }
 
-        private void tbNameEdit_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           
-        }
-
+        //Wanneer de BewerkNaamTekstbox is veranderd controleer of er nog iets in staat. Zo niet: Laat een error zien.
         private void tbNameEdit_TextChanged(object sender, EventArgs e)
         {
             if (!tbNameEdit.Text.Any())

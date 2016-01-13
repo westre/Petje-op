@@ -12,14 +12,10 @@ namespace PetjeOp.ExamOverviewTeacher.ExamOverviewTeacherDetail {
         public ExamOverviewTeacherDetailView() {
             InitializeComponent();
         }
-
+        
+        //Voer dit uit wanneer er op de EditExamknop is geklikt.
         private void btnEditExam_Click(object sender, EventArgs e) {
             ((ExamOverviewTeacherDetailDialog)Parent).EditExam();
-        }
-
-        private void lblPlannedInBy_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

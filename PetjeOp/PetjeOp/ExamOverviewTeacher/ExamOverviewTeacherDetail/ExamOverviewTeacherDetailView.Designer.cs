@@ -88,7 +88,6 @@
             this.lblPlannedInBy.Size = new System.Drawing.Size(224, 36);
             this.lblPlannedInBy.TabIndex = 4;
             this.lblPlannedInBy.Text = "Ingepland door:";
-            this.lblPlannedInBy.Click += new System.EventHandler(this.lblPlannedInBy_Click);
             // 
             // lblExecutedBy
             // 

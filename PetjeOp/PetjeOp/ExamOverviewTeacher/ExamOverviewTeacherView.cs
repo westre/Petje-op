@@ -18,6 +18,7 @@ namespace PetjeOp {
             Controller = controller;         
         }
 
+        //Voer dit uit wanneer er op de AddExamknop is gekelikt.
         private void btnAddExam_Click(object sender, EventArgs e)
         {
             Controller.GoToAddExamController();

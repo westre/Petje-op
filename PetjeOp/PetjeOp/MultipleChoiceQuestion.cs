@@ -44,6 +44,7 @@ namespace PetjeOp
             return Description;
         }
 
+        //Haal de answer op n.a.v. de meegegeven string.
         public Answer GetAnswer(string desc) {
             foreach(Answer answer in AnswerOptions) {
                 if (desc == answer.Description)

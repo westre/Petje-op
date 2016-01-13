@@ -42,32 +42,38 @@ namespace PetjeOp {
             vrc.ShowResults(vrc.ex);
         }
 
+        //Zet de QuestionnaireOverviewController als de huidige controller
         public void GoToQuestionnaireOverview()
         {
             QuestionnaireOverviewController qoc = (QuestionnaireOverviewController)MasterController.GetController(typeof(QuestionnaireOverviewController));
             MasterController.SetController(qoc);
         }
 
+        //Zet de AddExamController als de huidige controller
         public void GoToAddExamController()
         {
             AddExamController aoc = (AddExamController) MasterController.GetController(typeof (AddExamController));
             MasterController.SetController(aoc);
         }
 
+        //Zet de ExamOverviewTeacherController als de huidige controller
         public void GoToExamOverview() {
             ExamOverviewTeacherController etc = (ExamOverviewTeacherController)MasterController.GetController(typeof(ExamOverviewTeacherController));
             etc.Load();
             MasterController.SetController(etc);
         }
 
+        //Haal de headerpanel op.
         public Panel GetHeaderPanel() {
             return View.pnlHeader;
         }
 
+        //Haal de loguitbutton op.
         public Panel GetLogoutButton() {
             return View.pnlButton_Logout_Background;
         }
 
+        //Zet de TeacherHomeController als de huidige controller
         public void GoToTeacherHome()
         {
             TeacherHomeController thc =(TeacherHomeController) MasterController.GetController(typeof(TeacherHomeController));
