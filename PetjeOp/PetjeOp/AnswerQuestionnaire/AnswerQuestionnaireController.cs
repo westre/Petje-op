@@ -22,7 +22,6 @@ namespace PetjeOp {
         private DatabaseListener resultListener = new DatabaseListener();
 
         private Thread demoThread;
-        private Thread secondThread;
         public AnswerQuestionnaireController(MasterController masterController) : base(masterController) {
             Model = new AnswerQuestionnaireModel();
             View = new AnswerQuestionnaireView(this);
