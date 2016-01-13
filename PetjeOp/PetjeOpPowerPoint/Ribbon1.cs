@@ -39,13 +39,15 @@ namespace PetjeOpPowerPoint
                 ddExams.Items[index].Tag = x;              
             }
 
-
+            // functie voor vullen dropdown vakken
+            // eerst wordt er een record bovenaan de dropdown lijst gemaakt genaamd "Alles", deze filtert niet op vak
             List<Subject> subjects = DB.GetSubjects();
             RibbonDropDownItem empty = Factory.CreateRibbonDropDownItem();
             empty.Label = "Alles";
             empty.Tag = null;
             ddFilterVak.Items.Add(empty);
 
+            // de rest van de dropdown wordt gevuld met vakken uit de database
             foreach (Subject subject in subjects) {
                 RibbonDropDownItem ribbonSubject = Factory.CreateRibbonDropDownItem();
                 ribbonSubject.Label = subject.Name;
@@ -94,6 +96,7 @@ namespace PetjeOpPowerPoint
             }
         }
 
+        // Deze functie maakt een string aan op basis van een ID, deze string wordt gebruikt op de result slides
         public string GetFormattedAnswers(int questionId) {
             List<Answer> listAnswers = DB.GetAnswersByQuestion(questionId);
 
@@ -185,6 +188,7 @@ namespace PetjeOpPowerPoint
             
         }
 
+        // Functie voor het opgeven van gegevens over de huidige slide
         private void btnSlideInfo_Click(object sender, RibbonControlEventArgs e) {
             PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
 
@@ -220,6 +224,7 @@ namespace PetjeOpPowerPoint
             }
         }
 
+        // Functie voor het resetten van een vraag zodat deze opnieuw gesteld wordt
         private void btnReset_Click(object sender, RibbonControlEventArgs e) {
             PowerPoint.Slide CurrentSlide = Globals.ThisAddIn.CurrentSlide;
 

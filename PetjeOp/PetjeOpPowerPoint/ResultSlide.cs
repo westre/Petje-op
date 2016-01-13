@@ -14,6 +14,7 @@ namespace PetjeOpPowerPoint {
             public Result Result { get; set; }
         }
 
+        // Functie voor het toevoegen van gegevens op een result slide
         public static void Add(List<Result> allResults, Question question, Microsoft.Office.Interop.PowerPoint.Slide resultSlide) {
             MultipleChoiceQuestion multipleChoiceQuestion = null;
             if (question is MultipleChoiceQuestion) {
@@ -115,7 +116,6 @@ namespace PetjeOpPowerPoint {
                         }
                         // Answer gevonden, is tevens correct answer
                         else if (answer.ID == kvp.Value.Result.answerID && question.CorrectAnswer.ID == answer.ID) {
-                            //int offset = question.CorrectAnswer.Description.Length * 5;
                             int offset = 0;
                             // Aantal karakters minder dan 10, geef het horizontaal weer
                             if (question.CorrectAnswer.Description.Length <= 10)
@@ -126,7 +126,6 @@ namespace PetjeOpPowerPoint {
                                 labelShape.TextEffect.Text = question.CorrectAnswer.Description;
                                 labelShape.Rotation = 315f;
                             }
-                            //resultSlide.Shapes.AddLabel(Office.MsoTextOrientation.msoTextOrientationHorizontal, x + centerLabelPosition - offset, y, 100, 100).TextEffect.Text = question.CorrectAnswer.Description;
                         }
                     }
                 }
